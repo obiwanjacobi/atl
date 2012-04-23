@@ -82,7 +82,7 @@ public:
 
 	// Returns the status portion of a midi status byte (stripping of channel)
 	// or returns 0 (zero) if midiByte is not a midi status byte.
-	inline static MessageTypes getMessageType(byte midiByte)
+	inline static MessageTypes GetMessageType(byte midiByte)
 	{
 		if (isStatus(midiByte))
 		{
@@ -104,7 +104,7 @@ public:
 	// Returns 0 if statusByte is not a statusByte.
 	// Returns -1 for SysEx messages, for there is no telling how big those messages are going to be.
 	// Returns 1, 2 or 3 for normal midi messages.
-	inline static byte getMessageLength(byte statusByte)
+	inline static byte GetMessageLength(byte statusByte)
 	{
 		switch (statusByte)
 		{
@@ -148,7 +148,7 @@ public:
 		}
 	}
 
-	inline static bool isChannelMessage(byte statusByte)
+	inline static bool IsChannelMessage(byte statusByte)
 	{
 		switch (statusByte)
 		{
@@ -166,7 +166,7 @@ public:
 		}
 	}
 
-	inline static bool isRealTimeMessage(byte statusByte)
+	inline static bool IsRealTimeMessage(byte statusByte)
 	{
 		switch (statusByte)
 		{
@@ -184,7 +184,7 @@ public:
 		}
 	}
 
-	inline static bool isSystemMessage(byte statusByte)
+	inline static bool IsSystemMessage(byte statusByte)
 	{
 		return (statusByte >= SystemExclusive);
 	}

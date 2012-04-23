@@ -3,7 +3,7 @@
 
 #include "Midi.h"
 
-// Midi message struct for all midi messages.
+// Midi message struct for all midi messages
 //  NoteOff	              channel, note, velocity
 //	NoteOn                channel, note, velocity
 //	AfterTouchPoly        channel, note, pressure
@@ -63,7 +63,7 @@ struct MidiMessage
 
 	//byte reserved[3];		// filler to get to power of 2 struct size (8 bytes)
 
-	void setStatusByte(byte statusByte)
+	void SetStatusByte(byte statusByte)
 	{
 		msgType = Midi.getMessageType(statusByte);
 		// reset state
@@ -77,7 +77,7 @@ struct MidiMessage
 		}
 	}
 
-	void setDataByte1(byte dataByte)
+	void SetDataByte1(byte dataByte)
 	{
 		switch(msgType)
 		{
@@ -112,7 +112,7 @@ struct MidiMessage
 		}
 	}
 
-	void setDataByte2(byte dataByte)
+	void SetDataByte2(byte dataByte)
 	{
 		switch(msgType)
 		{
@@ -123,10 +123,20 @@ struct MidiMessage
 				// velocity, value or pressure, its the same
 				note = dataByte;
 				break;
+
+			case PitchBend:
+				// msb
+				bend |= (dataByte << 7);
+				break;
+
+			case SongPosition:
+				// msb
+				beats |= (dataByte << 7);
+				break;
 		}
 	}
 
-	void setNoteOff(byte channel, byte note, byte velocity)
+	void SetNoteOff(byte channel, byte note, byte velocity)
 	{
 		msgType = Midi.NoteOff;
 		channel = channel;
@@ -134,7 +144,7 @@ struct MidiMessage
 		velocity = velocity;
 	}
 
-	void setNoteOn(byte channel, byte note, byte velocity)
+	void SetNoteOn(byte channel, byte note, byte velocity)
 	{
 		msgType = Midi.NoteOn;
 		channel = channel;
@@ -142,7 +152,7 @@ struct MidiMessage
 		velocity = velocity;
 	}
 
-	void setAfterTouchPoly(byte channel, byte note, byte pressure)
+	void SetAfterTouchPoly(byte channel, byte note, byte pressure)
 	{
 		msgType = Midi.AfterTouchPoly;
 		channel = channel;
@@ -150,7 +160,7 @@ struct MidiMessage
 		pressure = pressure;
 	}
 
-	void setControlChange(byte channel, byte number, byte value)
+	void SetControlChange(byte channel, byte number, byte value)
 	{
 		msgType = Midi.ControlChange;
 		channel = channel;
