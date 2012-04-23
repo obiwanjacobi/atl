@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary", "ArduinoTemplateLibrary.vcxproj", "{768CA406-0503-49D7-BEB0-1F694B672EA0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary", "ArduinoTemplateLibrary\ArduinoTemplateLibrary.vcxproj", "{768CA406-0503-49D7-BEB0-1F694B672EA0}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -9,8 +9,9 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs01
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = ArduinoTemplateLibrary.vcxproj
-		SccLocalPath1 = .
+		SccProjectUniqueName1 = ArduinoTemplateLibrary\\ArduinoTemplateLibrary.vcxproj
+		SccProjectName1 = ArduinoTemplateLibrary
+		SccLocalPath1 = ArduinoTemplateLibrary
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
