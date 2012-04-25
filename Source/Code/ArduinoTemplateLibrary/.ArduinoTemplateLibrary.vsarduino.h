@@ -11,4 +11,4 @@ void loop();
 
 #include "C:\Program Files\arduino-1.0\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Program Files\arduino-1.0\hardware\arduino\cores\arduino\Arduino.h"
-#include "D:\Marc\My Projects\Arduino\ArduinoTemplateLibrary\ArduinoTemplateLibrary.pde" 
+#include "D:\Marc\My Projects\Arduino\atl\Source\Code\ArduinoTemplateLibrary\ArduinoTemplateLibrary.pde" 

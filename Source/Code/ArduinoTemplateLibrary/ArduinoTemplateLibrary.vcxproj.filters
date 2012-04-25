@@ -1,60 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include=".ArduinoTemplateLibrary.vsarduino.h" />
-    <ClInclude Include=".Code.vsarduino.h" />
-    <ClInclude Include="BitArray.h" />
-    <ClInclude Include="ValueContainer.h" />
-    <ClInclude Include="Range.h" />
-    <ClInclude Include="RingBuffer.h" />
-    <ClInclude Include="BufferedInputStream.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="InputStream.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="Midi.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="MidiInPort.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="MidiInputStream.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="MidiMessage.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="MidiOutPort.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="MidiReader.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="Stream.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="StreamInputStream.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="IO">
-      <UniqueIdentifier>{769a8bb8-4283-46e3-b80a-96942d684970}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Midi">
-      <UniqueIdentifier>{af1e1f0b-29b2-4d95-9393-74a55503ebeb}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ArduinoTemplateLibrary.pde" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MidiInPort.cpp">
-      <Filter>Midi</Filter>
-    </ClCompile>
-    <ClCompile Include="MidiOutPort.cpp">
-      <Filter>Midi</Filter>
-    </ClCompile>
+    <ClInclude Include=".ArduinoTemplateLibrary.vsarduino.h" />
+    <ClInclude Include="ValueContainer.h" />
+    <ClInclude Include="BitArray.h" />
+    <ClInclude Include="BufferedInputStream.h" />
+    <ClInclude Include="InputStream.h" />
+    <ClInclude Include="Midi.h" />
+    <ClInclude Include="MidiInPort.h" />
+    <ClInclude Include="MidiInputStream.h" />
+    <ClInclude Include="MidiMessage.h" />
+    <ClInclude Include="MidiOutPort.h" />
+    <ClInclude Include="MidiReader.h" />
+    <ClInclude Include="Range.h" />
+    <ClInclude Include="RingBuffer.h" />
+    <ClInclude Include="Stream.h" />
+    <ClInclude Include="StreamInputStream.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MidiInPort.cpp" />
+    <ClCompile Include="MidiOutPort.cpp" />
   </ItemGroup>
 </Project>

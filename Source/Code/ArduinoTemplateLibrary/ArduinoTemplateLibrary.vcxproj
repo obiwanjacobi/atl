@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{768CA406-0503-49D7-BEB0-1F694B672EA0}</ProjectGuid>
+    <ProjectGuid>{F96787B6-E18C-4ECA-9A57-C62DF0F615ED}</ProjectGuid>
     <RootNamespace>ArduinoTemplateLibrary</RootNamespace>
-    <SccProjectName>SAK</SccProjectName>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>$/atl/Source/Code/ArduinoTemplateLibrary</SccProjectName>
+    <SccAuxPath>https://tfs.codeplex.com/tfs/tfs01</SccAuxPath>
+    <SccLocalPath>.</SccLocalPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -69,8 +69,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="ArduinoTemplateLibrary.pde" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include=".ArduinoTemplateLibrary.vsarduino.h" />
-    <ClInclude Include=".Code.vsarduino.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="BufferedInputStream.h" />
     <ClInclude Include="InputStream.h" />
@@ -85,9 +87,6 @@
     <ClInclude Include="Stream.h" />
     <ClInclude Include="StreamInputStream.h" />
     <ClInclude Include="ValueContainer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ArduinoTemplateLibrary.pde" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MidiInPort.cpp" />
