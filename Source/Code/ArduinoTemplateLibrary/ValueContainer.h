@@ -13,34 +13,49 @@ public:
 		Any,
 	};
 
-	void SetSingle(T value)
+	ValueContainer()
+	{
+		SetNone();
+	}
+
+	ValueContainer(T value)
+	{
+		SetSingle(value);
+	}
+
+	ValueContainer(T begin, T end)
+	{
+		SetRange(begin, end);
+	}
+
+	inline void SetSingle(T value)
 	{
 		_mode = Single;
 		_begin = value;
 		_end = value;
 	}
 
-	void SetRange(T begin, T end)
+	inline void SetRange(T begin, T end)
 	{
 		_mode = Range;
 		_begin = begin;
 		_end = end;
 	}
 
-	void SetAny()
+	inline void SetAny()
 	{
 		_mode = Any;
 	}
 
-	void SetNone()
+	inline void SetNone()
 	{
 		_mode = None;
 	}
 
-	Mode getMode() { return _mode; }
-	T getValue() { return _begin; }
-	T getBegin() { return _begin; }
-	T getEnd() { return _end; }
+	inline Mode getMode() { return _mode; }
+	inline T getValue() { return _begin; }
+	inline T getBegin() { return _begin; }
+	inline T getEnd() { return _end; }
 
 	bool IsInRange(T value)
 	{

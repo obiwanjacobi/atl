@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Project</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Project</Filter>
+    </ClCompile>
+    <ClCompile Include="RingBufferTest.cpp" />
+    <ClCompile Include="ValueContainerTest.cpp" />
+    <ClCompile Include="MidiMessageTest.cpp">
+      <Filter>Midi</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Project</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Project</Filter>
+    </ClInclude>
+    <ClInclude Include="Arduino.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Project">
+      <UniqueIdentifier>{7655e8f7-f325-464b-86b0-264449f18ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arduino">
+      <UniqueIdentifier>{c0f5ce7a-a0f9-47af-8dbc-320c06d55bd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Midi">
+      <UniqueIdentifier>{98803e02-642e-484f-a2f1-a97ab96e1c61}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.ico">
+      <Filter>Project</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Project</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -7,21 +7,53 @@
     <ClInclude Include=".ArduinoTemplateLibrary.vsarduino.h" />
     <ClInclude Include="ValueContainer.h" />
     <ClInclude Include="BitArray.h" />
-    <ClInclude Include="BufferedInputStream.h" />
-    <ClInclude Include="InputStream.h" />
-    <ClInclude Include="Midi.h" />
-    <ClInclude Include="MidiInPort.h" />
-    <ClInclude Include="MidiInputStream.h" />
-    <ClInclude Include="MidiMessage.h" />
-    <ClInclude Include="MidiOutPort.h" />
-    <ClInclude Include="MidiReader.h" />
     <ClInclude Include="Range.h" />
     <ClInclude Include="RingBuffer.h" />
-    <ClInclude Include="Stream.h" />
-    <ClInclude Include="StreamInputStream.h" />
+    <ClInclude Include="BufferedInputStream.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="InputStream.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Stream.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Midi.h">
+      <Filter>Midi</Filter>
+    </ClInclude>
+    <ClInclude Include="MidiInPort.h">
+      <Filter>Midi</Filter>
+    </ClInclude>
+    <ClInclude Include="MidiInputStream.h">
+      <Filter>Midi</Filter>
+    </ClInclude>
+    <ClInclude Include="MidiMessage.h">
+      <Filter>Midi</Filter>
+    </ClInclude>
+    <ClInclude Include="MidiOutPort.h">
+      <Filter>Midi</Filter>
+    </ClInclude>
+    <ClInclude Include="MidiReader.h">
+      <Filter>Midi</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamInputStream.h">
+      <Filter>IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MidiInPort.cpp" />
-    <ClCompile Include="MidiOutPort.cpp" />
+    <ClCompile Include="MidiInPort.cpp">
+      <Filter>Midi</Filter>
+    </ClCompile>
+    <ClCompile Include="MidiOutPort.cpp">
+      <Filter>Midi</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="IO">
+      <UniqueIdentifier>{d4fdecf2-701c-49ec-8bcc-af0dd77cc96e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Midi">
+      <UniqueIdentifier>{37111ec7-556f-4131-9a52-5d811731ce50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

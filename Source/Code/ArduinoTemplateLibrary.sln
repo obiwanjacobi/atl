@@ -3,15 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary", "ArduinoTemplateLibrary\ArduinoTemplateLibrary.vcxproj", "{F96787B6-E18C-4ECA-9A57-C62DF0F615ED}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary.Tests", "ArduinoTemplateLibrary.Tests\ArduinoTemplateLibrary.Tests.vcxproj", "{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9ED6B5A1-62C7-4B2F-BDCA-AAF39BEA1489}"
+	ProjectSection(SolutionItems) = preProject
+		ArduinoTemplateLibrary.vsmdi = ArduinoTemplateLibrary.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs01
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = ArduinoTemplateLibrary\\ArduinoTemplateLibrary.vcxproj
 		SccProjectName1 = ArduinoTemplateLibrary
 		SccLocalPath1 = ArduinoTemplateLibrary
+		SccProjectUniqueName2 = ArduinoTemplateLibrary.Tests\\ArduinoTemplateLibrary.Tests.vcxproj
+		SccProjectName2 = ArduinoTemplateLibrary.Tests
+		SccLocalPath2 = ArduinoTemplateLibrary.Tests
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ArduinoTemplateLibrary.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -22,6 +37,10 @@ Global
 		{F96787B6-E18C-4ECA-9A57-C62DF0F615ED}.Debug|Win32.Build.0 = Debug|Win32
 		{F96787B6-E18C-4ECA-9A57-C62DF0F615ED}.Release|Win32.ActiveCfg = Release|Win32
 		{F96787B6-E18C-4ECA-9A57-C62DF0F615ED}.Release|Win32.Build.0 = Release|Win32
+		{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}.Debug|Win32.Build.0 = Debug|Win32
+		{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}.Release|Win32.ActiveCfg = Release|Win32
+		{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

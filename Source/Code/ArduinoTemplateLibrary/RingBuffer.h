@@ -1,13 +1,12 @@
 #ifndef __RINGBUFFER_H__
 #define __RINGBUFFER_H__
 
-#include <inttypes.h>
-
 // A RingBuffer uses a fixed amount of memory to simulate an 'endless' buffer.
-// There is NO overrun or underrun detection!
+// Capacity is always one less than the specified Size.
+// There is NO underrun detection!
 // T is the data type of the buffer items.
 // Size is the number of 'T' items in the buffer.
-template <typename T, uint16_t Size>
+template <typename T, unsigned int Size>
 class RingBuffer
 {
 public:
@@ -24,6 +23,13 @@ public:
 
 	bool Put(T value)
 	{
+		// check for overrun
+		if ((_writePtr + 1) >= (_buffer + Size))
+		{
+			if ((_buffer) == _readPtr) return false;
+		}
+		else if ((_writePtr + 1) == _readPtr) return false;
+
 		*_writePtr = value;
 		_writePtr++;
 
@@ -48,7 +54,7 @@ public:
 		return result;
 	}
 
-	inline uint16_t getLength() const
+	inline unsigned int getLength() const
 	{
 		if (_writePtr >= _readPtr)
 		{

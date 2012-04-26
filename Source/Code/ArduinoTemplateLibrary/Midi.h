@@ -75,7 +75,7 @@ public:
 	};
 
 	// Returns true when the midiByte is a mid status byte.
-	inline static bool isStatus(byte midiByte)
+	inline static bool IsStatus(byte midiByte)
 	{
 		return ((midiByte & 0x80) > 0);
 	}
@@ -84,7 +84,7 @@ public:
 	// or returns 0 (zero) if midiByte is not a midi status byte.
 	inline static MessageTypes GetMessageType(byte midiByte)
 	{
-		if (isStatus(midiByte))
+		if (IsStatus(midiByte))
 		{
 			byte status = (midiByte & 0xF0);
 

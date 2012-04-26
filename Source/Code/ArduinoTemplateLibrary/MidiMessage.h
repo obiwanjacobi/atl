@@ -26,13 +26,13 @@
 struct MidiMessage
 {
 	// midi message type
-	Midi.MessageTypes msgType;
+	Midi::MessageTypes MessageType;
 
 	union
 	{
 		struct // channel messages
 		{
-			byte channel;
+			byte Channel;
 
 			union
 			{
@@ -40,46 +40,46 @@ struct MidiMessage
 				{
 					union
 					{
-						byte note;		// note number
-						byte number;	// Program- and Control Change numbers
+						byte Note;		// note number
+						byte Number;	// Program- and Control Change numbers
 					};
 
 					union
 					{
-						byte velocity;	// note
-						byte value;		// Control Change values
-						byte pressure;	// after touch
+						byte Velocity;	// note
+						byte Value;		// Control Change values
+						byte Pressure;	// after touch
 					};
 				};
 
-				int bend;	// pitch bend
+				int Bend;	// pitch bend
 			};
 		};
 			
-		unsigned int beats;	// song position
-		byte songNumber;	// song select
-		byte data;			// time code
+		unsigned int Beats;	// song position
+		byte SongNumber;	// song select
+		byte Data;			// time code
 	};
 
 	//byte reserved[3];		// filler to get to power of 2 struct size (8 bytes)
 
 	void SetStatusByte(byte statusByte)
 	{
-		msgType = Midi.getMessageType(statusByte);
+		MessageType = Midi::GetMessageType(statusByte);
 		// reset state
-		bend = 0;
-		beats = 0;
+		Bend = 0;
+		Beats = 0;
 
 		// if it is NOT a system message, set the channel
-		if (msgType < Midi.SystemExclusive)
+		if (MessageType < Midi::SystemExclusive)
 		{
-			channel = (statusByte & 0x0F);
+			Channel = (statusByte & 0x0F);
 		}
 	}
 
 	void SetDataByte1(byte dataByte)
 	{
-		switch(msgType)
+		switch(MessageType)
 		{
 			case NoteOn:
 			case NoteOff:
@@ -87,85 +87,85 @@ struct MidiMessage
 			case ControlChange:
 			case ProgramChange:
 				// note or number, its the same
-				note = dataByte;
+				Note = dataByte;
 				break;
 
 			case AfterTouchChannel:
-				pressure = dataByte;
+				Pressure = dataByte;
 				break;
 
 			case SongSelect:
 			case TimeCodeQuarterFrame:
 				// songNumber or data, its the same
-				data = dataByte;
+				Data = dataByte;
 				break;
 			
 			case PitchBend:
 				// lsb
-				bend = dataByte;
+				Bend = dataByte;
 				break;
 
 			case SongPosition:
 				// lsb
-				beats = dataByte;
+				Beats = dataByte;
 				break;
 		}
 	}
 
 	void SetDataByte2(byte dataByte)
 	{
-		switch(msgType)
+		switch(MessageType)
 		{
 			case NoteOn:
 			case NoteOff:
 			case AfterTouchPoly:
 			case ControlChange:
 				// velocity, value or pressure, its the same
-				note = dataByte;
+				Note = dataByte;
 				break;
 
 			case PitchBend:
 				// msb
-				bend |= (dataByte << 7);
+				Bend |= (dataByte << 7);
 				break;
 
 			case SongPosition:
 				// msb
-				beats |= (dataByte << 7);
+				Beats |= (dataByte << 7);
 				break;
 		}
 	}
 
 	void SetNoteOff(byte channel, byte note, byte velocity)
 	{
-		msgType = Midi.NoteOff;
-		channel = channel;
-		note = note;
-		velocity = velocity;
+		MessageType = Midi::NoteOff;
+		Channel = channel;
+		Note = note;
+		Velocity = velocity;
 	}
 
 	void SetNoteOn(byte channel, byte note, byte velocity)
 	{
-		msgType = Midi.NoteOn;
-		channel = channel;
-		note = note;
-		velocity = velocity;
+		MessageType = Midi::NoteOn;
+		Channel = channel;
+		Note = note;
+		Velocity = velocity;
 	}
 
 	void SetAfterTouchPoly(byte channel, byte note, byte pressure)
 	{
-		msgType = Midi.AfterTouchPoly;
-		channel = channel;
-		note = note;
-		pressure = pressure;
+		MessageType = Midi::AfterTouchPoly;
+		Channel = channel;
+		Note = note;
+		Pressure = pressure;
 	}
 
 	void SetControlChange(byte channel, byte number, byte value)
 	{
-		msgType = Midi.ControlChange;
-		channel = channel;
-		number = number;
-		value = value;
+		MessageType = Midi::ControlChange;
+		Channel = channel;
+		Number = number;
+		Value = value;
 	}
 
 	// TODO: more helper setters
