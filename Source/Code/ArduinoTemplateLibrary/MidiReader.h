@@ -2,7 +2,7 @@
 #define __MIDIREADER_H__
 
 // BaseT is a MidiInputStream derived custom class 
-// that implements the OnMessage, OnRealTime and OnSysEx methods
+// that implements the getLength, Read, OnMessage, OnRealTime and OnSysEx methods
 template<class BaseT>
 class MidiReader : BaseT
 {

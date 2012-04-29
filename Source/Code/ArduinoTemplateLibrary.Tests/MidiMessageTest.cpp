@@ -11,13 +11,76 @@ namespace ArduinoTemplateLibraryTests
 	[TestClass]
 	public ref class MidiMessageTest
 	{
+		static const unsigned char channel = 15;
+		static const unsigned char note = 64;
+		static const unsigned char velocity = 100;
+		static const int bend = 1024;
 	public: 
 		[TestMethod]
-		void TestStructureDefinition()
+		void TestStructureDefinition_PitchBend()
+		{
+			MidiMessage msg;
+			msg.MessageType = Midi::PitchBend;
+			msg.Channel = MidiMessageTest::channel;
+			msg.Bend = MidiMessageTest::bend;
+
+			Assert::AreEqual((int)Midi::PitchBend, (int)msg.MessageType);
+			Assert::AreEqual(MidiMessageTest::channel, msg.Channel);
+			Assert::AreEqual(MidiMessageTest::bend, msg.Bend);
+		}
+
+		[TestMethod]
+		void TestStructureDefinition_ChannelMessage()
 		{
 			MidiMessage msg;
 			msg.MessageType = Midi::NoteOn;
+			msg.Channel = MidiMessageTest::channel;
+			msg.Note = MidiMessageTest::note;
+			msg.Velocity = MidiMessageTest::velocity;
 
+			Assert::AreEqual((int)Midi::NoteOn, (int)msg.MessageType);
+			Assert::AreEqual(MidiMessageTest::channel, msg.Channel);
+			Assert::AreEqual(MidiMessageTest::note, msg.Note);
+			Assert::AreEqual(MidiMessageTest::velocity, msg.Velocity);
+		}
+
+		[TestMethod]
+		void TestStructureDefinition_SongPosition()
+		{
+			MidiMessage msg;
+			msg.MessageType = Midi::SongPosition;
+			msg.Beats = 32000;
+
+			Assert::AreEqual((int)Midi::SongPosition, (int)msg.MessageType);
+			Assert::AreEqual((unsigned int)32000, msg.Beats);
+		}
+
+		[TestMethod]
+		void TestSequentialInit_ChannelMessage()
+		{
+			MidiMessage msg;
+			msg.SetStatusByte(Midi::NoteOff | MidiMessageTest::channel);
+			msg.SetDataByte1(MidiMessageTest::note);
+			msg.SetDataByte2(MidiMessageTest::velocity);
+
+			Assert::AreEqual((int)Midi::NoteOff, (int)msg.MessageType);
+			Assert::AreEqual(MidiMessageTest::channel, msg.Channel);
+			Assert::AreEqual(MidiMessageTest::note, msg.Note);
+			Assert::AreEqual(MidiMessageTest::velocity, msg.Velocity);
+		}
+
+		[TestMethod]
+		void TestSequentialInit_PitchBend()
+		{
+			MidiMessage msg;
+			msg.SetStatusByte(Midi::PitchBend | MidiMessageTest::channel);
+			// bend = 1024 = 1000|0000000 = 8|0
+			msg.SetDataByte1(0);
+			msg.SetDataByte2(8);
+
+			Assert::AreEqual((int)Midi::PitchBend, (int)msg.MessageType);
+			Assert::AreEqual(MidiMessageTest::channel, msg.Channel);
+			Assert::AreEqual(MidiMessageTest::bend, msg.Bend);
 		}
 	};
 }

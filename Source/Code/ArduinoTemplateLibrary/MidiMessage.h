@@ -121,7 +121,7 @@ struct MidiMessage
 			case AfterTouchPoly:
 			case ControlChange:
 				// velocity, value or pressure, its the same
-				Note = dataByte;
+				Velocity = dataByte;
 				break;
 
 			case PitchBend:
