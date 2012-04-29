@@ -4,7 +4,7 @@
 // BaseT is a MidiInputStream derived custom class 
 // that implements the getLength, Read, OnMessage, OnRealTime and OnSysEx methods
 template<class BaseT>
-class MidiReader : BaseT
+class MidiReader : public BaseT
 {
 public:
 	MidiReader()
@@ -21,9 +21,12 @@ public:
 
 		if (availableBytes > 0)
 		{
-			const byte midiByte = (byte)base.Read();
+			int midiByte = (byte)BaseT::Read();
 
-			return Dispatch(midiByte);
+			if (midiByte != -1)
+			{
+				return Dispatch((byte)midiByte);
+			}
 		}
 
 		return false;
@@ -55,12 +58,12 @@ private:
 
 	inline void CallOnMessage()
 	{
-		OnMessage(_midiMsg);
+		OnMessage(&_midiMsg);
 	}
 
-	inline void CallOnRealtime(kMIDIType midiStatus)
+	inline void CallOnRealtime(byte midiStatus)
 	{
-		OnRealtime(midiStatus);
+		OnRealtime((Midi::MessageTypes)midiStatus);
 	}
 
 	inline void CallOnSysEx()
@@ -94,7 +97,7 @@ private:
 	{
 		bool success = false;
 
-		byte status = getStatus(midiByte);
+		Midi::MessageTypes status = Midi::GetMessageType(midiByte);
 
 		if (_parseState == StatusByte)
 		{
@@ -128,7 +131,7 @@ private:
 			// it must be a real-time status byte or it is an error.
 			if (status > 0)
 			{
-				if (Midi.isRealTimeMessage(status))
+				if (Midi::IsRealTimeMessage(status))
 				{
 					success = ProcessStatusByte(midiByte);
 				}
@@ -144,9 +147,9 @@ private:
 		}
 
 		if (success &&
-			_parseState == _endState)
+			_parseState == NotSet)
 		{
-			if (Midi.IsChannelMessage(_midiMsg.MessageType))
+			if (Midi::IsChannelMessage(_midiMsg.MessageType))
 			{
 				_runningStatus = _midiMsg.MessageType;
 			}
@@ -169,11 +172,11 @@ private:
 	{
 		bool success = true;
 
-		switch (Midi.getMessageLength(statusByte))
+		switch (Midi::GetMessageLength(statusByte))
 		{
 			// 1 byte messages
 			case 1:
-				CallOnRealTime(statusByte);
+				CallOnRealtime(statusByte);
 				break;
 			
 			// 2 bytes messages
@@ -216,12 +219,12 @@ private:
 		switch(_parseState)
 		{
 		case DataByte1:
-			_midiMsg.setDataByte1(midiByte);
-			_parseState = (_parseState != _endState) ? MidiDataByte2 : NotSet;
+			_midiMsg.SetDataByte1(midiByte);
+			_parseState = (_parseState != _endState) ? DataByte2 : NotSet;
 			break;
 		
 		case DataByte2:
-			_midiMsg.setDataByte2(midiByte);
+			_midiMsg.SetDataByte2(midiByte);
 			_parseState = NotSet;
 			break;
 

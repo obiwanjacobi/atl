@@ -12,6 +12,9 @@
     <ClCompile Include="MidiMessageTest.cpp">
       <Filter>Midi</Filter>
     </ClCompile>
+    <ClCompile Include="MidiReaderTest.cpp">
+      <Filter>Midi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -23,6 +26,9 @@
     <ClInclude Include="Arduino.h">
       <Filter>Arduino</Filter>
     </ClInclude>
+    <ClInclude Include="TestStream.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Project">
@@ -33,6 +39,9 @@
     </Filter>
     <Filter Include="Midi">
       <UniqueIdentifier>{98803e02-642e-484f-a2f1-a97ab96e1c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mocks">
+      <UniqueIdentifier>{9c47e097-4cc9-434a-9cc1-9d180d6fc8ce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

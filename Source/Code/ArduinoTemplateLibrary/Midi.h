@@ -106,7 +106,7 @@ public:
 	// Returns 1, 2 or 3 for normal midi messages.
 	inline static byte GetMessageLength(byte statusByte)
 	{
-		switch (statusByte)
+		switch (GetMessageType(statusByte))
 		{
 			// 1 byte messages
 			case Start:

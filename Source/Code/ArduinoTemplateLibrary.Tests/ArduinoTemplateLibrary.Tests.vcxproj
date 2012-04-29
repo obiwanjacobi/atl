@@ -83,6 +83,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="MidiMessageTest.cpp" />
+    <ClCompile Include="MidiReaderTest.cpp" />
     <ClCompile Include="RingBufferTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -94,6 +95,7 @@
     <ClInclude Include="Arduino.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TestStream.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
