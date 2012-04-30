@@ -151,17 +151,19 @@ private:
 		{
 			if (Midi::IsChannelMessage(_midiMsg.MessageType))
 			{
-				_runningStatus = _midiMsg.MessageType;
+				_runningStatus = _midiMsg.MessageType | _midiMsg.Channel;
 			}
 			else
 			{
-				_runningStatus = InvalidType;
+				_runningStatus = 0;
 			}
 
 			if (_endState != EOX)
 			{
 			    CallOnMessage();
 			}
+
+			ResetState();
 		}
 
 		return success;
@@ -195,14 +197,14 @@ private:
 			
 			// special sysex case
 			case -1:
-				_runningStatus = InvalidType;
+				_runningStatus = 0;
 				_parseState = SOX;
 				_endState = EOX;
 				CallOnSysEx();
 				break;
 
 			default:
-				_runningStatus = InvalidType;
+				_runningStatus = 0;
 				ResetState();
 				success = false;
 				break;

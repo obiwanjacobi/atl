@@ -79,6 +79,60 @@ namespace ArduinoTemplateLibraryTests
 			// realtime interleaved midi message
 			Assert::AreEqual((int)Midi::SystemReset, (int)midiReader.RealtimeStatus);
 		}
+
+		[TestMethod]
+		void InitBufferWithMultipleChannelMessages_Read_FiresChannelMessageEvents()
+		{
+			MidiReader<MidiReaderBase> midiReader;
+
+			unsigned char buffer[] = { 0x91, 0x40, 0x70, 0x81, 0x44, 0x68  };
+			midiReader.InitStream(buffer, 6);
+
+			for(int i = 0; i < 3; i++)
+				Assert::IsTrue(midiReader.Read());
+
+			Assert::IsTrue(midiReader.MidiMsg != NULL);
+			Assert::AreEqual((int)Midi::NoteOn, (int)midiReader.MidiMsg->MessageType);
+			Assert::AreEqual((unsigned char)1, midiReader.MidiMsg->Channel);
+			Assert::AreEqual((unsigned char)0x40, midiReader.MidiMsg->Note);
+			Assert::AreEqual((unsigned char)0x70, midiReader.MidiMsg->Velocity);
+
+			for(int i = 0; i < 3; i++)
+				Assert::IsTrue(midiReader.Read());
+
+			Assert::IsTrue(midiReader.MidiMsg != NULL);
+			Assert::AreEqual((int)Midi::NoteOff, (int)midiReader.MidiMsg->MessageType);
+			Assert::AreEqual((unsigned char)1, midiReader.MidiMsg->Channel);
+			Assert::AreEqual((unsigned char)0x44, midiReader.MidiMsg->Note);
+			Assert::AreEqual((unsigned char)0x68, midiReader.MidiMsg->Velocity);
+		}
+
+		[TestMethod]
+		void InitBufferWithRunningStatusChannelMessages_Read_FiresChannelMessageEvents()
+		{
+			MidiReader<MidiReaderBase> midiReader;
+
+			unsigned char buffer[] = { 0x91, 0x40, 0x70, 0x44, 0x68  };
+			midiReader.InitStream(buffer, 5);
+
+			for(int i = 0; i < 3; i++)
+				Assert::IsTrue(midiReader.Read());
+
+			Assert::IsTrue(midiReader.MidiMsg != NULL);
+			Assert::AreEqual((int)Midi::NoteOn, (int)midiReader.MidiMsg->MessageType);
+			Assert::AreEqual((unsigned char)1, midiReader.MidiMsg->Channel);
+			Assert::AreEqual((unsigned char)0x40, midiReader.MidiMsg->Note);
+			Assert::AreEqual((unsigned char)0x70, midiReader.MidiMsg->Velocity);
+
+			for(int i = 0; i < 2; i++)
+				Assert::IsTrue(midiReader.Read());
+
+			Assert::IsTrue(midiReader.MidiMsg != NULL);
+			Assert::AreEqual((int)Midi::NoteOn, (int)midiReader.MidiMsg->MessageType);
+			Assert::AreEqual((unsigned char)1, midiReader.MidiMsg->Channel);
+			Assert::AreEqual((unsigned char)0x44, midiReader.MidiMsg->Note);
+			Assert::AreEqual((unsigned char)0x68, midiReader.MidiMsg->Velocity);
+		}
 	};
 
 	
