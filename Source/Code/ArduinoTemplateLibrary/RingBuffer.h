@@ -21,7 +21,7 @@ public:
 		_readPtr = _buffer;
 	}
 
-	bool Put(T value)
+	bool Write(T value)
 	{
 		// check for overrun
 		if ((_writePtr + 1) >= (_buffer + Size))
@@ -41,7 +41,7 @@ public:
 		return true;
 	}
 
-	T Get()
+	T Read()
 	{
 		T result = *_readPtr;
 		_readPtr++;

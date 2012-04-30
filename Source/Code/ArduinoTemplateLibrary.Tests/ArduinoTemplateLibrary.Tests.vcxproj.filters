@@ -15,6 +15,9 @@
     <ClCompile Include="MidiReaderTest.cpp">
       <Filter>Midi</Filter>
     </ClCompile>
+    <ClCompile Include="BufferedInputStreamTest.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -42,6 +45,9 @@
     </Filter>
     <Filter Include="Mocks">
       <UniqueIdentifier>{9c47e097-4cc9-434a-9cc1-9d180d6fc8ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{33002541-c4e1-4d0d-a1bb-746349a855bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

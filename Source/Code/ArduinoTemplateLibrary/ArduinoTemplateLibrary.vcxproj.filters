@@ -21,16 +21,10 @@
     <ClInclude Include="Midi.h">
       <Filter>Midi</Filter>
     </ClInclude>
-    <ClInclude Include="MidiInPort.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
     <ClInclude Include="MidiInputStream.h">
       <Filter>Midi</Filter>
     </ClInclude>
     <ClInclude Include="MidiMessage.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="MidiOutPort.h">
       <Filter>Midi</Filter>
     </ClInclude>
     <ClInclude Include="MidiReader.h">
@@ -39,13 +33,19 @@
     <ClInclude Include="StreamInputStream.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="MidiInPort.h">
+      <Filter>Midi\_old</Filter>
+    </ClInclude>
+    <ClInclude Include="MidiOutPort.h">
+      <Filter>Midi\_old</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MidiInPort.cpp">
-      <Filter>Midi</Filter>
+      <Filter>Midi\_old</Filter>
     </ClCompile>
     <ClCompile Include="MidiOutPort.cpp">
-      <Filter>Midi</Filter>
+      <Filter>Midi\_old</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +54,9 @@
     </Filter>
     <Filter Include="Midi">
       <UniqueIdentifier>{37111ec7-556f-4131-9a52-5d811731ce50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Midi\_old">
+      <UniqueIdentifier>{c3ba17b0-6c51-4e64-931c-9f6955339011}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

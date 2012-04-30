@@ -39,7 +39,7 @@ namespace ArduinoTemplateLibraryTests
 
 			for (int i = 0; i < size - 1; i++)
 			{
-				Assert::IsTrue(target.Put(i));
+				Assert::IsTrue(target.Write(i));
 			}
 
 			Assert::AreEqual(size - 1, target.getLength());
@@ -53,10 +53,10 @@ namespace ArduinoTemplateLibraryTests
 
 			for (int i = 0; i < size - 1; i++)
 			{
-				Assert::IsTrue(target.Put(i));
+				Assert::IsTrue(target.Write(i));
 			}
 
-			Assert::IsFalse(target.Put(0xFF));
+			Assert::IsFalse(target.Write(0xFF));
 		}
 
 		[TestMethod]
@@ -69,22 +69,22 @@ namespace ArduinoTemplateLibraryTests
 			for (int i = 0; i < size * 2.5; i++)
 			{
 				// write
-				Assert::IsTrue(target.Put(i));
+				Assert::IsTrue(target.Write(i));
 
 				// read
-				Assert::AreEqual((unsigned char)i, target.Get());
+				Assert::AreEqual((unsigned char)i, target.Read());
 			}
 
 			for (int i = 0; i < size - 1; i++)
 			{
-				Assert::IsTrue(target.Put(i));
+				Assert::IsTrue(target.Write(i));
 			}
 
-			Assert::IsFalse(target.Put(0xFF));
+			Assert::IsFalse(target.Write(0xFF));
 		}
 
 		[TestMethod]
-		void InitWithData_Get_Test()
+		void InitWithData_Read_Test()
 		{
 			const int size = 256;
 			RingBuffer<unsigned char, size> target;
@@ -92,13 +92,13 @@ namespace ArduinoTemplateLibraryTests
 			// write
 			for (int i = 0; i < size - 1; i++)
 			{
-				Assert::IsTrue(target.Put(i));
+				Assert::IsTrue(target.Write(i));
 			}
 
 			// read
 			for (int i = 0; i < size - 1; i++)
 			{
-				Assert::AreEqual((unsigned char)i, target.Get());
+				Assert::AreEqual((unsigned char)i, target.Read());
 			}
 		}
 
@@ -111,10 +111,10 @@ namespace ArduinoTemplateLibraryTests
 			for (int i = 0; i < size * 2.5; i++)
 			{
 				// write
-				Assert::IsTrue(target.Put(i));
+				Assert::IsTrue(target.Write(i));
 
 				// read
-				Assert::AreEqual((unsigned char)i, target.Get());
+				Assert::AreEqual((unsigned char)i, target.Read());
 			}
 		}
 	};

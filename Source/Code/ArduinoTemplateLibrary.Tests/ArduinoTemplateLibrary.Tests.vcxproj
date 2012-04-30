@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="BufferedInputStreamTest.cpp" />
     <ClCompile Include="MidiMessageTest.cpp" />
     <ClCompile Include="MidiReaderTest.cpp" />
     <ClCompile Include="RingBufferTest.cpp" />
