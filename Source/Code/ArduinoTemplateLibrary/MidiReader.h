@@ -1,8 +1,13 @@
 #ifndef __MIDIREADER_H__
 #define __MIDIREADER_H__
 
-// BaseT is a MidiInputStream derived custom class 
-// that implements the getLength, Read, OnMessage, OnRealTime and OnSysEx methods
+/* BaseT is a class that implements the 
+	unsigned int [IO.Stream.]getLength();
+	int [IO.InputStream.]Read();
+	void [Midi.MidiReader.]OnMessage(MidiMessage*);
+	void [Midi.MidiReader.]OnRealTime(Midi::MessageTypes);
+	void [Midi.MidiReader.]OnSysEx(BaseT*);
+*/
 template<class BaseT>
 class MidiReader : public BaseT
 {

@@ -1,0 +1,46 @@
+This file documents the standard code contracts that are expected of classes used as a BaseT template parameter.
+
+Conventions
+- Lower case 'get' and 'set' prefix indicate an object property.
+- The template parameter that is used as a (public) base class is always called 'BaseT'.
+
+
+
+IO.Stream
+A stream is the base interface for both the InputStream and OutputStream interface.
+
+unsigned int getLength();
+Returns the number of bytes that are available in the stream.
+
+
+
+IO.InputStream
+A stream that is filled by some source (device) and can be read by the software.
+
+int Read();
+Reads one 'byte' from the stream and returns is as an Integer. A return value of -1 means no more data is available or an error has occurred.
+
+
+
+IO.OutputStream
+A stream that is filled by software and is drained by some destination (device).
+
+bool Write(int data);
+Writes one 'byte' to the stream. Returns true when successful or false if not.
+
+void Flush();
+Writes all the bytes buffered in the stream towards the output device.
+
+
+
+Midi.MidiReader
+A class that implements the Midi protocol for reading Midi messages.
+
+void OnMessage(MidiMessage*);
+Is called when a complete midi message was read.
+
+void OnRealTime(Midi::MessageTypes);
+Is called when a realtime message is received.
+
+void OnSysEx(BaseT*);
+Is called when a System Exclusive message of variable length is received (not implemented yet!).

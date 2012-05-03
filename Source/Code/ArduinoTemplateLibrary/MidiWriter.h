@@ -3,7 +3,7 @@
 
 #include "Midi.h"
 
-// BaseT implements void Write(byte)
+// BaseT implements void Write(byte);
 template<class BaseT>
 class MidiWriter : public BaseT
 {
