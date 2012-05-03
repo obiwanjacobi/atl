@@ -1,26 +1,42 @@
 #ifndef __STREAMINPUTSTREAM_H__
 #define __STREAMINPUTSTREAM_H__
 
+#include <Arduino.h>
+
 // This class is an adapter class to treat an Arduino Stream as an ATL InputStream.
 // StreamT is a class with 'int read()' and 'int available()' (typical Arduino Stream).
 template<class StreamT>
 class StreamInputStream
 {
 public:
+	StreamInputStream()
+	{
+		_stream = NULL;
+	}
+
 	StreamInputStream(StreamT* serialStream)
+	{
+		AttachStream(serialStream);
+	}
+
+	void AttachStream(StreamT* serialStream)
 	{
 		_stream = serialStream;
 	}
 
 	// returns the number of bytes that are available in the stream.
-	uint16_t getLength()
+	unsigned int getLength()
 	{
+		if (_stream == NULL) return 0;
+
 		return _stream->available();
 	}
 
 	// removes all content from the stream.
 	void Clear()
 	{
+		if (_stream == NULL) return;
+
 		while(_stream->read() != -1);
 	}
 
@@ -28,11 +44,13 @@ public:
 	// Returns the byte read in the lsb (up to 9 bits). If -1 is returned, no data was available or an error occurred.
 	int Read()
 	{
+		if (_stream == NULL) return -1;
+
 		return _stream->read();
 	}
 
 private:
-	StreamT _stream;
+	StreamT* _stream;
 };
 
 #endif //__STREAMINPUTSTREAM_H__

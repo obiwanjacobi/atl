@@ -20,6 +20,16 @@ public:
 		_index = 0;
 	}
 
+	// Arduino Stream compatible methods
+	unsigned int available()
+	{
+		return getLength();
+	}
+	int read()
+	{
+		return Read();
+	}
+
 	unsigned int getLength()
 	{
 		return _length - _index;
