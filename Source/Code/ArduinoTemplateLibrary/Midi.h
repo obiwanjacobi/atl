@@ -5,35 +5,6 @@
 
 #define MIDI_BAUDRATE			31250
 
-#define MIDI_CHANNEL_OMNI		0
-#define MIDI_CHANNEL_OFF		17			// and over
-
-#define MIDI_SYSEX_ARRAY_SIZE	255			// Maximum size is 65535 bytes.
-
-
-/*! Enumeration of MIDI types */
-enum kMIDIType {
-	NoteOff	              = 0x80,	///< Note Off
-	NoteOn                = 0x90,	///< Note On
-	AfterTouchPoly        = 0xA0,	///< Polyphonic AfterTouch
-	ControlChange         = 0xB0,	///< Control Change / Channel Mode
-	ProgramChange         = 0xC0,	///< Program Change
-	AfterTouchChannel     = 0xD0,	///< Channel (monophonic) AfterTouch
-	PitchBend             = 0xE0,	///< Pitch Bend
-	SystemExclusive       = 0xF0,	///< System Exclusive
-	TimeCodeQuarterFrame  = 0xF1,	///< System Common - MIDI Time Code Quarter Frame
-	SongPosition          = 0xF2,	///< System Common - Song Position Pointer
-	SongSelect            = 0xF3,	///< System Common - Song Select
-	TuneRequest           = 0xF6,	///< System Common - Tune Request
-	Clock                 = 0xF8,	///< System Real Time - Timing Clock
-	Start                 = 0xFA,	///< System Real Time - Start
-	Continue              = 0xFB,	///< System Real Time - Continue
-	Stop                  = 0xFC,	///< System Real Time - Stop
-	ActiveSensing         = 0xFE,	///< System Real Time - Active Sensing
-	SystemReset           = 0xFF,	///< System Real Time - System Reset
-	InvalidType           = 0x00    ///< For notifying errors
-};
-
 class Midi
 {
 public:
@@ -150,43 +121,23 @@ public:
 
 	inline static bool IsChannelMessage(byte statusByte)
 	{
-		switch (statusByte)
-		{
-			case NoteOn:
-			case NoteOff:
-			case ControlChange:
-			case PitchBend:
-			case AfterTouchPoly:
-			case ProgramChange:
-			case AfterTouchChannel:
-				return true;
-
-			default:
-				return false;
-		}
+		return (statusByte >= NoteOff && statusByte <= PitchBend);
 	}
 
 	inline static bool IsRealTimeMessage(byte statusByte)
 	{
-		switch (statusByte)
-		{
-			case Start:
-			case Continue:
-			case Stop:
-			case Clock:
-			case ActiveSensing:
-			case SystemReset:
-			case TuneRequest:
-				return true;
-
-			default:
-				return false;
-		}
+		return (statusByte >= Clock && statusByte <= SystemReset);
 	}
 
+	inline static bool IsSystemCommonMessage(byte statusByte)
+	{
+		return (statusByte >= SystemExclusive && statusByte <= 0xF7);
+	}
+
+	// Both System Common as well as Realtime
 	inline static bool IsSystemMessage(byte statusByte)
 	{
-		return (statusByte >= SystemExclusive);
+		return (statusByte >= SystemExclusive && statusByte <= SystemReset);
 	}
 
 private:

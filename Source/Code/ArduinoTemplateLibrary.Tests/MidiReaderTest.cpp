@@ -10,12 +10,14 @@ using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 namespace ArduinoTemplateLibraryTests
 {
+	// helper class that implements Midi events.
 	public class MidiReaderBase : public TestStream
 	{
 	public:
 		MidiReaderBase()
 		{
 			MidiMsg = NULL;
+			RealtimeStatus = Midi::InvalidType;
 		}
 
 		void OnMessage(MidiMessage* midiMsg)

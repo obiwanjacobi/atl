@@ -23,6 +23,11 @@
 //	ActiveSensing         -
 //	SystemReset           -
 
+#define MASK_7BIT_LO	0x007F
+#define MASK_7BIT_HI	0x3F80
+#define MASK_DATABYTE	0x7F
+#define MASK_CHANNEL	0x0F
+
 struct MidiMessage
 {
 	// midi message type
@@ -63,6 +68,16 @@ struct MidiMessage
 
 	//byte reserved[3];		// filler to get to power of 2 struct size (8 bytes)
 
+	byte GetStatusByte()
+	{
+		if (!Midi::IsSystemMessage(MessageType))
+		{
+			return (MessageType | Channel);
+		}
+
+		return MessageType;
+	}
+
 	void SetStatusByte(byte statusByte)
 	{
 		MessageType = Midi::GetMessageType(statusByte);
@@ -71,65 +86,132 @@ struct MidiMessage
 		Beats = 0;
 
 		// if it is NOT a system message, set the channel
-		if (MessageType < Midi::SystemExclusive)
+		if (!Midi::IsSystemMessage(MessageType))
 		{
-			Channel = (statusByte & 0x0F);
+			Channel = (statusByte & MASK_CHANNEL);
 		}
+	}
+
+	byte GetDataByte1()
+	{
+		byte value = 0;
+
+		switch(MessageType)
+		{
+			case Midi::NoteOn:
+			case Midi::NoteOff:
+			case Midi::AfterTouchPoly:
+			case Midi::ControlChange:
+			case Midi::ProgramChange:
+				// note or number, its the same
+				value = Note;
+				break;
+
+			case Midi::AfterTouchChannel:
+				return Pressure;
+				break;
+
+			case Midi::SongSelect:
+			case Midi::TimeCodeQuarterFrame:
+				// songNumber or data, its the same
+				value = Data;
+				break;
+			
+			case Midi::PitchBend:
+				// lsb
+				value = (Bend & MASK_7BIT_LO);
+				break;
+
+			case Midi::SongPosition:
+				// lsb
+				value = (Beats & MASK_7BIT_LO);
+				break;
+		}
+
+		return (value & MASK_DATABYTE);
 	}
 
 	void SetDataByte1(byte dataByte)
 	{
 		switch(MessageType)
 		{
-			case NoteOn:
-			case NoteOff:
-			case AfterTouchPoly:
-			case ControlChange:
-			case ProgramChange:
+			case Midi::NoteOn:
+			case Midi::NoteOff:
+			case Midi::AfterTouchPoly:
+			case Midi::ControlChange:
+			case Midi::ProgramChange:
 				// note or number, its the same
 				Note = dataByte;
 				break;
 
-			case AfterTouchChannel:
+			case Midi::AfterTouchChannel:
 				Pressure = dataByte;
 				break;
 
-			case SongSelect:
-			case TimeCodeQuarterFrame:
+			case Midi::SongSelect:
+			case Midi::TimeCodeQuarterFrame:
 				// songNumber or data, its the same
 				Data = dataByte;
 				break;
 			
-			case PitchBend:
+			case Midi::PitchBend:
 				// lsb
 				Bend = dataByte;
 				break;
 
-			case SongPosition:
+			case Midi::SongPosition:
 				// lsb
 				Beats = dataByte;
 				break;
 		}
 	}
 
+	byte GetDataByte2()
+	{
+		byte value = 0;
+
+		switch(MessageType)
+		{
+			case Midi::NoteOn:
+			case Midi::NoteOff:
+			case Midi::AfterTouchPoly:
+			case Midi::ControlChange:
+				// velocity, value or pressure, its the same
+				value = Velocity;
+				break;
+
+			case Midi::PitchBend:
+				// msb
+				value = (Bend & MASK_7BIT_HI) >> 7;
+				break;
+
+			case Midi::SongPosition:
+				// msb
+				value = (Beats & MASK_7BIT_HI) >> 7;
+				break;
+		}
+
+		return (value & MASK_DATABYTE);
+	}
+
 	void SetDataByte2(byte dataByte)
 	{
 		switch(MessageType)
 		{
-			case NoteOn:
-			case NoteOff:
-			case AfterTouchPoly:
-			case ControlChange:
+			case Midi::NoteOn:
+			case Midi::NoteOff:
+			case Midi::AfterTouchPoly:
+			case Midi::ControlChange:
 				// velocity, value or pressure, its the same
 				Velocity = dataByte;
 				break;
 
-			case PitchBend:
+			case Midi::PitchBend:
 				// msb
 				Bend |= (dataByte << 7);
 				break;
 
-			case SongPosition:
+			case Midi::SongPosition:
 				// msb
 				Beats |= (dataByte << 7);
 				break;

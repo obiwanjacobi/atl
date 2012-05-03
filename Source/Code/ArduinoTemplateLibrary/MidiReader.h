@@ -49,6 +49,10 @@ private:
 	// as the previous midi message. This way status byte do not have to
 	// be repeated when they are the same, saving some bandwidth.
 	byte			_runningStatus;
+	
+	// TODO: both these fields can be merged to one. 
+	//   Use a bitmask to check one or the other.
+
 	// this is the type of midi byte that is expected next
 	// although some midi messages can be interupted by realtime messages.
 	MidiParseState	_parseState;

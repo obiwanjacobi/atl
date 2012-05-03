@@ -18,6 +18,9 @@
     <ClCompile Include="BufferedInputStreamTest.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="MidiWriterTest.cpp">
+      <Filter>Midi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
