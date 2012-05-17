@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "TestStream.h"
+#include "TestInputStream.h"
 #include "..\ArduinoTemplateLibrary\MidiMessage.h"
 #include "..\ArduinoTemplateLibrary\MidiReader.h"
 
@@ -11,7 +11,7 @@ using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 namespace ArduinoTemplateLibraryTests
 {
 	// helper class that implements Midi events.
-	public class MidiReaderBase : public TestStream
+	public class MidiReaderBase : public TestInputStream
 	{
 	public:
 		MidiReaderBase()
@@ -68,6 +68,26 @@ namespace ArduinoTemplateLibraryTests
 			MidiReader<MidiReaderBase> midiReader;
 
 			unsigned char buffer[] = { 0x91, 0x40, 0xFF, 0x70 };
+			midiReader.InitStream(buffer, 4);
+
+			while(midiReader.Read());
+
+			Assert::IsTrue(midiReader.MidiMsg != NULL);
+			Assert::AreEqual((int)Midi::NoteOn, (int)midiReader.MidiMsg->MessageType);
+			Assert::AreEqual((unsigned char)1, midiReader.MidiMsg->Channel);
+			Assert::AreEqual((unsigned char)0x40, midiReader.MidiMsg->Note);
+			Assert::AreEqual((unsigned char)0x70, midiReader.MidiMsg->Velocity);
+
+			// realtime interleaved midi message
+			Assert::AreEqual((int)Midi::SystemReset, (int)midiReader.RealtimeStatus);
+		}
+
+		[TestMethod]
+		void InitBufferWithChannelAndRealtime_Read_FiresChannelMessageAndRealtimeEvent2()
+		{
+			MidiReader<MidiReaderBase> midiReader;
+
+			unsigned char buffer[] = { 0x91, 0xFF, 0x40, 0x70 };
 			midiReader.InitStream(buffer, 4);
 
 			while(midiReader.Read());

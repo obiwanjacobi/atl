@@ -1,12 +1,13 @@
 #ifndef __MIDIREADER_H__
 #define __MIDIREADER_H__
 
-/* BaseT is a class that implements the 
-	unsigned int [IO.Stream.]getLength();
-	int [IO.InputStream.]Read();
-	void [Midi.MidiReader.]OnMessage(MidiMessage*);
-	void [Midi.MidiReader.]OnRealTime(Midi::MessageTypes);
-	void [Midi.MidiReader.]OnSysEx(BaseT*);
+/*
+	BaseT is used as a base class and implements:
+		unsigned int [IO.Stream.]getLength();
+		int [IO.InputStream.]Read();
+		void [Midi.MidiReader.]OnMessage(MidiMessage*);
+		void [Midi.MidiReader.]OnRealTime(Midi::MessageTypes);
+		void [Midi.MidiReader.]OnSysEx(BaseT*);
 */
 template<class BaseT>
 class MidiReader : public BaseT
@@ -20,13 +21,13 @@ public:
 
 	// reads one byte from the buffer and returns.
 	// Multiple events may be fired.
-	bool MidiReader::Read()
+	bool Read()
 	{
-		const uint16_t availableBytes = getLength();
+		const uint16_t availableBytes = BaseT::getLength();
 
 		if (availableBytes > 0)
 		{
-			int midiByte = (byte)BaseT::Read();
+			int midiByte = BaseT::Read();
 
 			if (midiByte != -1)
 			{
@@ -53,7 +54,7 @@ private:
 	// Running status is when the next midi message has the same status 
 	// as the previous midi message. This way status byte do not have to
 	// be repeated when they are the same, saving some bandwidth.
-	byte			_runningStatus;
+	byte _runningStatus;
 	
 	// TODO: both these fields can be merged to one. 
 	//   Use a bitmask to check one or the other.
@@ -67,18 +68,18 @@ private:
 
 	inline void CallOnMessage()
 	{
-		OnMessage(&_midiMsg);
+		BaseT::OnMessage(&_midiMsg);
 	}
 
 	inline void CallOnRealtime(byte midiStatus)
 	{
-		OnRealtime((Midi::MessageTypes)midiStatus);
+		BaseT::OnRealtime((Midi::MessageTypes)midiStatus);
 	}
 
 	inline void CallOnSysEx()
 	{
 		// TODO: construct a sysex stream that still fires realtime callbacks
-		OnSysEx(this);
+		BaseT::OnSysEx(this);
 	}
 
 	void ResetState()
@@ -102,7 +103,7 @@ private:
 			- proces status byte (must be real time -or eox?)
 		- insert byte read
 	*/
-	bool MidiReader::Dispatch(byte midiByte)
+	bool Dispatch(byte midiByte)
 	{
 		bool success = false;
 

@@ -1,12 +1,12 @@
-#ifndef __TESTSTREAM_H__
-#define __TESTSTREAM_H__
+#ifndef __TESTOUTPUTSTREAM_H__
+#define __TESTOUTPUTSTREAM_H__
 
 #include "Arduino.h"
 
-class TestStream
+class TestOutputStream
 {
 public:
-	TestStream()
+	TestOutputStream()
 	{
 		_buffer = NULL;
 		_length = 0;
@@ -25,29 +25,18 @@ public:
 	{
 		return getLength();
 	}
-	int read()
+	void write(byte data)
 	{
-		return Read();
+		Write(data);
+	}
+	void flush()
+	{
+		_index = 0;
 	}
 
 	unsigned int getLength()
 	{
-		return _length - _index;
-	}
-
-	int Read()
-	{
-		if (_buffer == NULL) return -1;
-
-		if ((unsigned int)_index < _length)
-		{
-			int value = _buffer[_index];
-			_index++;
-
-			return value;
-		}
-
-		return -1;
+		return _index;
 	}
 
 	bool Write(unsigned char data)
@@ -65,15 +54,10 @@ public:
 		return false;
 	}
 
-	void Clear()
-	{
-		_length = 0;
-	}
-
 private:
 	int _index;
 	unsigned int _length;
 	unsigned char* _buffer;
 };
 
-#endif //__TESTSTREAM_H__
+#endif //__TESTOUTPUTSTREAM_H__

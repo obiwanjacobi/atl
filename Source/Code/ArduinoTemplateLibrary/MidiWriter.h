@@ -1,9 +1,12 @@
-﻿#ifndef __MIDIWRITER_H__
+#ifndef __MIDIWRITER_H__
 #define __MIDIWRITER_H__
 
 #include "Midi.h"
 
-// BaseT implements void Write(byte);
+/*
+	BaseT is the base class that implements:
+		void [IO.Stream.]Write(byte);
+*/
 template<class BaseT>
 class MidiWriter : public BaseT
 {
@@ -51,6 +54,11 @@ public:
 		{
 			BaseT::Write(midiMsg->GetDataByte2());
 		}
+	}
+
+	void Write(Midi::MessageTypes msgType)
+	{
+		BaseT::Write((byte)msgType);
 	}
 
 private:

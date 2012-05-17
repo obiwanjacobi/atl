@@ -24,6 +24,9 @@
     <ClCompile Include="StreamInputStreamTest.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="StreamOutputStreamTest.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -35,7 +38,10 @@
     <ClInclude Include="Arduino.h">
       <Filter>Arduino</Filter>
     </ClInclude>
-    <ClInclude Include="TestStream.h">
+    <ClInclude Include="TestInputStream.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="TestOutputStream.h">
       <Filter>Mocks</Filter>
     </ClInclude>
   </ItemGroup>

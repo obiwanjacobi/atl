@@ -90,6 +90,7 @@
     <ClInclude Include="Range.h" />
     <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="StreamInputStream.h" />
+    <ClInclude Include="StreamOutputStream.h" />
     <ClInclude Include="ValueContainer.h" />
   </ItemGroup>
   <ItemGroup>

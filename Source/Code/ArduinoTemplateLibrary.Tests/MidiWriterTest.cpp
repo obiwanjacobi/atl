@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "TestStream.h"
+#include "TestOutputStream.h"
 #include "..\ArduinoTemplateLibrary\MidiMessage.h"
 #include "..\ArduinoTemplateLibrary\MidiWriter.h"
 
@@ -23,7 +23,7 @@ namespace ArduinoTemplateLibraryTests
 			midiMsg.SetDataByte2(100);
 
 			unsigned char buffer[] = { 0x00, 0x00, 0x00, 0x00 };
-			MidiWriter<TestStream> target;
+			MidiWriter<TestOutputStream> target;
 			target.InitStream(buffer, 3);
 
 			target.Write(&midiMsg);

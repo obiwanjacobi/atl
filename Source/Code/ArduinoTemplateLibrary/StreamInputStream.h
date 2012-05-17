@@ -19,7 +19,7 @@ public:
 		AttachStream(serialStream);
 	}
 
-	void AttachStream(StreamT* serialStream)
+	void AttachInputStream(StreamT* serialStream)
 	{
 		_stream = serialStream;
 	}

@@ -92,13 +92,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StreamInputStreamTest.cpp" />
+    <ClCompile Include="StreamOutputStreamTest.cpp" />
     <ClCompile Include="ValueContainerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arduino.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TestStream.h" />
+    <ClInclude Include="TestInputStream.h" />
+    <ClInclude Include="TestOutputStream.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />

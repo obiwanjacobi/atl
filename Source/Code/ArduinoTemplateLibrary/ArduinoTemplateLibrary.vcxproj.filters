@@ -37,6 +37,9 @@
     <ClInclude Include="MidiWriter.h">
       <Filter>Midi</Filter>
     </ClInclude>
+    <ClInclude Include="StreamOutputStream.h">
+      <Filter>IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MidiInPort.cpp">

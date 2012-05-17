@@ -2,7 +2,7 @@
 #define __RANGE_H__
 
 template<typename T>
-class Range<T>
+class Range
 {
 public:
 	Range(T begin, T end)

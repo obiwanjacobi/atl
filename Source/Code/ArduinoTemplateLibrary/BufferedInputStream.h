@@ -14,7 +14,7 @@ public:
 	// adapts the Read method to always check for length.
 	int Read()
 	{
-		if(getLength() == 0)
+		if(BaseT::getLength() == 0)
 		{
 			return -1;
 		}
