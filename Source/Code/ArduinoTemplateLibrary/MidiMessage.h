@@ -1,6 +1,7 @@
 #ifndef __MIDIMESSAGE_H__
 #define __MIDIMESSAGE_H__
 
+#include <string.h>
 #include "Midi.h"
 
 // Midi message struct for all midi messages
@@ -218,39 +219,12 @@ struct MidiMessage
 		}
 	}
 
-	void SetNoteOff(byte channel, byte note, byte velocity)
+	void CopyTo(MidiMessage* target)
 	{
-		MessageType = Midi::NoteOff;
-		Channel = channel;
-		Note = note;
-		Velocity = velocity;
-	}
+		if (target == NULL) return;
 
-	void SetNoteOn(byte channel, byte note, byte velocity)
-	{
-		MessageType = Midi::NoteOn;
-		Channel = channel;
-		Note = note;
-		Velocity = velocity;
+		memcpy(target, this, sizeof(MidiMessage));
 	}
-
-	void SetAfterTouchPoly(byte channel, byte note, byte pressure)
-	{
-		MessageType = Midi::AfterTouchPoly;
-		Channel = channel;
-		Note = note;
-		Pressure = pressure;
-	}
-
-	void SetControlChange(byte channel, byte number, byte value)
-	{
-		MessageType = Midi::ControlChange;
-		Channel = channel;
-		Number = number;
-		Value = value;
-	}
-
-	// TODO: more helper setters
 };
 
 #endif //__MIDIMESSAGE_H__

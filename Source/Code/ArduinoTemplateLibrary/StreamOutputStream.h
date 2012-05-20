@@ -16,7 +16,7 @@ public:
 
 	StreamOutputStream(StreamT* serialStream)
 	{
-		AttachStream(serialStream);
+		AttachOutputStream(serialStream);
 	}
 
 	void AttachOutputStream(StreamT* serialStream)
@@ -45,7 +45,7 @@ public:
 	{
 		if (_stream == NULL) return;
 
-		return _stream->write(data);
+		_stream->write(data);
 	}
 
 private:

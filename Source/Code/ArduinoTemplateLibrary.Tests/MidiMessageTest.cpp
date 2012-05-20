@@ -110,5 +110,24 @@ namespace ArduinoTemplateLibraryTests
 			Assert::AreEqual(0, (int)msg.GetDataByte1());
 			Assert::AreEqual(8, (int)msg.GetDataByte2());
 		}
+
+		[TestMethod]
+		void TestCopyTo()
+		{
+			MidiMessage msg;
+			msg.MessageType = Midi::PitchBend;
+			msg.Channel = MidiMessageTest::channel;
+			msg.Bend = MidiMessageTest::bend;
+
+			MidiMessage target;
+			msg.CopyTo(&target);
+
+			Assert::AreEqual((int)msg.MessageType, (int)target.MessageType);
+			Assert::AreEqual(msg.Channel, target.Channel);
+			Assert::AreEqual(msg.Note, target.Note);
+			Assert::AreEqual(msg.Velocity, target.Velocity);
+			Assert::AreEqual(msg.Bend, target.Bend);
+			Assert::AreEqual(msg.Beats, target.Beats);
+		}
 	};
 }

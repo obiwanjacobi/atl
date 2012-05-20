@@ -141,7 +141,7 @@ private:
 			// it must be a real-time status byte or it is an error.
 			if (status > 0)
 			{
-				if (Midi::IsRealTimeMessage(status))
+				if (Midi::IsRealtimeMessage(status))
 				{
 					success = ProcessStatusByte(midiByte);
 				}

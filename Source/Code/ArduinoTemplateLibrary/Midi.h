@@ -18,7 +18,7 @@ public:
 		catPitchBend,
 		catSystemExclusive,
 		catSystemCommon,
-		catRealTime,
+		catRealtime,
 	};
 
 	// All Midi message types.
@@ -124,7 +124,7 @@ public:
 		return (statusByte >= NoteOff && statusByte <= PitchBend);
 	}
 
-	inline static bool IsRealTimeMessage(byte statusByte)
+	inline static bool IsRealtimeMessage(byte statusByte)
 	{
 		return (statusByte >= Clock && statusByte <= SystemReset);
 	}

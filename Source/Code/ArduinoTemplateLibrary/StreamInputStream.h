@@ -16,7 +16,7 @@ public:
 
 	StreamInputStream(StreamT* serialStream)
 	{
-		AttachStream(serialStream);
+		AttachInputStream(serialStream);
 	}
 
 	void AttachInputStream(StreamT* serialStream)
