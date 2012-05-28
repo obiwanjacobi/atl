@@ -77,29 +77,17 @@
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="BufferedInputStream.h" />
     <ClInclude Include="Midi.h" />
-    <ClInclude Include="MidiInPort.h">
-      <DeploymentContent>true</DeploymentContent>
-    </ClInclude>
     <ClInclude Include="MidiInputStream.h" />
     <ClInclude Include="MidiMessage.h" />
-    <ClInclude Include="MidiOutPort.h">
-      <DeploymentContent>true</DeploymentContent>
-    </ClInclude>
     <ClInclude Include="MidiReader.h" />
     <ClInclude Include="MidiWriter.h" />
     <ClInclude Include="Range.h" />
     <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="StreamInputStream.h" />
     <ClInclude Include="StreamOutputStream.h" />
+    <ClInclude Include="TextFormatInfo.h" />
+    <ClInclude Include="TextWriter.h" />
     <ClInclude Include="ValueContainer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="MidiInPort.cpp">
-      <DeploymentContent>true</DeploymentContent>
-    </ClCompile>
-    <ClCompile Include="MidiOutPort.cpp">
-      <DeploymentContent>true</DeploymentContent>
-    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
