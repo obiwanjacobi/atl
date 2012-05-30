@@ -30,6 +30,8 @@
     <ClCompile Include="TextWriterTest.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="FuncTest.cpp" />
+    <ClCompile Include="DelegateTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">

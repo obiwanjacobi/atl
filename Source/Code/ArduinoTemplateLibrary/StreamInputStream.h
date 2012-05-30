@@ -3,6 +3,9 @@
 
 #include <Arduino.h>
 
+namespace ATL {
+namespace IO {
+
 // This class is an adapter class to treat an Arduino Stream as an ATL InputStream.
 // StreamT is a class with 'int read()' and 'int available()' (typical Arduino Stream).
 template<class StreamT>
@@ -52,5 +55,7 @@ public:
 private:
 	StreamT* _stream;
 };
+
+}} // ATL.IO
 
 #endif //__STREAMINPUTSTREAM_H__

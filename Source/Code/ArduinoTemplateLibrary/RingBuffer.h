@@ -1,6 +1,8 @@
 #ifndef __RINGBUFFER_H__
 #define __RINGBUFFER_H__
 
+namespace ATL {
+
 // A RingBuffer uses a fixed amount of memory to simulate an 'endless' buffer.
 // Capacity is always one less than the specified Size.
 // There is NO underrun detection!
@@ -69,5 +71,7 @@ private:
 	T* _writePtr;
 	T* _readPtr;
 };
+
+} //ATL
 
 #endif //__RINGBUFFER_H__

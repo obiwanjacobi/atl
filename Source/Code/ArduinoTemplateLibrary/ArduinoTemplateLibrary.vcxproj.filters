@@ -40,6 +40,28 @@
     <ClInclude Include="TextFormatInfo.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="DigitalInput.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="PushButton.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="Scheduler.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="DigitalInputPin.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="DigitalOutputPin.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="DigitalOutput.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="_template.h" />
+    <ClInclude Include="Delegate.h" />
+    <ClInclude Include="Func.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
@@ -47,6 +69,12 @@
     </Filter>
     <Filter Include="Midi">
       <UniqueIdentifier>{37111ec7-556f-4131-9a52-5d811731ce50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Runtime">
+      <UniqueIdentifier>{d23291f1-1eff-4731-9402-43180d1a69cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arduino">
+      <UniqueIdentifier>{6c37333a-8678-4275-993c-0259846f3df5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

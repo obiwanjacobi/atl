@@ -4,6 +4,9 @@
 #include <string.h>
 #include "Midi.h"
 
+namespace ATL {
+namespace Midi {
+
 // Midi message struct for all midi messages
 //  NoteOff	              channel, note, velocity
 //	NoteOn                channel, note, velocity
@@ -226,5 +229,7 @@ struct MidiMessage
 		memcpy(target, this, sizeof(MidiMessage));
 	}
 };
+
+}} // ATL.Midi
 
 #endif //__MIDIMESSAGE_H__

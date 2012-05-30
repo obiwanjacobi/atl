@@ -1,6 +1,8 @@
 #ifndef __VALUE_H__
 #define __VALUE_H__
 
+namespace ATL {
+
 template <typename T>
 class ValueContainer
 {
@@ -85,5 +87,7 @@ private:
 	T _begin;
 	T _end;
 };
+
+} //ATL
 
 #endif //__VALUE_H__

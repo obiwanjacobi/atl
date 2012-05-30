@@ -3,6 +3,9 @@
 
 #include <Arduino.h>
 
+namespace ATL {
+namespace IO {
+
 class TextFormatInfo
 {
 public:
@@ -27,5 +30,7 @@ byte TextFormatInfo::DecimalDigits = (byte)2;
 char TextFormatInfo::NegativeSign = { '-' };
 char TextFormatInfo::DecimalSeparator = { '.' } ;
 byte TextFormatInfo::DefaultBase = (byte)baseDecimal;
+
+}} // ATL.IO
 
 #endif //__TEXTFORMATINFO_H__

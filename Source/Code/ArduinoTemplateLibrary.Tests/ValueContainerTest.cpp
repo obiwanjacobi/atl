@@ -6,6 +6,8 @@ using namespace System::Text;
 using namespace System::Collections::Generic;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 
+using namespace ATL;
+
 namespace ArduinoTemplateLibraryTests
 {
 	[TestClass]

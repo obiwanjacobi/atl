@@ -1,6 +1,9 @@
 #ifndef __BUFFEREDINPUTSTREAM_H__
 #define __BUFFEREDINPUTSTREAM_H__
 
+namespace ATL {
+namespace IO {
+
 // The BufferedInputStream implements an abstract InputStream by using a circular buffer (RingBuffer).
 /*
 	BaseT is the class of a RingBuffer implementation: 
@@ -22,5 +25,7 @@ public:
 		return (int)BaseT::Read();
 	}
 };
+
+}} // ATL.IO
 
 #endif //__BUFFEREDINPUTSTREAM_H__

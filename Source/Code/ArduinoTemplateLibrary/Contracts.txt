@@ -33,6 +33,18 @@ Writes all the bytes buffered in the stream towards the output device.
 
 
 
+IO.Hardware.DigitalInput
+An hardware input that has a logical value.
+
+bool Read();
+Returns true when a new/different value was read.
+
+bool getValue();
+Returns the current value (last read).
+
+
+
+
 Midi.MidiReader
 A class that implements the Midi protocol for reading Midi messages.
 

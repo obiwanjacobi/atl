@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+namespace ATL {
+
 // The BitArray class stores its bits in one or more byte. 
 // This class can be used for maintaining boolean flags in a memory effecient way.
 // A normal boolean takes up a whole byte.
@@ -92,5 +94,7 @@ public:
 private:
 	T _bits;
 };
+
+} //ATL
 
 #endif //__BITARRAY_H__

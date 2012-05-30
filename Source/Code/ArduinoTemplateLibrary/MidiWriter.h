@@ -3,6 +3,9 @@
 
 #include "Midi.h"
 
+namespace ATL {
+namespace Midi {
+
 /*
 	BaseT is the base class that implements:
 		void [IO.Stream.]Write(byte);
@@ -64,5 +67,7 @@ public:
 private:
 	byte _runningStatus;
 };
+
+}} // ATL.Midi
 
 #endif //__MIDIWRITER_H__

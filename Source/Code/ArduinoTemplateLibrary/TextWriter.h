@@ -4,6 +4,9 @@
 #include <Arduino.h>
 #include "TextFormatInfo.h"
 
+namespace ATL {
+namespace IO {
+
 /*
 	BaseT implements void Write(byte).
 	FormatInfoT implements all the public static fields defined by TextFormatInfo
@@ -248,5 +251,7 @@ private:
 		}
 	}
 };
+
+}} // ATL.IO
 
 #endif // __TEXTWRITER_H__

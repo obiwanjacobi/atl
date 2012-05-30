@@ -83,6 +83,8 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="BufferedInputStreamTest.cpp" />
+    <ClCompile Include="DelegateTest.cpp" />
+    <ClCompile Include="FuncTest.cpp" />
     <ClCompile Include="MidiMessageTest.cpp" />
     <ClCompile Include="MidiReaderTest.cpp" />
     <ClCompile Include="MidiWriterTest.cpp" />

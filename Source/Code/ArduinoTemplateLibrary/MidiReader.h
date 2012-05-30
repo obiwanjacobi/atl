@@ -1,6 +1,9 @@
 #ifndef __MIDIREADER_H__
 #define __MIDIREADER_H__
 
+namespace ATL {
+namespace Midi {
+
 /*
 	BaseT is used as a base class and implements:
 		unsigned int [IO.Stream.]getLength();
@@ -248,5 +251,7 @@ private:
 		return success;
 	}
 };
+
+}} // ATL.Midi
 
 #endif //__MIDIREADER_H__

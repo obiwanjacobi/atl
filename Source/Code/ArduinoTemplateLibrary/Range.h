@@ -1,6 +1,8 @@
 #ifndef __RANGE_H__
 #define __RANGE_H__
 
+namespace ATL {
+
 template<typename T>
 class Range
 {
@@ -34,5 +36,7 @@ public:
 		}
 	}
 };
+
+} //ATL
 
 #endif //__RANGE_H__
