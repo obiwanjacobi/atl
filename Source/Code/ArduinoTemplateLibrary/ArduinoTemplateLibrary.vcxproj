@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files\arduino-1.0\hardware\arduino\cores\arduino;C:\Program Files\arduino-1.0\hardware\arduino\variants\standard;c:\program files\arduino-1.0\hardware\tools\avr\avr\include\;c:\program files\arduino-1.0\hardware\tools\avr\avr\include\avr\;c:\program files\arduino-1.0\hardware\tools\avr\avr\;c:\program files\arduino-1.0\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;</IncludePath>
+    <IncludePath>C:\Program Files\arduino-1.0.1\hardware\arduino\cores\arduino;C:\Program Files\arduino-1.0.1\hardware\arduino\variants\standard;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\include\;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\include\avr\;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\;c:\program files\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Program Files\arduino-1.0\hardware\arduino\cores\arduino;C:\Program Files\arduino-1.0\hardware\arduino\variants\standard;c:\program files\arduino-1.0\hardware\tools\avr\avr\include\;c:\program files\arduino-1.0\hardware\tools\avr\avr\include\avr\;c:\program files\arduino-1.0\hardware\tools\avr\avr\;c:\program files\arduino-1.0\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;</IncludePath>
+    <IncludePath>C:\Program Files\arduino-1.0.1\hardware\arduino\cores\arduino;C:\Program Files\arduino-1.0.1\hardware\arduino\variants\standard;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\include\;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\include\avr\;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\;c:\program files\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -90,9 +90,9 @@
     <ClInclude Include="PushButton.h" />
     <ClInclude Include="Range.h" />
     <ClInclude Include="RingBuffer.h" />
-    <ClInclude Include="Scheduler.h" />
     <ClInclude Include="StreamInputStream.h" />
     <ClInclude Include="StreamOutputStream.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="TextFormatInfo.h" />
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Time.h" />

@@ -47,9 +47,6 @@
       <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="Time.h" />
-    <ClInclude Include="Scheduler.h">
-      <Filter>Runtime</Filter>
-    </ClInclude>
     <ClInclude Include="DigitalInputPin.h">
       <Filter>Arduino</Filter>
     </ClInclude>
@@ -62,6 +59,7 @@
     <ClInclude Include="_template.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Func.h" />
+    <ClInclude Include="Task.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
