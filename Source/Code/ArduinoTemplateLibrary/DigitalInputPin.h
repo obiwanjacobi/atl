@@ -14,13 +14,13 @@ public:
 		pinMode(BoardPinNumber, INPUT);
 	}
 
-	bool Read()
+	bool Read() const
 	{
 		return digitalRead(BoardPinNumber);
 	}
 
 	// Enables (true) or disables (false) the internal pullup resistor the Arduino has on digital input pins.
-	inline void EnableInternalPullup(bool enable = true)
+	inline void EnableInternalPullup(bool enable = true) const
 	{
 		digitalWrite(BoardPinNumber, enable);
 	}

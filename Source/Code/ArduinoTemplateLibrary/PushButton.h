@@ -51,7 +51,7 @@ public:
 		return false;
 	}
 
-	ButtonStates getState()
+	ButtonStates getState() const
 	{
 		return _state;
 	}

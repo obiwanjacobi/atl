@@ -28,7 +28,7 @@ public:
 	}
 
 	// returns the number of bytes that are available in the stream.
-	unsigned int getLength()
+	unsigned int getLength() const
 	{
 		if (_stream == NULL) return 0;
 

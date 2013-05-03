@@ -60,7 +60,7 @@ public:
 		return true;
 	}
 
-	bool IsTrue(byte bitIndex)
+	bool IsTrue(byte bitIndex) const
 	{
 		if (bitIndex > getMaxBits()) return false;
 
@@ -68,7 +68,7 @@ public:
 		return ((_bits & mask) > 0);
 	}
 
-	bool IsFalse(byte bitIndex)
+	bool IsFalse(byte bitIndex) const
 	{
 		if (bitIndex > getMaxBits()) return false;
 
@@ -76,17 +76,17 @@ public:
 		return ((_bits & mask) == 0);
 	}
 
-	byte getMaxBits()
+	byte getMaxBits() const
 	{
 		return (sizeof(T) * 8);
 	}
 
-	bool operator[] (byte bitIndex)
+	bool operator[] (byte bitIndex) const
 	{
 		return IsTrue(bitIndex);
 	}
 
-	operator T()
+	operator T() const
 	{
 		return _bits;
 	}

@@ -72,7 +72,7 @@ struct MidiMessage
 
 	//byte reserved[3];		// filler to get to power of 2 struct size (8 bytes)
 
-	byte GetStatusByte()
+	byte GetStatusByte() const
 	{
 		if (!Midi::IsSystemMessage(MessageType))
 		{
@@ -96,7 +96,7 @@ struct MidiMessage
 		}
 	}
 
-	byte GetDataByte1()
+	byte GetDataByte1() const
 	{
 		byte value = 0;
 
@@ -170,7 +170,7 @@ struct MidiMessage
 		}
 	}
 
-	byte GetDataByte2()
+	byte GetDataByte2() const
 	{
 		byte value = 0;
 
@@ -222,7 +222,7 @@ struct MidiMessage
 		}
 	}
 
-	void CopyTo(MidiMessage* target)
+	void CopyTo(MidiMessage* target) const
 	{
 		if (target == NULL) return;
 

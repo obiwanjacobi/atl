@@ -31,7 +31,7 @@ public:
 		return false;
 	}
 
-	bool getValue()
+	bool getValue() const
 	{
 		return _value;
 	}

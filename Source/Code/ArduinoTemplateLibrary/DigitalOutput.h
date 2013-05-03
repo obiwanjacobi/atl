@@ -41,7 +41,7 @@ public:
 		return Write(false);
 	}
 
-	bool getValue()
+	bool getValue() const
 	{
 		return _value;
 	}

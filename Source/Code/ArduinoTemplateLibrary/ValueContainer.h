@@ -3,6 +3,9 @@
 
 namespace ATL {
 
+// Not happy with the name ValueContainer.
+// Its more a value comparer or validator.
+
 template <typename T>
 class ValueContainer
 {
@@ -54,12 +57,12 @@ public:
 		_mode = None;
 	}
 
-	inline Mode getMode() { return _mode; }
-	inline T getValue() { return _begin; }
-	inline T getBegin() { return _begin; }
-	inline T getEnd() { return _end; }
+	inline Mode getMode() const { return _mode; }
+	inline T getValue() const { return _begin; }
+	inline T getBegin() const { return _begin; }
+	inline T getEnd() const { return _end; }
 
-	bool IsInRange(T value)
+	bool IsInRange(T value) const
 	{
 		if (_mode == None) return false;
 		if (_mode == Any) return true;

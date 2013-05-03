@@ -14,7 +14,7 @@ public:
 		pinMode(BoardPinNumber, OUTPUT);
 	}
 
-	void Write(bool value)
+	void Write(bool value) const
 	{
 		digitalWrite(BoardPinNumber, value);
 	}

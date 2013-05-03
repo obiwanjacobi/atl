@@ -16,7 +16,7 @@ public:
 	T Begin;
 	T End;
 
-	bool IsInRange(T value)
+	bool IsInRange(T value) const
 	{
 		if (begin > end)
 		{

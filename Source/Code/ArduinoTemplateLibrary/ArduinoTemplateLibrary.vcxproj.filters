@@ -46,7 +46,6 @@
     <ClInclude Include="PushButton.h">
       <Filter>IO</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h" />
     <ClInclude Include="DigitalInputPin.h">
       <Filter>Arduino</Filter>
     </ClInclude>
@@ -60,6 +59,9 @@
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Func.h" />
     <ClInclude Include="Task.h" />
+    <ClInclude Include="Time.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
