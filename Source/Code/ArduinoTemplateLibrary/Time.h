@@ -5,24 +5,27 @@
 
 namespace ATL {
 
-struct Time
+enum TimeResolution
+{
+	Milliseconds,
+	Microseconds
+};
+
+template<TimeResolution resolution = Milliseconds>
+class Time
 {
 public:
-	enum Resolution
+	Time()
 	{
-		Milliseconds,
-		Microseconds
-	};
-
-	Time(Resolution resolution)
-	{
-		_resolution = resolution;
 		Update();
 	}
 
-	void Update()
+	// returns delta time in 'resolution'
+	unsigned long Update()
 	{
-		if (_resolution == Milliseconds)
+		unsigned long previous = _ticks;
+
+		if (resolution == Milliseconds)
 		{
 			_ticks = millis();
 		}
@@ -30,43 +33,88 @@ public:
 		{
 			_ticks = micros();
 		}
+
+		return _ticks - previous;
 	}
 
-	unsigned long getMinutes() const
+	inline unsigned long getMilliseconds() const
 	{
-		return getSeconds() / 60;
+		return getMilliseconds(_ticks);
 	}
 
-	unsigned long getSeconds() const
+	inline unsigned long getMicroseconds() const
 	{
-		return getMilliseconds() / 1000;
+		return getMicroseconds(_ticks);
 	}
 
-	unsigned long getMilliseconds() const
-	{
-		if (_resolution == Milliseconds)
-		{
-			return _ticks;
-		}
-
-		return getMicroseconds() / 1000;
-	}
-
-	unsigned long getMicroseconds() const
-	{
-		if (_resolution == Milliseconds)
-		{
-			return _ticks * 1000;
-		}
-
-		return _ticks;
-	}
-
-	inline Resolution getResolution() const { return _resolution; }
+	inline TimeResolution getResolution() const { return resolution; }
 
 private:
-	Resolution _resolution;
 	unsigned long _ticks;
+
+protected:
+	inline unsigned long getTicks() const { return _ticks; }
+
+	inline unsigned long getMilliseconds(unsigned long ticks) const
+	{
+		if (resolution == Milliseconds)
+		{
+			return ticks;
+		}
+
+		return getMicroseconds(ticks) / 1000;
+	}
+
+	inline unsigned long getMicroseconds(unsigned long ticks) const
+	{
+		if (resolution == Milliseconds)
+		{
+			return ticks * 1000;
+		}
+
+		return ticks;
+	}
+};
+
+
+template<TimeResolution resolution>
+class TimeEx : Time<resolution>
+{
+public:
+	TimeEx() : Time()
+	{
+		_start = getTicks();
+	}
+
+	unsigned long Update()
+	{
+		_previous = getTicks();
+		return Time::Update();
+	}
+
+	inline unsigned long getStartMilliseconds() const
+	{
+		return getMilliseconds(_start);
+	}
+
+	inline unsigned long getStartMicroseconds() const
+	{
+		return getMicroseconds(_start);
+	}
+
+	inline unsigned long getPreviousMilliseconds() const
+	{
+		return getMilliseconds(_previous);
+	}
+
+	inline unsigned long getPreviousMicroseconds() const
+	{
+		return getMicroseconds(_previous);
+	}
+
+private:
+	unsigned long _start;
+	unsigned long _previous;
 };
 
 } //ATL

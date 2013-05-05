@@ -40,8 +40,13 @@ private:
   int _task;	// mandatory field in all tasks
 };
 
+*/
 
-
+/*
+  The Task implementation is based on macros forming a switch statement. 
+  It is possible to jump in and out of switch-cases and together
+  with a _task variable a Task can be 'resumed' at the correct
+  position.
 
 */
 

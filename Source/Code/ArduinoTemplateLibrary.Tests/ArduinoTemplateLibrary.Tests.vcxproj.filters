@@ -33,6 +33,9 @@
     <ClCompile Include="FuncTest.cpp" />
     <ClCompile Include="DelegateTest.cpp" />
     <ClCompile Include="TaskTest.cpp" />
+    <ClCompile Include="TimeTest.cpp">
+      <Filter>Arduino</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
