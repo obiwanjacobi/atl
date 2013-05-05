@@ -95,6 +95,7 @@
     </ClCompile>
     <ClCompile Include="StreamInputStreamTest.cpp" />
     <ClCompile Include="StreamOutputStreamTest.cpp" />
+    <ClCompile Include="TaskTest.cpp" />
     <ClCompile Include="TextWriterTest.cpp" />
     <ClCompile Include="ValueContainerTest.cpp" />
   </ItemGroup>

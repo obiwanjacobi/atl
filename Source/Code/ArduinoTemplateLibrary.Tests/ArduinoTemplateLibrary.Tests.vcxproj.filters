@@ -32,6 +32,7 @@
     </ClCompile>
     <ClCompile Include="FuncTest.cpp" />
     <ClCompile Include="DelegateTest.cpp" />
+    <ClCompile Include="TaskTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
