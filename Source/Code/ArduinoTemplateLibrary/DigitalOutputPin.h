@@ -5,7 +5,7 @@
 
 namespace ATL {
 
-template<byte BoardPinNumber>
+template<const byte BoardPinNumber>
 class DigitalOutputPin
 {
 public:

@@ -36,6 +36,12 @@
     <ClCompile Include="TimeTest.cpp">
       <Filter>Arduino</Filter>
     </ClCompile>
+    <ClCompile Include="DelaysTest.cpp">
+      <Filter>Arduino</Filter>
+    </ClCompile>
+    <ClCompile Include="Arduino.cpp">
+      <Filter>Arduino</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">

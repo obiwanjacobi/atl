@@ -13,9 +13,9 @@ template<class BaseT>
 class DigitalOutput : public BaseT
 {
 public:
-	DigitalOutput()
+	DigitalOutput() 
+		: _value(false)
 	{
-		_value = false;
 	}
 
 	bool Write(bool value)

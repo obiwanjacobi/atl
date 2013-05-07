@@ -16,10 +16,9 @@ template<class BaseT>
 class MidiReader : public BaseT
 {
 public:
-	MidiReader()
+	MidiReader() 
+		: _runningStatus(0), _parseState(StatusByte), _endState(NotSet)
 	{
-		_runningStatus = 0;
-		ResetState();
 	}
 
 	// reads one byte from the buffer and returns.

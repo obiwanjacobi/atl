@@ -62,6 +62,9 @@
     <ClInclude Include="Time.h">
       <Filter>Arduino</Filter>
     </ClInclude>
+    <ClInclude Include="Delays.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

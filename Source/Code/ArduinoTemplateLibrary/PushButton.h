@@ -29,9 +29,9 @@ public:
 		//stateHold,
 	};
 
-	PushBustton()
+	PushBustton() 
+		: _state(stateUnknown)
 	{
-		_state = stateUnknown;
 	}
 
 	// call this method repeatedly (main loop)

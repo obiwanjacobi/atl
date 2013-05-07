@@ -81,8 +81,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Arduino.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="BufferedInputStreamTest.cpp" />
+    <ClCompile Include="DelaysTest.cpp" />
     <ClCompile Include="DelegateTest.cpp" />
     <ClCompile Include="FuncTest.cpp" />
     <ClCompile Include="MidiMessageTest.cpp" />

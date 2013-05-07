@@ -15,7 +15,7 @@ template<TimeResolution resolution = Milliseconds>
 class Time
 {
 public:
-	Time()
+	Time() : _ticks(0)
 	{
 		Update();
 	}
@@ -81,7 +81,7 @@ template<TimeResolution resolution>
 class TimeEx : Time<resolution>
 {
 public:
-	TimeEx() : Time()
+	TimeEx() : Time(), _previous(0)
 	{
 		_start = getTicks();
 	}

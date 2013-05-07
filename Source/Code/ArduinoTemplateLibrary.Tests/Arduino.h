@@ -6,5 +6,7 @@ typedef unsigned int uint16_t;
 
 #define NULL 0
 
+unsigned long millis();
+unsigned long micros();
 
 #endif //__ARDUINO_H__

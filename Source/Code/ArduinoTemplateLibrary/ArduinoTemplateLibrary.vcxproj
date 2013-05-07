@@ -76,6 +76,7 @@
     <ClInclude Include=".ArduinoTemplateLibrary.vsarduino.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="BufferedInputStream.h" />
+    <ClInclude Include="Delays.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="DigitalInput.h" />
     <ClInclude Include="DigitalInputPin.h" />

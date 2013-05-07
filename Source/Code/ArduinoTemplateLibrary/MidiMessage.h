@@ -34,6 +34,11 @@ namespace Midi {
 
 struct MidiMessage
 {
+	MidiMessage() 
+		: MessageType(Midi::InvalidType), Beats(0), Bend(0)
+	{
+	}
+
 	// midi message type
 	Midi::MessageTypes MessageType;
 

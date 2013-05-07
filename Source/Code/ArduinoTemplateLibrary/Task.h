@@ -50,9 +50,22 @@ private:
 
 */
 
+
+
+
 #define Task_Begin(name) \
                                 \
 bool name()              \
+{                                 \
+	bool _yield_ = false;            \
+	switch (_task)             \
+	{                               \
+		case 0:
+
+
+#define Task_BeginWithParams(name, parameters) \
+                                \
+bool name(parameters)              \
 {                                 \
 	bool _yield_ = false;            \
 	switch (_task)             \
@@ -81,16 +94,6 @@ if (!(expression))                     \
                                          \
   _task = 0;                        \
   return false;
-
-
-#define Task_WaitWhile(expression)      \
-                                         \
-  Task_WaitUntil(!(expression))
-
-
-#define Task_WaitFor(name, parameter)   \
-                                         \
-  Task_WaitWhile(name(parameter))
 
 
 #define Task_YieldUntil(expression)     \

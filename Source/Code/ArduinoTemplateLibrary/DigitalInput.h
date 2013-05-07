@@ -13,9 +13,9 @@ template<class BaseT>
 class DigitalInput : public BaseT
 {
 public:
-	DigitalInput()
+	DigitalInput() 
+		: _value(false)
 	{
-		_value = false;
 	}
 
 	bool Read()

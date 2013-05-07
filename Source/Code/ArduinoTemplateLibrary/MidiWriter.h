@@ -15,8 +15,8 @@ class MidiWriter : public BaseT
 {
 public:
 	MidiWriter()
+		: _runningStatus(0)
 	{
-		_runningStatus = 0;
 	}
 
 	void Write(MidiMessage* midiMsg)

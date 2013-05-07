@@ -12,9 +12,9 @@ template<class StreamT>
 class StreamOutputStream
 {
 public:
-	StreamOutputStream()
+	StreamOutputStream() 
+		: _stream(NULL)
 	{
-		_stream = NULL;
 	}
 
 	StreamOutputStream(StreamT* serialStream)
