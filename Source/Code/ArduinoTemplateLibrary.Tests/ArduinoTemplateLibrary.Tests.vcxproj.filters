@@ -42,6 +42,9 @@
     <ClCompile Include="Arduino.cpp">
       <Filter>Arduino</Filter>
     </ClCompile>
+    <ClCompile Include="TB6612FNG_ControllerTest.cpp">
+      <Filter>Hardware\Motor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -57,6 +60,9 @@
       <Filter>Mocks</Filter>
     </ClInclude>
     <ClInclude Include="TestOutputStream.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="TB6612FNG_DriverMock.h">
       <Filter>Mocks</Filter>
     </ClInclude>
   </ItemGroup>
@@ -75,6 +81,12 @@
     </Filter>
     <Filter Include="IO">
       <UniqueIdentifier>{33002541-c4e1-4d0d-a1bb-746349a855bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware">
+      <UniqueIdentifier>{2c755c1a-3a87-4cde-9d22-73055c3a83e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Motor">
+      <UniqueIdentifier>{bccd13ed-87aa-4d0c-b74a-37ff940fe8fc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

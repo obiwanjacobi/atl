@@ -98,6 +98,7 @@
     <ClCompile Include="StreamInputStreamTest.cpp" />
     <ClCompile Include="StreamOutputStreamTest.cpp" />
     <ClCompile Include="TaskTest.cpp" />
+    <ClCompile Include="TB6612FNG_ControllerTest.cpp" />
     <ClCompile Include="TextWriterTest.cpp" />
     <ClCompile Include="TimeTest.cpp" />
     <ClCompile Include="ValueContainerTest.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="Arduino.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TB6612FNG_DriverMock.h" />
     <ClInclude Include="TestInputStream.h" />
     <ClInclude Include="TestOutputStream.h" />
   </ItemGroup>

@@ -65,6 +65,18 @@
     <ClInclude Include="Delays.h">
       <Filter>Arduino</Filter>
     </ClInclude>
+    <ClInclude Include="TB6612FNG_Driver.h">
+      <Filter>Hardware\Motor\TB6612FNG</Filter>
+    </ClInclude>
+    <ClInclude Include="TB6612FNG_Controller.h">
+      <Filter>Hardware\Motor\TB6612FNG</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorTypes.h">
+      <Filter>Hardware\Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalogOutputPin.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
@@ -78,6 +90,15 @@
     </Filter>
     <Filter Include="Arduino">
       <UniqueIdentifier>{6c37333a-8678-4275-993c-0259846f3df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware">
+      <UniqueIdentifier>{d89d12aa-a5b0-48f2-9b2f-548aa5d7ea7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Motor">
+      <UniqueIdentifier>{46cb0063-d1a1-48c3-895c-f8b83ce64c28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Motor\TB6612FNG">
+      <UniqueIdentifier>{cbf2d471-cfb6-4520-b8a0-4210ea4461b8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
