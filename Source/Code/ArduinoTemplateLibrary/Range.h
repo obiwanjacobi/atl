@@ -1,3 +1,23 @@
+/*  
+	Arduino Template Library http://atl.codeplex.com
+	Written by Marc Jacobi
+	Copyright 2012-2013 All Rights Reserved
+
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2.1 of the License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public
+	License along with this library; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
 #ifndef __RANGE_H__
 #define __RANGE_H__
 
@@ -18,21 +38,21 @@ public:
 
 	bool IsInRange(T value) const
 	{
-		if (begin > end)
+		if (Begin > End)
 		{
-			return (end <= value && value <= begin);
+			return (End <= value && value <= Begin);
 		}
 
-		return (begin <= value && value <= end);
+		return (Begin <= value && value <= End);
 	}
 
 	void Normalize()
 	{
-		if (begin > end)
+		if (Begin > End)
 		{
-			T temp = end;
-			end = begin;
-			begin = temp;
+			T temp = End;
+			End = Begin;
+			Begin = temp;
 		}
 	}
 };

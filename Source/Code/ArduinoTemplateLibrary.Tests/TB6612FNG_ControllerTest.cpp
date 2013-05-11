@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "..\ArduinoTemplateLibrary\MotorTypes.h"
 #include "..\ArduinoTemplateLibrary\TB6612FNG_Controller.h"
 #include "TB6612FNG_DriverMock.h"
 
@@ -23,7 +22,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TB6612FNG_TestController controller;
 
-			controller.Drive(MotorMode::Stop, 0);
+			controller.Stop();
 
 			Assert::IsTrue(controller.Assert(false, false, 0));
 		}
@@ -33,7 +32,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TB6612FNG_TestController controller;
 
-			controller.Drive(MotorMode::Break, 0);
+			controller.Break();
 
 			Assert::IsTrue(controller.Assert(true, true, 0));
 		}
@@ -43,7 +42,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TB6612FNG_TestController controller;
 
-			controller.Drive(MotorMode::Clockwise, 123);
+			controller.Clockwise(123);
 
 			Assert::IsTrue(controller.Assert(true, false, 123));
 		}
@@ -53,7 +52,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TB6612FNG_TestController controller;
 
-			controller.Drive(MotorMode::CounterClockwise, 123);
+			controller.CounterClockwise(123);
 
 			Assert::IsTrue(controller.Assert(false, true, 123));
 		}

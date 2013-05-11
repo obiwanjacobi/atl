@@ -25,14 +25,8 @@
     <ClInclude Include="MidiReader.h">
       <Filter>Midi</Filter>
     </ClInclude>
-    <ClInclude Include="StreamInputStream.h">
-      <Filter>IO</Filter>
-    </ClInclude>
     <ClInclude Include="MidiWriter.h">
       <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="StreamOutputStream.h">
-      <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="TextWriter.h">
       <Filter>IO</Filter>
@@ -71,10 +65,22 @@
     <ClInclude Include="TB6612FNG_Controller.h">
       <Filter>Hardware\Motor\TB6612FNG</Filter>
     </ClInclude>
-    <ClInclude Include="MotorTypes.h">
-      <Filter>Hardware\Motor</Filter>
-    </ClInclude>
     <ClInclude Include="AnalogOutputPin.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="PID.h">
+      <Filter>Process</Filter>
+    </ClInclude>
+    <ClInclude Include="URM37V32_Controller.h">
+      <Filter>Hardware\Sensor\URM37 V3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="URM37V32_Driver.h">
+      <Filter>Hardware\Sensor\URM37 V3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamInputStream.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamOutputStream.h">
       <Filter>Arduino</Filter>
     </ClInclude>
   </ItemGroup>
@@ -84,9 +90,6 @@
     </Filter>
     <Filter Include="Midi">
       <UniqueIdentifier>{37111ec7-556f-4131-9a52-5d811731ce50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Runtime">
-      <UniqueIdentifier>{d23291f1-1eff-4731-9402-43180d1a69cf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Arduino">
       <UniqueIdentifier>{6c37333a-8678-4275-993c-0259846f3df5}</UniqueIdentifier>
@@ -99,6 +102,15 @@
     </Filter>
     <Filter Include="Hardware\Motor\TB6612FNG">
       <UniqueIdentifier>{cbf2d471-cfb6-4520-b8a0-4210ea4461b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Process">
+      <UniqueIdentifier>{d23291f1-1eff-4731-9402-43180d1a69cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Sensor">
+      <UniqueIdentifier>{48dc7afa-64d6-4eea-a053-b56c7bd63012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Sensor\URM37 V3.2">
+      <UniqueIdentifier>{f44a3297-95c5-49a5-8c49-3f1394757f84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

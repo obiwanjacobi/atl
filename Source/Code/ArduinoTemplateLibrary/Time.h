@@ -1,3 +1,23 @@
+/*  
+	Arduino Template Library http://atl.codeplex.com
+	Written by Marc Jacobi
+	Copyright 2012-2013 All Rights Reserved
+
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2.1 of the License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public
+	License along with this library; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
 #ifndef __TIME_H__
 #define __TIME_H__
 
@@ -81,35 +101,35 @@ template<TimeResolution resolution>
 class TimeEx : Time<resolution>
 {
 public:
-	TimeEx() : Time(), _previous(0)
+	TimeEx() : _previous(0)
 	{
-		_start = getTicks();
+		_start = Time<resolution>::getTicks();
 	}
 
 	unsigned long Update()
 	{
-		_previous = getTicks();
-		return Time::Update();
+		_previous = Time<resolution>::getTicks();
+		return Time<resolution>::Update();
 	}
 
 	inline unsigned long getStartMilliseconds() const
 	{
-		return getMilliseconds(_start);
+		return Time<resolution>::getMilliseconds(_start);
 	}
 
 	inline unsigned long getStartMicroseconds() const
 	{
-		return getMicroseconds(_start);
+		return Time<resolution>::getMicroseconds(_start);
 	}
 
 	inline unsigned long getPreviousMilliseconds() const
 	{
-		return getMilliseconds(_previous);
+		return Time<resolution>::getMilliseconds(_previous);
 	}
 
 	inline unsigned long getPreviousMicroseconds() const
 	{
-		return getMicroseconds(_previous);
+		return Time<resolution>::getMicroseconds(_previous);
 	}
 
 private:

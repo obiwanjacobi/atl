@@ -89,7 +89,7 @@
     <ClInclude Include="MidiMessage.h" />
     <ClInclude Include="MidiReader.h" />
     <ClInclude Include="MidiWriter.h" />
-    <ClInclude Include="MotorTypes.h" />
+    <ClInclude Include="PID.h" />
     <ClInclude Include="PushButton.h" />
     <ClInclude Include="Range.h" />
     <ClInclude Include="RingBuffer.h" />
@@ -101,6 +101,8 @@
     <ClInclude Include="TextFormatInfo.h" />
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="URM37V32_Controller.h" />
+    <ClInclude Include="URM37V32_Driver.h" />
     <ClInclude Include="ValueContainer.h" />
     <ClInclude Include="_template.h" />
   </ItemGroup>
