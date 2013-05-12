@@ -54,7 +54,7 @@ public:
 		OutputStreamT::Write(CalculateChecksum(command, data1, data2));
 	}
 
-	ReceiveResult ReceiveResponse(unsigned char& outCommand, unsigned char& outData1, unsigned char& outData2)
+	int ReceiveResponse(unsigned char& outCommand, unsigned char& outData1, unsigned char& outData2)
 	{
 		if(InputStreamT::getLength() > 3)
 		{

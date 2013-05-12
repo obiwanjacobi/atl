@@ -27,7 +27,7 @@ namespace ATL {
 namespace IO {
 
 // This class is an adapter class to treat an Arduino Stream as an ATL OutputStream.
-// StreamT is a class with 'void write()', 'void flush()' and 'int available()' (typical Arduino Stream).
+// StreamT is a class with 'void write()' and 'void flush()' (typical Arduino Stream).
 template<class StreamT>
 class StreamOutputStream
 {
@@ -52,7 +52,7 @@ public:
 	{
 		if (_stream == NULL) return 0;
 
-		return _stream->available();
+		return 0;
 	}
 
 	// removes all content from the stream.

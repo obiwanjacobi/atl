@@ -1,7 +1,6 @@
 #include "stdafx.h"
-
-#define ATL_Delays_MaxItems 4
 #include "..\ArduinoTemplateLibrary\Delays.h"
+#include "..\ArduinoTemplateLibrary\Time.h"
 
 using namespace System;
 using namespace System::Text;
@@ -9,8 +8,6 @@ using namespace System::Collections::Generic;
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 using namespace ATL;
-
-
 
 //// Faking time
 //static unsigned long g_ticks = 0;
@@ -27,6 +24,7 @@ using namespace ATL;
 //	return g_ticks;
 //}
 
+
 namespace ArduinoTemplateLibraryTests
 {
 	[TestClass]
@@ -36,7 +34,7 @@ namespace ArduinoTemplateLibraryTests
 		[TestMethod]
 		void TestWait()
 		{
-			typedef Delays<Milliseconds> MilliDelays;
+			typedef Delays<Time<Milliseconds>, 4> MilliDelays;
 
 			unsigned int delta = MilliDelays::Update();
 

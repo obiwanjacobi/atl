@@ -30,7 +30,7 @@ namespace IO {
 	bool [IO.Hardware.]Read();
 	bool [IO.Hardware.]getValue();
 
-	void OnButtonStateChanged(ButtonState* state);
+	void OnButtonStateChanged(ButtonState state);
 */
 
 // TODO: Implement debounce and hold timeout

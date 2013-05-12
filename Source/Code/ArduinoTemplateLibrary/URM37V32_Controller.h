@@ -71,18 +71,18 @@ public:
 	}
 
 	// degrees: 0-270
-	void BeginDistance(int degrees)
+	void BeginDistance(unsigned int degrees)
 	{
 		BaseT::SendCommand(CMD_DISTANCE, map(degrees, 0, 270, 0, 46), 0x00);
 	}
 
-	ReceiveResult EndDistance(int& outDistance)
+	ReceiveResult EndDistance(unsigned int& outDistance)
 	{
 		unsigned char command;
 		unsigned char data1;
 		unsigned char data2;
 
-		ReceiveResult retVal = (ReceiveResult)BaseT::ReceiveRespone(command, data1, data2);
+		ReceiveResult retVal = (ReceiveResult)BaseT::ReceiveResponse(command, data1, data2);
 
 		if (retVal == Success)
 		{

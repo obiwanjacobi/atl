@@ -30,16 +30,17 @@ namespace Process {
 		unsigned int getDeltaTime()
 		T getSmallestAcceptableError()
 
+	T is the data type that hold the values. Either float or double.
 
+Algorithm:
 	Error = SetPoint - Feedback
 	P = Error * gainP
 	I = Sum(previous-I's) + ((Error * deltaTime) * gainI)
-	D = (previous-Error / deltaTime) gainD
+	D = (previous-Error / deltaTime) * gainD
 
 	PI = P + I
 	PD = P + D
 	PID = P + I + D
-
 */
 template<class BaseT, typename T>
 class PID : public BaseT
@@ -53,7 +54,7 @@ public:
 		return CalcP(error, gainP);
 	}	
 
-	T PD(T setPoint, T gainP, T gainD)
+	T P_D(T setPoint, T gainP, T gainD)
 	{
 		T input = BaseT::getFeedback();
 		T error = CalcError(setPoint, input);
@@ -62,7 +63,7 @@ public:
 		return CalcP(error, gainP) + CalcD(error, deltaTime, gainD);
 	}
 
-	T PI(T setPoint, T gainP, T gainI)
+	T P_I(T setPoint, T gainP, T gainI)
 	{
 		T input = BaseT::getFeedback();
 		T error = CalcError(setPoint, input);
@@ -71,7 +72,7 @@ public:
 		return CalcP(error, gainP) + CalcI(error, deltaTime, gainI);
 	}
 
-	T PID(T setPoint, T gainP, T gainI, T gainD)
+	T P_I_D(T setPoint, T gainP, T gainI, T gainD)
 	{
 		T input = BaseT::getFeedback();
 		T error = CalcError(setPoint, input);
@@ -84,7 +85,7 @@ private:
 	T _integralAcc;
 	T _lastError;
 
-	inline T CalcError(T setpoint, T input)
+	inline T CalcError(T setPoint, T input)
 	{
 		T error = setPoint - input;
 
@@ -111,7 +112,7 @@ private:
 
 	inline T CalcD(T error, unsigned int deltaTime, T gain)
 	{
-		T value = (_lastError - error / deltaTime) * gain;
+		T value = ((_lastError - error) / deltaTime) * gain;
 
 		_lastError = error;
 
