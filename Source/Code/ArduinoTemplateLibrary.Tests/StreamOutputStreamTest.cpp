@@ -38,7 +38,8 @@ namespace ArduinoTemplateLibraryTests
 			target.Write(0xFF);
 			target.Write(0xF0);
 
-			Assert::AreEqual(2, (int)target.getLength());
+			// no length on arduino output streams.
+			//Assert::AreEqual(2, (int)target.getLength());
 
 			Assert::AreEqual((unsigned char)0xFF, buffer[0]);
 			Assert::AreEqual((unsigned char)0xF0, buffer[1]);

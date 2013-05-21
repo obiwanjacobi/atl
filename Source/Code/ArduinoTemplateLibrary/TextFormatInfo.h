@@ -21,8 +21,6 @@
 #ifndef __TEXTFORMATINFO_H__
 #define __TEXTFORMATINFO_H__
 
-#include <Arduino.h>
-
 namespace ATL {
 namespace IO {
 
@@ -39,17 +37,17 @@ public:
 	};
 
 	static char NewLine[];
-	static byte DecimalDigits;
+	static unsigned char DecimalDigits;
 	static char NegativeSign;
 	static char DecimalSeparator;
-	static byte DefaultBase;
+	static unsigned char DefaultBase;
 };
 
 char TextFormatInfo::NewLine[] = { '\10', '\13', '\0' };
-byte TextFormatInfo::DecimalDigits = (byte)2;
+unsigned char TextFormatInfo::DecimalDigits = (unsigned char)2;
 char TextFormatInfo::NegativeSign = { '-' };
 char TextFormatInfo::DecimalSeparator = { '.' } ;
-byte TextFormatInfo::DefaultBase = (byte)baseDecimal;
+unsigned char TextFormatInfo::DefaultBase = (unsigned char)baseDecimal;
 
 }} // ATL.IO
 

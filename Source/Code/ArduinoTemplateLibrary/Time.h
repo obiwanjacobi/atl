@@ -69,9 +69,6 @@ public:
 
 	inline TimeResolution getResolution() const { return resolution; }
 
-private:
-	unsigned long _ticks;
-
 protected:
 	inline unsigned long getTicks() const { return _ticks; }
 
@@ -94,11 +91,14 @@ protected:
 
 		return ticks;
 	}
+
+private:
+	unsigned long _ticks;
 };
 
 
 template<TimeResolution resolution>
-class TimeEx : Time<resolution>
+class TimeEx : public Time<resolution>
 {
 public:
 	TimeEx() : _previous(0)
@@ -109,6 +109,7 @@ public:
 	unsigned long Update()
 	{
 		_previous = Time<resolution>::getTicks();
+
 		return Time<resolution>::Update();
 	}
 
@@ -130,6 +131,11 @@ public:
 	inline unsigned long getPreviousMicroseconds() const
 	{
 		return Time<resolution>::getMicroseconds(_previous);
+	}
+
+	inline unsigned int getDeltaTime()
+	{
+		return (unsigned int)(Time<resolution>::getTicks() - _previous);
 	}
 
 private:

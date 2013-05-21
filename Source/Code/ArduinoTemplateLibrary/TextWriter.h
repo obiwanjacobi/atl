@@ -21,7 +21,6 @@
 #ifndef __TEXTWRITER_H__
 #define __TEXTWRITER_H__
 
-#include <Arduino.h>
 #include "TextFormatInfo.h"
 
 namespace ATL {
@@ -35,12 +34,12 @@ template<class BaseT, class FormatInfoT = TextFormatInfo>
 class TextWriter : public BaseT
 {
 public:
-	inline void Write(char value)
+	inline void Write(const char value)
 	{
 		Write((int)value);
 	}
 
-	inline void Write(unsigned char value)
+	inline void Write(const unsigned char value)
 	{
 		Write((unsigned int)value);
 	}
@@ -50,17 +49,14 @@ public:
 	{
 		const char* strPos = str;
 
-		do
+		while (*strPos != '\0')
 		{
-			if (*strPos != '\0')
-			{
-				BaseT::Write(*strPos);
-			}
+			BaseT::Write(*strPos);
+			strPos++;
 		}
-		while (*strPos++ != '\0');
 	}
 
-	inline void Write(int value)
+	inline void Write(const int value)
 	{
 		// test for negative with decimals
 		if (FormatInfoT::DefaultBase == TextFormatInfo::baseDecimal)
@@ -81,12 +77,12 @@ public:
 		}
 	}
 
-	inline void Write(unsigned int value)
+	inline void Write(const unsigned int value)
 	{
 		WriteInt(value, FormatInfoT::DefaultBase);
 	}
 
-	void Write(long value)
+	void Write(const long value)
 	{
 		// test for negative with decimals
 		if (FormatInfoT::DefaultBase == TextFormatInfo::baseDecimal)
@@ -107,33 +103,33 @@ public:
 		}
 	}
 
-	inline void Write(unsigned long value)
+	inline void Write(const unsigned long value)
 	{
 		WriteLong(value, FormatInfoT::DefaultBase);
 	}
 
-	inline void Write(float value)
+	inline void Write(const float value)
 	{
 		WriteReal(value, FormatInfoT::DecimalDigits);
 	}
 
-	inline void Write(double value)
+	inline void Write(const double value)
 	{
 		WriteReal(value, FormatInfoT::DecimalDigits);
 	}
 
 	inline void WriteLine()
 	{
-		Write(TextFormatInfo::NewLine);
+		Write(TextFormatInfoT::NewLine);
 	}
 
-	inline void WriteLine(char value)
+	inline void WriteLine(const char value)
 	{
 		Write(value);
 		WriteLine();
 	}
 
-	inline void WriteLine(unsigned char value)
+	inline void WriteLine(const unsigned char value)
 	{
 		Write(value);
 		WriteLine();
@@ -145,66 +141,53 @@ public:
 		WriteLine();
 	}
 
-	inline void WriteLine(int value)
+	inline void WriteLine(const int value)
 	{
 		Write(value);
 		WriteLine();
 	}
 
-	inline void WriteLine(unsigned int value)
+	inline void WriteLine(const unsigned int value)
 	{
 		Write(value);
 		WriteLine();
 	}
 
-	inline void WriteLine(long value)
+	inline void WriteLine(const long value)
 	{
 		Write(value);
 		WriteLine();
 	}
 
-	inline void WriteLine(unsigned long value)
+	inline void WriteLine(const unsigned long value)
 	{
 		Write(value);
 		WriteLine();
 	}
 
-	inline void WriteLine(float value)
+	inline void WriteLine(const float value)
 	{
 		Write(value);
 		WriteLine();
 	}
 
 private:
-	void WriteInt(unsigned int integer, byte base)
+	void WriteInt(unsigned int integer, unsigned char base)
 	{
-		char buffer[11]; // an int is 2^32 and has 10 digits + terminating 0
-		char* strPos = &buffer[sizeof(buffer) - 1];
-
-		// we fill the buffer from back to front.
-		*strPos = '\0';
-
-		// safety check for base values that crash
-		// base == 0 -> devide by zero
-		// base == 1 -> endless loop
-		if (base < 2) base = 10;
-
-		do
-		{
-			unsigned int remainder = integer;
-			integer /= base;
-			
-			char c = remainder - base * integer;
-			*--strPos = c < 10 ? c + '0' : c + 'A' - 10;
-		}
-		while (integer != 0);
-
-		Write(strPos);
+		// an int is 2^32 and has 10 digits + terminating 0
+		WriteInternal<unsigned int, 11>(integer, base);
 	}
 
-	void WriteLong(unsigned long integer, byte base)
+	void WriteLong(unsigned long integer, unsigned char base)
 	{
-		char buffer[21]; // a long is 2^64 and has 20 digits + terminating 0
+		// a long is 2^64 and has 20 digits + terminating 0
+		WriteInternal<unsigned long, 21>(integer, base);
+	}
+
+	template<typename T, const unsigned char bufferSize>
+	void WriteInternal(T integer, unsigned char base)
+	{
+		char buffer[bufferSize];
 		char* strPos = &buffer[sizeof(buffer) - 1];
 
 		// we fill the buffer from back to front.
@@ -217,7 +200,7 @@ private:
 
 		do
 		{
-			unsigned long remainder = integer;
+			T remainder = integer;
 			integer /= base;
 			
 			char c = (char)(remainder - base * integer);
@@ -228,7 +211,7 @@ private:
 		Write(strPos);
 	}
 
-	void WriteReal(double real, byte digits)
+	void WriteReal(double real, unsigned char digits)
 	{
 		if (real < 0.0)
 		{
