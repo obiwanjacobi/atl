@@ -13,7 +13,7 @@ public:
 		_index = -1;
 	}
 
-	void InitStream(unsigned char* buffer, unsigned int length)
+	void InitInputStream(unsigned char* buffer, unsigned int length)
 	{
 		_buffer = buffer;
 		_length = length;

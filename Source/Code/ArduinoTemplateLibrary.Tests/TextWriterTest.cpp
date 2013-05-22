@@ -23,7 +23,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 			TestTextWriter target;
-			target.InitStream(buffer, 7);
+			target.InitOutputStream(buffer, 7);
 
 			target.Write("123456");
 
@@ -36,7 +36,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 			TestTextWriter target;
-			target.InitStream(buffer, 7);
+			target.InitOutputStream(buffer, 7);
 
 			target.Write("123456");
 
@@ -50,7 +50,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 			TestTextWriter target;
-			target.InitStream(buffer, 7);
+			target.InitOutputStream(buffer, 7);
 
 			target.Write(123456);
 
@@ -70,7 +70,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 			TestTextWriter target;
-			target.InitStream(buffer, 7);
+			target.InitOutputStream(buffer, 7);
 
 			target.Write(-23456);
 
@@ -90,7 +90,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 			TestTextWriter target;
-			target.InitStream(buffer, 7);
+			target.InitOutputStream(buffer, 7);
 
 			target.Write(123456L);
 
@@ -110,7 +110,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 			TestTextWriter target;
-			target.InitStream(buffer, 7);
+			target.InitOutputStream(buffer, 7);
 
 			target.Write(-23456L);
 
@@ -130,7 +130,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 			TestTextWriter target;
-			target.InitStream(buffer, 7);
+			target.InitOutputStream(buffer, 7);
 
 			target.Write(12.456);
 
@@ -150,7 +150,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
 			TestTextWriter target;
-			target.InitStream(buffer, 7);
+			target.InitOutputStream(buffer, 7);
 
 			target.Write(-23.56);
 

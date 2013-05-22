@@ -45,6 +45,9 @@
     <ClCompile Include="TB6612FNG_ControllerTest.cpp">
       <Filter>Hardware\Motor</Filter>
     </ClCompile>
+    <ClCompile Include="URM37V32_ControllerTest.cpp">
+      <Filter>Hardware\Sensor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -87,6 +90,9 @@
     </Filter>
     <Filter Include="Hardware\Motor">
       <UniqueIdentifier>{bccd13ed-87aa-4d0c-b74a-37ff940fe8fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Sensor">
+      <UniqueIdentifier>{874a530f-a50d-436f-9f03-f5c99b2e3f6c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

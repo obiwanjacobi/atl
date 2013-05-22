@@ -26,7 +26,7 @@ namespace ArduinoTemplateLibraryTests
 
 			unsigned char buffer[] = { 0x00, 0x00, 0x00, 0x00 };
 			MidiWriter<TestOutputStream> target;
-			target.InitStream(buffer, 3);
+			target.InitOutputStream(buffer, 3);
 
 			target.Write(&midiMsg);
 

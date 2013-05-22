@@ -101,6 +101,7 @@
     <ClCompile Include="TB6612FNG_ControllerTest.cpp" />
     <ClCompile Include="TextWriterTest.cpp" />
     <ClCompile Include="TimeTest.cpp" />
+    <ClCompile Include="URM37V32_ControllerTest.cpp" />
     <ClCompile Include="ValueContainerTest.cpp" />
   </ItemGroup>
   <ItemGroup>

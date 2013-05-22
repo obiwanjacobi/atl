@@ -53,7 +53,7 @@ namespace ArduinoTemplateLibraryTests
 			MidiReader<MidiReaderBase> midiReader;
 
 			unsigned char buffer[] = { 0x91, 0x40, 0x70 };
-			midiReader.InitStream(buffer, 3);
+			midiReader.InitInputStream(buffer, 3);
 
 			while(midiReader.Read());
 
@@ -70,7 +70,7 @@ namespace ArduinoTemplateLibraryTests
 			MidiReader<MidiReaderBase> midiReader;
 
 			unsigned char buffer[] = { 0x91, 0x40, 0xFF, 0x70 };
-			midiReader.InitStream(buffer, 4);
+			midiReader.InitInputStream(buffer, 4);
 
 			while(midiReader.Read());
 
@@ -90,7 +90,7 @@ namespace ArduinoTemplateLibraryTests
 			MidiReader<MidiReaderBase> midiReader;
 
 			unsigned char buffer[] = { 0x91, 0xFF, 0x40, 0x70 };
-			midiReader.InitStream(buffer, 4);
+			midiReader.InitInputStream(buffer, 4);
 
 			while(midiReader.Read());
 
@@ -110,7 +110,7 @@ namespace ArduinoTemplateLibraryTests
 			MidiReader<MidiReaderBase> midiReader;
 
 			unsigned char buffer[] = { 0x91, 0x40, 0x70, 0x81, 0x44, 0x68  };
-			midiReader.InitStream(buffer, 6);
+			midiReader.InitInputStream(buffer, 6);
 
 			for(int i = 0; i < 3; i++)
 				Assert::IsTrue(midiReader.Read());
@@ -137,7 +137,7 @@ namespace ArduinoTemplateLibraryTests
 			MidiReader<MidiReaderBase> midiReader;
 
 			unsigned char buffer[] = { 0x91, 0x40, 0x70, 0x44, 0x68  };
-			midiReader.InitStream(buffer, 5);
+			midiReader.InitInputStream(buffer, 5);
 
 			for(int i = 0; i < 3; i++)
 				Assert::IsTrue(midiReader.Read());

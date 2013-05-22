@@ -20,7 +20,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TestOutputStream stream;
 			unsigned char buffer[] = { 0x00, 0x00, 0x00, 0x00 };
-			stream.InitStream(buffer, 4);
+			stream.InitOutputStream(buffer, 4);
 			StreamOutputStream<TestOutputStream> target(&stream);
 
 			// buffer is still empty, so length is zero.
@@ -32,7 +32,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TestOutputStream stream;
 			unsigned char buffer[] = { 0x00, 0x00, 0x00, 0x00 };
-			stream.InitStream(buffer, 4);
+			stream.InitOutputStream(buffer, 4);
 			StreamOutputStream<TestOutputStream> target(&stream);
 
 			target.Write(0xFF);

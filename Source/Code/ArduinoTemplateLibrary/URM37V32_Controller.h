@@ -51,7 +51,7 @@ public:
 	};
 
 	// Mode 2: Autonomous trigger mode
-	bool SetAutonomousTriggerMode(int threshold)
+	bool SetAutonomousTriggerMode(unsigned int threshold)
 	{
 		if (!WriteEEPROM(0x02, 0xaa)) return false;
 		if (!WriteEEPROM(0x00, (unsigned char)threshold)) return false;
@@ -145,7 +145,7 @@ private:
 		unsigned char outData2;
 
 		// TODO: timeout?
-		while(BaseT::ReceiveRespone(outCommand, outData1, outData2) != Success);
+		while(BaseT::ReceiveResponse(outCommand, outData1, outData2) != Success);
 
 		// check echo response
 		return (outCommand == 0x44 && outData1 == data1 && outData2 == data2);
