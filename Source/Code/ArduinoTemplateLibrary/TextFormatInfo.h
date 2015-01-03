@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,9 @@
 namespace ATL {
 namespace IO {
 
+/*
+	This class defines regional number-settings.
+*/
 class TextFormatInfo
 {
 public:
@@ -49,6 +52,6 @@ char TextFormatInfo::NegativeSign = { '-' };
 char TextFormatInfo::DecimalSeparator = { '.' } ;
 unsigned char TextFormatInfo::DefaultBase = (unsigned char)baseDecimal;
 
-}} // ATL.IO
+}} // ATL::IO
 
 #endif //__TEXTFORMATINFO_H__

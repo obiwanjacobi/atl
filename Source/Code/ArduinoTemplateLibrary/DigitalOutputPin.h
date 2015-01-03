@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -34,9 +34,20 @@ public:
 		pinMode(BoardPinNumber, OUTPUT);
 	}
 
-	void Write(bool value)
+	DigitalOutputPin(bool initialValue)
+	{
+		pinMode(BoardPinNumber, OUTPUT);
+		Write(initialValue);
+	}
+
+	inline void Write(bool value) const
 	{
 		digitalWrite(BoardPinNumber, value);
+	}
+
+	inline byte getPinNumber() const
+	{
+		return BoardPinNumber;
 	}
 };
 

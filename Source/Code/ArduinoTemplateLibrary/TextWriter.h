@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -27,7 +27,7 @@ namespace ATL {
 namespace IO {
 
 /*
-	BaseT implements void Write(byte).
+	BaseT implements void [IO]Write(byte).
 	FormatInfoT implements all the public static fields defined by TextFormatInfo
 */
 template<class BaseT, class FormatInfoT = TextFormatInfo>
@@ -120,7 +120,7 @@ public:
 
 	inline void WriteLine()
 	{
-		Write(TextFormatInfoT::NewLine);
+		Write(FormatInfoT::NewLine);
 	}
 
 	inline void WriteLine(const char value)
@@ -194,7 +194,7 @@ private:
 		*strPos = '\0';
 
 		// safety check for base values that crash
-		// base == 0 -> devide by zero
+		// base == 0 -> divide by zero
 		// base == 1 -> endless loop
 		if (base < 2) base = 10;
 

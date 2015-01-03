@@ -18,73 +18,64 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __PUSHBUTTON_H__
-#define __PUSHBUTTON_H__
+#ifndef __HD44780_PROFILE_H__
+#define __HD44780_PROFILE_H__
+
+#include <Arduino.h>
 
 namespace ATL {
-namespace IO {
+namespace Hardware {
+namespace Display {
 
 /*
-	BaseT is used as base class and implements:
-
-	bool [IO.Hardware.]Read();
-	bool [IO.Hardware.]getValue();
-
-	void OnButtonStateChanged(ButtonState state);
+	Timing profile class for the HD44780 LCD display.
 */
-
-// TODO: Implement debounce and hold timeout
-
-template<class BaseT>
-class PushButton : public BaseT
+class HD44780_Profile
 {
 public:
-	enum ButtonStates
+	inline static void WaitPowerUp()
 	{
-		stateUnknown,
-		stateOpen,
-		stateClosed,
-		
-		// TODO: impl
-		//stateHold,
-	};
-
-	PushButton() 
-		: _state(stateUnknown)
-	{
+		//delay(50);
+		delay(10);
 	}
 
-	// call this method repeatedly (main loop)
-	bool ScanButton()
+	inline static void WaitInitializeLong()
 	{
-		if (BaseT::Read())
-		{
-			SetState(BaseT::getValue());
-			return true;
-		}
-
-		if(_state == stateUnknown)
-		{
-			SetState(false);
-		}
-
-		return false;
+		//delayMicroseconds(4100);
+		delayMicroseconds(1000);
 	}
 
-	ButtonStates getState() const
+	inline static void WaitInitialize()
 	{
-		return _state;
+		//delayMicroseconds(100);
+		delayMicroseconds(30);
 	}
 
-private:
-	ButtonStates _state;
-
-	void SetState(bool value)
+	inline static void WaitInitializeShort()
 	{
-		_state = value ? stateClosed : stateOpen;
+		//delayMicroseconds(40);
+		delayMicroseconds(20);
+	}
+
+	inline static void WaitForCommand()
+	{
+		//delayMicroseconds(40);
+		delayMicroseconds(15);
+	}
+
+	inline static void WaitForCommandLong()
+	{
+		//delayMicroseconds(1640);
+		delayMicroseconds(800);
+	}
+
+	inline static void WaitPulseEnable()
+	{
+		//delayMicroseconds(37);
+		delayMicroseconds(8);
 	}
 };
 
-}} // ATL.IO
+}}} // ATL::Hardware::Display
 
-#endif //__PUSHBUTTON_H__
+#endif //__HD44780_PROFILE_H__

@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -27,10 +27,10 @@ namespace Process {
 /*
 	BaseT is used as a base class and implements:
 		T getFeedback()
-		T getMaximumValue()
 		T getLargestAcceptableError()
-		unsigned int getDeltaTime()
-		T LowPassFilter(T)
+		T LowPassFilter(T, unsigned int)
+		unsigned int [TimeEx]getDeltaTime()
+		void [Range]ClipValue(T&)
 
 	T is the data type that hold the values. Either float or double or int or long?.
 
@@ -79,7 +79,7 @@ public:
 
 		T value = CalcP(error, biasP) + CalcI(error, deltaTime, biasI) + CalcD(error, deltaTime, biasD);
 
-		ClipValue(value);
+		BaseT::ClipValue(value);
 
 		return value;
 	}
@@ -116,18 +116,18 @@ private:
 		{
 			_integralAcc += (error * deltaTime) * bias;
 
-			ClipValue(_integralAcc);
+			BaseT::ClipValue(_integralAcc);
 		}
 
 		return _integralAcc;
 	}
 
-	inline T CalcD(const T error, const unsigned int deltaTime, const T bias)
+	inline T CalcD(T error, const unsigned int deltaTime, const T bias)
 	{
 		T value = 0;
 		
 		// remove noise from error value
-		error = BaseT::LowPassFilter(error);
+		error = BaseT::LowPassFilter(error, deltaTime);
 
 		if (bias != 0)
 		{
@@ -142,10 +142,16 @@ private:
 	inline void ClipValue(T& value)
 	{
 		T maxValue = BaseT::getMaximumValue();
+		T minValue = BaseT::getMinimumValue();
 
 		if (value > maxValue)
 		{
 			value = maxValue;
+		}
+
+		if (value < minValue)
+		{
+			value = minValue;
 		}
 	}
 };

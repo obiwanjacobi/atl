@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F96787B6-E18C-4ECA-9A57-C62DF0F615ED}</ProjectGuid>
     <RootNamespace>ArduinoTemplateLibrary</RootNamespace>
-    <SccProjectName>$/atl/Source/Code/ArduinoTemplateLibrary</SccProjectName>
+    <SccProjectName>%24/atl/Source/Code/ArduinoTemplateLibrary</SccProjectName>
     <SccAuxPath>https://tfs.codeplex.com/tfs/tfs01</SccAuxPath>
     <SccLocalPath>.</SccLocalPath>
     <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
@@ -23,6 +23,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -50,10 +51,17 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\libraries;C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers;C:\Users\marc\Documents\Projects\Personal\Arduino\libraries;c:\program files (x86)\arduino\hardware\tools\avr\avr\include\;c:\program files (x86)\arduino\hardware\tools\avr\avr\include\avr\;c:\program files (x86)\arduino\hardware\tools\avr\avr\;c:\program files (x86)\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>C:\Users\marc\Documents\Projects\Personal\CannedBytes\Source\Arduino\atl\Source\Code\ArduinoTemplateLibrary\Visual Micro\.ArduinoTemplateLibrary.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <PreprocessorDefinitions>__AVR_ATmega328p__;__AVR_ATmega328P__;ARDUINO=106;ARDUINO_MAIN;__AVR__;__avr__;F_CPU=16000000L;__cplusplus;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(ProjectDir)*.h $(SolutionDir)ATL\utility</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -69,11 +77,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ArduinoTemplateLibrary.pde" />
     <None Include="Contracts.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".ArduinoTemplateLibrary.vsarduino.h" />
     <ClInclude Include="AnalogOutputPin.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="BufferedInputStream.h" />
@@ -84,6 +90,12 @@
     <ClInclude Include="DigitalOutput.h" />
     <ClInclude Include="DigitalOutputPin.h" />
     <ClInclude Include="Func.h" />
+    <ClInclude Include="HD44780_Controller.h" />
+    <ClInclude Include="HD44780_Driver.h" />
+    <ClInclude Include="HD44780_DriverSerial3Wire.h" />
+    <ClInclude Include="HD44780_Profile.h" />
+    <ClInclude Include="HD44780_View.h" />
+    <ClInclude Include="HD44780_ViewPort.h" />
     <ClInclude Include="Midi.h" />
     <ClInclude Include="MidiInputStream.h" />
     <ClInclude Include="MidiMessage.h" />
@@ -92,12 +104,18 @@
     <ClInclude Include="PID.h" />
     <ClInclude Include="PushButton.h" />
     <ClInclude Include="Range.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="RingBuffer.h" />
+    <ClInclude Include="Scheduler.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="Serial3WireOutput.h" />
     <ClInclude Include="StreamInputStream.h" />
     <ClInclude Include="StreamOutputStream.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TB6612FNG_Controller.h" />
     <ClInclude Include="TB6612FNG_Driver.h" />
+    <ClInclude Include="TB6612FNG_DriverSerial3Wire.h" />
     <ClInclude Include="TextFormatInfo.h" />
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Time.h" />

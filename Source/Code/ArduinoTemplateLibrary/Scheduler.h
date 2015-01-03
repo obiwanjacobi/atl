@@ -18,48 +18,34 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __DIGITALINPUT_H__
-#define __DIGITALINPUT_H__
+#ifndef __SCHEDULER_H__
+#define __SCHEDULER_H__
 
-namespace ATL {
-namespace IO {
-
-/*
-	BaseT is used as base class and implements:
-
-	bool [IO.Hardware.]Read();
-*/
-template<class BaseT>
-class DigitalInput : public BaseT
+class Scheduler
 {
 public:
-	DigitalInput() 
-		: _value(false)
+	// called repeatedly (main loop)
+	void Pump()
 	{
 	}
 
-	bool Read()
+	void ResetTime()
 	{
-		bool value = BaseT::Read();
-
-		if (_value != value)
-		{
-			_value = value;
-			return true;
-		}
-
-		return false;
 	}
 
-	bool getValue() const
-	{
-		return _value;
-	}
-
-private:
-	bool _value;
+	
 };
 
-}} // ATL.IO
+template<class CallbackT>
+class SchedulerItem
+{
+public:
+	void ExecuteCallback()
+	{
+		CallbackT
+	}
+};
 
-#endif //__DIGITALINPUT_H__
+
+
+#endif //__SCHEDULER_H__

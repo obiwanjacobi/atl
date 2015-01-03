@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -27,8 +27,8 @@ namespace Sensor {
 
 /*
 	BaseT is used as a base class and implements:
-		void SendCommand(unsigned char command, unsigned char data1, unsigned char data2);
-		int ReceiveResponse(unsigned char& outCommand, unsigned char& outData1, unsigned char& out_Data2);
+		void [URM37V32_Driver]SendCommand(unsigned char command, unsigned char data1, unsigned char data2);
+		int [URM37V32_Driver]ReceiveResponse(unsigned char& outCommand, unsigned char& outData1, unsigned char& out_Data2);
 			returns 0- no data available, 1- some data available waiting on more, 2- error in checksum, 3- success.
 		See also the URM37V32_Driver class.
 

@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -79,10 +79,10 @@ private:
 	byte _runningStatus;
 	
 	// TODO: both these fields can be merged to one. 
-	//   Use a bitmask to check one or the other.
+	//   Use a bit mask to check one or the other.
 
 	// this is the type of midi byte that is expected next
-	// although some midi messages can be interupted by realtime messages.
+	// although some midi messages can be interrupted by real-time messages.
 	MidiParseState	_parseState;
 	// this is the type of midi byte that signals the end of a logical
 	// midi message. Only used for multi byte midi messages and sysex.
@@ -100,7 +100,7 @@ private:
 
 	inline void CallOnSysEx()
 	{
-		// TODO: construct a sysex stream that still fires realtime callbacks
+		// TODO: construct a sysex stream that still fires real-time callbacks
 		BaseT::OnSysEx(this);
 	}
 
@@ -109,7 +109,6 @@ private:
 		_parseState = StatusByte;
 		_endState = NotSet;
 	}
-
 	
 
 	/*
@@ -122,7 +121,7 @@ private:
 			! else process status byte
 		! else
 		? if status byte
-			- proces status byte (must be real time -or eox?)
+			- process status byte (must be real time -or eox?)
 		- insert byte read
 	*/
 	bool Dispatch(byte midiByte)

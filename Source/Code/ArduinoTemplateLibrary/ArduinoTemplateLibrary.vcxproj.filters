@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <None Include="ArduinoTemplateLibrary.pde" />
     <None Include="Contracts.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".ArduinoTemplateLibrary.vsarduino.h" />
     <ClInclude Include="ValueContainer.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="Range.h" />
@@ -83,6 +81,32 @@
     <ClInclude Include="StreamOutputStream.h">
       <Filter>Arduino</Filter>
     </ClInclude>
+    <ClInclude Include="Scheduler.h" />
+    <ClInclude Include="Serial3WireOutput.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="HD44780_Controller.h">
+      <Filter>Hardware\Display\HD44780</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="HD44780_Driver.h">
+      <Filter>Hardware\Display\HD44780</Filter>
+    </ClInclude>
+    <ClInclude Include="HD44780_View.h">
+      <Filter>Hardware\Display\HD44780</Filter>
+    </ClInclude>
+    <ClInclude Include="HD44780_Profile.h">
+      <Filter>Hardware\Display\HD44780</Filter>
+    </ClInclude>
+    <ClInclude Include="HD44780_DriverSerial3Wire.h">
+      <Filter>Hardware\Display\HD44780</Filter>
+    </ClInclude>
+    <ClInclude Include="HD44780_ViewPort.h">
+      <Filter>Hardware\Display\HD44780</Filter>
+    </ClInclude>
+    <ClInclude Include="TB6612FNG_DriverSerial3Wire.h">
+      <Filter>Hardware\Motor\TB6612FNG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
@@ -111,6 +135,12 @@
     </Filter>
     <Filter Include="Hardware\Sensor\URM37 V3.2">
       <UniqueIdentifier>{f44a3297-95c5-49a5-8c49-3f1394757f84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Display">
+      <UniqueIdentifier>{f7f0d148-0cb3-4208-9aec-c2c6fd02d930}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Display\HD44780">
+      <UniqueIdentifier>{56a75e41-9c6f-4d24-8ebe-4cff6644306b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

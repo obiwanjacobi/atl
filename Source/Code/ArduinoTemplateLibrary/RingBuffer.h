@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -27,8 +27,9 @@ namespace ATL {
 // Capacity is always one less than the specified Size.
 // There is NO underrun detection!
 // T is the data type of the buffer items.
-// Size is the number of 'T' items in the buffer.
-template <typename T, unsigned int Size>
+// Size is the number of 'T' items in the buffer. 
+// An Array of T[Size] is allocated.
+template <typename T, const unsigned int Size>
 class RingBuffer
 {
 public:

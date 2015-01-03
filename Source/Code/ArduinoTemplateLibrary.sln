@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary", "ArduinoTemplateLibrary\ArduinoTemplateLibrary.vcxproj", "{F96787B6-E18C-4ECA-9A57-C62DF0F615ED}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary.Tests", "ArduinoTemplateLibrary.Tests\ArduinoTemplateLibrary.Tests.vcxproj", "{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}"
@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9ED6B5A1-62C7-4B2F-BDCA-AAF39BEA1489}"
 	ProjectSection(SolutionItems) = preProject
 		ArduinoTemplateLibrary.vsmdi = ArduinoTemplateLibrary.vsmdi
+		ATL\ATL.cpp = ATL\ATL.cpp
+		ATL\ATL.h = ATL\ATL.h
 		Local.testsettings = Local.testsettings
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection

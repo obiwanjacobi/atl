@@ -26,6 +26,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -90,6 +91,7 @@
     <ClCompile Include="MidiMessageTest.cpp" />
     <ClCompile Include="MidiReaderTest.cpp" />
     <ClCompile Include="MidiWriterTest.cpp" />
+    <ClCompile Include="PIDTest.cpp" />
     <ClCompile Include="RingBufferTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

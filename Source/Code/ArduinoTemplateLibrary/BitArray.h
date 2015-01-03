@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -21,14 +21,12 @@
 #ifndef __BITARRAY_H__
 #define __BITARRAY_H__
 
-#include <Arduino.h>
-
 namespace ATL {
 
-// The BitArray class stores its bits in one or more byte. 
-// This class can be used for maintaining boolean flags in a memory effecient way.
-// A normal boolean takes up a whole byte.
-// T is an (unsigned) integer datatype.
+// The BitArray class stores its bits in one or more unsigned char. 
+// This class can be used for maintaining boolean flags in a memory efficient way.
+// A normal boolean takes up a whole unsigned char.
+// T is an (unsigned) integer data-type.
 template<typename T>
 class BitArray
 {
@@ -38,7 +36,12 @@ public:
 		_bits = initialValues;
 	}
 
-	bool Set(byte bitIndex, bool value)
+	inline void SetAll(T bitValues)
+	{
+		_bits = bitValues;
+	}
+
+	bool Set(unsigned char bitIndex, bool value)
 	{
 		if (bitIndex > getMaxBits()) return false;
 
@@ -55,65 +58,103 @@ public:
 		return true;
 	}
 
-	bool Set(byte bitIndex)
+	bool Set(unsigned char bitIndex)
 	{
 		if (bitIndex > getMaxBits()) return false;
-
-		T mask = 1 << bitIndex;
-		// clear bit
-		_bits &= ~mask;
 
 		// set bit
-		_bits |= mask;
+		_bits |= (1 << bitIndex);
 
 		return true;
 	}
 
-	bool Reset(byte bitIndex)
+	bool Reset(unsigned char bitIndex)
 	{
 		if (bitIndex > getMaxBits()) return false;
 
-		T mask = 1 << bitIndex;
 		// clear bit
-		_bits &= ~mask;
+		_bits &= ~(1 << bitIndex);
 
 		return true;
 	}
 
-	bool IsTrue(byte bitIndex) const
+	inline void ResetAll()
+	{
+		_bits = 0;
+	}
+
+	bool IsTrue(unsigned char bitIndex) const
 	{
 		if (bitIndex > getMaxBits()) return false;
 
-		T mask = 1 << bitIndex;
-		return ((_bits & mask) > 0);
+		return ((_bits & (1 << bitIndex)) > 0);
 	}
 
-	bool IsFalse(byte bitIndex) const
+	bool IsFalse(unsigned char bitIndex) const
 	{
 		if (bitIndex > getMaxBits()) return false;
 
-		T mask = 1 << bitIndex;
-		return ((_bits & mask) == 0);
+		return ((_bits & (1 << bitIndex)) == 0);
 	}
 
-	byte getMaxBits() const
+	void Reverse()
 	{
-		return (sizeof(T) * 8);
+		T rv = 0;
+		for (byte i = 0; i < getMaxBits(); ++i, _bits >>= 1)
+		{
+			rv = (rv << 1) | (_bits & 0x01);
+		}
+
+		_bits = rv;
 	}
 
-	bool operator[] (byte bitIndex) const
+	unsigned char getMaxBits() const
+	{
+		return (sizeof(T) * CHAR_BITS);
+	}
+
+	inline bool operator[] (unsigned char bitIndex) const
 	{
 		return IsTrue(bitIndex);
 	}
 
-	operator T() const
+	inline operator T() const
 	{
 		return _bits;
+	}
+
+	inline void ShiftUp(byte shift)
+	{
+		_bits <<= shift;
+	}
+
+	inline void ShiftDown(byte shift)
+	{
+		_bits >>= shift;
 	}
 
 private:
 	T _bits;
 };
+
+// specializations
+
+template<>
+void BitArray<byte>::Reverse()
+	{
+		_bits = (_bits & 0xF0) >> 4 | (_bits & 0x0F) << 4;
+		_bits = (_bits & 0xCC) >> 2 | (_bits & 0x33) << 2;
+		_bits = (_bits & 0xAA) >> 1 | (_bits & 0x55) << 1;
+	}
+
+template<>
+void BitArray<uint16_t>::Reverse()
+	{
+		_bits = (_bits & 0xFF00) >> 8 | (_bits & 0x00FF) << 8;
+		_bits = (_bits & 0xF0F0) >> 4 | (_bits & 0x0F0F) << 4;
+		_bits = (_bits & 0xCCCC) >> 2 | (_bits & 0x3333) << 2;
+		_bits = (_bits & 0xAAAA) >> 1 | (_bits & 0x5555) << 1;
+	}
 
 } //ATL
 

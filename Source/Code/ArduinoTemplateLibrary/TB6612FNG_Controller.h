@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -27,7 +27,7 @@ namespace Motor {
 
 /*
 	BaseT is used as a base class and implements:
-		void Send(bool in1, bool in2, byte pwm);
+		void [TB6612FNG_Driver]Send(bool in1, bool in2, byte pwm);
 	See also the TB6612FNG_Driver template class.
 
 	The controller class implements the logic of how to talk to the chip

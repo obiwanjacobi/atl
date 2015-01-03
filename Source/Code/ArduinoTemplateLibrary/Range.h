@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -23,10 +23,17 @@
 
 namespace ATL {
 
+/*
+    The Range class contains 2 values for witch in- and out of range check can be performed.
+ */
 template<typename T>
 class Range
 {
 public:
+	Range()
+	{
+	}
+
 	Range(T begin, T end)
 	{
 		Begin = begin;
@@ -36,7 +43,7 @@ public:
 	T Begin;
 	T End;
 
-	bool IsInRange(T value) const
+	bool IsInRange(const T value) const
 	{
 		if (Begin > End)
 		{
@@ -53,6 +60,23 @@ public:
 			T temp = End;
 			End = Begin;
 			Begin = temp;
+		}
+	}
+
+	inline bool IsNormalized() const
+	{
+		return (End >= Begin);
+	}
+
+	void ClipValue(T& inoutValue) const
+	{
+		if (inoutValue > End)
+		{
+			inoutValue = End;
+		}
+		if (inoutValue < Begin)
+		{
+			inoutValue = Begin;
 		}
 	}
 };

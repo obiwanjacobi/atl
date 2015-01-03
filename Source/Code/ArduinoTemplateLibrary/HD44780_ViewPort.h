@@ -18,48 +18,58 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __DIGITALINPUT_H__
-#define __DIGITALINPUT_H__
+#ifndef __HD44780_VIEWPORT_H__
+#define __HD44780_VIEWPORT_H__
 
 namespace ATL {
-namespace IO {
+namespace Hardware {
+namespace Display {
 
 /*
-	BaseT is used as base class and implements:
-
-	bool [IO.Hardware.]Read();
+	BaseT is used as a base class and implements:
+		[HD44780_View]
 */
 template<class BaseT>
-class DigitalInput : public BaseT
+class HD44780_ViewPort : public BaseT
 {
 public:
-	DigitalInput() 
-		: _value(false)
-	{
-	}
 
-	bool Read()
-	{
-		bool value = BaseT::Read();
+	HD44780_ViewPort()
+		: _offset(0)
+	{}
 
-		if (_value != value)
+	inline bool ScrollRight()
+	{
+		if (_offset > 0)
 		{
-			_value = value;
+			_offset--;
+			BaseT::WriteCursorShift(true, BaseT::Right);
 			return true;
 		}
-
 		return false;
 	}
 
-	bool getValue() const
+	inline bool ScrollLeft()
 	{
-		return _value;
+		if (_offset > BaseT::getTotalColumns())
+		{
+			_offset++;
+			BaseT::WriteCursorShift(true, BaseT::Left);
+			return true;
+		}
+		return false;
+	}
+
+	inline byte getDislayOffset() const
+	{
+		return _offset;
 	}
 
 private:
-	bool _value;
+	byte _offset;
+	
 };
 
-}} // ATL.IO
+}}} // ATL::Hardware::Display
 
-#endif //__DIGITALINPUT_H__
+#endif //__HD44780_VIEWPORT_H__

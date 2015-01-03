@@ -1,7 +1,7 @@
 /*  
 	Arduino Template Library http://atl.codeplex.com
 	Written by Marc Jacobi
-	Copyright 2012-2013 All Rights Reserved
+	Copyright 2012-2015 All Rights Reserved
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
 namespace ATL {
 
 /*
-	TimeT implements: unsigned int Update();
+	TimeT implements: unsigned int [Time]Update() - returns the delta-Time.
 */
 template<class TimeT, const unsigned char maxItems>
 class Delays
@@ -38,9 +38,9 @@ public:
 		return _delta;
 	}
 
-	static bool IsWaiting(int id)
+	static bool IsWaiting(unsigned int id)
 	{
-		for(int i = 0; i < maxItems; i++)
+		for (int i = 0; i < maxItems; i++)
 		{
 			if (_ids[i] == id)
 			{
@@ -53,7 +53,7 @@ public:
 
 	static void Abort(unsigned int id)
 	{
-		for(int i = 0; i < maxItems; i++)
+		for (int i = 0; i < maxItems; i++)
 		{
 			if (_ids[i] == id)
 			{
@@ -66,7 +66,7 @@ public:
 	{
 		int emptyIndex = -1;
 
-		for(int i = 0; i < maxItems; i++)
+		for (int i = 0; i < maxItems; i++)
 		{
 			if (emptyIndex == -1 && _ids[i] == 0)
 			{
@@ -89,7 +89,7 @@ public:
 
 		if (emptyIndex == -1)
 		{
-			for(int i = 0; i < maxItems; i++)
+			for (int i = 0; i < maxItems; i++)
 			{
 				if (_ids[i] == 0)
 				{
@@ -104,6 +104,17 @@ public:
 		_delays[emptyIndex] = time;
 
 		return false;
+	}
+
+	static void Clear(unsigned int id)
+	{
+		for (int i = 0; i < maxItems; i++)
+		{
+			if (_ids[i] == id)
+			{
+				_ids[i] = 0;
+			}
+		}
 	}
 
 	static TimeT& getTime() { return _time; }

@@ -1,5 +1,5 @@
-#ifndef __TEMPLATE__
-#define __TEMPLATE__
+#ifndef __TB6612FNG_DRIVERMOCK_H__
+#define __TB6612FNG_DRIVERMOCK_H__
 
 class TB6612FNG_DriverMock
 {
@@ -22,4 +22,4 @@ private:
 	unsigned char _pwm;
 };
 
-#endif //__TEMPLATE__
+#endif //__TB6612FNG_DRIVERMOCK_H__
