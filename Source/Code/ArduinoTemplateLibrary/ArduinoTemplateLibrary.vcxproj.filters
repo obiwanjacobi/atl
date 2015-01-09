@@ -50,7 +50,6 @@
     <ClInclude Include="_template.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Func.h" />
-    <ClInclude Include="Task.h" />
     <ClInclude Include="Time.h">
       <Filter>Arduino</Filter>
     </ClInclude>
@@ -106,6 +105,16 @@
     </ClInclude>
     <ClInclude Include="TB6612FNG_DriverSerial3Wire.h">
       <Filter>Hardware\Motor\TB6612FNG</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>Process</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeoutTask.h">
+      <Filter>Process</Filter>
+    </ClInclude>
+    <ClInclude Include="IdentifiableObject.h" />
+    <ClInclude Include="ToggleDigitalOutput.h">
+      <Filter>IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

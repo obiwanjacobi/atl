@@ -96,6 +96,7 @@
     <ClInclude Include="HD44780_Profile.h" />
     <ClInclude Include="HD44780_View.h" />
     <ClInclude Include="HD44780_ViewPort.h" />
+    <ClInclude Include="IdentifiableObject.h" />
     <ClInclude Include="Midi.h" />
     <ClInclude Include="MidiInputStream.h" />
     <ClInclude Include="MidiMessage.h" />
@@ -119,6 +120,8 @@
     <ClInclude Include="TextFormatInfo.h" />
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="TimeoutTask.h" />
+    <ClInclude Include="ToggleDigitalOutput.h" />
     <ClInclude Include="URM37V32_Controller.h" />
     <ClInclude Include="URM37V32_Driver.h" />
     <ClInclude Include="ValueContainer.h" />

@@ -22,6 +22,7 @@
 #define __TASK_H__
 
 namespace ATL {
+namespace Process {
 
 /*
 This code was taken from http://msdn.microsoft.com/en-us/magazine/jj553509.aspx
@@ -37,9 +38,9 @@ public:
   int count;
   int average;
 
-  // A Task's state is completely stored in the Task class.
+  // A Task's state is completely stored in the Task class or passed in as an argument.
   // Do not use local vars in this method (they may generate compiler errors).
-  Task_Begin(Average)
+  Task_Begin(Average, args)
   {
     args.sum = 0;
     args.count = 0;
@@ -130,6 +131,6 @@ if (!(expression))                     \
                                          \
   Task_YieldUntil(true)
 
-} // ATL
+}} // ATL::Process
 
 #endif //__TASK_H__
