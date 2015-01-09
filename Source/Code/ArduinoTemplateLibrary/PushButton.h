@@ -169,12 +169,12 @@ private:
 
 	inline bool WaitForDebounce() const
 	{
-		return DelaysT::Wait(getId(), getDebounceTimeout());
+		return DelaysT::Wait(BaseT::getId(), getDebounceTimeout());
 	}
 
 	inline bool WaitForHold() const
 	{
-		return DelaysT::Wait(getId(), getHoldTimeout());
+		return DelaysT::Wait(BaseT::getId(), getHoldTimeout());
 	}
 
 	inline static ButtonStates ConvertToButtonState(bool value)

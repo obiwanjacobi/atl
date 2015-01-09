@@ -18,10 +18,11 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __TOGGLEPIN_H__
-#define __TOGGLEPIN_H__
+#ifndef __TOGGLEDIGITALOUTPUT_H__
+#define __TOGGLEDIGITALOUTPUT_H__
 
 namespace ATL {
+namespace IO {
 
 /*
 	Maintains state to toggle a digital output pin.
@@ -31,10 +32,10 @@ namespace ATL {
 		void [IO::DigitalOutputPin] Write(bool);
 */
 template<class BaseT>
-class TogglePin : public BaseT
+class ToggleDigitalOutput : public BaseT
 {
 protected:
-	TogglePin(bool initialState = false)
+	ToggleDigitalOutput(bool initialState = false)
 		: _state(initialState)
 	{}
 
@@ -57,6 +58,6 @@ private:
 	bool _state;
 };
 
-} // ATL
+}} // ATL::IO
 
-#endif //__TOGGLEPIN_H__
+#endif //__TOGGLEDIGITALOUTPUT_H__
