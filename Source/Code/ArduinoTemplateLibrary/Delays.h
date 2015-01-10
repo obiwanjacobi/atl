@@ -25,6 +25,8 @@
 
 namespace ATL {
 
+typedef unsigned long int timeout_t;
+
 /*
 	TimeT implements: unsigned int [Time]Update() - returns the delta-Time.
 */
@@ -62,7 +64,7 @@ public:
 		}
 	}
 
-	static bool Wait(unsigned int id, unsigned int time)
+	static bool Wait(unsigned int id, timeout_t time)
 	{
 		int emptyIndex = -1;
 
@@ -123,13 +125,20 @@ private:
 	static TimeT _time;
 	static unsigned int _delta;
 	static unsigned int _ids[maxItems];
-	static unsigned int _delays[maxItems];
+	static timeout_t _delays[maxItems];
 };
 
-template<class TimeT, const unsigned char maxItems> TimeT Delays<TimeT, maxItems>::_time;
-template<class TimeT, const unsigned char maxItems> unsigned int Delays<TimeT, maxItems>::_delta = 0;
-template<class TimeT, const unsigned char maxItems> unsigned int Delays<TimeT, maxItems>::_ids[] = {};
-template<class TimeT, const unsigned char maxItems> unsigned int Delays<TimeT, maxItems>::_delays[] = {};
+template<class TimeT, const unsigned char maxItems> 
+TimeT Delays<TimeT, maxItems>::_time;
+
+template<class TimeT, const unsigned char maxItems> 
+unsigned int Delays<TimeT, maxItems>::_delta = 0;
+
+template<class TimeT, const unsigned char maxItems> 
+unsigned int Delays<TimeT, maxItems>::_ids[] = {};
+
+template<class TimeT, const unsigned char maxItems> 
+timeout_t Delays<TimeT, maxItems>::_delays[] = {};
 
 } // ATL
 

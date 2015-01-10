@@ -79,7 +79,7 @@ protected:
 			return ticks;
 		}
 
-		return getMicroseconds(ticks) / 1000;
+		return ticks / 1000;
 	}
 
 	inline unsigned long getMicroseconds(unsigned long ticks) const
@@ -96,7 +96,55 @@ private:
 	unsigned long _ticks;
 };
 
+// Time specializations
 
+template<>
+unsigned long Time<Milliseconds>::Update()
+{
+	unsigned long previous = _ticks;
+
+	_ticks = millis();
+
+	return _ticks - previous;
+}
+
+template<>
+inline unsigned long Time<Milliseconds>::getMilliseconds(unsigned long ticks) const
+{
+	return ticks;
+}
+
+template<>
+inline unsigned long Time<Milliseconds>::getMicroseconds(unsigned long ticks) const
+{
+	return ticks * 1000;
+}
+
+template<>
+unsigned long Time<Microseconds>::Update()
+{
+	unsigned long previous = _ticks;
+
+	_ticks = micros();
+
+	return _ticks - previous;
+}
+
+template<>
+inline unsigned long Time<Microseconds>::getMilliseconds(unsigned long ticks) const
+{
+	return ticks / 1000;
+}
+
+template<>
+inline unsigned long Time<Microseconds>::getMicroseconds(unsigned long ticks) const
+{
+	return ticks;
+}
+
+/*
+	The TimeEx class adds delta time keeping.
+ */
 template<TimeResolution resolution = Milliseconds>
 class TimeEx : public Time<resolution>
 {
@@ -133,7 +181,7 @@ public:
 		return Time<resolution>::getMicroseconds(_previous);
 	}
 
-	inline unsigned int getDeltaTime()
+	inline unsigned int getDeltaTime() const
 	{
 		return (unsigned int)(Time<resolution>::getTicks() - _previous);
 	}

@@ -17,6 +17,7 @@ namespace ArduinoTemplateLibraryTests
 		static const unsigned char note = 64;
 		static const unsigned char velocity = 100;
 		static const int bend = 1024;
+
 	public: 
 		[TestMethod]
 		void TestStructureDefinition_PitchBend()

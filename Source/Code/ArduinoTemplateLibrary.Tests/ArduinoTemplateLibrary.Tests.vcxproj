@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <TargetName>DefaultTest</TargetName>
+    <TargetName>ATLUnitTest</TargetName>
     <ProjectTypes>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}</ProjectTypes>
     <ProjectGUID>{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}</ProjectGUID>
     <SccProjectName>SAK</SccProjectName>
@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClCompile Include="Arduino.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="BitArrayTest.cpp" />
     <ClCompile Include="BufferedInputStreamTest.cpp" />
     <ClCompile Include="DelaysTest.cpp" />
     <ClCompile Include="DelegateTest.cpp" />

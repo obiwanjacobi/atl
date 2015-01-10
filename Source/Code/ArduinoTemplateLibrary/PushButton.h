@@ -21,6 +21,8 @@
 #ifndef __PUSHBUTTON_H__
 #define __PUSHBUTTON_H__
 
+#include "BitArray.h"
+#include "Delays.h"
 #include "Task.h"
 
 namespace ATL {
@@ -84,15 +86,16 @@ struct ConvertBoolToButtonState<true>
 		true => 0=stateClosed | 1=stateOpen
 */
 template<class BaseT, typename DelaysT, 
-	const unsigned int debounceTimeout, const unsigned int holdTimeout, 
+	const timeout_t debounceTimeout, const timeout_t holdTimeout, 
 	const bool InverseValue=false>
 class PushButton : public BaseT
 {
-public:
+	// bit array indexes
+	#define CurrentStateIndex 0
+	#define PrevStateIndex 3
+	#define ButtonStateLength 3
 
-	PushButton() 
-		: _state(stateUnknown), _prevState(stateUnknown)
-	{ }
+public:
 
 	// call this method repeatedly (main loop)
 	// returns true when the task is yielding
@@ -100,36 +103,42 @@ public:
 	{
 		SampleButtonState();
 
+		// debounce
 		if (DebounceButton())
 		{
 			Task_YieldUntil(WaitForDebounce());
 
-			_prevState = _state;
-			_state = ConvertToButtonState(BaseT::Read());
+			setPrevState(getState());
+			setState(ConvertToButtonState(BaseT::Read()));
 		}
 
-		// TODO: hold
+		// hold
+		if (getState() == stateClosed)
+		{
+			if(WaitForHold())
+			{
+				setPrevState(getState());
+				setState(stateHold);
+			}
+		}
+		else if (DelaysT::IsWaiting(BaseT::getId()))
+		{
+			DelaysT::Clear(BaseT::getId());
+		}
 	}
 	Task_End
 
 	inline ButtonStates getState() const
 	{
-		return _state;
+		return (ButtonStates)_states.Get(CurrentStateIndex, ButtonStateLength);
 	}
 
-	inline bool hasStateChanged() const
-	{
-		return	_prevState != _state && 
-				_prevState != stateUnknown && 
-				_prevState != statePending;
-	}
-
-	inline unsigned int getDebounceTimeout() const
+	inline timeout_t getDebounceTimeout() const
 	{
 		return debounceTimeout;
 	}
 
-	inline unsigned int getHoldTimeout() const
+	inline timeout_t getHoldTimeout() const
 	{
 		return holdTimeout;
 	}
@@ -141,30 +150,56 @@ public:
 
 private:
 	int _task;
-	ButtonStates _prevState;
-	ButtonStates _state;
+	BitArray<byte> _states;
 
 	inline void SampleButtonState()
 	{
 		ButtonStates newState = ConvertToButtonState(BaseT::Read());
+		ButtonStates state = getState();
 
-		if (_state != newState)
+		// new state, but not in hold
+		if (state != newState 
+			&& !(newState == stateClosed && state == stateHold)
+			)
 		{
-			_prevState = _state;
-			_state = newState;
+			setPrevState(state);
+			setState(newState);
 		}
 	}
 
 	inline bool DebounceButton()
 	{
+		ButtonStates prevState = getPrevState();
+		ButtonStates state = getState();
+
 		// button changed (meaningful) states
-		if (hasStateChanged())
+		if (prevState != state 
+			&& state != stateHold
+			&& prevState != stateUnknown 
+			&& prevState != statePending
+			)
 		{
-			_state = statePending;
+			DelaysT::Clear(BaseT::getId());
+			setState(statePending);
 			return true;
 		}
 
 		return false;
+	}
+
+	inline ButtonStates getPrevState() const
+	{
+		return (ButtonStates)_states.Get(PrevStateIndex, ButtonStateLength);
+	}
+
+	inline void setPrevState(ButtonStates state)
+	{
+		_states.Set(PrevStateIndex, state, ButtonStateLength);
+	}
+
+	inline void setState(ButtonStates state)
+	{
+		_states.Set(CurrentStateIndex, state, ButtonStateLength);
 	}
 
 	inline bool WaitForDebounce() const

@@ -4,4 +4,4 @@
 
 #pragma once
 
-
+#define CHAR_BITS 8

@@ -31,7 +31,7 @@ template<typename T>
 class BitArray
 {
 public:
-	BitArray(T initialValues)
+	BitArray(T initialValues = 0)
 	{
 		_bits = initialValues;
 	}
@@ -41,9 +41,45 @@ public:
 		_bits = bitValues;
 	}
 
+	bool Set(unsigned char bitIndex, T value, unsigned char bitCount)
+	{
+		if (!isValidIndex(bitIndex, bitCount)) return false;
+
+		T mask = CreateMask(bitCount);
+
+		// make sure only valid bits are set
+		value &= mask;
+
+		// shift up to bit position
+		mask <<= bitIndex;
+		value <<= bitIndex;
+
+		// clear bits then set bits with new value
+		_bits &= ~mask;
+		_bits |= value;
+
+		return true;
+	}
+
+	T Get(unsigned char bitIndex, unsigned char bitCount) const
+	{
+		if (!isValidIndex(bitIndex, bitCount)) return (T)0;
+
+		T mask = CreateMask(bitCount);
+
+		// mask the bits and extract value
+		mask <<= bitIndex;
+		T value = (T)(_bits & mask);
+
+		// shift value down to lowest position
+		value >>= bitIndex;
+
+		return value;
+	}
+
 	bool Set(unsigned char bitIndex, bool value)
 	{
-		if (bitIndex > getMaxBits()) return false;
+		if (!isValidIndex(bitIndex)) return false;
 
 		T mask = 1 << bitIndex;
 		// clear bit
@@ -60,7 +96,7 @@ public:
 
 	bool Set(unsigned char bitIndex)
 	{
-		if (bitIndex > getMaxBits()) return false;
+		if (!isValidIndex(bitIndex)) return false;
 
 		// set bit
 		_bits |= (1 << bitIndex);
@@ -68,9 +104,14 @@ public:
 		return true;
 	}
 
+	inline bool Get(unsigned char bitIndex) const
+	{
+		return IsTrue(bitIndex);
+	}
+
 	bool Reset(unsigned char bitIndex)
 	{
-		if (bitIndex > getMaxBits()) return false;
+		if (!isValidIndex(bitIndex)) return false;
 
 		// clear bit
 		_bits &= ~(1 << bitIndex);
@@ -85,14 +126,14 @@ public:
 
 	bool IsTrue(unsigned char bitIndex) const
 	{
-		if (bitIndex > getMaxBits()) return false;
+		if (!isValidIndex(bitIndex)) return false;
 
 		return ((_bits & (1 << bitIndex)) > 0);
 	}
 
 	bool IsFalse(unsigned char bitIndex) const
 	{
-		if (bitIndex > getMaxBits()) return false;
+		if (!isValidIndex(bitIndex)) return false;
 
 		return ((_bits & (1 << bitIndex)) == 0);
 	}
@@ -100,7 +141,7 @@ public:
 	void Reverse()
 	{
 		T rv = 0;
-		for (byte i = 0; i < getMaxBits(); ++i, _bits >>= 1)
+		for (unsigned char i = 0; i < getMaxBits(); ++i, _bits >>= 1)
 		{
 			rv = (rv << 1) | (_bits & 0x01);
 		}
@@ -108,7 +149,7 @@ public:
 		_bits = rv;
 	}
 
-	unsigned char getMaxBits() const
+	inline unsigned char getMaxBits() const
 	{
 		return (sizeof(T) * CHAR_BITS);
 	}
@@ -123,24 +164,42 @@ public:
 		return _bits;
 	}
 
-	inline void ShiftUp(byte shift)
+	inline void ShiftUp(unsigned char shift)
 	{
 		_bits <<= shift;
 	}
 
-	inline void ShiftDown(byte shift)
+	inline void ShiftDown(unsigned char shift)
 	{
 		_bits >>= shift;
 	}
 
 private:
 	T _bits;
+
+	T CreateMask(unsigned char count) const
+	{
+		T mask = 0;
+
+		for (int i = 0; i < count; i++)
+		{
+			mask <<= 1;
+			mask |= 1;
+		}
+
+		return mask;
+	}
+
+	inline bool isValidIndex(unsigned char index, unsigned char count = 1) const
+	{
+		return (index + count) <= getMaxBits();
+	}
 };
 
 // specializations
 
 template<>
-void BitArray<byte>::Reverse()
+void BitArray<unsigned char>::Reverse()
 	{
 		_bits = (_bits & 0xF0) >> 4 | (_bits & 0x0F) << 4;
 		_bits = (_bits & 0xCC) >> 2 | (_bits & 0x33) << 2;
@@ -148,7 +207,7 @@ void BitArray<byte>::Reverse()
 	}
 
 template<>
-void BitArray<uint16_t>::Reverse()
+void BitArray<unsigned int>::Reverse()
 	{
 		_bits = (_bits & 0xFF00) >> 8 | (_bits & 0x00FF) << 8;
 		_bits = (_bits & 0xF0F0) >> 4 | (_bits & 0x0F0F) << 4;

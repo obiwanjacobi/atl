@@ -21,6 +21,7 @@
 #ifndef __TIMEOUTTASK_H__
 #define __TIMEOUTTASK_H__
 
+#include "Delays.h"
 #include "Task.h"
 
 namespace ATL {
@@ -32,11 +33,12 @@ namespace Process {
 
 	BaseT is used as a base class and implements:
 		void OnTimeout();
+		unsigned int [IdentifiableObject] getId();
 
 	The DelaysT is a Delays<> type used to keep track of time.
 	The Timeout is specified in the same quantity as the DelaysT is specified (Milli- or MicroSeconds).
 */
-template<class BaseT, typename DelaysT, const int Timeout>
+template<class BaseT, typename DelaysT, const timeout_t Timeout>
 class TimeoutTask : public BaseT
 {
 public:
@@ -48,7 +50,7 @@ public:
 	{
 		while(true)
 		{
-			Task_YieldUntil(DelaysT::Wait((unsigned int)this, Timeout));
+			Task_YieldUntil(DelaysT::Wait(BaseT::getId(), Timeout));
 			BaseT::OnTimeout();
 		}
 	}

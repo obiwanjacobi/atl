@@ -51,6 +51,7 @@
     <ClCompile Include="PIDTest.cpp">
       <Filter>Process</Filter>
     </ClCompile>
+    <ClCompile Include="BitArrayTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
