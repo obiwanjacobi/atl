@@ -25,26 +25,40 @@
 
 namespace ATL {
 
+/*
+	Initializes a BoardPinNumber to input.
+ */
 template <const byte BoardPinNumber>
 class DigitalInputPin
 {
 public:
+	/*
+		The ctor sets the pinMode.
+	 */
 	DigitalInputPin()
 	{
 		pinMode(BoardPinNumber, INPUT);
 	}
 
+	/*
+		Reads the value from the BoardPinNumder.
+	 */
 	inline bool Read()
 	{
 		return digitalRead(BoardPinNumber);
 	}
 
-	// Enables (true) or disables (false) the internal pullup resistor the Arduino has on digital input pins.
+	/*
+		Enables (true) or disables (false) the internal pull-up resistor the Arduino (MCU) has on digital input pins.
+	 */
 	inline void EnableInternalPullup(bool enable = true)
 	{
 		digitalWrite(BoardPinNumber, enable);
 	}
 
+	/*
+		Returns the BoardPinNumber template parameter.
+	 */
 	inline byte getPinNumber() const
 	{
 		return BoardPinNumber;

@@ -18,34 +18,18 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __SCHEDULER_H__
-#define __SCHEDULER_H__
+#ifndef __NULLOBJECT_H__
+#define __NULLOBJECT_H__
 
-class Scheduler
+namespace ATL {
+
+/*
+	Can be used when a template requires a BaseT but not call any specific methods on it.
+*/
+class NullObject
 {
-public:
-	// called repeatedly (main loop)
-	void Pump()
-	{
-	}
-
-	void ResetTime()
-	{
-	}
-
-	
 };
 
-template<class CallbackT>
-class SchedulerItem
-{
-public:
-	void ExecuteCallback()
-	{
-		CallbackT
-	}
-};
+} // ATL
 
-
-
-#endif //__SCHEDULER_H__
+#endif //__NULLOBJECT_H__

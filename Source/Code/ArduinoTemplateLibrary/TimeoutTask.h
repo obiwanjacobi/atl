@@ -46,6 +46,10 @@ public:
 		: _task(0)
 	{}
 
+	/*
+		Call this method repeatedly from the main loop.
+		Each time the Timeout expires the BaseT::OnTimeout() method is called.
+	 */
 	Task_Begin(Execute)
 	{
 		while(true)
@@ -55,6 +59,14 @@ public:
 		}
 	}
 	Task_End
+
+	/*
+		Returns the Timeout template parameter.
+	 */
+	inline timeout_t getTimeout() const
+	{
+		return Timeout;
+	}
 
 private:
 	int _task;

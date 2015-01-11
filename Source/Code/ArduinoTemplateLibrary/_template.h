@@ -18,8 +18,8 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __TEMPLATE__
-#define __TEMPLATE__
+#ifndef __TEMPLATE_H__
+#define __TEMPLATE_H__
 
 namespace ATL {
 
@@ -38,4 +38,4 @@ private:
 
 } // ATL
 
-#endif //__TEMPLATE__
+#endif //__TEMPLATE_H__

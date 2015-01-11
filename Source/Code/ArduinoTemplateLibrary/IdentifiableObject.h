@@ -25,11 +25,14 @@ namespace ATL {
 
 /*
 	Adds an Id to any class.
+
+	BaseT is for convenience and not used by this class.
 */
 template<class BaseT>
 class IdentifiableObject : public BaseT
 {
 public:
+	// returns an id based on the this pointer.
 	inline unsigned int getId() const
 	{
 		return (unsigned int)this;

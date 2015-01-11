@@ -26,8 +26,7 @@ namespace IO {
 
 /*
 	BaseT is used as base class and implements:
-
-	bool [IO.Hardware.]Read();
+		bool [DigitalInputPin]Read();
 */
 template<class BaseT>
 class DigitalInput : public BaseT
@@ -38,6 +37,10 @@ public:
 	{
 	}
 
+	/*
+		Returns true when a new value was read.
+		This method can be called repeatedly.
+	 */
 	bool Read()
 	{
 		bool value = BaseT::Read();
@@ -51,6 +54,9 @@ public:
 		return false;
 	}
 
+	/*
+		Returns the value that was last read by Read().
+	 */
 	bool getValue() const
 	{
 		return _value;

@@ -26,14 +26,27 @@ namespace Hardware {
 namespace Display {
 
 /*
-	BaseT is used as a base class and implements:
+	BaseT is used as a base class and implements [HD44780_Controller]:
+		void [HD44780_Controller]Initialize(bool);
+		void [HD44780_Controller]ReturnHome();
+		void [HD44780_Controller]WriteData(unsigend char);
+		void [HD44780_Controller]WriteDisplayAddress(unsigned char);
+		void [HD44780_Controller]SetEntryMode(Direction, bool);
+		[HD44780_Controller]Direction::Left (0);
+		[HD44780_Controller]Direction::Right (1);
+	Rows: the number of rows the display has
+	Cols: the number of (visible) columns the display has.
 
+	Typically the BaseT is the HD44780_Controller template class or derivative.
 */
 template<class BaseT, const byte Rows, const byte Cols>
 class HD44780_View : public BaseT
 {
 public:
 
+	/*
+		Initializes the BaseT and the display entry mode.
+	 */
 	inline void Initialize(bool full)
 	{
 		BaseT::Initialize(full);
@@ -44,7 +57,12 @@ public:
 		}
 	}
 
-	// OutputStream interface
+	/*
+		Implements the OutputStream write method to output characters.
+		Will keep track of the cursor position and handles carriage (13) return and new line (10).
+
+		This allows a TextWriter template class to be wrapped around the display.
+	 */
 	inline bool Write(byte character)
 	{
 		// check for new-line and carriage return
@@ -89,7 +107,10 @@ public:
 		return Cols;
 	}
 
-	// zero-based index
+	/*
+		Sets the current cursor position.
+		The indexes as zero-based.
+	 */
 	inline void SetCursor(byte rowIndex, byte colIndex)
 	{
 		_cursorRow = rowIndex;
@@ -97,17 +118,25 @@ public:
 		WriteDisplayAddress();
 	}
 
+	/*
+		Returns the current Cursor row position index.
+	 */
 	inline byte getCursorRow() const
 	{
 		return _cursorRow;
 	}
 
+	/*
+		Returns the current Cursor column position index.
+	 */
 	inline byte getCursorCol() const
 	{
 		return _cursorCol;
 	}
 
-	// override controller
+	/*
+		Overrides the Controller method to adjust current cursor position.
+	*/
 	inline void ReturnHome()
 	{
 		_cursorCol = 0;
@@ -146,7 +175,7 @@ private:
 
 	inline byte CalcAddress(byte rowIndex, byte colIndex)
 	{
-		byte rowOffsets[] = { 0x00, 0x40, 0x14, 0x54 };
+		static byte rowOffsets[] = { 0x00, 0x40, 0x14, 0x54 };
 
 		if (rowIndex >= getTotalRows())
 		{
@@ -156,6 +185,7 @@ private:
 		return (rowOffsets[rowIndex] + colIndex);
 	}
 
+	// writes the data address to match the current cursor position.
 	inline void WriteDisplayAddress()
 	{
 		BaseT::WriteDisplayAddress(CalcAddress(_cursorRow, _cursorCol));

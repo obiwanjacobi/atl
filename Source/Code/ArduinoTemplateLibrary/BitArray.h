@@ -23,10 +23,12 @@
 
 namespace ATL {
 
-// The BitArray class stores its bits in one or more unsigned char. 
-// This class can be used for maintaining boolean flags in a memory efficient way.
-// A normal boolean takes up a whole unsigned char.
-// T is an (unsigned) integer data-type.
+/*
+	The BitArray class stores its bits in one or more unsigned char. 
+	This class can be used for maintaining boolean flags in a memory efficient way.
+	A normal boolean takes up a whole unsigned char.
+	T is an (unsigned) integer data-type.
+ */
 template<typename T>
 class BitArray
 {
@@ -36,11 +38,18 @@ public:
 		_bits = initialValues;
 	}
 
+	/*
+		Sets all bits in one call.
+	 */
 	inline void SetAll(T bitValues)
 	{
 		_bits = bitValues;
 	}
 
+	/*
+		Sets the bits from value for bitCount bits starting at bit0
+		in the BitArray starting at the bitIndex position.
+	 */
 	bool Set(unsigned char bitIndex, T value, unsigned char bitCount)
 	{
 		if (!isValidIndex(bitIndex, bitCount)) return false;
@@ -61,6 +70,11 @@ public:
 		return true;
 	}
 
+	/*
+		Retrieves the bits for a bitCount number of bits from
+		the BitArray starting at the bitIndex. The value is
+		shifted down to bit0 in the return value.
+	 */
 	T Get(unsigned char bitIndex, unsigned char bitCount) const
 	{
 		if (!isValidIndex(bitIndex, bitCount)) return (T)0;
@@ -77,6 +91,9 @@ public:
 		return value;
 	}
 
+	/*
+		Sets the bit at bitIndex position to the specified value.
+	 */
 	bool Set(unsigned char bitIndex, bool value)
 	{
 		if (!isValidIndex(bitIndex)) return false;
@@ -94,6 +111,9 @@ public:
 		return true;
 	}
 
+	/*
+		Sets the bit at bitIndex position to true.
+	 */
 	bool Set(unsigned char bitIndex)
 	{
 		if (!isValidIndex(bitIndex)) return false;
@@ -104,11 +124,17 @@ public:
 		return true;
 	}
 
+	/*
+		Gets the bit at bitIndex position.
+	 */
 	inline bool Get(unsigned char bitIndex) const
 	{
 		return IsTrue(bitIndex);
 	}
 
+	/*
+		Sets the bit at bitIndex position to false.
+	 */
 	bool Reset(unsigned char bitIndex)
 	{
 		if (!isValidIndex(bitIndex)) return false;
@@ -119,11 +145,17 @@ public:
 		return true;
 	}
 
+	/*
+		Resets all bits to false;
+	 */
 	inline void ResetAll()
 	{
 		_bits = 0;
 	}
 
+	/*
+		Returns true if the bit at bitIndex position is true.
+	 */
 	bool IsTrue(unsigned char bitIndex) const
 	{
 		if (!isValidIndex(bitIndex)) return false;
@@ -131,6 +163,9 @@ public:
 		return ((_bits & (1 << bitIndex)) > 0);
 	}
 
+	/*
+		Returns true if the bit at bitIndex position is false.
+	 */
 	bool IsFalse(unsigned char bitIndex) const
 	{
 		if (!isValidIndex(bitIndex)) return false;
@@ -138,6 +173,10 @@ public:
 		return ((_bits & (1 << bitIndex)) == 0);
 	}
 
+	/*
+		Reverses all bits in the BitArray.
+		Bit0 -> BitX / BitX -> Bit0.
+	 */
 	void Reverse()
 	{
 		T rv = 0;
@@ -149,6 +188,9 @@ public:
 		_bits = rv;
 	}
 
+	/*
+		Returns the maximum number of bits that can be stored.
+	 */
 	inline unsigned char getMaxBits() const
 	{
 		return (sizeof(T) * CHAR_BITS);
@@ -164,11 +206,21 @@ public:
 		return _bits;
 	}
 
+	/*
+		Shifts all bits up specified number of times, 
+		losing the most significant bits and 
+		setting false for the least significant bits.
+	 */
 	inline void ShiftUp(unsigned char shift)
 	{
 		_bits <<= shift;
 	}
 
+	/*
+		Shifts all bits down specified number of times, 
+		losing the least significant bits and 
+		setting false for the most significant bits.
+	 */
 	inline void ShiftDown(unsigned char shift)
 	{
 		_bits >>= shift;
@@ -196,7 +248,7 @@ private:
 	}
 };
 
-// specializations
+// BitArray template specializations
 
 template<>
 void BitArray<unsigned char>::Reverse()

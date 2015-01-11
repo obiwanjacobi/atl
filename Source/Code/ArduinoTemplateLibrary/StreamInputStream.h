@@ -26,28 +26,41 @@
 namespace ATL {
 namespace IO {
 
-// This class is an adapter class to treat an Arduino Stream as an ATL InputStream.
-// StreamT is a class with 'int read()' and 'int available()' (typical Arduino Stream).
+/*
+	This class is an adapter class to treat an Arduino Stream as an ATL InputStream.
+	StreamT is a class with 'int read()' and 'int available()' (typical Arduino Stream).
+ */
 template<class StreamT>
 class StreamInputStream
 {
 public:
+
+	/*
+		Call AttachInputStream afterwards.
+	 */
 	StreamInputStream() 
 		: _stream(NULL)
-	{
-	}
+	{}
 
+	/*
+		Initializes the stream.
+	 */
 	StreamInputStream(StreamT* serialStream)
 	{
 		AttachInputStream(serialStream);
 	}
 
+	/*
+		Sets the ATL stream.
+	 */
 	inline void AttachInputStream(StreamT* serialStream)
 	{
 		_stream = serialStream;
 	}
 
-	// returns the number of bytes that are available in the stream.
+	/*
+		Returns the number of bytes that are available in the stream.
+	 */
 	unsigned int getLength() const
 	{
 		if (_stream == NULL) return 0;
@@ -55,7 +68,9 @@ public:
 		return _stream->available();
 	}
 
-	// removes all content from the stream.
+	/*
+		Removes all content from the stream.
+	 */
 	void Clear()
 	{
 		if (_stream == NULL) return;
@@ -63,8 +78,11 @@ public:
 		while(_stream->read() != -1);
 	}
 
-	// Reads one byte from the stream.
-	// Returns the byte read in the lsb (up to 9 bits). If -1 is returned, no data was available or an error occurred.
+	/*
+		Reads one byte from the stream.
+		Returns the byte read in the lsb (up to 9 bits). 
+		If -1 is returned, no data was available or an error occurred.
+	 */
 	int Read()
 	{
 		if (_stream == NULL) return -1;

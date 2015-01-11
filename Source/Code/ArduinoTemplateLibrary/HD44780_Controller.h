@@ -29,17 +29,38 @@ namespace Display {
 
 /*
 	BaseT is used as a base class and implements:
+		void [HD44780_Driver]Write4(unsigned char);
+		void [HD44780_Driver]WriteCommand(unsigned char);
+		void [HD44780_Driver]Initialize();
+	TimingProfileT is used to perform synchronous delays. See also HD44780_Profile.
 
+	The Controller class implements the protocol of communicating with the LCD display.
 */
 template<class BaseT, typename TimingProfileT = HD44780_Profile>
 class HD44780_Controller : public BaseT
 {
 public:
 
+	/*
+		Direction (horizontal).
+	 */
+	enum Direction
+	{
+		Left,
+		Right
+	};
+
+	/*
+		Constructs the instance.
+	 */
 	HD44780_Controller() 
 		: _registers(0)
 	{}
 
+	/*
+		Performs the LCD initialization sequence - only when full is true.
+		Clears the display and resets cursor position.
+	 */
 	void Initialize(bool full)
 	{
 		if (full)
@@ -59,51 +80,78 @@ public:
 		ReturnHome();
 	}
 
+	/*
+		Clears the display.
+	 */
 	inline void ClearDisplay()
 	{
 		BaseT::WriteCommand(ClearDisplayCommand);
 		TimingProfileT::WaitForCommandLong();
 	}
 
+	/*
+		Resets the cursor position.
+	 */
 	inline void ReturnHome()
 	{
 		BaseT::WriteCommand(ReturnHomeCommand);
 		TimingProfileT::WaitForCommandLong();
 	}
 
+	/*
+		Returns the value for blinking the cursor.
+	 */
 	inline bool getEnableBlink() const
 	{
 		return _registers.IsTrue(Blink);
 	}
 
+	/*
+		Sets the value for blinking the cursor.
+	 */
 	inline void setEnableBlink(bool value = true)
 	{
 		_registers.Set(Blink, value);
 		WriteDisplayControl();
 	}
 
+	/*
+		Returns the value for displaying the cursor.
+	 */
 	inline bool getEnableCursor() const
 	{
 		return _registers.IsTrue(Cursor);
 	}
 
+	/*
+		Sets the value for displaying the cursor.
+	 */
 	inline void setEnableCursor(bool value = true)
 	{
 		_registers.Set(Cursor, value);
 		WriteDisplayControl();
 	}
 
+	/*
+		Returns the value for enabling the display.
+	 */
 	inline bool getEnableDisplay() const
 	{
 		return _registers.IsTrue(Display);
 	}
 
+	/*
+		Sets the value for enabling the display.
+	 */
 	inline void setEnableDisplay(bool value = true)
 	{
 		_registers.Set(Display, value);
 		WriteDisplayControl();
 	}
 
+	/*
+		Optimal way to set values for enable display, enable cursor and blink cursor in one call to LCD.
+	 */
 	inline void SetDisplayControl(bool enableDisplay, bool enableCursor, bool enableBlink)
 	{
 		_registers.Set(Blink, enableBlink);
@@ -112,34 +160,43 @@ public:
 		WriteDisplayControl();
 	}
 
-	enum Direction
-	{
-		Left,
-		Right
-	};
-
+	/*
+		
+	 */
 	inline Direction getEntryCursorDirection() const
 	{
 		return _registers.IsFalse(EntryCursorDirection);
 	}
 
+	/*
+		
+	 */
 	inline void setEntryCursorDirection(Direction dir = Left)
 	{
 		_registers.Set(EntryCursorDirection, dir == Left);
 		WriteEntryMode();
 	}
 
+	/*
+		
+	 */
 	inline bool getEnableDisplayShift() const
 	{
 		return _registers.IsTrue(EntryDisplayShift);
 	}
 
+	/*
+		
+	 */
 	inline void setEnableDisplayShift(bool value = true)
 	{
 		_registers.Set(EntryDisplayShift, value);
 		WriteEntryMode();
 	}
 
+	/*
+		
+	 */
 	inline void SetEntryMode(Direction entryCursorDirection, bool enableDisplayShift)
 	{
 		_registers.Set(EntryCursorDirection, entryCursorDirection == Left);

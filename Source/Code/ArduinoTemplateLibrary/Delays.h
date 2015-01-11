@@ -25,21 +25,32 @@
 
 namespace ATL {
 
+/*
+	A 32-bits timeout datatype.
+ */
 typedef unsigned long int timeout_t;
 
 /*
 	TimeT implements: unsigned int [Time]Update() - returns the delta-Time.
-*/
+	maxItems: the max number of delays that can be tracked.
+ */
 template<class TimeT, const unsigned char maxItems>
 class Delays
 {
 public:
+
+	/*
+		Calls TimeT::Update and returns the delta time.
+	 */
 	static unsigned int Update()
 	{
 		_delta = _time.Update();
 		return _delta;
 	}
 
+	/*
+		Returns true when the id is listed.
+	 */
 	static bool IsWaiting(unsigned int id)
 	{
 		for (int i = 0; i < maxItems; i++)
@@ -53,6 +64,10 @@ public:
 		return false;
 	}
 
+	/*
+		Zero's out the delay time but keeps the id in the list.
+		The next call to Wait will report done.
+	 */
 	static void Abort(unsigned int id)
 	{
 		for (int i = 0; i < maxItems; i++)
@@ -64,6 +79,15 @@ public:
 		}
 	}
 
+	/*
+		Can be called repeatedly and will count-down the specified time.
+		You must call Update to update to a new delta time.
+
+		When the id is not listed it is added with the specified time.
+		If it is listed it's delay is counted down.
+
+		Returns true to indicate the delay has reached zero.
+	 */
 	static bool Wait(unsigned int id, timeout_t time)
 	{
 		int emptyIndex = -1;
@@ -108,6 +132,9 @@ public:
 		return false;
 	}
 
+	/*
+		Removes the id from the listing.
+	 */
 	static void Clear(unsigned int id)
 	{
 		for (int i = 0; i < maxItems; i++)
@@ -119,6 +146,9 @@ public:
 		}
 	}
 
+	/*
+		Returns the TimeT reference used by this class.
+	*/
 	static TimeT& getTime() { return _time; }
 
 private:

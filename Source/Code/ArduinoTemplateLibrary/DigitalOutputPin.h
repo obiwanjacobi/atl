@@ -25,26 +25,42 @@
 
 namespace ATL {
 
+/*
+	Initializes a BoardPinNumber to output.
+ */
 template<const byte BoardPinNumber>
 class DigitalOutputPin
 {
 public:
+
+	/*
+		The ctor sets the pinMode.
+	 */
 	DigitalOutputPin()
 	{
 		pinMode(BoardPinNumber, OUTPUT);
 	}
 
+	/*
+		The ctor sets the pinMode and initialValue.
+	 */
 	DigitalOutputPin(bool initialValue)
 	{
 		pinMode(BoardPinNumber, OUTPUT);
 		Write(initialValue);
 	}
 
+	/*
+		Writes the value to the BoardPinNumder.
+	 */
 	inline void Write(bool value) const
 	{
 		digitalWrite(BoardPinNumber, value);
 	}
 
+	/*
+		Returns the BoardPinNumber template parameter.
+	 */
 	inline byte getPinNumber() const
 	{
 		return BoardPinNumber;

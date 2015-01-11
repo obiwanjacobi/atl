@@ -26,28 +26,41 @@
 namespace ATL {
 namespace IO {
 
-// This class is an adapter class to treat an Arduino Stream as an ATL OutputStream.
-// StreamT is a class with 'void write()' and 'void flush()' (typical Arduino Stream).
+/*
+	This class is an adapter class to treat an Arduino Stream as an ATL OutputStream.
+	StreamT is a class with 'void write()' and 'void flush()' (typical Arduino Stream).
+ */
 template<class StreamT>
 class StreamOutputStream
 {
 public:
+
+	/*
+		Call AttachInputStream afterwards.
+	 */
 	StreamOutputStream() 
 		: _stream(NULL)
-	{
-	}
+	{}
 
+	/*
+		Initializes the stream.
+	 */
 	StreamOutputStream(StreamT* serialStream)
 	{
 		AttachOutputStream(serialStream);
 	}
 
+	/*
+		Sets the ATL stream.
+	 */
 	inline void AttachOutputStream(StreamT* serialStream)
 	{
 		_stream = serialStream;
 	}
 
-	// returns the number of bytes that are available in the stream.
+	/*
+		Returns the number of bytes that are available in the stream.
+	 */
 	unsigned int getLength() const
 	{
 		if (_stream == NULL) return 0;
@@ -55,7 +68,9 @@ public:
 		return 0;
 	}
 
-	// removes all content from the stream.
+	/*
+		Removes all content from the stream.
+	 */
 	void Flush()
 	{
 		if (_stream == NULL) return;
@@ -63,7 +78,9 @@ public:
 		_stream->flush();
 	}
 
-	// Writes one byte to the stream.
+	/*
+		Writes one byte to the stream.
+	 */
 	void Write(byte data)
 	{
 		if (_stream == NULL) return;

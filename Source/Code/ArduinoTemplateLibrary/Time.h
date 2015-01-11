@@ -25,22 +25,36 @@
 
 namespace ATL {
 
+/*
+	Time resolution in either milli-seconds or micro-seconds.
+ */
 enum TimeResolution
 {
 	Milliseconds,
 	Microseconds
 };
 
+/*
+	Keeps track of time ticks (either milli- or micro-seconds).
+ */
 template<TimeResolution resolution = Milliseconds>
 class Time
 {
 public:
-	Time() : _ticks(0)
+
+	/*
+		Constructs a new instance.
+	 */
+	Time() 
+		: _ticks(0)
 	{
 		Update();
 	}
 
-	// returns delta time in 'resolution'
+	/*
+		Captures the time ticks.
+		Returns delta-time in 'resolution'
+	 */
 	unsigned long Update()
 	{
 		unsigned long previous = _ticks;
@@ -57,21 +71,43 @@ public:
 		return _ticks - previous;
 	}
 
+	/*
+		Returns the time ticks in milli-seconds.
+	 */
 	inline unsigned long getMilliseconds() const
 	{
 		return getMilliseconds(_ticks);
 	}
 
+	/*
+		Returns the time ticks in micro-seconds.
+	 */
 	inline unsigned long getMicroseconds() const
 	{
 		return getMicroseconds(_ticks);
 	}
 
-	inline TimeResolution getResolution() const { return resolution; }
+	/*
+		Returns the resolution template parameter.
+	 */
+	inline TimeResolution getResolution() const 
+	{
+		return resolution;
+	}
 
 protected:
-	inline unsigned long getTicks() const { return _ticks; }
 
+	/*
+		Returns the raw time ticks.
+	 */
+	inline unsigned long getTicks() const 
+	{
+		return _ticks;
+	}
+
+	/*
+		Returns the ticks in milli-seconds.
+	 */
 	inline unsigned long getMilliseconds(unsigned long ticks) const
 	{
 		if (resolution == Milliseconds)
@@ -82,6 +118,9 @@ protected:
 		return ticks / 1000;
 	}
 
+	/*
+		Returns the ticks in micro-seconds.
+	 */
 	inline unsigned long getMicroseconds(unsigned long ticks) const
 	{
 		if (resolution == Milliseconds)
@@ -96,7 +135,7 @@ private:
 	unsigned long _ticks;
 };
 
-// Time specializations
+// Time template specializations
 
 template<>
 unsigned long Time<Milliseconds>::Update()
@@ -143,17 +182,32 @@ inline unsigned long Time<Microseconds>::getMicroseconds(unsigned long ticks) co
 }
 
 /*
-	The TimeEx class adds delta time keeping.
+	The TimeEx class adds start-time and delta-time keeping.
  */
 template<TimeResolution resolution = Milliseconds>
 class TimeEx : public Time<resolution>
 {
 public:
-	TimeEx() : _previous(0)
+
+	/*
+		Initializes a new instance.
+	 */
+	TimeEx() 
 	{
-		_start = Time<resolution>::getTicks();
+		Reset();
 	}
 
+	/*
+		Resets the start time.
+	 */
+	void Reset()
+	{
+		_start = _previous = Time<resolution>::getTicks();
+	}
+
+	/*
+		Updates the time ticks (Time<>) and delta time.
+	 */
 	unsigned long Update()
 	{
 		_previous = Time<resolution>::getTicks();
@@ -161,26 +215,25 @@ public:
 		return Time<resolution>::Update();
 	}
 
+	/*
+		Returns the start time in milli-seconds.
+	 */
 	inline unsigned long getStartMilliseconds() const
 	{
 		return Time<resolution>::getMilliseconds(_start);
 	}
 
+	/*
+		Returns the start time in micro-seconds.
+	 */
 	inline unsigned long getStartMicroseconds() const
 	{
 		return Time<resolution>::getMicroseconds(_start);
 	}
 
-	inline unsigned long getPreviousMilliseconds() const
-	{
-		return Time<resolution>::getMilliseconds(_previous);
-	}
-
-	inline unsigned long getPreviousMicroseconds() const
-	{
-		return Time<resolution>::getMicroseconds(_previous);
-	}
-
+	/*
+		Returns the delta-time in ticks.
+	 */
 	inline unsigned int getDeltaTime() const
 	{
 		return (unsigned int)(Time<resolution>::getTicks() - _previous);

@@ -80,14 +80,12 @@
     <ClInclude Include="StreamOutputStream.h">
       <Filter>Arduino</Filter>
     </ClInclude>
-    <ClInclude Include="Scheduler.h" />
     <ClInclude Include="Serial3WireOutput.h">
       <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="HD44780_Controller.h">
       <Filter>Hardware\Display\HD44780</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="HD44780_Driver.h">
       <Filter>Hardware\Display\HD44780</Filter>
     </ClInclude>
@@ -116,6 +114,7 @@
     <ClInclude Include="ToggleDigitalOutput.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="NullObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

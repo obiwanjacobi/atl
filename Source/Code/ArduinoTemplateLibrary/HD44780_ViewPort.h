@@ -26,8 +26,10 @@ namespace Hardware {
 namespace Display {
 
 /*
-	BaseT is used as a base class and implements:
-		[HD44780_View]
+	BaseT is used as a base class and implements [HD44780_View]:
+		void [HD44780_View]WriteCursorShift(bool, Direction);
+		[HD44780_View]Direction::Left;
+		[HD44780_View]Direction::Right;
 */
 template<class BaseT>
 class HD44780_ViewPort : public BaseT
@@ -38,6 +40,10 @@ public:
 		: _offset(0)
 	{}
 
+	/*
+		Scrolls the text one position to the right.
+		Does not allow to scroll beyond the end of the display and will return false.
+	 */
 	inline bool ScrollRight()
 	{
 		if (_offset > 0)
@@ -49,6 +55,10 @@ public:
 		return false;
 	}
 
+	/*
+		Scrolls the text one position to the left.
+		Does not allow to scroll beyond the end of the display and will return false.
+	 */
 	inline bool ScrollLeft()
 	{
 		if (_offset > BaseT::getTotalColumns())
@@ -60,6 +70,9 @@ public:
 		return false;
 	}
 
+	/*
+		Returns the current scroll offset.
+	 */
 	inline byte getDislayOffset() const
 	{
 		return _offset;

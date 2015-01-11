@@ -26,8 +26,7 @@ namespace IO {
 
 /*
 	BaseT is used as base class and implements:
-
-	void [IO.Hardware.]Write(bool value);
+		void [DigitalOutputPin]Write(bool value);
 */
 template<class BaseT>
 class DigitalOutput : public BaseT
@@ -35,9 +34,12 @@ class DigitalOutput : public BaseT
 public:
 	DigitalOutput() 
 		: _value(false)
-	{
-	}
+	{}
 
+	/*
+		Write to the output pin if the value is different than the last write.
+		Returns true if the value was written. If false is returned the value did not differ.
+	 */
 	bool Write(bool value)
 	{
 		if (_value != value)
@@ -51,16 +53,25 @@ public:
 		return false;
 	}
 
+	/*
+		Writes HIGH (true) to the output.
+	 */
 	bool Set()
 	{
 		return Write(true);
 	}
 
+	/*
+		Writes LOW (false) to the output.
+	 */
 	bool Reset()
 	{
 		return Write(false);
 	}
 
+	/*
+		Returns the value that was last written.
+	 */
 	bool getValue() const
 	{
 		return _value;

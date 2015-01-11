@@ -38,30 +38,42 @@ namespace Display {
 
    Note that in 4-bit mode only the high data lines (4-7) of the display are used.
  */
-
 template<typename RegSelPinT, typename EnablePinT, 
 		 typename Data04PinT, typename Data15PinT, typename Data26PinT, typename Data37PinT,
 		 typename TimingProfileT = HD44780_Profile>
 class HD44780_Driver
 {
 public:
+
+	/*
+		Constructs a new instance and sets the Enable pin HIGH.
+	 */
 	HD44780_Driver()
 		: _enable(true)
 	{}
 
+	/*
+		Initializes the function set.
+	 */
 	inline void Initialize()
 	{
 		Write4(0x02);
 		WriteFunctionSet();
 	}
 
-	inline void WriteCommand(byte cmd)
+	/*
+		Writes a command to the LCD.
+	 */
+	inline void WriteCommand(unsigned char cmd)
 	{
 		_rs.Write(false);
 		Write8(cmd);
 	}
 
-	inline void WriteData(byte data)
+	/*
+		Writes data to the LCD.
+	 */
+	inline void WriteData(unsigned char data)
 	{
 		_rs.Write(true);
 		Write8(data);
@@ -69,13 +81,13 @@ public:
 
 protected:
 
-	inline void Write8(byte data)
+	inline void Write8(unsigned char data)
 	{
 		Write4(data >> 4);
 		Write4(data);
 	}
 
-	inline void Write4(byte data)
+	inline void Write4(unsigned char data)
 	{
 		_data04.Write(data & 0x01);
 		_data15.Write(data & 0x02);

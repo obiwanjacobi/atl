@@ -28,6 +28,9 @@
 namespace ATL {
 namespace IO {
 
+	/*
+		The different states the PushButton can be in.
+	 */
 	enum ButtonStates
 	{
 		// button state not initialized / known
@@ -75,6 +78,8 @@ struct ConvertBoolToButtonState<true>
 } // ATL::IO::Implementation
 
 /*
+	The class implements full tactile push button handling, including debouncing and hold detection.
+
 	BaseT is used as base class and implements:
 		bool [IO::DigitalInputPin] Read();
 		unsigned int [IdentifiableObject] getId();
@@ -97,8 +102,10 @@ class PushButton : public BaseT
 
 public:
 
-	// call this method repeatedly (main loop)
-	// returns true when the task is yielding
+	/*
+		Call this method repeatedly (main loop).
+		Returns true when the task is yielding.
+	 */
 	Task_Begin(ScanButton)
 	{
 		SampleButtonState();
@@ -128,21 +135,33 @@ public:
 	}
 	Task_End
 
+	/*
+		Returns the current state of the push button.
+	 */
 	inline ButtonStates getState() const
 	{
 		return (ButtonStates)_states.Get(CurrentStateIndex, ButtonStateLength);
 	}
 
+	/*
+		Returns the debounceTimeout template parameter.
+	 */
 	inline timeout_t getDebounceTimeout() const
 	{
 		return debounceTimeout;
 	}
 
+	/*
+		Returns the holdTimeout template parameter.
+	 */
 	inline timeout_t getHoldTimeout() const
 	{
 		return holdTimeout;
 	}
 
+	/*
+		Returns the InverseValue template parameter.
+	 */
 	inline bool getInverseValue() const
 	{
 		return InverseValue;

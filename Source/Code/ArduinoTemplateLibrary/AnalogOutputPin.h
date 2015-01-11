@@ -26,10 +26,15 @@
 
 namespace ATL {
 
+/*
+	Writes a PWM to an output pin. The pin must support PWM.
+	The class derives from the DigitalOutputPin class.
+ */
 template<const byte BoardPinNumber>
 class AnalogOutputPin : DigitalOutputPin<BoardPinNumber>
 {
 public:
+
 	inline void Write(byte value)
 	{
 		analogWrite(BoardPinNumber, value);
