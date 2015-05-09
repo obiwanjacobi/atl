@@ -54,9 +54,6 @@
     <ClCompile Include="BitArrayTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>Project</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Project</Filter>
     </ClInclude>
@@ -101,15 +98,5 @@
     <Filter Include="Process">
       <UniqueIdentifier>{960d1b46-60af-4bfb-bacd-41795a8c48f4}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.ico">
-      <Filter>Project</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="app.rc">
-      <Filter>Project</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

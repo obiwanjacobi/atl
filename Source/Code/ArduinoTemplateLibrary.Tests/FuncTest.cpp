@@ -15,7 +15,9 @@ namespace ArduinoTemplateLibraryTests
 		{}
 
 		static void StaticVoidReturnIntParam(int value)
-		{}
+		{
+			Assert::AreEqual(42, value);
+		}
 
 		static int StaticIntReturnVoidParam()
 		{

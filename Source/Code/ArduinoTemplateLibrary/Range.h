@@ -24,7 +24,7 @@
 namespace ATL {
 
 /*
-    The Range class contains 2 values for witch in- and out of range check can be performed.
+    The Range class contains 2 values for which in- and out of range check can be performed.
  */
 template<typename T>
 class Range
