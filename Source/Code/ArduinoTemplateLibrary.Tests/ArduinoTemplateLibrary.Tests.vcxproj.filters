@@ -52,6 +52,7 @@
       <Filter>Process</Filter>
     </ClCompile>
     <ClCompile Include="BitArrayTest.cpp" />
+    <ClCompile Include="BitTest .cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

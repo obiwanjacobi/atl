@@ -86,6 +86,7 @@
     <ClCompile Include="Arduino.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="BitArrayTest.cpp" />
+    <ClCompile Include="BitTest .cpp" />
     <ClCompile Include="BufferedInputStreamTest.cpp" />
     <ClCompile Include="DelaysTest.cpp" />
     <ClCompile Include="DelegateTest.cpp" />

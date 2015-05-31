@@ -38,12 +38,6 @@
     <ClInclude Include="PushButton.h">
       <Filter>IO</Filter>
     </ClInclude>
-    <ClInclude Include="DigitalInputPin.h">
-      <Filter>Arduino</Filter>
-    </ClInclude>
-    <ClInclude Include="DigitalOutputPin.h">
-      <Filter>Arduino</Filter>
-    </ClInclude>
     <ClInclude Include="DigitalOutput.h">
       <Filter>IO</Filter>
     </ClInclude>
@@ -62,9 +56,6 @@
     <ClInclude Include="TB6612FNG_Controller.h">
       <Filter>Hardware\Motor\TB6612FNG</Filter>
     </ClInclude>
-    <ClInclude Include="AnalogOutputPin.h">
-      <Filter>Arduino</Filter>
-    </ClInclude>
     <ClInclude Include="PID.h">
       <Filter>Process</Filter>
     </ClInclude>
@@ -73,12 +64,6 @@
     </ClInclude>
     <ClInclude Include="URM37V32_Driver.h">
       <Filter>Hardware\Sensor\URM37 V3.2</Filter>
-    </ClInclude>
-    <ClInclude Include="StreamInputStream.h">
-      <Filter>Arduino</Filter>
-    </ClInclude>
-    <ClInclude Include="StreamOutputStream.h">
-      <Filter>Arduino</Filter>
     </ClInclude>
     <ClInclude Include="Serial3WireOutput.h">
       <Filter>IO</Filter>
@@ -115,6 +100,30 @@
       <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="NullObject.h" />
+    <ClInclude Include="Arduino\AnalogOutputPin.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="Arduino\DigitalInputPin.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="Arduino\DigitalOutputPin.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="Arduino\StreamOutputStream.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="Arduino\StreamInputStream.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="Arduino\Time_Arduino.h" />
+    <ClInclude Include="AVR\Button.h" />
+    <ClInclude Include="AVR\Delay.h" />
+    <ClInclude Include="AVR\DigitalInputPin.h" />
+    <ClInclude Include="AVR\DigitalOutputPin.h" />
+    <ClInclude Include="AVR\Interrupt.h" />
+    <ClInclude Include="AVR\Port.h" />
+    <ClInclude Include="Bit.h" />
+    <ClInclude Include="Array.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

@@ -28,39 +28,8 @@ namespace Process {
 This code was taken from http://msdn.microsoft.com/en-us/magazine/jj553509.aspx
 It seems a lightweight way to implement cooperative multitasking.
 
-Example code:
-
-class AverageTask
-{
-public:
-  int * source;
-  int sum;
-  int count;
-  int average;
-
-  // A Task's state is completely stored in the Task class or passed in as an argument.
-  // Do not use local vars in this method (they may generate compiler errors).
-  Task_Begin(Average, args)
-  {
-    args.sum = 0;
-    args.count = 0;
-    args.average = 0;
-
-    while (true)
-    {
-      args.sum += *args.source;
-      ++args.count;
-      args.average = args.sum / args.count;
-
-      Task_Yield();
-	}
-  }
-  Task_End
-
-private:
-  int _task;	// mandatory field in all tasks
-};
-
+See Also TimeoutTask for an example.
+You MUST have an "unsigned int _task" (private) variable to store the task state (FSM).
 */
 
 /*
@@ -69,9 +38,9 @@ private:
   with a _task variable a Task can be 'resumed' at the correct
   position.
 
+  Keep the logic inside the Task method simple for it can cause compile errors.
+  Calling functions is no problem.
 */
-
-
 
 
 #define Task_Begin(name) \

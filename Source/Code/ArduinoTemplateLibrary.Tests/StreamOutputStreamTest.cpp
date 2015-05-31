@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "..\ArduinoTemplateLibrary\StreamOutputStream.h"
+#include "..\ArduinoTemplateLibrary\Arduino\StreamOutputStream.h"
 #include "TestOutputStream.h"
 
 using namespace System;

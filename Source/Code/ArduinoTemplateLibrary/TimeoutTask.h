@@ -69,7 +69,7 @@ public:
 	}
 
 private:
-	int _task;
+	unsigned int _task;
 };
 
 }} // ATL::Process

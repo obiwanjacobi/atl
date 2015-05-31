@@ -81,15 +81,24 @@
     <None Include="Contracts.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnalogOutputPin.h" />
+    <ClInclude Include="Arduino\AnalogOutputPin.h" />
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="Bit.h" />
+    <ClInclude Include="Arduino\Time_Arduino.h" />
+    <ClInclude Include="AVR\Button.h" />
+    <ClInclude Include="AVR\Delay.h" />
+    <ClInclude Include="AVR\DigitalInputPin.h" />
+    <ClInclude Include="AVR\DigitalOutputPin.h" />
+    <ClInclude Include="AVR\Interrupt.h" />
+    <ClInclude Include="AVR\Port.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="BufferedInputStream.h" />
     <ClInclude Include="Delays.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="DigitalInput.h" />
-    <ClInclude Include="DigitalInputPin.h" />
+    <ClInclude Include="Arduino\DigitalInputPin.h" />
     <ClInclude Include="DigitalOutput.h" />
-    <ClInclude Include="DigitalOutputPin.h" />
+    <ClInclude Include="Arduino\DigitalOutputPin.h" />
     <ClInclude Include="Func.h" />
     <ClInclude Include="HD44780_Controller.h" />
     <ClInclude Include="HD44780_Driver.h" />
@@ -109,8 +118,8 @@
     <ClInclude Include="Range.h" />
     <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="Serial3WireOutput.h" />
-    <ClInclude Include="StreamInputStream.h" />
-    <ClInclude Include="StreamOutputStream.h" />
+    <ClInclude Include="Arduino\StreamInputStream.h" />
+    <ClInclude Include="Arduino\StreamOutputStream.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TB6612FNG_Controller.h" />
     <ClInclude Include="TB6612FNG_Driver.h" />

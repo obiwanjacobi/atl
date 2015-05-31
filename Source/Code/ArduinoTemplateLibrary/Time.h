@@ -55,8 +55,8 @@ public:
 		Captures the time ticks.
 		Returns delta-time in 'resolution'
 	 */
-	unsigned long Update()
-	{
+	inline unsigned long Update();
+	/*{
 		unsigned long previous = _ticks;
 
 		if (resolution == Milliseconds)
@@ -69,7 +69,7 @@ public:
 		}
 
 		return _ticks - previous;
-	}
+	}*/
 
 	/*
 		Returns the time ticks in milli-seconds.
@@ -108,28 +108,28 @@ protected:
 	/*
 		Returns the ticks in milli-seconds.
 	 */
-	inline unsigned long getMilliseconds(unsigned long ticks) const
-	{
+	inline static unsigned long getMilliseconds(unsigned long ticks);
+	/*{
 		if (resolution == Milliseconds)
 		{
 			return ticks;
 		}
 
 		return ticks / 1000;
-	}
+	}*/
 
 	/*
 		Returns the ticks in micro-seconds.
 	 */
-	inline unsigned long getMicroseconds(unsigned long ticks) const
-	{
+	inline static unsigned long getMicroseconds(unsigned long ticks);
+	/*{
 		if (resolution == Milliseconds)
 		{
 			return ticks * 1000;
 		}
 
 		return ticks;
-	}
+	}*/
 
 private:
 	unsigned long _ticks;
@@ -137,46 +137,46 @@ private:
 
 // Time template specializations
 
+//template<>
+//unsigned long Time<Milliseconds>::Update()
+//{
+//	unsigned long previous = _ticks;
+//
+//	_ticks = millis();
+//
+//	return _ticks - previous;
+//}
+
 template<>
-unsigned long Time<Milliseconds>::Update()
-{
-	unsigned long previous = _ticks;
-
-	_ticks = millis();
-
-	return _ticks - previous;
-}
-
-template<>
-inline unsigned long Time<Milliseconds>::getMilliseconds(unsigned long ticks) const
+inline static unsigned long Time<Milliseconds>::getMilliseconds(unsigned long ticks)
 {
 	return ticks;
 }
 
 template<>
-inline unsigned long Time<Milliseconds>::getMicroseconds(unsigned long ticks) const
+inline static unsigned long Time<Milliseconds>::getMicroseconds(unsigned long ticks)
 {
 	return ticks * 1000;
 }
 
+//template<>
+//unsigned long Time<Microseconds>::Update()
+//{
+//	unsigned long previous = _ticks;
+//
+//	_ticks = micros();
+//
+//	return _ticks - previous;
+//}
+
 template<>
-unsigned long Time<Microseconds>::Update()
-{
-	unsigned long previous = _ticks;
-
-	_ticks = micros();
-
-	return _ticks - previous;
-}
-
-template<>
-inline unsigned long Time<Microseconds>::getMilliseconds(unsigned long ticks) const
+inline static unsigned long Time<Microseconds>::getMilliseconds(unsigned long ticks)
 {
 	return ticks / 1000;
 }
 
 template<>
-inline unsigned long Time<Microseconds>::getMicroseconds(unsigned long ticks) const
+inline static unsigned long Time<Microseconds>::getMicroseconds(unsigned long ticks)
 {
 	return ticks;
 }
