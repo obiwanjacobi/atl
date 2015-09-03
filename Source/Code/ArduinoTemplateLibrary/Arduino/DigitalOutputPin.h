@@ -21,9 +21,8 @@
 #ifndef __DIGITALOUTPUTPIN_H__
 #define __DIGITALOUTPUTPIN_H__
 
-#include <Arduino.h>
-
 namespace ATL {
+namespace IO {
 
 /*
 	Initializes a BoardPinNumber to output.
@@ -59,6 +58,14 @@ public:
 	}
 
 	/*
+		Returns the value that was last written.
+	*/
+	bool getValue() const
+	{
+		return digitalRead(BoardPinNumber);
+	}
+
+	/*
 		Returns the BoardPinNumber template parameter.
 	 */
 	inline byte getPinNumber() const
@@ -67,6 +74,6 @@ public:
 	}
 };
 
-} // ATL
+} // ATL::IO
 
 #endif //__DIGITALOUTPUTPIN_H__

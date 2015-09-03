@@ -2,9 +2,6 @@
 #include "..\ArduinoTemplateLibrary\Time.h"
 #include "..\ArduinoTemplateLibrary\Arduino\Time_Arduino.h"
 
-using namespace System;
-using namespace System::Text;
-using namespace System::Collections::Generic;
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 using namespace ATL;

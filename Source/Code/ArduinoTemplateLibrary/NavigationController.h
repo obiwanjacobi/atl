@@ -18,37 +18,35 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#ifndef __NAVIGATIONCONTROLLER_H__
+#define __NAVIGATIONCONTROLLER_H__
 
-#ifndef __DELAY_H__
-#define __DELAY_H__
+namespace ATL {
+namespace UI {
 
-template<const TimeResolution TimeRes>
-class Delay
+
+enum KeyCommands //: uint8_t
+{
+	None,
+	Up,
+	Down,
+	Left,
+	Right,
+	Enter,
+	Exit
+};
+
+
+class NavigationController
 {
 public:
-    inline static void Delay(unsigned int timeout)
-    {
-
-    }
+	virtual bool OnKeyCommand(KeyCommands keyCmd)
+	{
+		return false;
+	}
 };
 
-template<>
-class Delay<Milliseconds>
-{
-public:
-    inline static void Delay(unsigned int timeout)
-    {
-        _delay_ms(timeout);
-    }
-};
 
-template<>
-class Delay<Microseconds>
-{
-    public:
-    inline static void Delay(unsigned int timeout)
-    {
-        _delay_us(timeout);
-    }
-};
-#endif /* __DELAY_H__ */
+}} // ATL::UI
+
+#endif //__NAVIGATIONCONTROLLER_H__

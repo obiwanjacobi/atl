@@ -9,12 +9,43 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9ED6B5A1-62C7-4B2F-BDCA-AAF39BEA1489}"
 	ProjectSection(SolutionItems) = preProject
+		_template.h = _template.h
 		ArduinoTemplateLibrary.vsmdi = ArduinoTemplateLibrary.vsmdi
-		ATL\ATL.cpp = ATL\ATL.cpp
-		ATL\ATL.h = ATL\ATL.h
+		Contracts.txt = Contracts.txt
 		Local.testsettings = Local.testsettings
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL", "ATL", "{D05E1ACA-732A-4F6E-BB16-22E9FECCF428}"
+	ProjectSection(SolutionItems) = preProject
+		ATL\ATL.cpp = ATL\ATL.cpp
+		ATL\ATL.h = ATL\ATL.h
+		ATL\library.properties = ATL\library.properties
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9079BF31-C4DF-48D4-9EFD-44261BC3D020}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "extras", "extras", "{2A982E31-D04C-4A55-84A3-6DA188675B3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utility", "utility", "{A3B818C5-BDD5-429B-96F4-22D56B5D765F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL IO", "ATL IO", "{EE9DFF2B-A522-411D-B6B5-940DB86909BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utility", "utility", "{8F125BAB-039A-4437-8F63-522A1CE36790}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{D40EFDEA-05FA-478A-BD88-74EFE3F7E5A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL HD44780", "ATL HD44780", "{94626728-ACFE-4F69-A313-77FC06331CA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL MIDI", "ATL MIDI", "{CC9C000F-9C6C-462F-8072-D923A09665FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL Process", "ATL Process", "{0C5492CD-FF78-4417-8940-7682D51737DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL TB6612FNG", "ATL TB6612FNG", "{2E078CB8-4343-4CF6-ABA0-53F822B36A7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL URM37V32", "ATL URM37V32", "{FA8BA82F-FF4E-4FA3-BEB0-4014079F9BF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL UI", "ATL UI", "{92E5465D-B7AE-4D3A-856C-D480ABD89D17}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -45,6 +76,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9079BF31-C4DF-48D4-9EFD-44261BC3D020} = {D05E1ACA-732A-4F6E-BB16-22E9FECCF428}
+		{2A982E31-D04C-4A55-84A3-6DA188675B3C} = {D05E1ACA-732A-4F6E-BB16-22E9FECCF428}
+		{A3B818C5-BDD5-429B-96F4-22D56B5D765F} = {D05E1ACA-732A-4F6E-BB16-22E9FECCF428}
+		{8F125BAB-039A-4437-8F63-522A1CE36790} = {EE9DFF2B-A522-411D-B6B5-940DB86909BA}
+		{D40EFDEA-05FA-478A-BD88-74EFE3F7E5A6} = {EE9DFF2B-A522-411D-B6B5-940DB86909BA}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ArduinoTemplateLibrary.vsmdi

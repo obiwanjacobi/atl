@@ -18,29 +18,32 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __BIT_H__
-#define __BIT_H__
+#ifndef __BITFLAG_H__
+#define __BITFLAG_H__
 
 namespace ATL {
 
 /*
- *
- *
- */
-template<const unsigned char BitIndex = -1>
-class Bit
+*
+*
+*/
+class BitFlag
 {
 public:
 	template<typename T>
-	inline static void Set(T& target)
+	inline static void Set(T& target, const unsigned char bitIndex)
 	{
-		target |= getMask<T>();
+		if (bitIndex > getMaxBits<T>()) return;
+
+		target |= BitToMask<T>(bitIndex);
 	}
 
 	template<typename T>
-	inline static void Set(T& target, bool value)
+	inline static void Set(T& target, const unsigned char bitIndex, bool value)
 	{
-		T mask = getMask<T>();
+		if (bitIndex > getMaxBits<T>()) return;
+
+		T mask = BitToMask<T>(bitIndex);
 
 		// clear bit
 		target &= ~mask;
@@ -53,43 +56,56 @@ public:
 	}
 
 	template<typename T>
-	inline static void Reset(T& target)
+	inline static void Reset(T& target, const unsigned char bitIndex)
 	{
+		if (bitIndex > getMaxBits<T>()) return;
+
 		// clear bit
-		target &= ~getMask<T>();
+		target &= ~BitToMask<T>(bitIndex);
 	}
 
 	template<typename T>
-	inline static void Toggle(T& target)
+	inline static void Toggle(T& target, const unsigned char bitIndex)
 	{
-		target ^= getMask<T>();
+		if (bitIndex > getMaxBits<T>()) return;
+
+		target ^= BitToMask<T>(bitIndex);
 	}
 
 	template<typename T>
-	inline static bool IsTrue(T target)
+	inline static bool IsTrue(T target, const unsigned char bitIndex)
 	{
-		return (target & getMask<T>()) > 0;
+		if (bitIndex > getMaxBits<T>()) return false;
+
+		return (target & BitToMask<T>(bitIndex)) > 0;
 	}
 
 	template<typename T>
-	inline static bool IsFalse(T target)
+	inline static bool IsFalse(T target, const unsigned char bitIndex)
 	{
-		return (target & getMask<T>()) == 0;
+		if (bitIndex > getMaxBits<T>()) return false;
+
+		return (target & BitToMask<T>(bitIndex)) == 0;
+	}
+
+	template<typename T>
+	inline static unsigned char getMaxBits()
+	{
+		return (sizeof(T) * CHAR_BITS);
 	}
 
 protected:
 	template<typename T>
-	inline static T getMask()
+	inline static T BitToMask(const unsigned char bitIndex)
 	{
-		static const T mask = 1 << BitIndex;
-		return mask;
+		return 1 << bitIndex;
 	}
 
 private:
-	Bit(){}
+	BitFlag(){}
 };
 
 
 } // ATL
 
-#endif //__BIT_H__
+#endif //__BITFLAG_H__

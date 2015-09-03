@@ -3,9 +3,6 @@
 #include "..\ArduinoTemplateLibrary\MidiMessage.h"
 #include "..\ArduinoTemplateLibrary\MidiWriter.h"
 
-using namespace System;
-using namespace System::Text;
-using namespace System::Collections::Generic;
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 using namespace ATL::Midi;

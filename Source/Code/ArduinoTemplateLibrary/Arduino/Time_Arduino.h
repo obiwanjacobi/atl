@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __TIME_ARDUINO_H__
 #define __TIME_ARDUINO_H__
 
-#include <Arduino.h>
 #include "..\Time.h"
 
 namespace ATL {

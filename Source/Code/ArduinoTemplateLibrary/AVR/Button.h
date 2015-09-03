@@ -1,13 +1,26 @@
 /*
- * Button.h
- *
- * Created: 16-5-2015 10:42:44
- *  Author: Marc
- */
+Arduino Template Library http://atl.codeplex.com
+Written by Marc Jacobi
+Copyright 2012-2015 All Rights Reserved
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 
 
-#ifndef BUTTON_H_
-#define BUTTON_H_
+#ifndef __BUTTON_H__
+#define __BUTTON_H__
 
 #include "../BitArray.h"
 
@@ -135,4 +148,4 @@ private:
 
 }} // ATL::IO
 
-#endif /* BUTTON_H_ */
+#endif /* __BUTTON_H__ */

@@ -53,6 +53,13 @@
     </ClCompile>
     <ClCompile Include="BitArrayTest.cpp" />
     <ClCompile Include="BitTest .cpp" />
+    <ClCompile Include="InputControlTest.cpp" />
+    <ClCompile Include="UpDownControlTest.cpp" />
+    <ClCompile Include="ArrayTest.cpp" />
+    <ClCompile Include="CollectionTest.cpp" />
+    <ClCompile Include="TestControls.cpp" />
+    <ClCompile Include="PanelTest.cpp" />
+    <ClCompile Include="PageTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -70,6 +77,7 @@
     <ClInclude Include="TB6612FNG_DriverMock.h">
       <Filter>Mocks</Filter>
     </ClInclude>
+    <ClInclude Include="TestControls.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Project">

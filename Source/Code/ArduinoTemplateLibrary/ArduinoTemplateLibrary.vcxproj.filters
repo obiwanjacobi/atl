@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <None Include="Contracts.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="ValueContainer.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="Range.h" />
@@ -12,9 +9,6 @@
       <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="Midi.h">
-      <Filter>Midi</Filter>
-    </ClInclude>
-    <ClInclude Include="MidiInputStream.h">
       <Filter>Midi</Filter>
     </ClInclude>
     <ClInclude Include="MidiMessage.h">
@@ -41,7 +35,6 @@
     <ClInclude Include="DigitalOutput.h">
       <Filter>IO</Filter>
     </ClInclude>
-    <ClInclude Include="_template.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Func.h" />
     <ClInclude Include="Time.h">
@@ -99,7 +92,6 @@
     <ClInclude Include="ToggleDigitalOutput.h">
       <Filter>IO</Filter>
     </ClInclude>
-    <ClInclude Include="NullObject.h" />
     <ClInclude Include="Arduino\AnalogOutputPin.h">
       <Filter>Arduino</Filter>
     </ClInclude>
@@ -124,6 +116,16 @@
     <ClInclude Include="AVR\Port.h" />
     <ClInclude Include="Bit.h" />
     <ClInclude Include="Array.h" />
+    <ClInclude Include="Control.h" />
+    <ClInclude Include="Page.h" />
+    <ClInclude Include="Panel.h" />
+    <ClInclude Include="Collection.h" />
+    <ClInclude Include="ArrayRef.h" />
+    <ClInclude Include="BitFlag.h" />
+    <ClInclude Include="InputControl.h" />
+    <ClInclude Include="UpDownControl.h" />
+    <ClInclude Include="LabelControl.h" />
+    <ClInclude Include="NavigationController.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

@@ -18,63 +18,69 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#ifndef __INPUTCONTROL_H__
+#define __INPUTCONTROL_H__
 
-#ifndef __DIGITALINPUTPIN_H__
-#define __DIGITALINPUTPIN_H__
-
-#include "Port.h"
+#include "NavigationController.h"
+#include "Control.h"
 
 namespace ATL {
+namespace UI {
 
-/*
-	Initializes a Pin on a Port to input.
- */
-template <const Ports PortId, const Pins PinId>
-class DigitalInputPin
+
+// abstract
+class InputControl : public Control,
+					 public NavigationController
 {
 public:
-	/*
-		The ctor sets the Pin as Input.
-	 */
-	DigitalInputPin()
+	virtual bool OnKeyCommand(KeyCommands keyCmd)
 	{
-		Port<PortId>::SetDirection(PinId, Input);
+		switch (keyCmd)
+		{
+		case Enter:
+			return TrySelect();
+		case Exit:
+			return TryDeselect();
+		default:
+			break;
+		}
+
+		return NavigationController::OnKeyCommand(keyCmd);
 	}
 
-	/*
-		Reads the value from the Pin on the Port.
-	 */
-	inline bool Read()
+	bool TrySelect()
 	{
-		return Port<PortId>::Read(PinId);
+		if (isFocussed())
+		{
+			setState(Selected);
+			return true;
+		}
+		return false;
 	}
 
-	/*
-		Enables (true) or disables (false) the internal pull-up resistor the AVR (MCU) has on digital input pins.
-	 */
-	inline void EnableInternalPullup(bool enable = true)
+	bool TryDeselect()
 	{
-		Port<PortId>::EnablePullup(PinId, enable);
+		if (isSelected())
+		{
+			setState(Focused);
+			return true;
+		}
+		return false;
 	}
 
-    /*
-		Returns the PortId template parameter.
-	 */
-	inline uint8_t getPortNumber() const
+	virtual bool IsOfType(ControlTypes type) const
 	{
-		return PortId;
+		return ((typeInputControl & type) == typeInputControl) ||
+			Control::IsOfType(type);
 	}
 
-	/*
-		Returns the PinId template parameter.
-	 */
-	inline uint8_t getPinNumber() const
-	{
-		return PinId;
-	}
+protected:
+	InputControl(uint8_t pos = 0)
+		: Control(pos)
+	{ }
 };
 
-} // ATL
 
+}} // ATL::UI
 
-#endif /* __DIGITALINPUTPIN_H__ */
+#endif //__INPUTCONTROL_H__

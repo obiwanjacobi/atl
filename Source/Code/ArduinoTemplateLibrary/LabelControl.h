@@ -18,37 +18,39 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#ifndef __LABELCONTROL_H__
+#define __LABELCONTROL_H__
 
-#ifndef __DELAY_H__
-#define __DELAY_H__
+#include <stdint.h>
+#include "Control.h"
 
-template<const TimeResolution TimeRes>
-class Delay
+namespace ATL {
+namespace UI {
+
+class LabelControl : public Control
 {
 public:
-    inline static void Delay(unsigned int timeout)
-    {
+	LabelControl(const char* text, uint8_t pos = 0)
+		: Control(pos), _text(text)
+	{ }
 
-    }
+	virtual void Display(DisplayWriter* output)
+	{
+		Control::Display(output);
+
+		output->Write(_text);
+	}
+
+protected:
+	virtual bool BeforeChangeState(ControlState currentState, ControlState newState)
+	{
+		return newState != Focused && newState != Selected;
+	}
+
+private:
+	const char* _text;
 };
 
-template<>
-class Delay<Milliseconds>
-{
-public:
-    inline static void Delay(unsigned int timeout)
-    {
-        _delay_ms(timeout);
-    }
-};
+}} // ATL::UI
 
-template<>
-class Delay<Microseconds>
-{
-    public:
-    inline static void Delay(unsigned int timeout)
-    {
-        _delay_us(timeout);
-    }
-};
-#endif /* __DELAY_H__ */
+#endif //__LABELCONTROL_H__

@@ -21,9 +21,8 @@
 #ifndef __DIGITALINPUTPIN_H__
 #define __DIGITALINPUTPIN_H__
 
-#include <Arduino.h>
-
 namespace ATL {
+namespace IO {
 
 /*
 	Initializes a BoardPinNumber to input.
@@ -65,6 +64,6 @@ public:
 	}
 };
 
-} // ATL
+} // ATL::IO
 
 #endif //__DIGITALINPUTPIN_H__

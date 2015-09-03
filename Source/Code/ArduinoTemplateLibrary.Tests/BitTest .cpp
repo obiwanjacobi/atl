@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "..\ArduinoTemplateLibrary\Bit.h"
+#include "..\ArduinoTemplateLibrary\BitFlag.h"
 
-using namespace System::Text;
-using namespace System::Collections::Generic;
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 using namespace ATL;
@@ -33,9 +32,10 @@ namespace ArduinoTemplateLibraryTests
 		};
 
 		const static unsigned char TestBitIndex = 2;
-		typedef Bit<unsigned char, TestBitIndex> TestBit2;
-		typedef Bit<unsigned char> TestBit;
 		const static unsigned char TestBitValue = 0x04;
+		typedef Bit<TestBitIndex> TestBit2;
+		typedef BitFlag TestBit1;
+		
 
 		[TestMethod]
 		void Bit2_Set_Test()
@@ -50,7 +50,7 @@ namespace ArduinoTemplateLibraryTests
 		void Bit1_Set_Test()
 		{
 			unsigned char target = 0;
-			TestBit::Set(target, TestBitIndex);
+			TestBit1::Set(target, TestBitIndex);
 
 			Assert::AreEqual(TestBitValue, target);
 		}
@@ -68,9 +68,9 @@ namespace ArduinoTemplateLibraryTests
 		void Bit1_SetIsTrue_Test()
 		{
 			unsigned char target = 0;
-			TestBit::Set(target, TestBitIndex);
+			TestBit1::Set(target, TestBitIndex);
 
-			Assert::AreEqual(true, TestBit::IsTrue(target, TestBitIndex));
+			Assert::AreEqual(true, TestBit1::IsTrue(target, TestBitIndex));
 		}
 
 		[TestMethod]
@@ -86,9 +86,9 @@ namespace ArduinoTemplateLibraryTests
 		void Bit1_SetIsFalse_Test()
 		{
 			unsigned char target = TestBitValue;
-			TestBit::Set(target, TestBitIndex, false);
+			TestBit1::Set(target, TestBitIndex, false);
 
-			Assert::AreEqual(true, TestBit::IsFalse(target, TestBitIndex));
+			Assert::AreEqual(true, TestBit1::IsFalse(target, TestBitIndex));
 		}
 
 		void CompileErrorTest()
@@ -96,7 +96,7 @@ namespace ArduinoTemplateLibraryTests
 			unsigned char compileErr = 0;
 			
 			// Bit index 8 is too large for unsigned char (0-7)
-			//Bit<unsigned char,8>::Set(compileErr);
+			//Bit<unsigned char, 8>::Set(compileErr);
 		}
 	};
 }

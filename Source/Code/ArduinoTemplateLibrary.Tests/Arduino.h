@@ -2,7 +2,8 @@
 #define __ARDUINO_H__
 
 typedef unsigned char byte;
-typedef unsigned int uint16_t;
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
 
 #define NULL 0
 

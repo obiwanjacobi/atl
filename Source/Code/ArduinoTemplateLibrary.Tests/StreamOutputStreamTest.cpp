@@ -1,10 +1,8 @@
 #include "stdafx.h"
+#include "Arduino.h"
 #include "..\ArduinoTemplateLibrary\Arduino\StreamOutputStream.h"
 #include "TestOutputStream.h"
 
-using namespace System;
-using namespace System::Text;
-using namespace System::Collections::Generic;
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 using namespace ATL::IO;

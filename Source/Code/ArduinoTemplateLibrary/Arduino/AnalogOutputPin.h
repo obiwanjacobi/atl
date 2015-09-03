@@ -21,10 +21,10 @@
 #ifndef __ANALOGOUTPUTPIN_H__
 #define __ANALOGOUTPUTPIN_H__
 
-#include <Arduino.h>
 #include "DigitalOutputPin.h"
 
 namespace ATL {
+namespace IO {
 
 /*
 	Writes a PWM to an output pin. The pin must support PWM.
@@ -41,6 +41,6 @@ public:
 	}
 };
 
-} // ATL
+} // ATL::IO
 
 #endif //__ANALOGOUTPUTPIN_H__

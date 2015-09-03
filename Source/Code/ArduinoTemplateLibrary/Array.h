@@ -27,43 +27,102 @@ namespace ATL {
  *	Bounds-checked array.
  *
  */
-template<class T, const unsigned char MaxItems>
+template<typename T, const unsigned char MaxItems>
 class Array
 {
 public:
+	typedef T ItemT;
+
 	inline unsigned char getMaxCount() const
 	{
 		return MaxItems;
 	}
 
-	inline const T& GetAt(unsigned char index) const
+	inline T GetAt(unsigned char index) const
 	{
-		if (!IsValidIndex(index)) return _default;
+		if (!IsValidIndex(index)) return DefaultOfT;
 
 		return _arr[index];
 	}
 
-	inline void SetAt(unsigned char index, T& value)
+	inline void SetAt(unsigned char index, T value)
 	{
 		if (!IsValidIndex(index)) return;
 
 		_arr[index] = value;
 	}
 
-	inline static bool IsValidIndex(unsigned char index)
+	inline bool IsValidIndex(unsigned char index) const
 	{
-		return index < MaxItems;
+		return index >= 0 && index < MaxItems;
 	}
 
-	inline const T& operator[](unsigned char index) const
+	inline T operator[](unsigned char index) const
 	{
 		return GetAt(index);
 	}
 
+	static T DefaultOfT;
+
 private:
-	static T _default;
 	T _arr[MaxItems];
 };
+
+template<typename T, const unsigned char MaxItems>
+T Array<T, MaxItems>::DefaultOfT;
+
+/*
+ * Bounds-checked wrapper for an array reference
+ *
+ */
+template<typename T, const unsigned char MaxItems>
+class ArrayRef
+{
+public:
+	typedef T ItemT;
+
+	ArrayRef(T (&array)[MaxItems])
+		: _arr(array)
+	{ }
+
+	inline unsigned char getMaxCount() const
+	{
+		return MaxItems;
+	}
+
+	inline T GetAt(unsigned char index) const
+	{
+		if (!IsValidIndex(index)) return DefaultOfT;
+
+		return _arr[index];
+	}
+
+	inline void SetAt(unsigned char index, T value)
+	{
+		if (!IsValidIndex(index)) return;
+
+		_arr[index] = value;
+	}
+
+	inline bool IsValidIndex(unsigned char index) const
+	{
+		return index >= 0 && index < MaxItems;
+	}
+
+	inline T operator[](unsigned char index) const
+	{
+		return GetAt(index);
+	}
+
+	static T DefaultOfT;
+
+private:
+	T (&_arr)[MaxItems];
+};
+
+template<typename T, const unsigned char MaxItems>
+T ArrayRef<T, MaxItems>::DefaultOfT;
+
 
 } // ATL
 

@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "..\ArduinoTemplateLibrary\MidiMessage.h"
 
-using namespace System;
-using namespace System::Text;
-using namespace System::Collections::Generic;
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 using namespace ATL::Midi;
@@ -20,7 +17,7 @@ namespace ArduinoTemplateLibraryTests
 
 	public: 
 		[TestMethod]
-		void TestStructureDefinition_PitchBend()
+		void StructureDefinition_PitchBend()
 		{
 			MidiMessage msg;
 			msg.MessageType = Midi::PitchBend;
@@ -33,7 +30,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestStructureDefinition_ChannelMessage()
+		void StructureDefinition_ChannelMessage()
 		{
 			MidiMessage msg;
 			msg.MessageType = Midi::NoteOn;
@@ -48,7 +45,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestStructureDefinition_SongPosition()
+		void StructureDefinition_SongPosition()
 		{
 			MidiMessage msg;
 			msg.MessageType = Midi::SongPosition;
@@ -59,7 +56,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestSequentialInit_ChannelMessage()
+		void SequentialInit_ChannelMessage()
 		{
 			MidiMessage msg;
 			msg.SetStatusByte(Midi::NoteOff | MidiMessageTest::channel);
@@ -73,7 +70,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestSequentialInit_PitchBend()
+		void SequentialInit_PitchBend()
 		{
 			MidiMessage msg;
 			msg.SetStatusByte(Midi::PitchBend | MidiMessageTest::channel);
@@ -87,7 +84,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestSequentialExtraction_ChannelMessage()
+		void SequentialExtraction_ChannelMessage()
 		{
 			MidiMessage msg;
 			msg.MessageType = Midi::NoteOn;
@@ -101,7 +98,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestSequentialExtraction_PitchBend()
+		void SequentialExtraction_PitchBend()
 		{
 			MidiMessage msg;
 			msg.MessageType = Midi::PitchBend;
@@ -115,7 +112,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestCopyTo()
+		void CopyTo_IsEqual()
 		{
 			MidiMessage msg;
 			msg.MessageType = Midi::PitchBend;

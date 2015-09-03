@@ -21,8 +21,6 @@
 #ifndef __STREAMINPUTSTREAM_H__
 #define __STREAMINPUTSTREAM_H__
 
-#include <Arduino.h>
-
 namespace ATL {
 namespace IO {
 
@@ -94,6 +92,6 @@ private:
 	StreamT* _stream;
 };
 
-}} // ATL.IO
+}} // ATL::IO
 
 #endif //__STREAMINPUTSTREAM_H__

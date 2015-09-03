@@ -43,7 +43,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files\arduino-1.0.1\hardware\arduino\cores\arduino;C:\Program Files\arduino-1.0.1\hardware\arduino\variants\standard;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\include\;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\include\avr\;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\;c:\program files\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;</IncludePath>
+    <IncludePath>
+    </IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Program Files\arduino-1.0.1\hardware\arduino\cores\arduino;C:\Program Files\arduino-1.0.1\hardware\arduino\variants\standard;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\include\;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\include\avr\;c:\program files\arduino-1.0.1\hardware\tools\avr\avr\;c:\program files\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;</IncludePath>
@@ -61,7 +62,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(ProjectDir)*.h $(SolutionDir)ATL\utility</Command>
+      <Command>copy $(ProjectDir)*.h $(SolutionDir)ATL\utility
+copy $(ProjectDir)Arduino\*.h $(SolutionDir)ATL\utility</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,11 +80,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="Contracts.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Arduino\AnalogOutputPin.h" />
     <ClInclude Include="Array.h" />
+    <ClInclude Include="ArrayRef.h" />
+    <ClInclude Include="BitFlag.h" />
+    <ClInclude Include="Collection.h" />
+    <ClInclude Include="Control.h" />
+    <ClInclude Include="InputControl.h" />
+    <ClInclude Include="LabelControl.h" />
+    <ClInclude Include="NavigationController.h" />
+    <ClInclude Include="Page.h" />
+    <ClInclude Include="Panel.h" />
     <ClInclude Include="Bit.h" />
     <ClInclude Include="Arduino\Time_Arduino.h" />
     <ClInclude Include="AVR\Button.h" />
@@ -108,11 +116,9 @@
     <ClInclude Include="HD44780_ViewPort.h" />
     <ClInclude Include="IdentifiableObject.h" />
     <ClInclude Include="Midi.h" />
-    <ClInclude Include="MidiInputStream.h" />
     <ClInclude Include="MidiMessage.h" />
     <ClInclude Include="MidiReader.h" />
     <ClInclude Include="MidiWriter.h" />
-    <ClInclude Include="NullObject.h" />
     <ClInclude Include="PID.h" />
     <ClInclude Include="PushButton.h" />
     <ClInclude Include="Range.h" />
@@ -129,10 +135,10 @@
     <ClInclude Include="Time.h" />
     <ClInclude Include="TimeoutTask.h" />
     <ClInclude Include="ToggleDigitalOutput.h" />
+    <ClInclude Include="UpDownControl.h" />
     <ClInclude Include="URM37V32_Controller.h" />
     <ClInclude Include="URM37V32_Driver.h" />
     <ClInclude Include="ValueContainer.h" />
-    <ClInclude Include="_template.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -104,8 +104,15 @@
     <ClCompile Include="StreamOutputStreamTest.cpp" />
     <ClCompile Include="TaskTest.cpp" />
     <ClCompile Include="TB6612FNG_ControllerTest.cpp" />
+    <ClCompile Include="TestControls.cpp" />
     <ClCompile Include="TextWriterTest.cpp" />
     <ClCompile Include="TimeTest.cpp" />
+    <ClCompile Include="InputControlTest.cpp" />
+    <ClCompile Include="ArrayTest.cpp" />
+    <ClCompile Include="CollectionTest.cpp" />
+    <ClCompile Include="PanelTest.cpp" />
+    <ClCompile Include="PageTest.cpp" />
+    <ClCompile Include="UpDownControlTest.cpp" />
     <ClCompile Include="URM37V32_ControllerTest.cpp" />
     <ClCompile Include="ValueContainerTest.cpp" />
   </ItemGroup>
@@ -113,6 +120,7 @@
     <ClInclude Include="Arduino.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TB6612FNG_DriverMock.h" />
+    <ClInclude Include="TestControls.h" />
     <ClInclude Include="TestInputStream.h" />
     <ClInclude Include="TestOutputStream.h" />
   </ItemGroup>

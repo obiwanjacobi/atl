@@ -4,9 +4,6 @@
 
 using namespace ATL::Hardware::Motor;
 
-using namespace System;
-using namespace System::Text;
-using namespace System::Collections::Generic;
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 namespace ArduinoTemplateLibraryTests
@@ -18,7 +15,7 @@ namespace ArduinoTemplateLibraryTests
 	{
 	public: 
 		[TestMethod]
-		void TestStop()
+		void Stop_FF0()
 		{
 			TB6612FNG_TestController controller;
 
@@ -28,7 +25,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestBreak()
+		void Break_TT0()
 		{
 			TB6612FNG_TestController controller;
 
@@ -38,7 +35,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestClockwise()
+		void Clockwise_FF123()
 		{
 			TB6612FNG_TestController controller;
 
@@ -48,7 +45,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void TestCounterClockwise()
+		void CounterClockwise_FT123()
 		{
 			TB6612FNG_TestController controller;
 

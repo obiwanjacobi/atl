@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "..\ArduinoTemplateLibrary\Func.h"
 
-using namespace System;
-using namespace System::Text;
-using namespace System::Collections::Generic;
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 namespace ArduinoTemplateLibraryTests
@@ -11,17 +8,19 @@ namespace ArduinoTemplateLibraryTests
 	class TestClass
 	{
 	public:
+		static const int MagicNumber = 42;
+
 		static void StaticVoidReturnVoidParam()
 		{}
 
 		static void StaticVoidReturnIntParam(int value)
 		{
-			Assert::AreEqual(42, value);
+			Assert::AreEqual(MagicNumber, value);
 		}
 
 		static int StaticIntReturnVoidParam()
 		{
-			return 42;
+			return MagicNumber;
 		}
 
 		static int StaticIntReturnIntParam(int value)
@@ -47,7 +46,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			ATL::Func01<int, &TestClass::StaticVoidReturnIntParam> target;
 
-			target.Invoke(42);
+			target.Invoke(TestClass::MagicNumber);
 		}
 
 		[TestMethod]
@@ -57,7 +56,7 @@ namespace ArduinoTemplateLibraryTests
 
 			int returnValue = target.Invoke();
 
-			Assert::AreEqual(42, returnValue);
+			Assert::AreEqual(TestClass::MagicNumber, returnValue);
 		}
 
 		[TestMethod]
@@ -65,9 +64,9 @@ namespace ArduinoTemplateLibraryTests
 		{
 			ATL::Func1<int, int, &TestClass::StaticIntReturnIntParam> target;
 
-			int returnValue = target.Invoke(42);
+			int returnValue = target.Invoke(TestClass::MagicNumber);
 
-			Assert::AreEqual(42, returnValue);
+			Assert::AreEqual(TestClass::MagicNumber, returnValue);
 		}
 	};
 }

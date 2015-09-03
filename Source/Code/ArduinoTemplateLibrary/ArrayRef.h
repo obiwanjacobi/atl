@@ -18,78 +18,66 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __BIT_H__
-#define __BIT_H__
+#ifndef __ARRAYREF_H__
+#define __ARRAYREF_H__
 
 namespace ATL {
 
+
 /*
- *
- *
- */
-template<const unsigned char BitIndex = -1>
-class Bit
+* Bounds-checked wrapper for an array reference
+*
+*/
+template<typename T, const unsigned char MaxItems>
+class ArrayRef
 {
 public:
-	template<typename T>
-	inline static void Set(T& target)
+	typedef T ItemT;
+
+	ArrayRef(T(&array)[MaxItems])
+		: _arr(array)
+	{ }
+
+	inline unsigned char getMaxCount() const
 	{
-		target |= getMask<T>();
+		return MaxItems;
 	}
 
-	template<typename T>
-	inline static void Set(T& target, bool value)
+	inline T GetAt(unsigned char index) const
 	{
-		T mask = getMask<T>();
+		if (!IsValidIndex(index)) return DefaultOfT;
 
-		// clear bit
-		target &= ~mask;
-
-		if (value)
-		{
-			// set bit
-			target |= mask;
-		}
+		return _arr[index];
 	}
 
-	template<typename T>
-	inline static void Reset(T& target)
+	inline void SetAt(unsigned char index, T value)
 	{
-		// clear bit
-		target &= ~getMask<T>();
+		if (!IsValidIndex(index)) return;
+
+		_arr[index] = value;
 	}
 
-	template<typename T>
-	inline static void Toggle(T& target)
+	inline bool IsValidIndex(unsigned char index) const
 	{
-		target ^= getMask<T>();
+		return index >= 0 && index < MaxItems;
 	}
 
-	template<typename T>
-	inline static bool IsTrue(T target)
+	inline T operator[](unsigned char index) const
 	{
-		return (target & getMask<T>()) > 0;
+		return GetAt(index);
 	}
 
-	template<typename T>
-	inline static bool IsFalse(T target)
-	{
-		return (target & getMask<T>()) == 0;
-	}
-
-protected:
-	template<typename T>
-	inline static T getMask()
-	{
-		static const T mask = 1 << BitIndex;
-		return mask;
-	}
+	static T DefaultOfT;
 
 private:
-	Bit(){}
+	T(&_arr)[MaxItems];
 };
+
+
+template<typename T, const unsigned char MaxItems>
+T ArrayRef<T, MaxItems>::DefaultOfT;
 
 
 } // ATL
 
-#endif //__BIT_H__
+#endif //__ARRAYREF_H__

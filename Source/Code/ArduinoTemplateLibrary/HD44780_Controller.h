@@ -22,6 +22,7 @@
 #define __HD44780_CONTROLLER_H__
 
 #include "HD44780_Profile.h"
+#include "BitArray.h"
 
 namespace ATL {
 namespace Hardware {
