@@ -21,6 +21,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __BITFLAG_H__
 #define __BITFLAG_H__
 
+#ifndef CHAR_BITS
+#define CHAR_BITS 8
+#endif
+
 namespace ATL {
 
 /*

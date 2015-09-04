@@ -1,55 +1,12 @@
-#ifndef __ATL__
-#define __ATL__
+﻿// This file is generated. Do not change.
 
-#ifndef CHAR_BITS
-#define CHAR_BITS 8
-#endif
+#ifndef __ATL_H__
+#define __ATL_H__
 
-#include "utility\AnalogOutputPin.h"
 #include "utility\Array.h"
+#include "utility\ArrayRef.h"
 #include "utility\Bit.h"
 #include "utility\BitArray.h"
-#include "utility\BufferedInputStream.h"
-#include "utility\Control.h"
-#include "utility\Delays.h"
-#include "utility\Delegate.h"
-#include "utility\DigitalInput.h"
-#include "utility\DigitalInputPin.h"
-#include "utility\DigitalOutput.h"
-#include "utility\DigitalOutputPin.h"
-#include "utility\Func.h"
-#include "utility\HD44780_Controller.h"
-#include "utility\HD44780_Driver.h"
-#include "utility\HD44780_DriverSerial3Wire.h"
-#include "utility\HD44780_Profile.h"
-#include "utility\HD44780_View.h"
-#include "utility\HD44780_ViewPort.h"
-#include "utility\IdentifiableObject.h"
-//#include "utility\Midi.h"
-//#include "utility\MidiInputStream.h"
-//#include "utility\MidiMessage.h"
-//#include "utility\MidiReader.h"
-//#include "utility\MidiWriter.h"
-#include "utility\Panel.h"
-#include "utility\Page.h"
-#include "utility\PID.h"
-#include "utility\PushButton.h"
-#include "utility\Range.h"
-#include "utility\RingBuffer.h"
-#include "utility\Serial3WireOutput.h"
-#include "utility\StreamInputStream.h"
-#include "utility\StreamOutputStream.h"
-#include "utility\Task.h"
-#include "utility\TB6612FNG_Controller.h"
-#include "utility\TB6612FNG_Driver.h"
-#include "utility\TB6612FNG_DriverSerial3Wire.h"
-#include "utility\TextFormatInfo.h"
-#include "utility\TextWriter.h"
-#include "utility\Time.h"
-#include "utility\TimeoutTask.h"
-#include "utility\ToggleDigitalOutput.h"
-#include "utility\URM37V32_Controller.h"
-#include "utility\URM37V32_Driver.h"
-#include "utility\ValueContainer.h"
+#include "utility\BitFlag.h"
 
-#endif //__ATL__
+#endif	// __ATL_H__

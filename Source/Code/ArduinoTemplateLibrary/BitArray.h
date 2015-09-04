@@ -21,6 +21,10 @@
 #ifndef __BITARRAY_H__
 #define __BITARRAY_H__
 
+#ifndef CHAR_BITS
+#define CHAR_BITS 8
+#endif
+
 namespace ATL {
 
 /*
