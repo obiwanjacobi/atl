@@ -141,10 +141,10 @@ function BuildLibrary([string]$libraryName, [string[]]$files)
 #
 
 BuildLibrary "ATL" $ATL_Files
-BuildLibrary "ATL HD44780" $ATL_HD44780_Files
-BuildLibrary "ATL IO" $ATL_IO_Files
-BuildLibrary "ATL MIDI" $ATL_MIDI_Files
-BuildLibrary "ATL Process" $ATL_Process_Files
-BuildLibrary "ATL TB6612FNG" $ATL_TB6612FNG_Files
-BuildLibrary "ATL UI" $ATL_UI_Files
-BuildLibrary "ATL URM37V32" $ATL_URM37V32_Files
+BuildLibrary "ATL_HD44780" $ATL_HD44780_Files
+BuildLibrary "ATL_IO" $ATL_IO_Files
+BuildLibrary "ATL_MIDI" $ATL_MIDI_Files
+BuildLibrary "ATL_Process" $ATL_Process_Files
+BuildLibrary "ATL_TB6612FNG" $ATL_TB6612FNG_Files
+BuildLibrary "ATL_UI" $ATL_UI_Files
+BuildLibrary "ATL_URM37V32" $ATL_URM37V32_Files
