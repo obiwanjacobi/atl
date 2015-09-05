@@ -7,7 +7,7 @@ param
 
 [string[]] $ATL_Files = "Array.h", "ArrayRef.h", "Bit.h", "BitArray.h", "BitFlag.h", "Collection.h", "Delays.h", "Delegate.h", "Func.h", "IdentifiableObject.h", "Range.h", "Ringbuffer.h", "Time.h", "ValueContainer.h", "Arduino\Time_Arduino.h"
 [string[]] $ATL_HD44780_Files = "HD44780_Controller.h", "HD44780_Driver.h", "HD44780_DriverSerial3Wire.h", "HD44780_Profile.h", "HD44780_View.h", "HD44780_ViewPort.h"
-[string[]] $ATL_IO_Files = "BitArray.h", "BufferedInputStream.h", "DigitalInput.h", "DigitalOutput.h", "Serial3WireOutput.h", "TextFormatInfo.h", "TextWriter.h", "Arduino\AnalogOutputPin.h", "Arduino\DigitalInputPin.h", "Arduino\DigitalOutputPin.h", "Arduino\StreamInputStream.h", "Arduino\StreamOutputStream.h"
+[string[]] $ATL_IO_Files = "BitArray.h", "BufferedInputStream.h", "DigitalInput.h", "Serial3WireOutput.h", "TextFormatInfo.h", "TextWriter.h", "Arduino\AnalogOutputPin.h", "Arduino\DigitalInputPin.h", "Arduino\DigitalOutputPin.h", "Arduino\StreamInputStream.h", "Arduino\StreamOutputStream.h"
 [string[]] $ATL_MIDI_Files = "Midi.h", "MidiMessage.h", "MidiReader.h", "MidiWriter.h"
 [string[]] $ATL_Process_Files = "PID.h", "Task.h", "TimeoutTask.h"
 [string[]] $ATL_TB6612FNG_Files = "TB6612FNG_Controller.h", "TB6612FNG_Driver.h", "TB6612FNG_DriverSerial3Wire.h"

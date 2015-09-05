@@ -36,6 +36,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{D40EFDEA-05FA-478A-BD88-74EFE3F7E5A6}"
 	ProjectSection(SolutionItems) = preProject
 		Arduino Libraries\ATL_IO\examples\Blink\Blink.ino = Arduino Libraries\ATL_IO\examples\Blink\Blink.ino
+		Arduino Libraries\ATL_IO\examples\DigitalInput\DigitalInput.ino = Arduino Libraries\ATL_IO\examples\DigitalInput\DigitalInput.ino
+		Arduino Libraries\ATL_IO\examples\TextFormatInfo\TextFormatInfo.ino = Arduino Libraries\ATL_IO\examples\TextFormatInfo\TextFormatInfo.ino
+		Arduino Libraries\ATL_IO\examples\TextWriter\TextWriter.ino = Arduino Libraries\ATL_IO\examples\TextWriter\TextWriter.ino
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_HD44780", "ATL_HD44780", "{94626728-ACFE-4F69-A313-77FC06331CA2}"

@@ -160,5 +160,21 @@ namespace ArduinoTemplateLibraryTests
 			Assert::AreEqual((int)'6', (int)buffer[5]);
 			Assert::AreEqual((int)0xFF, (int)buffer[6]);
 		}
+
+		[TestMethod]
+		void WriteLine_NewLine()
+		{
+			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF };
+
+			TestTextWriter target;
+			target.InitOutputStream(buffer, 3);
+
+			target.WriteLine();
+
+			Assert::AreEqual(1, (int)target.getLength());
+			Assert::AreEqual((int)'\n', (int)buffer[0]);
+			Assert::AreEqual((int)'\r', (int)buffer[1]);
+			Assert::AreEqual((int)0xFF, (int)buffer[2]);
+		}
 	};
 }
