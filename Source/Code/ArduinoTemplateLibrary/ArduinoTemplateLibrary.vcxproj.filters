@@ -32,9 +32,6 @@
     <ClInclude Include="PushButton.h">
       <Filter>IO</Filter>
     </ClInclude>
-    <ClInclude Include="DigitalOutput.h">
-      <Filter>IO</Filter>
-    </ClInclude>
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Func.h" />
     <ClInclude Include="Time.h">

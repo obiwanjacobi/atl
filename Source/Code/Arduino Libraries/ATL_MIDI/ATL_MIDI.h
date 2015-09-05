@@ -3,6 +3,8 @@
 #ifndef __ATL_MIDI_H__
 #define __ATL_MIDI_H__
 
+#include <Arduino.h>
+
 #include "utility\Midi.h"
 #include "utility\MidiMessage.h"
 #include "utility\MidiReader.h"

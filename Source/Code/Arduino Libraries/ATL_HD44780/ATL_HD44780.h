@@ -3,6 +3,8 @@
 #ifndef __ATL_HD44780_H__
 #define __ATL_HD44780_H__
 
+#include <Arduino.h>
+
 #include "utility\HD44780_Controller.h"
 #include "utility\HD44780_Driver.h"
 #include "utility\HD44780_DriverSerial3Wire.h"

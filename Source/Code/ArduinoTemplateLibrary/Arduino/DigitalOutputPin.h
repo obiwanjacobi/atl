@@ -89,6 +89,6 @@ protected:
 	}
 };
 
-} // ATL::IO
+}} // ATL::IO
 
 #endif //__DIGITALOUTPUTPIN_H__

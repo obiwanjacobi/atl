@@ -28,45 +28,44 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{90
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_IO", "ATL_IO", "{EE9DFF2B-A522-411D-B6B5-940DB86909BA}"
 	ProjectSection(SolutionItems) = preProject
-		Arduino Libraries\ATL IO\library.properties = Arduino Libraries\ATL IO\library.properties
+		Arduino Libraries\ATL_IO\library.properties = Arduino Libraries\ATL_IO\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utility", "utility", "{8F125BAB-039A-4437-8F63-522A1CE36790}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{D40EFDEA-05FA-478A-BD88-74EFE3F7E5A6}"
 	ProjectSection(SolutionItems) = preProject
-		Arduino Libraries\ATL IO\examples\Blink\Blink.ino = Arduino Libraries\ATL IO\examples\Blink\Blink.ino
-		Arduino Libraries\ATL IO\examples\Blink2\Blink2.ino = Arduino Libraries\ATL IO\examples\Blink2\Blink2.ino
+		Arduino Libraries\ATL_IO\examples\Blink\Blink.ino = Arduino Libraries\ATL_IO\examples\Blink\Blink.ino
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_HD44780", "ATL_HD44780", "{94626728-ACFE-4F69-A313-77FC06331CA2}"
 	ProjectSection(SolutionItems) = preProject
-		Arduino Libraries\ATL HD44780\library.properties = Arduino Libraries\ATL HD44780\library.properties
+		Arduino Libraries\ATL_HD44780\library.properties = Arduino Libraries\ATL_HD44780\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_MIDI", "ATL_MIDI", "{CC9C000F-9C6C-462F-8072-D923A09665FA}"
 	ProjectSection(SolutionItems) = preProject
-		Arduino Libraries\ATL MIDI\library.properties = Arduino Libraries\ATL MIDI\library.properties
+		Arduino Libraries\ATL_MIDI\library.properties = Arduino Libraries\ATL_MIDI\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_Process", "ATL_Process", "{0C5492CD-FF78-4417-8940-7682D51737DC}"
 	ProjectSection(SolutionItems) = preProject
-		Arduino Libraries\ATL Process\library.properties = Arduino Libraries\ATL Process\library.properties
+		Arduino Libraries\ATL_Process\library.properties = Arduino Libraries\ATL_Process\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_TB6612FNG", "ATL_TB6612FNG", "{2E078CB8-4343-4CF6-ABA0-53F822B36A7C}"
 	ProjectSection(SolutionItems) = preProject
-		Arduino Libraries\ATL TB6612FNG\library.properties = Arduino Libraries\ATL TB6612FNG\library.properties
+		Arduino Libraries\ATL_TB6612FNG\library.properties = Arduino Libraries\ATL_TB6612FNG\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_URM37V32", "ATL_URM37V32", "{FA8BA82F-FF4E-4FA3-BEB0-4014079F9BF3}"
 	ProjectSection(SolutionItems) = preProject
-		Arduino Libraries\ATL URM37V32\library.properties = Arduino Libraries\ATL URM37V32\library.properties
+		Arduino Libraries\ATL_URM37V32\library.properties = Arduino Libraries\ATL_URM37V32\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_UI", "ATL_UI", "{92E5465D-B7AE-4D3A-856C-D480ABD89D17}"
 	ProjectSection(SolutionItems) = preProject
-		Arduino Libraries\ATL UI\library.properties = Arduino Libraries\ATL UI\library.properties
+		Arduino Libraries\ATL_UI\library.properties = Arduino Libraries\ATL_UI\library.properties
 	EndProjectSection
 EndProject
 Global

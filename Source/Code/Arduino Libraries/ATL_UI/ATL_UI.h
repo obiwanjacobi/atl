@@ -3,6 +3,8 @@
 #ifndef __ATL_UI_H__
 #define __ATL_UI_H__
 
+#include <Arduino.h>
+
 #include "utility\NavigationController.h"
 #include "utility\Control.h"
 #include "utility\InputControl.h"

@@ -64,6 +64,6 @@ public:
 	}
 };
 
-} // ATL::IO
+}} // ATL::IO
 
 #endif //__DIGITALINPUTPIN_H__

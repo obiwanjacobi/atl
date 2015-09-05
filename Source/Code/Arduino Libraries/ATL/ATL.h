@@ -3,6 +3,8 @@
 #ifndef __ATL_H__
 #define __ATL_H__
 
+#include <Arduino.h>
+
 #include "utility\Array.h"
 #include "utility\ArrayRef.h"
 #include "utility\Bit.h"
@@ -17,6 +19,6 @@
 #include "utility\Ringbuffer.h"
 #include "utility\Time.h"
 #include "utility\ValueContainer.h"
-#include "utility\Time_Arduino.h"
+#include "utility\Arduino\Time_Arduino.h"
 
 #endif	// __ATL_H__

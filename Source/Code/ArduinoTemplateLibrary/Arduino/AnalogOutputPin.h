@@ -31,7 +31,7 @@ namespace IO {
 	The class derives from the DigitalOutputPin class.
  */
 template<const byte BoardPinNumber>
-class AnalogOutputPin : DigitalOutputPin<BoardPinNumber>
+class AnalogOutputPin : public DigitalOutputPin<BoardPinNumber>
 {
 public:
 
@@ -41,6 +41,6 @@ public:
 	}
 };
 
-} // ATL::IO
+}} // ATL::IO
 
 #endif //__ANALOGOUTPUTPIN_H__

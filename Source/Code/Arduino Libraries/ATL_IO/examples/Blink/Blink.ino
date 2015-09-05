@@ -1,6 +1,6 @@
-#include <ATL IO.h>
+#include <ATL_IO.h>
 
-using namespace ATL;
+using namespace ATL::IO;
 
 DigitalOutputPin<13> led;
 
@@ -16,3 +16,4 @@ void loop() {
   
   delay(200);
 }
+

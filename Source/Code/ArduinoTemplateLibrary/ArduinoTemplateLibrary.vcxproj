@@ -105,7 +105,6 @@
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="DigitalInput.h" />
     <ClInclude Include="Arduino\DigitalInputPin.h" />
-    <ClInclude Include="DigitalOutput.h" />
     <ClInclude Include="Arduino\DigitalOutputPin.h" />
     <ClInclude Include="Func.h" />
     <ClInclude Include="HD44780_Controller.h" />
