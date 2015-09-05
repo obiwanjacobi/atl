@@ -134,7 +134,6 @@
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="TimeoutTask.h" />
-    <ClInclude Include="ToggleDigitalOutput.h" />
     <ClInclude Include="UpDownControl.h" />
     <ClInclude Include="URM37V32_Controller.h" />
     <ClInclude Include="URM37V32_Driver.h" />

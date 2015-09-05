@@ -89,9 +89,6 @@
       <Filter>Process</Filter>
     </ClInclude>
     <ClInclude Include="IdentifiableObject.h" />
-    <ClInclude Include="ToggleDigitalOutput.h">
-      <Filter>IO</Filter>
-    </ClInclude>
     <ClInclude Include="Arduino\AnalogOutputPin.h">
       <Filter>Arduino</Filter>
     </ClInclude>

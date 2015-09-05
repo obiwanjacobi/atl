@@ -1,9 +1,8 @@
 #include <ATL IO.h>
 
-using namespace ATL;
+using namespace ATL::IO;
 
-DigitalOutputPin<13> led;
-bool value;
+DigitalOutput<DigitalOutputPin<13> > led;
 
 void setup() {
   // put your setup code here, to run once:
@@ -13,8 +12,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  led.Write(value);
-  value = !value;
+  led.Write(!led.getValue());
   
   delay(200);
 }

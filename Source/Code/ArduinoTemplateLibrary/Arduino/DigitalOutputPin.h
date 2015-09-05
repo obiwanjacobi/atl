@@ -31,7 +31,6 @@ template<const byte BoardPinNumber>
 class DigitalOutputPin
 {
 public:
-
 	/*
 		The ctor sets the pinMode.
 	 */
@@ -66,11 +65,27 @@ public:
 	}
 
 	/*
+		Toggles the state of the output pin.
+	 */
+	inline void Toggle()
+	{
+		Write(!getValue());
+	}
+
+	/*
 		Returns the BoardPinNumber template parameter.
 	 */
 	inline byte getPinNumber() const
 	{
 		return BoardPinNumber;
+	}
+
+protected:
+
+	// Can be used as a BaseT for TimeoutTask.
+	inline void OnTimeout()
+	{
+		Toggle();
 	}
 };
 

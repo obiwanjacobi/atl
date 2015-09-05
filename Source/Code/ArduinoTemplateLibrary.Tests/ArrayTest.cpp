@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "..\ArduinoTemplateLibrary\Array.h"
+#include "..\ArduinoTemplateLibrary\ArrayRef.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 

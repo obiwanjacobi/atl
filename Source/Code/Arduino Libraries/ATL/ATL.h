@@ -8,5 +8,15 @@
 #include "utility\Bit.h"
 #include "utility\BitArray.h"
 #include "utility\BitFlag.h"
+#include "utility\Collection.h"
+#include "utility\Delays.h"
+#include "utility\Delegate.h"
+#include "utility\Func.h"
+#include "utility\IdentifiableObject.h"
+#include "utility\Range.h"
+#include "utility\Ringbuffer.h"
+#include "utility\Time.h"
+#include "utility\ValueContainer.h"
+#include "utility\Time_Arduino.h"
 
 #endif	// __ATL_H__

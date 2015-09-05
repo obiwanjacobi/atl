@@ -4,23 +4,79 @@ param
     [string] $targetFilePath = $($PSScriptRoot + "\Arduino Libraries" )
 )
 
-"From: " + $sourceFilePath
-"To: " + $targetFilePath
 
+[string[]] $ATL_Files = "Array.h", "ArrayRef.h", "Bit.h", "BitArray.h", "BitFlag.h", "Collection.h", "Delays.h", "Delegate.h", "Func.h", "IdentifiableObject.h", "Range.h", "Ringbuffer.h", "Time.h", "ValueContainer.h", "Arduino\Time_Arduino.h"
+[string[]] $ATL_HD44780_Files = "HD44780_Controller.h", "HD44780_Driver.h", "HD44780_DriverSerial3Wire.h", "HD44780_Profile.h", "HD44780_View.h", "HD44780_ViewPort.h"
+[string[]] $ATL_IO_Files = "BufferedInputStream.h", "DigitalInput.h", "DigitalOutput.h", "PushButton.h", "Serial3WireOutput.h", "TextFormatInfo.h", "TextWriter.h", "Arduino\AnalogOutputPin.h", "Arduino\DigitalInputPin.h", "Arduino\DigitalOutputPin.h", "Arduino\StreamInputStream.h", "Arduino\StreamOutputStream.h"
+[string[]] $ATL_MIDI_Files = "Midi.h", "MidiMessage.h", "MidiReader.h", "MidiWriter.h"
+[string[]] $ATL_Process_Files = "PID.h", "Task.h", "TimeoutTask.h"
+[string[]] $ATL_TB6612FNG_Files = "TB6612FNG_Controller.h", "TB6612FNG_Driver.h", "TB6612FNG_DriverSerial3Wire.h"
+[string[]] $ATL_UI_Files = "NavigationController.h", "Control.h", "InputControl.h", "LabelControl.h", "Page.h", "Panel.h", "UpDownControl.h"
+[string[]] $ATL_URM37V32_Files = "URM37V32_Controller.h", "URM37V32_Driver.h"
 
-[string[]] $ATL_Files = "Array.h", "ArrayRef.h", "Bit.h", "BitArray.h", "BitFlag.h"
+$HeaderMessage = "This file is generated. Do not change."
+$NewLine = "`r`n"
+$FileHeader = "// " + $HeaderMessage + $NewLine
+$KeywordsHeader = "# " + $HeaderMessage + $NewLine
 
-BuildLibrary "ATL" $ATL_Files
 
 #
-# Entry point
+# Support functions
 #
 
-function BuildLibrary([string]$libraryName, [string[]]$files)
+function BuildInclude([string]$file)
 {
-    CopySourceFiles $libraryName $files
-    CreateHeaderFile $libraryName $files
-    BuildKeywordsFile $libraryName $files
+    return "#include `"utility\" + $file + "`""
+}
+
+function BuildPreprocessorVar([string]$libraryName)
+{
+    return "__" + $libraryName + "_H__"
+}
+
+function BuildPreprocessorEnd([string]$libraryName)
+{
+    $var = BuildPreprocessorVar $libraryName
+    return $NewLine + "#endif`t// " + $var
+}
+
+function BuildPreprocessorStart([string]$libraryName)
+{
+    $var = BuildPreprocessorVar $libraryName
+    return "#ifndef " + $var + $NewLine + "#define " + $var + $NewLine
+}
+
+function CreateFile([string] $filePath, [string]$headerMessage)
+{
+    If (Test-Path $filePath) {Remove-Item $filePath}
+
+    New-Item $filePath -ItemType File
+
+    $headerMessage | Out-File $filePath -Encoding utf8
+}
+
+function WriteToFile([string]$filePath, [string]$content)
+{
+    $content | Out-File $filePath -Encoding utf8 -Append
+}
+
+function GetFileName([string]$file)
+{
+    [array]$parts = $file.Split('.\/')
+
+	if ($parts.Length -eq 3)
+	{
+	    return $parts[1]
+	}
+
+	return $parts[0]
+}
+
+function GetFileNameWithExtension([string]$file)
+{
+    [array]$parts = $file.Split('\/')
+
+	return $parts[$parts.Length - 1]
 }
 
 #
@@ -53,7 +109,8 @@ function CreateHeaderFile([string]$libraryName, [string[]]$files)
 
     foreach ($file in $files)
     {
-        WriteToFile ($headerFilePath) (BuildInclude $file)
+        $onlyFile = GetFileNameWithExtension $file
+        WriteToFile ($headerFilePath) (BuildInclude $onlyFile)
     }
 
     WriteToFile ($headerFilePath) (BuildPreprocessorEnd $libraryName)
@@ -72,52 +129,22 @@ function BuildKeywordsFile([string]$libraryName, [string[]]$files)
     }
 }
 
+function BuildLibrary([string]$libraryName, [string[]]$files)
+{
+    CopySourceFiles $libraryName $files
+    CreateHeaderFile $libraryName $files
+    BuildKeywordsFile $libraryName $files
+}
+
 #
-# Support functions
+# Entry point
 #
 
-function BuildInclude([string]$file)
-{
-    return "#include `"utility\" + $file + "`""
-}
-
-function BuildPreprocessorEnd([string]$libraryName)
-{
-    $var = BuildPreprocessorVar $libraryName
-    return $NewLine + "#endif`t// " + $var
-}
-
-function BuildPreprocessorStart([string]$libraryName)
-{
-    $var = BuildPreprocessorVar $libraryName
-    return "#ifndef " + $var + $NewLine + "#define " + $var + $NewLine
-}
-
-function BuildPreprocessorVar([string]$libraryName)
-{
-    return "__" + $libraryName + "_H__"
-}
-
-function CreateFile([string] $filePath, [string]$headerMessage)
-{
-    If (Test-Path $filePath) {Remove-Item $filePath}
-
-    New-Item $filePath -ItemType File
-
-    $headerMessage | Out-File $filePath -Encoding utf8
-}
-
-function WriteToFile([string]$filePath, [string]$content)
-{
-    $content | Out-File $filePath -Encoding utf8 -Append
-}
-
-function GetFileName([string]$file)
-{
-    return $file.Split(".h")[0]
-}
-
-$FileHeader = "// " + $HeaderMessage + $NewLine
-$KeywordsHeader = "# " + $HeaderMessage + $NewLine
-$HeaderMessage = "This file is generated. Do not change."
-$NewLine = "`r`n"
+BuildLibrary "ATL" $ATL_Files
+BuildLibrary "ATL HD44780" $ATL_HD44780_Files
+BuildLibrary "ATL IO" $ATL_IO_Files
+BuildLibrary "ATL MIDI" $ATL_MIDI_Files
+BuildLibrary "ATL Process" $ATL_Process_Files
+BuildLibrary "ATL TB6612FNG" $ATL_TB6612FNG_Files
+BuildLibrary "ATL UI" $ATL_UI_Files
+BuildLibrary "ATL URM37V32" $ATL_URM37V32_Files
