@@ -162,7 +162,7 @@ namespace ArduinoTemplateLibraryTests
 		}
 
 		[TestMethod]
-		void WriteLine_NewLine()
+		void WriteLine_NewLineCarriageReturn()
 		{
 			unsigned char buffer[] = { 0xFF, 0xFF, 0xFF };
 
@@ -171,7 +171,7 @@ namespace ArduinoTemplateLibraryTests
 
 			target.WriteLine();
 
-			Assert::AreEqual(1, (int)target.getLength());
+			Assert::AreEqual(2, (int)target.getLength());
 			Assert::AreEqual((int)'\n', (int)buffer[0]);
 			Assert::AreEqual((int)'\r', (int)buffer[1]);
 			Assert::AreEqual((int)0xFF, (int)buffer[2]);

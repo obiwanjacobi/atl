@@ -46,7 +46,7 @@ public:
 	static unsigned char DefaultBase;
 };
 
-char TextFormatInfo::NewLine[] = { '\10', '\13', '\0' };
+char TextFormatInfo::NewLine[] = { '\n', '\r', '\0' };
 unsigned char TextFormatInfo::DecimalDigits = (unsigned char)2;
 char TextFormatInfo::NegativeSign = { '-' };
 char TextFormatInfo::DecimalSeparator = { '.' } ;
