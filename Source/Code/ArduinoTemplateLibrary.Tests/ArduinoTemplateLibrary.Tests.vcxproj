@@ -109,7 +109,7 @@
     <ClCompile Include="TimeTest.cpp" />
     <ClCompile Include="InputControlTest.cpp" />
     <ClCompile Include="ArrayTest.cpp" />
-    <ClCompile Include="CollectionTest.cpp" />
+    <ClCompile Include="CollectionRefTest.cpp" />
     <ClCompile Include="PanelTest.cpp" />
     <ClCompile Include="PageTest.cpp" />
     <ClCompile Include="UpDownControlTest.cpp" />

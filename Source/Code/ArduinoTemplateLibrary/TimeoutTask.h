@@ -25,7 +25,6 @@
 #include "Task.h"
 
 namespace ATL {
-namespace Process {
 
 /*
 	Calls the BaseT::OnTimeout when the Timeout has expired.
@@ -72,6 +71,6 @@ private:
 	unsigned int _task;
 };
 
-}} // ATL::Process
+} // ATL
 
 #endif //__TIMEOUTTASK_H__

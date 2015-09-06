@@ -24,7 +24,6 @@
 #include "BitArray.h"
 
 namespace ATL {
-namespace IO {
 
 /*
 	This class implements the driver logic for a typical serial to parallel Output conversion
@@ -89,7 +88,7 @@ private:
 	LatchClockPinT _latchClock;
 };
 
-}} // ATL.IO
+} // ATL
 
 #endif // __SERIAL3WIREOUTPUT_H__
 

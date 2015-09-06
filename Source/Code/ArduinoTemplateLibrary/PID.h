@@ -22,7 +22,6 @@
 #define __PID_H__
 
 namespace ATL {
-namespace Process {
 
 /*
 	BaseT is used as a base class and implements:
@@ -156,6 +155,6 @@ private:
 	}
 };
 
-}} // ATL.Process
+} // ATL
 
 #endif //__PID_H__

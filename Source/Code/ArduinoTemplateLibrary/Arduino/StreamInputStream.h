@@ -22,7 +22,6 @@
 #define __STREAMINPUTSTREAM_H__
 
 namespace ATL {
-namespace IO {
 
 /*
 	This class is an adapter class to treat an Arduino Stream as an ATL InputStream.
@@ -92,6 +91,6 @@ private:
 	StreamT* _stream;
 };
 
-}} // ATL::IO
+} // ATL
 
 #endif //__STREAMINPUTSTREAM_H__

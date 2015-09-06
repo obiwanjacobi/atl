@@ -2,7 +2,7 @@
 #include "..\ArduinoTemplateLibrary\TB6612FNG_Controller.h"
 #include "TB6612FNG_DriverMock.h"
 
-using namespace ATL::Hardware::Motor;
+using namespace ATL;
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 

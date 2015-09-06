@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Arduino.h"
 #include "..\ArduinoTemplateLibrary\Time.h"
 #include "..\ArduinoTemplateLibrary\Arduino\Time_Arduino.h"
 

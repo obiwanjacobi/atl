@@ -22,7 +22,6 @@
 #define __DIGITALINPUTPIN_H__
 
 namespace ATL {
-namespace IO {
 
 /*
 	Initializes a BoardPinNumber to input.
@@ -64,6 +63,6 @@ public:
 	}
 };
 
-}} // ATL::IO
+} // ATL
 
 #endif //__DIGITALINPUTPIN_H__

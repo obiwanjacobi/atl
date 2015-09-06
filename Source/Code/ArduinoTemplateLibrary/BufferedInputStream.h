@@ -22,7 +22,7 @@
 #define __BUFFEREDINPUTSTREAM_H__
 
 namespace ATL {
-namespace IO {
+
 
 // The BufferedInputStream implements an abstract InputStream by using a circular buffer (RingBuffer).
 /*
@@ -46,6 +46,6 @@ public:
 	}
 };
 
-}} // ATL.IO
+} // ATL
 
 #endif //__BUFFEREDINPUTSTREAM_H__

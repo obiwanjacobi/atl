@@ -56,10 +56,10 @@
     <ClCompile Include="InputControlTest.cpp" />
     <ClCompile Include="UpDownControlTest.cpp" />
     <ClCompile Include="ArrayTest.cpp" />
-    <ClCompile Include="CollectionTest.cpp" />
     <ClCompile Include="TestControls.cpp" />
     <ClCompile Include="PanelTest.cpp" />
     <ClCompile Include="PageTest.cpp" />
+    <ClCompile Include="CollectionRefTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

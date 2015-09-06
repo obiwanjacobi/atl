@@ -26,7 +26,6 @@
 #include "Task.h"
 
 namespace ATL {
-namespace IO {
 
 	/*
 		The different states the PushButton can be in.
@@ -237,6 +236,6 @@ private:
 	}
 };
 
-}} // ATL::IO
+} // ATL
 
 #endif //__PUSHBUTTON_H__

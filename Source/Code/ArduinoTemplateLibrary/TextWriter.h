@@ -24,7 +24,6 @@
 #include "TextFormatInfo.h"
 
 namespace ATL {
-namespace IO {
 
 /*
 	BaseT implements void [IO]Write(byte).
@@ -255,6 +254,6 @@ private:
 	}
 };
 
-}} // ATL.IO
+} // ATL
 
 #endif // __TEXTWRITER_H__

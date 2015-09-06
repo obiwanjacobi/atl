@@ -22,8 +22,6 @@
 #define __HD44780_VIEWPORT_H__
 
 namespace ATL {
-namespace Hardware {
-namespace Display {
 
 /*
 	BaseT is used as a base class and implements [HD44780_View]:
@@ -83,6 +81,6 @@ private:
 	
 };
 
-}}} // ATL::Hardware::Display
+} // ATL
 
 #endif //__HD44780_VIEWPORT_H__

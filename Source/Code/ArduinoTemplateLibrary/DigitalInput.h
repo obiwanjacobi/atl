@@ -22,7 +22,6 @@
 #define __DIGITALINPUT_H__
 
 namespace ATL {
-namespace IO {
 
 /*
 	BaseT is used as base class and implements:
@@ -66,6 +65,6 @@ private:
 	bool _value;
 };
 
-}} // ATL.IO
+} // ATL
 
 #endif //__DIGITALINPUT_H__

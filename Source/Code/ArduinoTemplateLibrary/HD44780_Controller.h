@@ -25,8 +25,6 @@
 #include "BitArray.h"
 
 namespace ATL {
-namespace Hardware {
-namespace Display {
 
 /*
 	BaseT is used as a base class and implements:
@@ -288,6 +286,6 @@ private:
 	}
 };
 
-}}} // ATL::Hardware::Display
+} // ATL
 
 #endif //__HD44780_CONTROLLER_H__

@@ -22,8 +22,6 @@
 #define __URM37V32_CONTROLLER_H__
 
 namespace ATL {
-namespace Hardware {
-namespace Sensor {
 
 /*
 	BaseT is used as a base class and implements:
@@ -161,6 +159,6 @@ private:
 
 };
 
-}}} // ATL.Hardware.Sensor
+} // ATL
 
 #endif //__URM37V32_CONTROLLER_H__

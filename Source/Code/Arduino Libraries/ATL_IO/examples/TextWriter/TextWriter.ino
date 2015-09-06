@@ -1,6 +1,6 @@
 #include <ATL_IO.h>
 
-using namespace ATL::IO;
+using namespace ATL;
 
 // The StreamOutputStream class adapts an ATL Output Stream to an Arduino Stream (HardwareSerial)
 // The TextWriter class writes to the ATL Output Stream

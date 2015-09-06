@@ -24,8 +24,6 @@
 #include "HD44780_Profile.h"
 
 namespace ATL {
-namespace Hardware {
-namespace Display {
 
 /*
    See also: http://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
@@ -126,6 +124,6 @@ private:
 	}
 };
 
-}}} // ATL::Hardware::Display
+} // ATL
 
 #endif //__HD44780_DRIVER_H__

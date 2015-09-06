@@ -62,8 +62,16 @@ public:
 		return GetAt(index);
 	}
 
-	static T DefaultOfT;
+	// return value for invalid index is undetermined.
+	inline T& operator[](unsigned char index)
+	{
+		if (!IsValidIndex(index)) return DummyOfT;
 
+		return _arr[index];
+	}
+
+	static T DefaultOfT;
+	static T DummyOfT;
 private:
 	T _arr[MaxItems];
 };
@@ -71,6 +79,8 @@ private:
 template<typename T, const unsigned char MaxItems>
 T Array<T, MaxItems>::DefaultOfT;
 
+template<typename T, const unsigned char MaxItems>
+T Array<T, MaxItems>::DummyOfT;
 
 
 } // ATL

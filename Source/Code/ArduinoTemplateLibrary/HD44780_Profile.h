@@ -21,11 +21,7 @@
 #ifndef __HD44780_PROFILE_H__
 #define __HD44780_PROFILE_H__
 
-#include <Arduino.h>
-
 namespace ATL {
-namespace Hardware {
-namespace Display {
 
 /*
 	Timing profile class for the HD44780 LCD display.
@@ -76,6 +72,6 @@ public:
 	}
 };
 
-}}} // ATL::Hardware::Display
+} // ATL
 
 #endif //__HD44780_PROFILE_H__

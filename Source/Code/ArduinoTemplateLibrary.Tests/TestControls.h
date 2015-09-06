@@ -5,6 +5,8 @@
 #include"..\ArduinoTemplateLibrary\Control.h"
 #include"..\ArduinoTemplateLibrary\InputControl.h"
 
+using namespace ATL;
+
 // used with UpDownControl tests
 class TestValue
 {
@@ -40,13 +42,13 @@ public:
 	const char* Text;
 };
 
-class TestControl : public ATL::UI::Control
+class TestControl : public Control
 {
 public:
 	TestControl() {}
 };
 
-class TestInputControl : public ATL::UI::InputControl
+class TestInputControl : public InputControl
 {
 public:
 	TestInputControl() {}

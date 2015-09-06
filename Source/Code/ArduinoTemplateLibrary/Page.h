@@ -30,7 +30,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "Panel.h"
 
 namespace ATL {
-namespace UI {
 
 template<const unsigned char MaxItems>
 class Line : public HorizontalPanel<MaxItems>
@@ -170,6 +169,6 @@ private:
 
 
 
-}} // ATL::UI
+} // ATL
 
 #endif //__PAGE_H__

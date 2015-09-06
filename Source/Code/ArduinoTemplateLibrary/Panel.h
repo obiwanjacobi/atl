@@ -25,21 +25,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stdint.h>
 
 #include "Array.h"
-#include "Collection.h"
+#include "CollectionRef.h"
 #include "Control.h"
 #include "InputControl.h"
 
-using namespace ATL;
 
 namespace ATL {
-namespace UI {
 
 template<const unsigned char MaxItems>
-class ControlContainer : public Collection<Array<Control*, MaxItems> >
+class ControlContainer : public CollectionRef<Array<Control*, MaxItems> >
 {
 public:
 	ControlContainer()
-		: Collection<Array<Control*, MaxItems> >(_array)
+		: CollectionRef<Array<Control*, MaxItems> >(_array)
 	{ }
 
     Control* getNext(Control* currentCtrl, ControlTypes type = typeControl) const
@@ -274,6 +272,6 @@ public:
 };
 
 
-}} // ATL::UI
+} // ATL
 
 #endif //__PANEL_H__

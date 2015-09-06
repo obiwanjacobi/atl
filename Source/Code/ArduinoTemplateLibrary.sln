@@ -25,6 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL", "ATL", "{D05E1ACA-732
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9079BF31-C4DF-48D4-9EFD-44261BC3D020}"
+	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL\examples\_Intro\_Intro.ino = Arduino Libraries\ATL\examples\_Intro\_Intro.ino
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_IO", "ATL_IO", "{EE9DFF2B-A522-411D-B6B5-940DB86909BA}"
 	ProjectSection(SolutionItems) = preProject

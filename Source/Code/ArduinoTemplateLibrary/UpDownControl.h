@@ -24,7 +24,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "InputControl.h"
 
 namespace ATL {
-namespace UI {
 
 
 // ValueT implements: const char* ToString();
@@ -93,6 +92,6 @@ private:
 };
 
 
-}} // ATL::UI
+} // ATL
 
 #endif //__UPDOWNCONTROL_H__

@@ -22,7 +22,6 @@
 #define __TASK_H__
 
 namespace ATL {
-namespace Process {
 
 /*
 This code was taken from http://msdn.microsoft.com/en-us/magazine/jj553509.aspx
@@ -100,6 +99,6 @@ if (!(expression))                     \
                                          \
   Task_YieldUntil(true)
 
-}} // ATL::Process
+} // ATL
 
 #endif //__TASK_H__

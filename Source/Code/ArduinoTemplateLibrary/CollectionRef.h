@@ -29,10 +29,10 @@ namespace ATL {
 //   and implements T GetAt(unsigned char index), SetAt(unsigned char index, T item) and unsigned char getMaxCount()
 // ArrayT::ItemT is the type of the item in ArrayT (typedef in ArrayT)
 template<typename ArrayT>
-class Collection
+class CollectionRef
 {
 public:
-	Collection(ArrayT& array)
+	CollectionRef(ArrayT& array)
 		: _array(array), _count(0)
 	{ }
 
@@ -53,7 +53,12 @@ public:
 		return _array.GetAt(index);
 	}
 
-	inline char IndexOf(typename ArrayT::ItemT item) const
+	inline typename ArrayT::ItemT operator[](unsigned char index) const
+	{
+		return GetAt(index);
+	}
+
+	inline char IndexOf(typename ArrayT::ItemT& item) const
 	{
 		for (int i = 0; i < _count; i++)
 		{

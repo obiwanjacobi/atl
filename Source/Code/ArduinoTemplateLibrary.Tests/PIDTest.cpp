@@ -6,7 +6,6 @@
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 using namespace ATL;
-using namespace ATL::Process;
 
 namespace ArduinoTemplateLibraryTests
 {

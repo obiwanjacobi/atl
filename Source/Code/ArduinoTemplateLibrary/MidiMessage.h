@@ -25,7 +25,6 @@
 #include "Midi.h"
 
 namespace ATL {
-namespace Midi {
 
 // Midi message struct for all midi messages
 //  NoteOff	              channel, note, velocity
@@ -255,6 +254,6 @@ struct MidiMessage
 	}
 };
 
-}} // ATL.Midi
+} // ATL
 
 #endif //__MIDIMESSAGE_H__

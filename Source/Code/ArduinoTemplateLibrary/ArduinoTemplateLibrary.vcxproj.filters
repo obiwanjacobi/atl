@@ -113,13 +113,13 @@
     <ClInclude Include="Control.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Panel.h" />
-    <ClInclude Include="Collection.h" />
     <ClInclude Include="ArrayRef.h" />
     <ClInclude Include="BitFlag.h" />
     <ClInclude Include="InputControl.h" />
     <ClInclude Include="UpDownControl.h" />
     <ClInclude Include="LabelControl.h" />
     <ClInclude Include="NavigationController.h" />
+    <ClInclude Include="CollectionRef.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

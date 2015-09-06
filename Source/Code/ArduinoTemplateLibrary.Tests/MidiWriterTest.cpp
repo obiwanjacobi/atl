@@ -5,7 +5,7 @@
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
-using namespace ATL::Midi;
+using namespace ATL;
 
 namespace ArduinoTemplateLibraryTests
 {

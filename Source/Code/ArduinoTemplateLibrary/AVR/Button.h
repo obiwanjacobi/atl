@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../BitArray.h"
 
 namespace ATL {
-namespace IO {
 
 	/*
 		The different states the PushButton can be in.
@@ -146,6 +145,6 @@ private:
     BitArray<unsigned char> _states;
 };
 
-}} // ATL::IO
+} // ATL
 
 #endif /* __BUTTON_H__ */

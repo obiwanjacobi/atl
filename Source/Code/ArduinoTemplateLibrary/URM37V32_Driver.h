@@ -22,8 +22,6 @@
 #define __URM37V32_DRIVER_H__
 
 namespace ATL {
-namespace Hardware {
-namespace Sensor {
 
 /*
 	The InputStreamT class implements a stream for retrieving the output of the Sensor (our input).
@@ -85,6 +83,6 @@ private:
 	}
 };
 
-}}} // ATL.Hardware.Sensor
+} // ATL
 
 #endif //__URM37V32_DRIVER_H__

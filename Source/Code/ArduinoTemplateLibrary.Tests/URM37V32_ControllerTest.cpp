@@ -7,7 +7,6 @@
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
 using namespace ATL;
-using namespace ATL::Hardware::Sensor;
 
 namespace ArduinoTemplateLibraryTests
 {

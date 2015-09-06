@@ -1,7 +1,7 @@
 #include <ATL_IO.h>
 #include "MyTextFormatInfo.h"
 
-using namespace ATL::IO;
+using namespace ATL;
 
 // Specify our custom format info class
 TextWriter<StreamOutputStream<HardwareSerial>, MyTextFormatInfo> textStream;

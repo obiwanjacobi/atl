@@ -84,7 +84,7 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="ArrayRef.h" />
     <ClInclude Include="BitFlag.h" />
-    <ClInclude Include="Collection.h" />
+    <ClInclude Include="CollectionRef.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="InputControl.h" />
     <ClInclude Include="LabelControl.h" />

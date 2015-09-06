@@ -21,8 +21,6 @@
 #ifndef __TIME_H__
 #define __TIME_H__
 
-#include<Arduino.h>
-
 namespace ATL {
 
 /*
@@ -148,13 +146,13 @@ private:
 //}
 
 template<>
-inline static unsigned long Time<Milliseconds>::getMilliseconds(unsigned long ticks)
+inline unsigned long Time<Milliseconds>::getMilliseconds(unsigned long ticks)
 {
 	return ticks;
 }
 
 template<>
-inline static unsigned long Time<Milliseconds>::getMicroseconds(unsigned long ticks)
+inline unsigned long Time<Milliseconds>::getMicroseconds(unsigned long ticks)
 {
 	return ticks * 1000;
 }
@@ -170,13 +168,13 @@ inline static unsigned long Time<Milliseconds>::getMicroseconds(unsigned long ti
 //}
 
 template<>
-inline static unsigned long Time<Microseconds>::getMilliseconds(unsigned long ticks)
+inline unsigned long Time<Microseconds>::getMilliseconds(unsigned long ticks)
 {
 	return ticks / 1000;
 }
 
 template<>
-inline static unsigned long Time<Microseconds>::getMicroseconds(unsigned long ticks)
+inline unsigned long Time<Microseconds>::getMicroseconds(unsigned long ticks)
 {
 	return ticks;
 }

@@ -25,8 +25,6 @@
 #include "AnalogOutputPin.h"
 
 namespace ATL {
-namespace Hardware {
-namespace Motor {
 
 /*
 	This driver class writes to one port of a Toshiba TB6612FNG - a dual 1A motor driver/controller.
@@ -86,6 +84,6 @@ private:
 	}
 };
 
-}}} // ATL.Hardware.Motor
+} // ATL
 
 #endif //__TB6612FNG_DRIVERSERIAL3WIRE_H__

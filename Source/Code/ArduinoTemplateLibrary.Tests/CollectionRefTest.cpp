@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "..\ArduinoTemplateLibrary\Array.h"
-#include "..\ArduinoTemplateLibrary\Collection.h"
+#include "..\ArduinoTemplateLibrary\CollectionRef.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
@@ -20,7 +20,7 @@ namespace ArduinoTemplateLibraryTests
 		void Count_InitializedCollection_Zero()
 		{
 			ValueArray array;
-			Collection<ValueArray> tested(array);
+			CollectionRef<ValueArray> tested(array);
 
 			Assert::AreEqual((unsigned char)0, tested.getCount());
 		}
@@ -29,7 +29,7 @@ namespace ArduinoTemplateLibraryTests
 		void Count_OneItem_One()
 		{
 			ValueArray array;
-			Collection<ValueArray> tested(array);
+			CollectionRef<ValueArray> tested(array);
 
 			tested.Add(0);
 
@@ -40,7 +40,7 @@ namespace ArduinoTemplateLibraryTests
 		void IsValidIndex_InvalidIndex_False()
 		{
 			ValueArray array;
-			Collection<ValueArray> tested(array);
+			CollectionRef<ValueArray> tested(array);
 
 			Assert::IsFalse(tested.IsValidIndex(0));
 		}
@@ -49,7 +49,7 @@ namespace ArduinoTemplateLibraryTests
 		void IsValidIndex_ValidIndex_True()
 		{
 			ValueArray array;
-			Collection<ValueArray> tested(array);
+			CollectionRef<ValueArray> tested(array);
 			
 			tested.Add(0);
 
@@ -60,7 +60,7 @@ namespace ArduinoTemplateLibraryTests
 		void GetAt_InvalidIndex_DefaultOfT()
 		{
 			ValueArray array;
-			Collection<ValueArray> tested(array);
+			CollectionRef<ValueArray> tested(array);
 
 			Assert::AreEqual(ValueArray::DefaultOfT, tested.GetAt(0));
 		}
@@ -69,7 +69,7 @@ namespace ArduinoTemplateLibraryTests
 		void GetAt_ValidIndex_Value()
 		{
 			ValueArray array;
-			Collection<ValueArray> tested(array);
+			CollectionRef<ValueArray> tested(array);
 
 			tested.Add(MagicNumber);
 
@@ -80,7 +80,7 @@ namespace ArduinoTemplateLibraryTests
 		void Add_TooManyTimes_DoesNotCrash()
 		{
 			ValueArray array;
-			Collection<ValueArray> tested(array);
+			CollectionRef<ValueArray> tested(array);
 
 			for (int i = 0; i < 10; i++)
 			{

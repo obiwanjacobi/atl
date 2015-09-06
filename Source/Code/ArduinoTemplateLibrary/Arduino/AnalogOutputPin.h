@@ -24,7 +24,6 @@
 #include "DigitalOutputPin.h"
 
 namespace ATL {
-namespace IO {
 
 /*
 	Writes a PWM to an output pin. The pin must support PWM.
@@ -41,6 +40,6 @@ public:
 	}
 };
 
-}} // ATL::IO
+} // ATL
 
 #endif //__ANALOGOUTPUTPIN_H__

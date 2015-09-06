@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stdint.h>
 
 namespace ATL {
-namespace UI {
 
 
 // abstract / interface
@@ -150,6 +149,6 @@ private:
 };
 
 
-}} // ATL::UI
+} // ATL
 
 #endif //__CONTROL_H__

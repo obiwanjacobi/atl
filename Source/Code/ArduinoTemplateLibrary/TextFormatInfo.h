@@ -22,7 +22,6 @@
 #define __TEXTFORMATINFO_H__
 
 namespace ATL {
-namespace IO {
 
 /*
 	This class defines regional number-settings.
@@ -52,6 +51,6 @@ char TextFormatInfo::NegativeSign = { '-' };
 char TextFormatInfo::DecimalSeparator = { '.' } ;
 unsigned char TextFormatInfo::DefaultBase = (unsigned char)baseDecimal;
 
-}} // ATL::IO
+} // ATL
 
 #endif //__TEXTFORMATINFO_H__

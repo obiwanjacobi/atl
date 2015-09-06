@@ -22,8 +22,6 @@
 #define __TB6612FNG_CONTROLLER_H__
 
 namespace ATL {
-namespace Hardware {
-namespace Motor {
 
 /*
 	BaseT is used as a base class and implements:
@@ -58,6 +56,6 @@ public:
 	}
 };
 
-}}} // ATL.Hardware.Motor
+} // ATL
 
 #endif //__TB6612FNG_CONTROLLER_H__

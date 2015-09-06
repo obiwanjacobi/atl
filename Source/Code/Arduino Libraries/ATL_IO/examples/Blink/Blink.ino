@@ -1,6 +1,6 @@
 #include <ATL_IO.h>
 
-using namespace ATL::IO;
+using namespace ATL;
 
 DigitalOutputPin<13> led;
 

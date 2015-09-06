@@ -24,7 +24,6 @@
 #include "Midi.h"
 
 namespace ATL {
-namespace Midi {
 
 /*
 	BaseT is the base class that implements:
@@ -88,6 +87,6 @@ private:
 	byte _runningStatus;
 };
 
-}} // ATL.Midi
+} // ATL
 
 #endif //__MIDIWRITER_H__

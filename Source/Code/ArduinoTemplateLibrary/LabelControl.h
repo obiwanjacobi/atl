@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "Control.h"
 
 namespace ATL {
-namespace UI {
 
 class LabelControl : public Control
 {
@@ -51,6 +50,6 @@ private:
 	const char* _text;
 };
 
-}} // ATL::UI
+} // ATL
 
 #endif //__LABELCONTROL_H__

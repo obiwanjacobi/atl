@@ -22,7 +22,6 @@
 #define __DIGITALOUTPUTPIN_H__
 
 namespace ATL {
-namespace IO {
 
 /*
 	Initializes a BoardPinNumber to output.
@@ -89,6 +88,6 @@ protected:
 	}
 };
 
-}} // ATL::IO
+} // ATL
 
 #endif //__DIGITALOUTPUTPIN_H__

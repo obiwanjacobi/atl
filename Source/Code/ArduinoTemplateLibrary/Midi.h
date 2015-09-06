@@ -24,7 +24,6 @@
 #include <Arduino.h>
 
 namespace ATL {
-namespace Midi {
 
 #define MIDI_BAUDRATE			31250
 
@@ -167,6 +166,6 @@ private:
 	Midi() {}
 };
 
-}} // ATL.Midi
+} // ATL
 
 #endif //__MIDI_H__
