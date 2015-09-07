@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Arduino.h"
 #include "..\ArduinoTemplateLibrary\Control.h"
 #include "..\ArduinoTemplateLibrary\Panel.h"
 #include "TestControls.h"
@@ -10,9 +11,33 @@ using namespace ATL;
 namespace ArduinoTemplateLibraryTests
 {
 	[TestClass]
-	public ref class UnitTest
+	public ref class PanelTest
 	{
 	public:
+		// generic panel/controlcontainer/collection methods
+
+		[TestMethod]
+		void HP_GetAt_FirstControl_IsIndexZero()
+		{
+			HorizontalPanel<2> tested;
+			TestInputControl tic;
+
+			tested.Add(&tic);
+
+			Assert::IsTrue(&tic == tested.GetAt(0));
+		}
+
+		[TestMethod]
+		void HP_IndexOf_FirstControl_IsIndexZero()
+		{
+			HorizontalPanel<2> tested;
+			TestInputControl tic;
+
+			tested.Add(&tic);
+
+			Assert::AreEqual((char)0, tested.IndexOf(&tic));
+		}
+
 		//
 		// Horizontal Panel Tests
 		//
@@ -100,7 +125,7 @@ namespace ArduinoTemplateLibraryTests
 		// Vertical Panel Tests
 		//
 
-		[TestMethod]
+		/*[TestMethod]
 		void VP_CurrentControl_NoCurrentCtrl_Null()
 		{
 			VerticalPanel<2> tested;
@@ -177,6 +202,6 @@ namespace ArduinoTemplateLibraryTests
 
 			Assert::IsFalse(handled);
 			Assert::IsFalse(tested.getCurrentControl() != NULL);
-		}
+		}*/
 	};
 }

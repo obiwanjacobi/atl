@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Arduino.h"
 #include "..\ArduinoTemplateLibrary\Control.h"
 #include "..\ArduinoTemplateLibrary\Page.h"
 

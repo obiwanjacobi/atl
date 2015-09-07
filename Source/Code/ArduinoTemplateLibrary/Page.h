@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stdint.h>
 
 #include "NavigationController.h"
+#include "ControlContainer.h"
 #include "Control.h"
 #include "InputControl.h"
 #include "Panel.h"
@@ -34,25 +35,35 @@ namespace ATL {
 template<const unsigned char MaxItems>
 class Line : public HorizontalPanel<MaxItems>
 {
+	typedef HorizontalPanel<MaxItems> BaseT;
+
 public:
     Line(uint8_t pos = 0)
-        : HorizontalPanel(pos)
+        : BaseT(pos)
     { }
 };
 
 
 class Page : public VerticalPanel<2>
 {
+	typedef VerticalPanel<2> BaseT;
+
 public:
     Page(Panel* line1, Panel* line2)
     {
-        Add(line1);
-        Add(line2);
+		if (line1 != NULL)
+		{
+			BaseT::Add(line1);
+		}
+		if (line2 != NULL)
+		{
+			BaseT::Add(line2);
+		}
     }
 
     virtual void Display(DisplayWriter* output)
     {
-        VerticalPanel::Display(output);
+		BaseT::Display(output);
         DisplayCursor(output);
     }
 
@@ -75,7 +86,7 @@ public:
         if (handled) return true;
 
         // skip VerticalPanel!
-        return Panel::OnKeyCommand(keyCmd);
+        return Panel<2>::OnKeyCommand(keyCmd);
     }
 
     bool TrySelectNextLine()
@@ -85,7 +96,7 @@ public:
         if (currentCtrl == NULL ||
            (currentCtrl != NULL && !currentCtrl->isSelected()))
         {
-            if (VerticalPanel::SetNextInputControl())
+			if (BaseT::SetNextInputControl())
             {
                 EnsureFirstControl();
                 return true;
@@ -102,7 +113,7 @@ public:
         if (currentCtrl == NULL ||
            (currentCtrl != NULL && !currentCtrl->isSelected()))
         {
-            if (VerticalPanel::SetPreviousInputControl())
+			if (BaseT::SetPreviousInputControl())
             {
                 EnsureFirstControl();
                 return true;
@@ -114,7 +125,7 @@ public:
 
     inline Panel* getCurrentLine() const
     {
-        return (Panel*)Control::DynamicCast(getCurrentControl(), typePanel);
+		return (Panel*)Control::DynamicCast(BaseT::getCurrentControl(), typePanel);
     }
 
     InputControl* getCurrentInputControl() const

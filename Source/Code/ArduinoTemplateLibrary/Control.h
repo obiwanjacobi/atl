@@ -33,9 +33,9 @@ class DisplayWriter
 public:
     static const uint8_t DontCare = 0xFF;
 
-    virtual void Write(const char* text) {}
-    virtual void GoTo(uint8_t lineIndex, uint8_t columnIndex) {}
-    virtual void SetCursor(uint8_t lineIndex, uint8_t columnIndex, bool blink) {}
+    virtual void Write(const char* /*text*/) {}
+    virtual void GoTo(uint8_t /*lineIndex*/, uint8_t /*columnIndex*/) {}
+    virtual void SetCursor(uint8_t /*lineIndex*/, uint8_t /*columnIndex*/, bool /*blink*/) {}
 };
 
 
@@ -64,7 +64,7 @@ class Control
 {
 protected:
     Control(uint8_t position = 0)
-    : _pos(position)
+		: _pos(position)
     { }
 
 public:
@@ -115,7 +115,7 @@ public:
 
     inline bool setState(ControlState newState)
     {
-        if (BeforeChangeState(_state, newState))
+        if (BeforeChangeState(newState))
         {
             _state = newState;
             return true;
@@ -123,7 +123,7 @@ public:
         return false;
     }
 
-    virtual void Display(DisplayWriter* output) {}
+    virtual void Display(DisplayWriter* /*output*/) {}
 
     virtual bool IsOfType(ControlTypes type) const
     {
@@ -138,9 +138,9 @@ public:
     }
 
 protected:
-    virtual bool BeforeChangeState(ControlState currentState, ControlState newState)
+    virtual bool BeforeChangeState(ControlState newState)
     {
-        return currentState != newState;
+        return _state != newState;
     }
 
 private:

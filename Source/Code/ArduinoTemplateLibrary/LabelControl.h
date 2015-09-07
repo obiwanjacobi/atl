@@ -41,7 +41,7 @@ public:
 	}
 
 protected:
-	virtual bool BeforeChangeState(ControlState currentState, ControlState newState)
+	virtual bool BeforeChangeState(ControlState newState)
 	{
 		return newState != Focused && newState != Selected;
 	}

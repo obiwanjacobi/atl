@@ -8,7 +8,6 @@
 #include "utility\BitArray.h"
 #include "utility\BufferedInputStream.h"
 #include "utility\DigitalInput.h"
-#include "utility\DigitalOutput.h"
 #include "utility\Serial3WireOutput.h"
 #include "utility\TextFormatInfo.h"
 #include "utility\TextWriter.h"

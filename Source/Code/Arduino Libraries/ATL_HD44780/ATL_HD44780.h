@@ -5,6 +5,7 @@
 
 #include <Arduino.h>
 
+#include "utility\BitArray.h"
 #include "utility\HD44780_Controller.h"
 #include "utility\HD44780_Driver.h"
 #include "utility\HD44780_DriverSerial3Wire.h"

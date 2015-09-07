@@ -24,75 +24,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stddef.h>
 #include <stdint.h>
 
-#include "Array.h"
-#include "CollectionRef.h"
+#include "ControlContainer.h"
 #include "Control.h"
 #include "InputControl.h"
 
 
 namespace ATL {
-
-template<const unsigned char MaxItems>
-class ControlContainer : public CollectionRef<Array<Control*, MaxItems> >
-{
-public:
-	ControlContainer()
-		: CollectionRef<Array<Control*, MaxItems> >(_array)
-	{ }
-
-    Control* getNext(Control* currentCtrl, ControlTypes type = typeControl) const
-    {
-        int8_t index = IndexOf(currentCtrl);
-
-        if (index != -1)
-        {
-            index++;
-        }
-        else if (getCount() > 0)
-        {
-            index = 0;
-        }
-
-		while (index >= 0 && index < getCount())
-        {
-            Control* ctrl = Control::DynamicCast(GetAt(index), type);
-
-            if (ctrl != NULL) return ctrl;
-
-            index++;
-        }
-
-        return NULL;
-    }
-
-    Control* getPrevious(Control* currentCtrl, ControlTypes type = typeControl) const
-    {
-        int8_t index = IndexOf(currentCtrl);
-
-        if (index != -1)
-        {
-            index--;
-        }
-		else if (getCount() > 0)
-        {
-			index = getCount() - 1;
-        }
-
-		while (index >= 0 && index < getCount())
-        {
-            Control* ctrl = Control::DynamicCast(GetAt(index), type);
-
-            if (ctrl != NULL) return ctrl;
-
-            index--;
-        }
-
-        return NULL;
-    }
-
-private:
-	Array<Control*, MaxItems> _array;
-};
 
 
 // abstract
@@ -100,6 +37,8 @@ template<const unsigned char MaxItems>
 class Panel : public InputControl,
               public ControlContainer<MaxItems>
 {
+	typedef ControlContainer<MaxItems> CollecitonT;
+
 public:
     inline InputControl* getCurrentControl() const
     {
@@ -118,7 +57,7 @@ public:
 
     bool SetFirstInputControl()
     {
-        InputControl* ctrl = (InputControl*)getNext(NULL, typeInputControl);
+		InputControl* ctrl = (InputControl*)CollecitonT::getNext(NULL, typeInputControl);
         if (ctrl != NULL)
         {
             setCurrentControl(ctrl);
@@ -130,7 +69,7 @@ public:
 
     bool SetNextInputControl()
     {
-        InputControl* ctrl = (InputControl*)getNext(_currentControl, typeInputControl);
+		InputControl* ctrl = (InputControl*)CollecitonT::getNext(_currentControl, typeInputControl);
         if (ctrl != NULL)
         {
             setCurrentControl(ctrl);
@@ -142,7 +81,7 @@ public:
 
     bool SetPreviousInputControl()
     {
-        InputControl* ctrl = (InputControl*)getPrevious(_currentControl, typeInputControl);
+		InputControl* ctrl = (InputControl*)CollecitonT::getPrevious(_currentControl, typeInputControl);
         if (ctrl != NULL)
         {
             setCurrentControl(ctrl);
@@ -179,7 +118,7 @@ protected:
         : InputControl(pos), _currentControl(NULL)
     { }
 
-    virtual bool BeforeChangeState(ControlState currentState, ControlState newState)
+    virtual bool BeforeChangeState(ControlState newState)
     {
         return newState != Selected;
     }
@@ -188,34 +127,38 @@ private:
     InputControl* _currentControl;
 };
 
+
+
 template<const unsigned char MaxItems>
 class HorizontalPanel : public Panel<MaxItems>
 {
+	typedef Panel<MaxItems> PanelT;
+
 public:
     HorizontalPanel(uint8_t pos = 0)
-        : Panel(pos)
-    {}
+        : PanelT(pos)
+    { }
 
     virtual bool OnKeyCommand(KeyCommands keyCmd)
     {
         switch(keyCmd)
         {
             case Left:
-            return SetPreviousInputControl();
+				return PanelT::SetPreviousInputControl();
             case Right:
-            return SetNextInputControl();
+				return PanelT::SetNextInputControl();
             default:
-            break;
+				break;
         }
 
-        return Panel::OnKeyCommand(keyCmd);
+		return PanelT::OnKeyCommand(keyCmd);
     }
 
     virtual void Display(DisplayWriter* output)
     {
-        Panel::Display(output);
+		PanelT::Display(output);
 
-        Control* ctrl = getNext(NULL);
+		Control* ctrl = PanelT::getNext(NULL);
         while (ctrl != NULL)
         {
             if (ctrl->isVisible())
@@ -224,7 +167,7 @@ public:
                 ctrl->Display(output);
             }
 
-            ctrl = getNext(ctrl);
+			ctrl = PanelT::getNext(ctrl);
         }
     }
 };
@@ -233,9 +176,11 @@ public:
 template<const unsigned char MaxItems>
 class VerticalPanel : public Panel<MaxItems>
 {
+	typedef Panel<MaxItems> PanelT;
+
 public:
     VerticalPanel(uint8_t pos = 0)
-        : Panel(pos)
+        : PanelT(pos)
     { }
 
     virtual bool OnKeyCommand(KeyCommands keyCmd)
@@ -243,21 +188,21 @@ public:
         switch(keyCmd)
         {
             case Up:
-            return SetPreviousInputControl();
+				return PanelT::SetPreviousInputControl();
             case Down:
-            return SetNextInputControl();
+				return PanelT::SetNextInputControl();
             default:
-            break;
+				break;
         }
 
-        return Panel::OnKeyCommand(keyCmd);
+		return PanelT::OnKeyCommand(keyCmd);
     }
 
     virtual void Display(DisplayWriter* output)
     {
-        Panel::Display(output);
+		PanelT::Display(output);
 
-        Control* ctrl = getNext(NULL);
+		Control* ctrl = PanelT::getNext(NULL);
         while (ctrl != NULL)
         {
             if (ctrl->isVisible())
@@ -266,7 +211,7 @@ public:
                 ctrl->Display(output);
             }
 
-            ctrl = getNext(ctrl);
+			ctrl = PanelT::getNext(ctrl);
         }
     }
 };

@@ -39,7 +39,7 @@ enum KeyCommands //: uint8_t
 class NavigationController
 {
 public:
-	virtual bool OnKeyCommand(KeyCommands keyCmd)
+	virtual bool OnKeyCommand(KeyCommands /*keyCmd*/)
 	{
 		return false;
 	}

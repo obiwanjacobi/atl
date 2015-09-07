@@ -11,6 +11,7 @@
 #include "utility\BitArray.h"
 #include "utility\BitFlag.h"
 #include "utility\Collection.h"
+#include "utility\CollectionRef.h"
 #include "utility\Delays.h"
 #include "utility\Delegate.h"
 #include "utility\Func.h"

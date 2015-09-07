@@ -27,14 +27,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9079BF31-C4DF-48D4-9EFD-44261BC3D020}"
 	ProjectSection(SolutionItems) = preProject
 		Arduino Libraries\ATL\examples\_Intro\_Intro.ino = Arduino Libraries\ATL\examples\_Intro\_Intro.ino
+		Arduino Libraries\ATL\examples\Array\Array.ino = Arduino Libraries\ATL\examples\Array\Array.ino
+		Arduino Libraries\ATL\examples\Bit\Bit.ino = Arduino Libraries\ATL\examples\Bit\Bit.ino
+		Arduino Libraries\ATL\examples\BitArray\BitArray.ino = Arduino Libraries\ATL\examples\BitArray\BitArray.ino
+		Arduino Libraries\ATL\examples\CollectionRef\CollectionRef.ino = Arduino Libraries\ATL\examples\CollectionRef\CollectionRef.ino
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_IO", "ATL_IO", "{EE9DFF2B-A522-411D-B6B5-940DB86909BA}"
 	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_IO\ATL_IO.cpp = Arduino Libraries\ATL_IO\ATL_IO.cpp
+		Arduino Libraries\ATL_IO\ATL_IO.h = Arduino Libraries\ATL_IO\ATL_IO.h
 		Arduino Libraries\ATL_IO\library.properties = Arduino Libraries\ATL_IO\library.properties
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utility", "utility", "{8F125BAB-039A-4437-8F63-522A1CE36790}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{D40EFDEA-05FA-478A-BD88-74EFE3F7E5A6}"
 	ProjectSection(SolutionItems) = preProject
@@ -46,33 +50,60 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{D4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_HD44780", "ATL_HD44780", "{94626728-ACFE-4F69-A313-77FC06331CA2}"
 	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_HD44780\ATL_HD44780.cpp = Arduino Libraries\ATL_HD44780\ATL_HD44780.cpp
+		Arduino Libraries\ATL_HD44780\ATL_HD44780.h = Arduino Libraries\ATL_HD44780\ATL_HD44780.h
 		Arduino Libraries\ATL_HD44780\library.properties = Arduino Libraries\ATL_HD44780\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_MIDI", "ATL_MIDI", "{CC9C000F-9C6C-462F-8072-D923A09665FA}"
 	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_MIDI\ATL_MIDI.cpp = Arduino Libraries\ATL_MIDI\ATL_MIDI.cpp
+		Arduino Libraries\ATL_MIDI\ATL_MIDI.h = Arduino Libraries\ATL_MIDI\ATL_MIDI.h
 		Arduino Libraries\ATL_MIDI\library.properties = Arduino Libraries\ATL_MIDI\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_Process", "ATL_Process", "{0C5492CD-FF78-4417-8940-7682D51737DC}"
 	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_Process\ATL_Process.cpp = Arduino Libraries\ATL_Process\ATL_Process.cpp
+		Arduino Libraries\ATL_Process\ATL_Process.h = Arduino Libraries\ATL_Process\ATL_Process.h
 		Arduino Libraries\ATL_Process\library.properties = Arduino Libraries\ATL_Process\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_TB6612FNG", "ATL_TB6612FNG", "{2E078CB8-4343-4CF6-ABA0-53F822B36A7C}"
 	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_TB6612FNG\ATL_TB6612FNG.cpp = Arduino Libraries\ATL_TB6612FNG\ATL_TB6612FNG.cpp
+		Arduino Libraries\ATL_TB6612FNG\ATL_TB6612FNG.h = Arduino Libraries\ATL_TB6612FNG\ATL_TB6612FNG.h
 		Arduino Libraries\ATL_TB6612FNG\library.properties = Arduino Libraries\ATL_TB6612FNG\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_URM37V32", "ATL_URM37V32", "{FA8BA82F-FF4E-4FA3-BEB0-4014079F9BF3}"
 	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_URM37V32\ATL_URM37V32.cpp = Arduino Libraries\ATL_URM37V32\ATL_URM37V32.cpp
+		Arduino Libraries\ATL_URM37V32\ATL_URM37V32.h = Arduino Libraries\ATL_URM37V32\ATL_URM37V32.h
 		Arduino Libraries\ATL_URM37V32\library.properties = Arduino Libraries\ATL_URM37V32\library.properties
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_UI", "ATL_UI", "{92E5465D-B7AE-4D3A-856C-D480ABD89D17}"
 	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_UI\ATL_UI.cpp = Arduino Libraries\ATL_UI\ATL_UI.cpp
+		Arduino Libraries\ATL_UI\ATL_UI.h = Arduino Libraries\ATL_UI\ATL_UI.h
 		Arduino Libraries\ATL_UI\library.properties = Arduino Libraries\ATL_UI\library.properties
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{68F23C8D-18CF-4969-B229-A43AA9FF52AB}"
+	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_HD44780\examples\LCD\LCD.ino = Arduino Libraries\ATL_HD44780\examples\LCD\LCD.ino
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{DECEBAE1-130F-4879-A761-948F4CDE46E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{E57745DF-1AF7-4CA1-9BEB-3986F42E001B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{B73DDCC8-18B5-40B6-B895-3866E6C883C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{3FEAB1DD-405B-4524-A2FC-1F9D531D8987}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{42BD9785-228C-4C7C-961E-CA2CA768808F}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -106,8 +137,13 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9079BF31-C4DF-48D4-9EFD-44261BC3D020} = {D05E1ACA-732A-4F6E-BB16-22E9FECCF428}
-		{8F125BAB-039A-4437-8F63-522A1CE36790} = {EE9DFF2B-A522-411D-B6B5-940DB86909BA}
 		{D40EFDEA-05FA-478A-BD88-74EFE3F7E5A6} = {EE9DFF2B-A522-411D-B6B5-940DB86909BA}
+		{68F23C8D-18CF-4969-B229-A43AA9FF52AB} = {94626728-ACFE-4F69-A313-77FC06331CA2}
+		{DECEBAE1-130F-4879-A761-948F4CDE46E4} = {CC9C000F-9C6C-462F-8072-D923A09665FA}
+		{E57745DF-1AF7-4CA1-9BEB-3986F42E001B} = {0C5492CD-FF78-4417-8940-7682D51737DC}
+		{B73DDCC8-18B5-40B6-B895-3866E6C883C3} = {2E078CB8-4343-4CF6-ABA0-53F822B36A7C}
+		{3FEAB1DD-405B-4524-A2FC-1F9D531D8987} = {92E5465D-B7AE-4D3A-856C-D480ABD89D17}
+		{42BD9785-228C-4C7C-961E-CA2CA768808F} = {FA8BA82F-FF4E-4FA3-BEB0-4014079F9BF3}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ArduinoTemplateLibrary.vsmdi

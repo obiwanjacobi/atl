@@ -18,22 +18,21 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __COLLECTIONREF_H__
-#define __COLLECTIONREF_H__
+#ifndef __COLLECTION_H__
+#define __COLLECTION_H__
 
 namespace ATL {
 
-	
 
-// ArrayT is either Array or ArrayRef 
+// ArrayT is Array
 //   and implements T GetAt(unsigned char index), SetAt(unsigned char index, T item) and unsigned char getMaxCount()
 // ArrayT::ItemT is the type of the item in ArrayT (typedef in ArrayT)
 template<typename ArrayT>
-class CollectionRef
+class Collection
 {
 public:
-	CollectionRef(ArrayT& array)
-		: _array(array), _count(0)
+	Collection()
+		: _count(0)
 	{ }
 
 	inline unsigned char getCount() const
@@ -58,9 +57,9 @@ public:
 		return GetAt(index);
 	}
 
-	inline char IndexOf(typename ArrayT::ItemT& item) const
+	inline int8_t IndexOf(typename ArrayT::ItemT item) const
 	{
-		for (int i = 0; i < _count; i++)
+		for (unsigned char i = 0; i < _count; i++)
 		{
 			if (_array.GetAt(i) == item)
 				return i;
@@ -84,12 +83,11 @@ public:
 	}
 
 private:
-	ArrayT& _array;
+	ArrayT _array;
 	unsigned char _count;
 };
 
 
-
 } // ATL
 
-#endif //__COLLECTIONREF_H__
+#endif //__COLLECTION_H__

@@ -64,13 +64,13 @@ public:
 	inline bool Write(byte character)
 	{
 		// check for new-line and carriage return
-		if (character == '\10')
+		if (character == '\n')
 		{
 			IncrementCurrentRow();
 			WriteDisplayAddress();
 			return true;
 		}
-		if (character == '\13')
+		if (character == '\r')
 		{
 			_cursorCol = 0;
 			WriteDisplayAddress();
