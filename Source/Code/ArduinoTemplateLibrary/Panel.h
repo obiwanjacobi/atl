@@ -28,10 +28,117 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "Control.h"
 #include "InputControl.h"
 
-
 namespace ATL {
 
 
+class PanelBase : public InputControl
+{
+public:
+	inline InputControl* getCurrentControl() const
+	{
+		return _currentControl;
+	}
+
+	void setCurrentControl(InputControl* ctrl)
+	{
+		if (_currentControl != NULL)
+		{
+			_currentControl->setState(Normal);
+			setState(Normal);
+		}
+
+		_currentControl = ctrl;
+
+		if (_currentControl != NULL)
+		{
+			_currentControl->setState(Focused);
+			setState(Focused);
+		}
+	}
+
+	virtual bool OnKeyCommand(KeyCommands keyCmd)
+	{
+		if (_currentControl != NULL)
+		{
+			return _currentControl->OnKeyCommand(keyCmd);
+		}
+
+		return false;
+	}
+
+	virtual bool IsOfType(ControlTypes type) const
+	{
+		return ((typePanel & type) == typePanel) || InputControl::IsOfType(type);
+	}
+
+protected:
+	PanelBase(uint8_t pos = 0)
+		: InputControl(pos), _currentControl(NULL)
+	{ }
+
+	virtual bool BeforeChangeState(ControlState newState)
+	{
+		return newState != Selected;
+	}
+
+private:
+	InputControl* _currentControl;
+};
+
+
+template<const unsigned char MaxItems>
+class Panel : public PanelBase,
+	public ControlContainer<MaxItems>
+{
+	typedef ControlContainer<MaxItems> CollecitonT;
+
+public:
+	bool SetFirstInputControl()
+	{
+		InputControl* ctrl = (InputControl*)CollecitonT::getNext(NULL, typeInputControl);
+		if (ctrl != NULL)
+		{
+			setCurrentControl(ctrl);
+			return true;
+		}
+
+		return false;
+	}
+
+	bool SetNextInputControl()
+	{
+		InputControl* ctrl = (InputControl*)CollecitonT::getNext(getCurrentControl(), typeInputControl);
+		if (ctrl != NULL)
+		{
+			setCurrentControl(ctrl);
+			return true;
+		}
+
+		return false;
+	}
+
+	bool SetPreviousInputControl()
+	{
+		InputControl* ctrl = (InputControl*)CollecitonT::getPrevious(getCurrentControl(), typeInputControl);
+		if (ctrl != NULL)
+		{
+			setCurrentControl(ctrl);
+			return true;
+		}
+
+		return false;
+	}
+
+	
+
+protected:
+	Panel(uint8_t pos = 0)
+		: PanelBase(pos)
+	{ }
+};
+
+
+	/*
 // abstract
 template<const unsigned char MaxItems>
 class Panel : public InputControl,
@@ -127,94 +234,7 @@ private:
     InputControl* _currentControl;
 };
 
-
-
-template<const unsigned char MaxItems>
-class HorizontalPanel : public Panel<MaxItems>
-{
-	typedef Panel<MaxItems> PanelT;
-
-public:
-    HorizontalPanel(uint8_t pos = 0)
-        : PanelT(pos)
-    { }
-
-    virtual bool OnKeyCommand(KeyCommands keyCmd)
-    {
-        switch(keyCmd)
-        {
-            case Left:
-				return PanelT::SetPreviousInputControl();
-            case Right:
-				return PanelT::SetNextInputControl();
-            default:
-				break;
-        }
-
-		return PanelT::OnKeyCommand(keyCmd);
-    }
-
-    virtual void Display(DisplayWriter* output)
-    {
-		PanelT::Display(output);
-
-		Control* ctrl = PanelT::getNext(NULL);
-        while (ctrl != NULL)
-        {
-            if (ctrl->isVisible())
-            {
-                output->GoTo(DisplayWriter::DontCare, ctrl->getPosition());
-                ctrl->Display(output);
-            }
-
-			ctrl = PanelT::getNext(ctrl);
-        }
-    }
-};
-
-
-template<const unsigned char MaxItems>
-class VerticalPanel : public Panel<MaxItems>
-{
-	typedef Panel<MaxItems> PanelT;
-
-public:
-    VerticalPanel(uint8_t pos = 0)
-        : PanelT(pos)
-    { }
-
-    virtual bool OnKeyCommand(KeyCommands keyCmd)
-    {
-        switch(keyCmd)
-        {
-            case Up:
-				return PanelT::SetPreviousInputControl();
-            case Down:
-				return PanelT::SetNextInputControl();
-            default:
-				break;
-        }
-
-		return PanelT::OnKeyCommand(keyCmd);
-    }
-
-    virtual void Display(DisplayWriter* output)
-    {
-		PanelT::Display(output);
-
-		Control* ctrl = PanelT::getNext(NULL);
-        while (ctrl != NULL)
-        {
-            if (ctrl->isVisible())
-            {
-                output->GoTo(ctrl->getPosition(), 0);
-                ctrl->Display(output);
-            }
-
-			ctrl = PanelT::getNext(ctrl);
-        }
-    }
-};
+*/
 
 
 } // ATL

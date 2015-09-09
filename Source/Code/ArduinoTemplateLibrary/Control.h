@@ -24,19 +24,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stddef.h>
 #include <stdint.h>
 
+#include "DisplayWriter.h"
+
 namespace ATL {
-
-
-// abstract / interface
-class DisplayWriter
-{
-public:
-    static const uint8_t DontCare = 0xFF;
-
-    virtual void Write(const char* /*text*/) {}
-    virtual void GoTo(uint8_t /*lineIndex*/, uint8_t /*columnIndex*/) {}
-    virtual void SetCursor(uint8_t /*lineIndex*/, uint8_t /*columnIndex*/, bool /*blink*/) {}
-};
 
 
 enum ControlTypes
@@ -72,6 +62,11 @@ public:
     {
         return _pos;
     }
+
+	inline void setPosition(uint8_t newPos)
+	{
+		_pos = newPos;
+	}
 
     inline bool isHidden() const
     {

@@ -11,7 +11,7 @@ param
 [string[]] $ATL_MIDI_Files = "Midi.h", "MidiMessage.h", "MidiReader.h", "MidiWriter.h"
 [string[]] $ATL_Process_Files = "PID.h", "Task.h", "TimeoutTask.h"
 [string[]] $ATL_TB6612FNG_Files = "TB6612FNG_Controller.h", "TB6612FNG_Driver.h", "TB6612FNG_DriverSerial3Wire.h"
-[string[]] $ATL_UI_Files = "Array.h", "Collection.h", "Control.h", "ControlContainer.h","InputControl.h", "LabelControl.h", "NavigationController.h", "Page.h", "Panel.h", "UpDownControl.h"
+[string[]] $ATL_UI_Files = "Array.h", "Collection.h", "Control.h", "ControlContainer.h", "DisplayWriter.h", "HorizontalPanel.h", "InputControl.h", "LabelControl.h", "NavigationController.h", "Page.h", "PageController.h", "Panel.h", "UpDownControl.h", "VerticalPanel.h"
 [string[]] $ATL_URM37V32_Files = "URM37V32_Controller.h", "URM37V32_Driver.h"
 
 $HeaderMessage = "This file is generated. Do not change."

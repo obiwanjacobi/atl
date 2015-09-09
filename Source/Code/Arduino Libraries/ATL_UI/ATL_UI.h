@@ -9,11 +9,15 @@
 #include "utility\Collection.h"
 #include "utility\Control.h"
 #include "utility\ControlContainer.h"
+#include "utility\DisplayWriter.h"
+#include "utility\HorizontalPanel.h"
 #include "utility\InputControl.h"
 #include "utility\LabelControl.h"
 #include "utility\NavigationController.h"
 #include "utility\Page.h"
+#include "utility\PageController.h"
 #include "utility\Panel.h"
 #include "utility\UpDownControl.h"
+#include "utility\VerticalPanel.h"
 
 #endif	// __ATL_UI_H__

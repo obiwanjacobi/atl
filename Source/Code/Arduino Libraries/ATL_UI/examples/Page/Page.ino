@@ -21,13 +21,25 @@ typedef  TextWriter<
 
 LCD lcd;
 
+// some simple UI controls
+LabelControl label1("Line 1");
+LabelControl label2("Line 2");
+
+// 2 lines on the display
+Line<1> line1(&label1);
+Line<1> line2(&label2);
+
+// the page that is shown on the display
+Page<2> page(&line1, &line2);
+
 void setup() {
   // put your setup code here, to run once:
 
+  // init and enable display
   lcd.Initialize(true);
   lcd.setEnableDisplay();
 
-  lcd.WriteLine("Hello World!");
+  // 
 }
 
 void loop() {

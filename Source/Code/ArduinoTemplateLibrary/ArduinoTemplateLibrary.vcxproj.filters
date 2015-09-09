@@ -122,6 +122,11 @@
     <ClInclude Include="CollectionRef.h" />
     <ClInclude Include="ControlContainer.h" />
     <ClInclude Include="Collection.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="PageController.h" />
+    <ClInclude Include="DisplayWriter.h" />
+    <ClInclude Include="HorizontalPanel.h" />
+    <ClInclude Include="VerticalPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

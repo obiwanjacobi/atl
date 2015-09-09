@@ -88,8 +88,12 @@
     <ClInclude Include="CollectionRef.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="ControlContainer.h" />
+    <ClInclude Include="HorizontalPanel.h" />
+    <ClInclude Include="DisplayWriter.h" />
+    <ClInclude Include="PageController.h" />
     <ClInclude Include="InputControl.h" />
     <ClInclude Include="LabelControl.h" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="NavigationController.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Panel.h" />
@@ -139,6 +143,7 @@
     <ClInclude Include="URM37V32_Controller.h" />
     <ClInclude Include="URM37V32_Driver.h" />
     <ClInclude Include="ValueContainer.h" />
+    <ClInclude Include="VerticalPanel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

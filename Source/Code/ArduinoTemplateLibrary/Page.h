@@ -26,40 +26,45 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "NavigationController.h"
 #include "ControlContainer.h"
-#include "Control.h"
 #include "InputControl.h"
-#include "Panel.h"
+#include "DisplayWriter.h"
+#include "VerticalPanel.h"
 
 namespace ATL {
 
-template<const unsigned char MaxItems>
-class Line : public HorizontalPanel<MaxItems>
+template<const unsigned char MaxLines>
+class Page : public VerticalPanel<MaxLines>
 {
-	typedef HorizontalPanel<MaxItems> BaseT;
+	typedef VerticalPanel<MaxLines> BaseT;
 
 public:
-    Line(uint8_t pos = 0)
-        : BaseT(pos)
-    { }
-};
+	Page() {}
 
-
-class Page : public VerticalPanel<2>
-{
-	typedef VerticalPanel<2> BaseT;
-
-public:
-    Page(Panel* line1, Panel* line2)
+	Page(PanelBase* line1, PanelBase* line2)
     {
-		if (line1 != NULL)
-		{
-			BaseT::Add(line1);
-		}
-		if (line2 != NULL)
-		{
-			BaseT::Add(line2);
-		}
+		Add(line1);
+		Add(line2);
     }
+
+	Page(PanelBase* line1, PanelBase* line2, PanelBase* line3, PanelBase* line4)
+	{
+		Add(line1);
+		Add(line2);
+		Add(line3);
+		Add(line4);
+	}
+
+	inline void Add(PanelBase* line)
+	{
+		if (line == NULL) return;
+
+		if (line->getPosition() == 0)
+		{
+			line->setPosition(BaseT::getCount());
+		}
+
+		BaseT::Add(line);
+	}
 
     virtual void Display(DisplayWriter* output)
     {
@@ -86,7 +91,7 @@ public:
         if (handled) return true;
 
         // skip VerticalPanel!
-        return Panel<2>::OnKeyCommand(keyCmd);
+        return Panel<MaxLines>::OnKeyCommand(keyCmd);
     }
 
     bool TrySelectNextLine()
@@ -98,7 +103,7 @@ public:
         {
 			if (BaseT::SetNextInputControl())
             {
-                EnsureFirstControl();
+                //EnsureFirstControl();
                 return true;
             }
         }
@@ -115,7 +120,7 @@ public:
         {
 			if (BaseT::SetPreviousInputControl())
             {
-                EnsureFirstControl();
+                //EnsureFirstControl();
                 return true;
             }
         }
@@ -123,14 +128,14 @@ public:
         return false;
     }
 
-    inline Panel* getCurrentLine() const
+	inline PanelBase* getCurrentLine() const
     {
-		return (Panel*)Control::DynamicCast(BaseT::getCurrentControl(), typePanel);
+		return (PanelBase*)Control::DynamicCast(BaseT::getCurrentControl(), typePanel);
     }
 
     InputControl* getCurrentInputControl() const
     {
-        Panel* currentLine = getCurrentLine();
+		PanelBase* currentLine = getCurrentLine();
 
         if (currentLine != NULL)
         {
@@ -141,18 +146,18 @@ public:
     }
 
 protected:
-    inline bool EnsureFirstControl()
+    /*inline bool EnsureFirstControl()
     {
-        Panel* line = getCurrentLine();
+        PanelBase* line = getCurrentLine();
         return line->SetFirstInputControl();
-    }
+    }*/
 
     inline void DisplayCursor(DisplayWriter* output)
     {
         InputControl* ctrl = getCurrentInputControl();
         if (ctrl != NULL)
         {
-            Panel* line = getCurrentLine();
+			PanelBase* line = getCurrentLine();
             output->SetCursor(line->getPosition(), ctrl->getPosition(), ctrl->isSelected());
         }
         else
@@ -162,22 +167,6 @@ protected:
         }
     }
 };
-
-
-template<const unsigned char MaxItems>
-class PageController : public ControlContainer<MaxItems>
-{
-public:
-    inline Page* getCurrentPage() const
-    {
-        return _currentPage;
-    }
-
-private:
-    Page* _currentPage;
-};
-
-
 
 
 } // ATL

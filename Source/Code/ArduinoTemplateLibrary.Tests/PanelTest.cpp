@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Arduino.h"
 #include "..\ArduinoTemplateLibrary\Control.h"
-#include "..\ArduinoTemplateLibrary\Panel.h"
+#include "..\ArduinoTemplateLibrary\HorizontalPanel.h"
+#include "..\ArduinoTemplateLibrary\VerticalPanel.h"
 #include "TestControls.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
