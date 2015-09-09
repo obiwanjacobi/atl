@@ -44,11 +44,11 @@ public:
 		output->Write(_value->ToString());
 	}
 
-	virtual bool OnKeyCommand(KeyCommands keyCmd)
+	virtual bool OnNavigationCommand(NavigationCommands navCmd)
 	{
 		bool handled = false;
 
-		switch (keyCmd)
+		switch (navCmd)
 		{
 		case Up:
 			handled = TryValueUp();
@@ -62,7 +62,7 @@ public:
 
 		if (handled) return true;
 
-		return InputControl::OnKeyCommand(keyCmd);
+		return InputControl::OnNavigationCommand(navCmd);
 	}
 
 	bool TryValueUp()

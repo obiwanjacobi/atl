@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "ControlContainer.h"
 #include "InputControl.h"
 #include "DisplayWriter.h"
+#include "Panel.h"
 #include "VerticalPanel.h"
 
 namespace ATL {
@@ -40,13 +41,13 @@ class Page : public VerticalPanel<MaxLines>
 public:
 	Page() {}
 
-	Page(PanelBase* line1, PanelBase* line2)
+	Page(Panel* line1, Panel* line2)
     {
 		Add(line1);
 		Add(line2);
     }
 
-	Page(PanelBase* line1, PanelBase* line2, PanelBase* line3, PanelBase* line4)
+	Page(Panel* line1, Panel* line2, Panel* line3, Panel* line4)
 	{
 		Add(line1);
 		Add(line2);
@@ -54,7 +55,7 @@ public:
 		Add(line4);
 	}
 
-	inline void Add(PanelBase* line)
+	inline void Add(Panel* line)
 	{
 		if (line == NULL) return;
 
@@ -72,11 +73,11 @@ public:
         DisplayCursor(output);
     }
 
-    virtual bool OnKeyCommand(KeyCommands keyCmd)
+    virtual bool OnNavigationCommand(NavigationCommands navCmd)
     {
         bool handled = false;
 
-        switch(keyCmd)
+		switch (navCmd)
         {
             case Up:
             handled = TrySelectPreviousLine();
@@ -91,8 +92,13 @@ public:
         if (handled) return true;
 
         // skip VerticalPanel!
-        return Panel<MaxLines>::OnKeyCommand(keyCmd);
+		return PanelControlContainer<MaxLines>::OnNavigationCommand(navCmd);
     }
+
+	virtual bool IsOfType(ControlTypes type) const
+	{
+		return ((typePage & type) == typePage) || BaseT::IsOfType(type);
+	}
 
     bool TrySelectNextLine()
     {
@@ -101,11 +107,7 @@ public:
         if (currentCtrl == NULL ||
            (currentCtrl != NULL && !currentCtrl->isSelected()))
         {
-			if (BaseT::SetNextInputControl())
-            {
-                //EnsureFirstControl();
-                return true;
-            }
+			return BaseT::SetNextInputControl();
         }
 
         return false;
@@ -118,24 +120,20 @@ public:
         if (currentCtrl == NULL ||
            (currentCtrl != NULL && !currentCtrl->isSelected()))
         {
-			if (BaseT::SetPreviousInputControl())
-            {
-                //EnsureFirstControl();
-                return true;
-            }
+			return BaseT::SetPreviousInputControl();
         }
 
         return false;
     }
 
-	inline PanelBase* getCurrentLine() const
+	inline Panel* getCurrentLine() const
     {
-		return (PanelBase*)Control::DynamicCast(BaseT::getCurrentControl(), typePanel);
+		return (Panel*)Control::DynamicCast(BaseT::getCurrentControl(), typePanel);
     }
 
     InputControl* getCurrentInputControl() const
     {
-		PanelBase* currentLine = getCurrentLine();
+		Panel* currentLine = getCurrentLine();
 
         if (currentLine != NULL)
         {
@@ -146,18 +144,12 @@ public:
     }
 
 protected:
-    /*inline bool EnsureFirstControl()
-    {
-        PanelBase* line = getCurrentLine();
-        return line->SetFirstInputControl();
-    }*/
-
     inline void DisplayCursor(DisplayWriter* output)
     {
         InputControl* ctrl = getCurrentInputControl();
         if (ctrl != NULL)
         {
-			PanelBase* line = getCurrentLine();
+			Panel* line = getCurrentLine();
             output->SetCursor(line->getPosition(), ctrl->getPosition(), ctrl->isSelected());
         }
         else

@@ -127,6 +127,8 @@
     <ClInclude Include="DisplayWriter.h" />
     <ClInclude Include="HorizontalPanel.h" />
     <ClInclude Include="VerticalPanel.h" />
+    <ClInclude Include="PanelControlContainer.h" />
+    <ClInclude Include="HD44780_DisplayWriter.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

@@ -26,25 +26,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "NavigationController.h"
 #include "Control.h"
-#include "Panel.h"
+#include "PanelControlContainer.h"
 
 
 namespace ATL {
 
 
 template<const unsigned char MaxItems>
-class VerticalPanel : public Panel<MaxItems>
+class VerticalPanel : public PanelControlContainer<MaxItems>
 {
-	typedef Panel<MaxItems> BaseT;
+	typedef PanelControlContainer<MaxItems> BaseT;
 
 public:
 	VerticalPanel(uint8_t pos = 0)
 		: BaseT(pos)
 	{ }
 
-	virtual bool OnKeyCommand(KeyCommands keyCmd)
+	virtual bool OnNavigationCommand(NavigationCommands navCmd)
 	{
-		switch (keyCmd)
+		switch (navCmd)
 		{
 		case Up:
 			return BaseT::SetPreviousInputControl();
@@ -54,7 +54,7 @@ public:
 			break;
 		}
 
-		return BaseT::OnKeyCommand(keyCmd);
+		return BaseT::OnNavigationCommand(navCmd);
 	}
 
 	virtual void Display(DisplayWriter* output)

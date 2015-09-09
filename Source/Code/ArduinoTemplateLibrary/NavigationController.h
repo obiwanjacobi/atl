@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 
-enum KeyCommands //: uint8_t
+enum NavigationCommands //: uint8_t
 {
 	None,
 	Up,
@@ -39,7 +39,7 @@ enum KeyCommands //: uint8_t
 class NavigationController
 {
 public:
-	virtual bool OnKeyCommand(KeyCommands /*keyCmd*/)
+	virtual bool OnNavigationCommand(NavigationCommands /*navCmd*/)
 	{
 		return false;
 	}

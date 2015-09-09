@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Arduino.h"
 #include "..\ArduinoTemplateLibrary\Delays.h"
 #include "..\ArduinoTemplateLibrary\Time.h"
 

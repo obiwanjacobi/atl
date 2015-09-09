@@ -32,7 +32,7 @@ class InputControl : public Control,
 					 public NavigationController
 {
 public:
-	virtual bool OnKeyCommand(KeyCommands keyCmd)
+	virtual bool OnNavigationCommand(NavigationCommands keyCmd)
 	{
 		switch (keyCmd)
 		{
@@ -44,7 +44,7 @@ public:
 			break;
 		}
 
-		return NavigationController::OnKeyCommand(keyCmd);
+		return NavigationController::OnNavigationCommand(keyCmd);
 	}
 
 	bool TrySelect()

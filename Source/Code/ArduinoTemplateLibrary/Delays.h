@@ -152,11 +152,18 @@ public:
 	*/
 	static TimeT& getTime() { return _time; }
 
+	static unsigned int getLastDeltaTime()
+	{
+		return _delta;
+	}
+
 private:
 	static TimeT _time;
 	static unsigned int _delta;
 	static unsigned int _ids[MaxItems];
 	static timeout_t _delays[MaxItems];
+
+	Delays() {}
 };
 
 template<class TimeT, const unsigned char MaxItems> 

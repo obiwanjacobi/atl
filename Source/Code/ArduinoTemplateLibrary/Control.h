@@ -35,6 +35,7 @@ enum ControlTypes
     typeControl = 0x01,
     typeInputControl = 0x02,
     typePanel = 0x03,
+	typePage = 0x04,
 };
 
 

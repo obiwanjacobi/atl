@@ -31,18 +31,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 
-template<const unsigned char MaxItems>
-class PageController : public ControlContainer<MaxItems>,
+	template<const unsigned char LinesPerPage, const unsigned char MaxPages>
+class PageController : public ControlContainer<MaxPages>,
                        public NavigationController
 {
+
 public:
-	inline Page* getCurrentPage() const
+	typedef Page<LinesPerPage> PageT;
+
+	inline PageT* getCurrentPage() const
 	{
 		return _currentPage;
 	}
 
 private:
-	Page* _currentPage;
+	PageT* _currentPage;
 };
 
 

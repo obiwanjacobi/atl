@@ -68,7 +68,7 @@ namespace ArduinoTemplateLibraryTests
 			// control has to have focus
 			tic.setState(ControlState::Focused);
 
-			bool successful = tic.OnKeyCommand(KeyCommands::Enter);
+			bool successful = tic.OnNavigationCommand(NavigationCommands::Enter);
 
 			Assert::IsTrue(successful);
 			Assert::IsTrue(tic.isSelected());
@@ -81,7 +81,7 @@ namespace ArduinoTemplateLibraryTests
 			// control has to be selected
 			tic.setState(ControlState::Selected);
 
-			bool successful = tic.OnKeyCommand(KeyCommands::Exit);
+			bool successful = tic.OnNavigationCommand(NavigationCommands::Exit);
 
 			Assert::IsTrue(successful);
 			Assert::IsTrue(tic.isFocussed());

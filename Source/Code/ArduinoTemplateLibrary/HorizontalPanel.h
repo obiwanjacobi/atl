@@ -26,25 +26,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "DisplayWriter.h"
 #include "Control.h"
-#include "Panel.h"
+#include "PanelControlContainer.h"
 
 
 namespace ATL {
 
 
 template<const unsigned char MaxItems>
-class HorizontalPanel : public Panel<MaxItems>
+class HorizontalPanel : public PanelControlContainer<MaxItems>
 {
-	typedef Panel<MaxItems> PanelT;
+	typedef PanelControlContainer<MaxItems> PanelT;
 
 public:
 	HorizontalPanel(uint8_t pos = 0)
 		: PanelT(pos)
 	{ }
 
-	virtual bool OnKeyCommand(KeyCommands keyCmd)
+	virtual bool OnNavigationCommand(NavigationCommands navCmd)
 	{
-		switch (keyCmd)
+		switch (navCmd)
 		{
 		case Left:
 			return PanelT::SetPreviousInputControl();
@@ -54,7 +54,7 @@ public:
 			break;
 		}
 
-		return PanelT::OnKeyCommand(keyCmd);
+		return PanelT::OnNavigationCommand(navCmd);
 	}
 
 	virtual void Display(DisplayWriter* output)

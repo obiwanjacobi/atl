@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Arduino.h"
 #include "..\ArduinoTemplateLibrary\Range.h"
 #include "..\ArduinoTemplateLibrary\Time.h"
 #include "..\ArduinoTemplateLibrary\PID.h"

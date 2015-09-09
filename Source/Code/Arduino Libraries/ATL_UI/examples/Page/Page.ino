@@ -1,10 +1,12 @@
 #include <ATL_HD44780.h>
 #include <ATL_IO.h>
 #include <ATL_UI.h>
+#include "LcdDisplayWriter.h"
 
 using namespace ATL;
 
-typedef  TextWriter<
+typedef LcdDisplayWriter<
+          TextWriter<
             HD44780_View<
               HD44780_Controller<
                 HD44780_Driver<
@@ -17,7 +19,8 @@ typedef  TextWriter<
                 >
               >, 2, 16        // 2 lines, 16 characters
             >
-          > LCD;
+          > 
+        > LCD;
 
 LCD lcd;
 
@@ -25,7 +28,7 @@ LCD lcd;
 LabelControl label1("Line 1");
 LabelControl label2("Line 2");
 
-// 2 lines on the display
+// 2 lines (with only one control each) on the display
 Line<1> line1(&label1);
 Line<1> line2(&label2);
 
@@ -39,7 +42,8 @@ void setup() {
   lcd.Initialize(true);
   lcd.setEnableDisplay();
 
-  // 
+  // display the page
+  page.Display(&lcd);
 }
 
 void loop() {

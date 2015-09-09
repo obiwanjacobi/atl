@@ -78,14 +78,6 @@ public:
 	{
 		return BoardPinNumber;
 	}
-
-protected:
-
-	// Can be used as a BaseT for TimeoutTask.
-	inline void OnTimeout()
-	{
-		Toggle();
-	}
 };
 
 } // ATL

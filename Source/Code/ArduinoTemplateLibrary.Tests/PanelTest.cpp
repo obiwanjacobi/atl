@@ -66,7 +66,7 @@ namespace ArduinoTemplateLibraryTests
 			tested.Add(&tic1);
 			tested.Add(&tic2);
 
-			bool handled = tested.OnKeyCommand(Left);
+			bool handled = tested.OnNavigationCommand(Left);
 
 			Assert::IsTrue(handled);
 			Assert::IsTrue(tested.getCurrentControl() != NULL);
@@ -83,7 +83,7 @@ namespace ArduinoTemplateLibraryTests
 			tested.Add(&tic1);
 			tested.Add(&tic2);
 
-			bool handled = tested.OnKeyCommand(Right);
+			bool handled = tested.OnNavigationCommand(Right);
 
 			Assert::IsTrue(handled);
 			Assert::IsTrue(tested.getCurrentControl() != NULL);
@@ -100,7 +100,7 @@ namespace ArduinoTemplateLibraryTests
 			tested.Add(&tic1);
 			tested.Add(&tic2);
 
-			bool handled = tested.OnKeyCommand(Up);
+			bool handled = tested.OnNavigationCommand(Up);
 
 			Assert::IsFalse(handled);
 			Assert::IsFalse(tested.getCurrentControl() != NULL);
@@ -116,7 +116,7 @@ namespace ArduinoTemplateLibraryTests
 			tested.Add(&tic1);
 			tested.Add(&tic2);
 
-			bool handled = tested.OnKeyCommand(Down);
+			bool handled = tested.OnNavigationCommand(Down);
 
 			Assert::IsFalse(handled);
 			Assert::IsFalse(tested.getCurrentControl() != NULL);
@@ -126,7 +126,7 @@ namespace ArduinoTemplateLibraryTests
 		// Vertical Panel Tests
 		//
 
-		/*[TestMethod]
+		[TestMethod]
 		void VP_CurrentControl_NoCurrentCtrl_Null()
 		{
 			VerticalPanel<2> tested;
@@ -149,7 +149,7 @@ namespace ArduinoTemplateLibraryTests
 			tested.Add(&tic1);
 			tested.Add(&tic2);
 
-			bool handled = tested.OnKeyCommand(Up);
+			bool handled = tested.OnNavigationCommand(Up);
 
 			Assert::IsTrue(handled);
 			Assert::IsTrue(tested.getCurrentControl() != NULL);
@@ -166,7 +166,7 @@ namespace ArduinoTemplateLibraryTests
 			tested.Add(&tic1);
 			tested.Add(&tic2);
 
-			bool handled = tested.OnKeyCommand(Down);
+			bool handled = tested.OnNavigationCommand(Down);
 
 			Assert::IsTrue(handled);
 			Assert::IsTrue(tested.getCurrentControl() != NULL);
@@ -183,7 +183,7 @@ namespace ArduinoTemplateLibraryTests
 			tested.Add(&tic1);
 			tested.Add(&tic2);
 
-			bool handled = tested.OnKeyCommand(Left);
+			bool handled = tested.OnNavigationCommand(Left);
 
 			Assert::IsFalse(handled);
 			Assert::IsFalse(tested.getCurrentControl() != NULL);
@@ -199,10 +199,10 @@ namespace ArduinoTemplateLibraryTests
 			tested.Add(&tic1);
 			tested.Add(&tic2);
 
-			bool handled = tested.OnKeyCommand(Right);
+			bool handled = tested.OnNavigationCommand(Right);
 
 			Assert::IsFalse(handled);
 			Assert::IsFalse(tested.getCurrentControl() != NULL);
-		}*/
+		}
 	};
 }
