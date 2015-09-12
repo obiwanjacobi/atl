@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <stddef.h>
 #include <stdint.h>
-
 #include "ControlContainer.h"
 #include "InputControl.h"
 #include "Panel.h"
@@ -33,7 +32,7 @@ namespace ATL {
 // abstract
 template<const uint8_t MaxItems>
 class PanelControlContainer : public Panel,
-	public ControlContainer<MaxItems>
+	                          public ControlContainer<MaxItems>
 {
 	typedef ControlContainer<MaxItems> BaseT;
 

@@ -59,8 +59,6 @@ public:
 
 	virtual void Display(DisplayWriter* output)
 	{
-		BaseT::Display(output);
-
 		Control* ctrl = BaseT::getNext(NULL);
 		while (ctrl != NULL)
 		{

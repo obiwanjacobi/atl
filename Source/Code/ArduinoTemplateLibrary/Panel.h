@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <stddef.h>
 #include <stdint.h>
-
 #include "ControlContainer.h"
 #include "Control.h"
 #include "InputControl.h"
@@ -53,6 +52,14 @@ public:
 		{
 			_currentControl->setState(Focused);
 			setState(Focused);
+		}
+	}
+
+	virtual void Display(DisplayWriter* output)
+	{
+		if (_currentControl != NULL)
+		{
+			_currentControl->Display(output);
 		}
 	}
 

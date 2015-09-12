@@ -23,29 +23,61 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <stddef.h>
 #include <stdint.h>
-
 #include "NavigationController.h"
-#include "ControlContainer.h"
+#include "PanelControlContainer.h"
 #include "Page.h"
 
 namespace ATL {
 
 
-	template<const uint8_t LinesPerPage, const uint8_t MaxPages>
-class PageController : public ControlContainer<MaxPages>,
-                       public NavigationController
+template<const uint8_t LinesPerPage, const uint8_t MaxPages>
+class PageController : public PanelControlContainer<MaxPages>
 {
+	typedef PanelControlContainer<MaxPages> BaseT;
 
 public:
 	typedef Page<LinesPerPage> PageT;
 
 	inline PageT* getCurrentPage() const
 	{
-		return _currentPage;
+		return (PageT*)BaseT::getCurrentControl();
 	}
 
-private:
-	PageT* _currentPage;
+	virtual bool OnNavigationCommand(NavigationCommands navCmd)
+	{
+		bool handled = BaseT::OnNavigationCommand(navCmd);
+
+		if (handled) return true;
+
+		switch (navCmd)
+		{
+		case Up:
+			handled = TrySetPreviousPage();
+			break;
+		case Down:
+			handled = TrySetNextPage();
+			break;
+		default:
+			break;
+		}
+
+		return handled;
+	}
+
+	inline bool TrySetFirstPage()
+	{
+		return BaseT::SetFirstInputControl();
+	}
+
+	inline bool TrySetNextPage()
+	{
+		return BaseT::SetNextInputControl();
+	}
+
+	inline bool TrySetPreviousPage()
+	{
+		return BaseT::SetPreviousInputControl();
+	}
 };
 
 

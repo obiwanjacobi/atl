@@ -108,6 +108,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{3FEAB1DD-405B-4524-A2FC-1F9D531D8987}"
 	ProjectSection(SolutionItems) = preProject
 		Arduino Libraries\ATL_UI\examples\Page\Page.ino = Arduino Libraries\ATL_UI\examples\Page\Page.ino
+		Arduino Libraries\ATL_UI\examples\PageController\PageController.ino = Arduino Libraries\ATL_UI\examples\PageController\PageController.ino
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{42BD9785-228C-4C7C-961E-CA2CA768808F}"

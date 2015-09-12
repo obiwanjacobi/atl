@@ -59,8 +59,6 @@ public:
 
 	virtual void Display(DisplayWriter* output)
 	{
-		PanelT::Display(output);
-
 		Control* ctrl = PanelT::getNext(NULL);
 		while (ctrl != NULL)
 		{
