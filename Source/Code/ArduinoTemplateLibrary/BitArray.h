@@ -26,7 +26,6 @@
 #endif
 
 #include <stdint.h>
-#include "Data.h"
 
 namespace ATL {
 

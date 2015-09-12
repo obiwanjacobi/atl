@@ -21,6 +21,7 @@
 #ifndef __TIMEOUTTASK_H__
 #define __TIMEOUTTASK_H__
 
+#include <stdint.h>
 #include "Delays.h"
 #include "Task.h"
 
@@ -37,7 +38,7 @@ namespace ATL {
 	The DelaysT is a Delays<> type used to keep track of time.
 	The Timeout is specified in the same quantity as the DelaysT is specified (Milli- or MicroSeconds).
 */
-template<class BaseT, typename DelaysT, const timeout_t Timeout>
+template<class BaseT, typename DelaysT, const uint32_t Timeout>
 class TimeoutTask : public BaseT
 {
 public:
@@ -62,7 +63,7 @@ public:
 	/*
 		Returns the Timeout template parameter.
 	 */
-	inline timeout_t getTimeout() const
+	inline uint32_t getTimeout() const
 	{
 		return Timeout;
 	}

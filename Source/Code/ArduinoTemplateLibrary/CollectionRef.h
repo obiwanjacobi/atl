@@ -50,7 +50,7 @@ public:
 
 	inline typename ArrayT::ItemT GetAt(uint8_t index) const
 	{
-		if (!IsValidIndex(index)) return Default<ArrayT::ItemT>::DefaultOfT;
+		if (!IsValidIndex(index)) return Default<typename ArrayT::ItemT>::DefaultOfT;
 
 		return _array.GetAt(index);
 	}

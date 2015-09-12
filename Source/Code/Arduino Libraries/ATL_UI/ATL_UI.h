@@ -9,6 +9,7 @@
 #include "utility\Collection.h"
 #include "utility\Control.h"
 #include "utility\ControlContainer.h"
+#include "utility\Default.h"
 #include "utility\DisplayWriter.h"
 #include "utility\HD44780_DisplayWriter.h"
 #include "utility\HorizontalPanel.h"

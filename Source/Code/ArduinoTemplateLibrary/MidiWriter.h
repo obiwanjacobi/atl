@@ -22,6 +22,7 @@
 #define __MIDIWRITER_H__
 
 #include "Midi.h"
+#include "MidiMessage.h"
 
 namespace ATL {
 

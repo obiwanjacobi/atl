@@ -21,6 +21,8 @@
 #ifndef __MIDIREADER_H__
 #define __MIDIREADER_H__
 
+#include "MidiMessage.h"
+
 namespace ATL {
 
 /*

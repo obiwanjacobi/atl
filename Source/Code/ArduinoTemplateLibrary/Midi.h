@@ -21,7 +21,7 @@
 #ifndef __MIDI_H__
 #define __MIDI_H__
 
-#include <Arduino.h>
+#include <stdint.h>
 
 namespace ATL {
 
