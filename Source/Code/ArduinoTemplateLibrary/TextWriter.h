@@ -41,7 +41,7 @@ public:
 
 	inline void Write(const uint8_t value)
 	{
-		Write((unsigned int)value);
+		Write((uint16_t)value);
 	}
 
 	// does NOT write the terminating zero!
@@ -56,7 +56,7 @@ public:
 		}
 	}
 
-	inline void Write(const int value)
+	inline void Write(const int16_t value)
 	{
 		// test for negative with decimals
 		if (FormatInfoT::DefaultBase == TextFormatInfo::baseDecimal)
@@ -82,7 +82,7 @@ public:
 		WriteInt(value, FormatInfoT::DefaultBase);
 	}
 
-	void Write(const long value)
+	void Write(const int32_t value)
 	{
 		// test for negative with decimals
 		if (FormatInfoT::DefaultBase == TextFormatInfo::baseDecimal)
@@ -141,7 +141,7 @@ public:
 		WriteLine();
 	}
 
-	inline void WriteLine(const int value)
+	inline void WriteLine(const int16_t value)
 	{
 		Write(value);
 		WriteLine();
@@ -153,7 +153,7 @@ public:
 		WriteLine();
 	}
 
-	inline void WriteLine(const long value)
+	inline void WriteLine(const int32_t value)
 	{
 		Write(value);
 		WriteLine();

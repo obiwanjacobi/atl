@@ -19,7 +19,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			typedef Delays<Time<Milliseconds>, 4> MilliDelays;
 
-			unsigned int delta = MilliDelays::Update();
+			unsigned long delta = MilliDelays::Update();
 
 			Assert::IsFalse(MilliDelays::Wait(1, delta));
 			Assert::AreEqual(delta, MilliDelays::Update());

@@ -41,7 +41,7 @@ namespace ArduinoTemplateLibraryTests
 				Assert::IsTrue(target.Write(i));
 			}
 
-			Assert::AreEqual(size - 1, target.getLength());
+			Assert::AreEqual((uint16_t)(size - 1), (uint16_t)target.getLength());
 		}
 
 		[TestMethod]

@@ -52,7 +52,7 @@ namespace ArduinoTemplateLibraryTests
 			msg.Beats = 32000;
 
 			Assert::AreEqual((int)Midi::SongPosition, (int)msg.MessageType);
-			Assert::AreEqual((unsigned int)32000, msg.Beats);
+			Assert::AreEqual((uint16_t)32000, (uint16_t)msg.Beats);
 		}
 
 		[TestMethod]

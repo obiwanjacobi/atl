@@ -40,7 +40,7 @@ public:
 	/*
 		Calls TimeT::Update and returns the delta time.
 	 */
-	static uint16_t Update()
+	static uint32_t Update()
 	{
 		_delta = _time.Update();
 		return _delta;
@@ -156,7 +156,7 @@ public:
 
 private:
 	static TimeT _time;
-	static uint16_t _delta;
+	static uint32_t _delta;
 	static uint16_t _ids[MaxItems];
 	static uint32_t _delays[MaxItems];
 
@@ -167,7 +167,7 @@ template<class TimeT, const uint8_t MaxItems>
 TimeT Delays<TimeT, MaxItems>::_time;
 
 template<class TimeT, const uint8_t MaxItems> 
-uint16_t Delays<TimeT, MaxItems>::_delta = 0;
+uint32_t Delays<TimeT, MaxItems>::_delta = 0;
 
 template<class TimeT, const uint8_t MaxItems> 
 uint16_t Delays<TimeT, MaxItems>::_ids[] = {};
