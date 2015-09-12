@@ -71,13 +71,13 @@ public:
 	/*
 		Returns the current scroll offset.
 	 */
-	inline byte getDislayOffset() const
+	inline uint8_t getDislayOffset() const
 	{
 		return _offset;
 	}
 
 private:
-	byte _offset;
+	uint8_t _offset;
 	
 };
 

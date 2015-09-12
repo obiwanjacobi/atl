@@ -23,7 +23,7 @@ namespace ArduinoTemplateLibraryTests
 			bool successful = tic.TrySelect();
 
 			Assert::IsTrue(successful);
-			Assert::IsTrue(tic.isSelected());
+			Assert::IsTrue(tic.getIsSelected());
 		}
 
 		[TestMethod]
@@ -36,7 +36,7 @@ namespace ArduinoTemplateLibraryTests
 			bool successful = tic.TryDeselect();
 
 			Assert::IsTrue(successful);
-			Assert::IsTrue(tic.isFocussed());
+			Assert::IsTrue(tic.getIsFocussed());
 		}
 
 		[TestMethod]
@@ -47,7 +47,7 @@ namespace ArduinoTemplateLibraryTests
 			bool successful = tic.TrySelect();
 
 			Assert::IsFalse(successful);
-			Assert::IsFalse(tic.isSelected());
+			Assert::IsFalse(tic.getIsSelected());
 		}
 
 		[TestMethod]
@@ -58,7 +58,7 @@ namespace ArduinoTemplateLibraryTests
 			bool successful = tic.TryDeselect();
 
 			Assert::IsFalse(successful);
-			Assert::IsFalse(tic.isFocussed());
+			Assert::IsFalse(tic.getIsFocussed());
 		}
 
 		[TestMethod]
@@ -71,7 +71,7 @@ namespace ArduinoTemplateLibraryTests
 			bool successful = tic.OnNavigationCommand(NavigationCommands::Enter);
 
 			Assert::IsTrue(successful);
-			Assert::IsTrue(tic.isSelected());
+			Assert::IsTrue(tic.getIsSelected());
 		}
 
 		[TestMethod]
@@ -84,7 +84,7 @@ namespace ArduinoTemplateLibraryTests
 			bool successful = tic.OnNavigationCommand(NavigationCommands::Exit);
 
 			Assert::IsTrue(successful);
-			Assert::IsTrue(tic.isFocussed());
+			Assert::IsTrue(tic.getIsFocussed());
 		}
 	};
 }

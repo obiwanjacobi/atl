@@ -62,7 +62,7 @@ namespace ArduinoTemplateLibraryTests
 			ValueArray array;
 			CollectionRef<ValueArray> tested(array);
 
-			Assert::AreEqual(ValueArray::DefaultOfT, tested.GetAt(0));
+			Assert::AreEqual(Default<int>::DefaultOfT, tested.GetAt(0));
 		}
 
 		[TestMethod]

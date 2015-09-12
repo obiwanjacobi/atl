@@ -28,7 +28,7 @@ namespace ATL {
 		T getFeedback()
 		T getLargestAcceptableError()
 		T LowPassFilter(T, unsigned int)
-		unsigned int [TimeEx]getDeltaTime()
+		uint16_t [TimeEx]getDeltaTime()
 		void [Range]ClipValue(T&)
 
 	T is the data type that hold the values. Either float or double or int or long?.
@@ -74,7 +74,7 @@ public:
 	{
 		T input = BaseT::getFeedback();
 		T error = CalcError(setPoint, input);
-		unsigned int deltaTime = BaseT::getDeltaTime();
+		uint16_t deltaTime = BaseT::getDeltaTime();
 
 		T value = CalcP(error, biasP) + CalcI(error, deltaTime, biasI) + CalcD(error, deltaTime, biasD);
 
@@ -109,7 +109,7 @@ private:
 		return error * bias;
 	}
 
-	inline T CalcI(const T error, const unsigned int deltaTime, const T bias)
+	inline T CalcI(const T error, const uint16_t deltaTime, const T bias)
 	{
 		if (bias != 0)
 		{
@@ -121,7 +121,7 @@ private:
 		return _integralAcc;
 	}
 
-	inline T CalcD(T error, const unsigned int deltaTime, const T bias)
+	inline T CalcD(T error, const uint16_t deltaTime, const T bias)
 	{
 		T value = 0;
 		

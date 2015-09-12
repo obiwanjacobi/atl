@@ -18,39 +18,46 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#ifndef __DATA_H__
+#define __DATA_H__
 
-#ifndef __DELAY_H__
-#define __DELAY_H__
+namespace ATL {
 
-#include "../Time.h"
 
-template<const TimeResolution TimeRes>
-class Delay
+// container class for RAM data
+template<typename T>
+class Data
 {
 public:
-    inline static void Delay(uint16_t timeout)
+    Data(T data)
     {
-
+		Value = data;
     }
+
+    inline operator T() const
+    {
+		return Value;
+    }
+
+    inline void operator=(T& data)
+    {
+		Value = data;
+    }
+
+	inline void operator|=(T& data)
+	{
+		Value |= data;
+	}
+
+	inline void operator&=(T& data)
+	{
+		Value &= data;
+	}
+
+    T Value;
 };
 
-template<>
-class Delay<Milliseconds>
-{
-public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_ms(timeout);
-    }
-};
 
-template<>
-class Delay<Microseconds>
-{
-    public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_us(timeout);
-    }
-};
-#endif /* __DELAY_H__ */
+} // ATL
+
+#endif //__DATA_H__

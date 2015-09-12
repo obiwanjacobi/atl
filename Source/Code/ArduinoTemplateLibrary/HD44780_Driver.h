@@ -62,7 +62,7 @@ public:
 	/*
 		Writes a command to the LCD.
 	 */
-	inline void WriteCommand(unsigned char cmd)
+	inline void WriteCommand(uint8_t cmd)
 	{
 		_rs.Write(false);
 		Write8(cmd);
@@ -71,7 +71,7 @@ public:
 	/*
 		Writes data to the LCD.
 	 */
-	inline void WriteData(unsigned char data)
+	inline void WriteData(uint8_t data)
 	{
 		_rs.Write(true);
 		Write8(data);
@@ -79,13 +79,13 @@ public:
 
 protected:
 
-	inline void Write8(unsigned char data)
+	inline void Write8(uint8_t data)
 	{
 		Write4(data >> 4);
 		Write4(data);
 	}
 
-	inline void Write4(unsigned char data)
+	inline void Write4(uint8_t data)
 	{
 		_data04.Write(data & 0x01);
 		_data15.Write(data & 0x02);

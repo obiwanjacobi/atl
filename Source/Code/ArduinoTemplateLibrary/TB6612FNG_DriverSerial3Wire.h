@@ -38,7 +38,7 @@ namespace ATL {
 */
 
 template<class BaseT, 
-	const unsigned char In1Index, const unsigned char In2Index, const unsigned char Pwm_BoardPinNumber,
+	const uint8_t In1Index, const uint8_t In2Index, const uint8_t Pwm_BoardPinNumber,
 	typename BitArrayT>
 class TB6612FNG_DriverSerial3Wire : public BaseT
 {
@@ -58,7 +58,7 @@ public:
 		return _dataReg;
 	}
 
-	void Send(bool in1, bool in2, unsigned char pwm)
+	void Send(bool in1, bool in2, uint8_t pwm)
 	{
 		_dataReg->Set(In1Index, in1);
 		_dataReg->Set(In2Index, in2);

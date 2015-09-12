@@ -41,7 +41,7 @@ public:
 	void Write(MidiMessage* midiMsg)
 	{
 		int msgLength = Midi::GetMessageLength(midiMsg->MessageType);
-		byte statusByte = midiMsg->GetStatusByte();
+		uint8_t statusByte = midiMsg->GetStatusByte();
 
 		if (Midi::IsChannelMessage(midiMsg->MessageType))
 		{
@@ -84,7 +84,7 @@ public:
 	}
 
 private:
-	byte _runningStatus;
+	uint8_t _runningStatus;
 };
 
 } // ATL

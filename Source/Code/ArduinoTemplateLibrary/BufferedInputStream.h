@@ -21,13 +21,15 @@
 #ifndef __BUFFEREDINPUTSTREAM_H__
 #define __BUFFEREDINPUTSTREAM_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 
 // The BufferedInputStream implements an abstract InputStream by using a circular buffer (RingBuffer).
 /*
 	BaseT is the class of a RingBuffer implementation: 
-		unsigned int [IO.Stream]getLength(); 
+		unsigned uint8_t [IO.Stream]getLength(); 
 		int [IO.InputStream.]Read(); 
 */
 template<class BaseT>
@@ -35,14 +37,14 @@ class BufferedInputStream : public BaseT
 {
 public:
 	// adapts the Read method to always check for length.
-	int Read()
+	int8_t Read()
 	{
 		if(BaseT::getLength() == 0)
 		{
 			return -1;
 		}
 
-		return (int)BaseT::Read();
+		return (int8_t)BaseT::Read();
 	}
 };
 

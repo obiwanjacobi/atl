@@ -18,39 +18,26 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#ifndef __DEFAULT_H__
+#define __DEFAULT_H__
 
-#ifndef __DELAY_H__
-#define __DELAY_H__
+namespace ATL {
 
-#include "../Time.h"
-
-template<const TimeResolution TimeRes>
-class Delay
+/*
+*	Static default values of T;
+*
+*/
+template<typename T>
+class Default
 {
 public:
-    inline static void Delay(uint16_t timeout)
-    {
-
-    }
+	static T DefaultOfT;
 };
 
-template<>
-class Delay<Milliseconds>
-{
-public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_ms(timeout);
-    }
-};
+template<typename T>
+T Default<T>::DefaultOfT;
 
-template<>
-class Delay<Microseconds>
-{
-    public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_us(timeout);
-    }
-};
-#endif /* __DELAY_H__ */
+
+} // ATL
+
+#endif //__DEFAULT_H__

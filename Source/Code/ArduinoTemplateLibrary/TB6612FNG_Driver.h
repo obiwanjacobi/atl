@@ -34,11 +34,11 @@ namespace ATL {
 	Implement your own class when you have multiplexing in between the IO pins.
 */
 
-template<const unsigned char In1_BoardPinNumber, const unsigned char In2_BoardPinNumber, const unsigned char Pwm_BoardPinNumber>
+template<const uint8_t In1_BoardPinNumber, const uint8_t In2_BoardPinNumber, const uint8_t Pwm_BoardPinNumber>
 class TB6612FNG_Driver
 {
 public:
-	void Send(bool in1, bool in2, unsigned char pwm)
+	void Send(bool in1, bool in2, uint8_t pwm)
 	{
 		_in1.Write(in1);
 		_in2.Write(in2);

@@ -129,6 +129,11 @@
     <ClInclude Include="VerticalPanel.h" />
     <ClInclude Include="PanelControlContainer.h" />
     <ClInclude Include="HD44780_DisplayWriter.h" />
+    <ClInclude Include="Default.h" />
+    <ClInclude Include="StaticString.h" />
+    <ClInclude Include="StaticArray.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="VolatileData.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

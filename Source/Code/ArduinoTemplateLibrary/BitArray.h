@@ -25,12 +25,15 @@
 #define CHAR_BITS 8
 #endif
 
+#include <stdint.h>
+#include "Data.h"
+
 namespace ATL {
 
 /*
-	The BitArray class stores its bits in one or more unsigned char. 
+	The BitArray class stores its bits in one or more uint8_t . 
 	This class can be used for maintaining boolean flags in a memory efficient way.
-	A normal boolean takes up a whole unsigned char.
+	A normal boolean takes up a whole uint8_t .
 	T is an (unsigned) integer data-type.
  */
 template<typename T>
@@ -53,7 +56,7 @@ public:
 		Sets the bits from value for bitCount bits starting at bit0
 		in the BitArray starting at the bitIndex position.
 	 */
-	bool Set(unsigned char bitIndex, T value, unsigned char bitCount)
+	bool Set(uint8_t bitIndex, T value, uint8_t bitCount)
 	{
 		if (!isValidIndex(bitIndex, bitCount)) return false;
 
@@ -78,7 +81,7 @@ public:
 		the BitArray starting at the bitIndex. The value is
 		shifted down to bit0 in the return value.
 	 */
-	T Get(unsigned char bitIndex, unsigned char bitCount) const
+	T Get(uint8_t bitIndex, uint8_t bitCount) const
 	{
 		if (!isValidIndex(bitIndex, bitCount)) return (T)0;
 
@@ -97,7 +100,7 @@ public:
 	/*
 		Sets the bit at bitIndex position to the specified value.
 	 */
-	bool Set(unsigned char bitIndex, bool value)
+	bool Set(uint8_t bitIndex, bool value)
 	{
 		if (!isValidIndex(bitIndex)) return false;
 
@@ -117,7 +120,7 @@ public:
 	/*
 		Sets the bit at bitIndex position to true.
 	 */
-	bool Set(unsigned char bitIndex)
+	bool Set(uint8_t bitIndex)
 	{
 		if (!isValidIndex(bitIndex)) return false;
 
@@ -130,7 +133,7 @@ public:
 	/*
 		Gets the bit at bitIndex position.
 	 */
-	inline bool Get(unsigned char bitIndex) const
+	inline bool Get(uint8_t bitIndex) const
 	{
 		return IsTrue(bitIndex);
 	}
@@ -138,7 +141,7 @@ public:
 	/*
 		Sets the bit at bitIndex position to false.
 	 */
-	bool Reset(unsigned char bitIndex)
+	bool Reset(uint8_t bitIndex)
 	{
 		if (!isValidIndex(bitIndex)) return false;
 
@@ -159,7 +162,7 @@ public:
 	/*
 		Returns true if the bit at bitIndex position is true.
 	 */
-	bool IsTrue(unsigned char bitIndex) const
+	bool IsTrue(uint8_t bitIndex) const
 	{
 		if (!isValidIndex(bitIndex)) return false;
 
@@ -169,7 +172,7 @@ public:
 	/*
 		Returns true if the bit at bitIndex position is false.
 	 */
-	bool IsFalse(unsigned char bitIndex) const
+	bool IsFalse(uint8_t bitIndex) const
 	{
 		if (!isValidIndex(bitIndex)) return false;
 
@@ -183,7 +186,7 @@ public:
 	void Reverse()
 	{
 		T rv = 0;
-		for (unsigned char i = 0; i < getMaxBits(); ++i, _bits >>= 1)
+		for (uint8_t i = 0; i < getMaxBits(); ++i, _bits >>= 1)
 		{
 			rv = (rv << 1) | (_bits & 0x01);
 		}
@@ -194,12 +197,12 @@ public:
 	/*
 		Returns the maximum number of bits that can be stored.
 	 */
-	inline unsigned char getMaxBits() const
+	inline uint8_t getMaxBits() const
 	{
 		return (sizeof(T) * CHAR_BITS);
 	}
 
-	inline bool operator[] (unsigned char bitIndex) const
+	inline bool operator[] (uint8_t bitIndex) const
 	{
 		return IsTrue(bitIndex);
 	}
@@ -214,7 +217,7 @@ public:
 		losing the most significant bits and 
 		setting false for the least significant bits.
 	 */
-	inline void ShiftUp(unsigned char shift)
+	inline void ShiftUp(uint8_t shift)
 	{
 		_bits <<= shift;
 	}
@@ -224,7 +227,7 @@ public:
 		losing the least significant bits and 
 		setting false for the most significant bits.
 	 */
-	inline void ShiftDown(unsigned char shift)
+	inline void ShiftDown(uint8_t shift)
 	{
 		_bits >>= shift;
 	}
@@ -232,7 +235,7 @@ public:
 private:
 	T _bits;
 
-	T CreateMask(unsigned char count) const
+	T CreateMask(uint8_t count) const
 	{
 		T mask = 0;
 
@@ -245,7 +248,7 @@ private:
 		return mask;
 	}
 
-	inline bool isValidIndex(unsigned char index, unsigned char count = 1) const
+	inline bool isValidIndex(uint8_t index, uint8_t count = 1) const
 	{
 		return (index + count) <= getMaxBits();
 	}
@@ -254,7 +257,7 @@ private:
 // BitArray template specializations
 
 template<>
-void BitArray<unsigned char>::Reverse()
+void BitArray<uint8_t >::Reverse()
 	{
 		_bits = (_bits & 0xF0) >> 4 | (_bits & 0x0F) << 4;
 		_bits = (_bits & 0xCC) >> 2 | (_bits & 0x33) << 2;

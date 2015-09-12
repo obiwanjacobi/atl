@@ -21,14 +21,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __TIME_ARDUINO_H__
 #define __TIME_ARDUINO_H__
 
+#include <stdint.h>
 #include "..\Time.h"
 
 namespace ATL {
 
 template<>
-unsigned long Time<Milliseconds>::Update()
+uint32_t Time<Milliseconds>::Update()
 {
-	unsigned long previous = _ticks;
+	uint32_t previous = _ticks;
 
 	_ticks = millis();
 
@@ -36,9 +37,9 @@ unsigned long Time<Milliseconds>::Update()
 }
 
 template<>
-unsigned long Time<Microseconds>::Update()
+uint32_t Time<Microseconds>::Update()
 {
-	unsigned long previous = _ticks;
+	uint32_t previous = _ticks;
 
 	_ticks = micros();
 

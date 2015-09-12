@@ -67,7 +67,7 @@ public:
 
 	bool TryValueUp()
 	{
-		if (isSelected())
+		if (getIsSelected())
 		{
 			_value->IncrementValue();
 			return true;
@@ -78,7 +78,7 @@ public:
 
 	bool TryValueDown()
 	{
-		if (isSelected())
+		if (getIsSelected())
 		{
 			_value->DecrementValue();
 			return true;

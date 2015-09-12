@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-template<const unsigned char MaxLines>
+template<const uint8_t MaxLines>
 class Page : public VerticalPanel<MaxLines>
 {
 	typedef VerticalPanel<MaxLines> BaseT;
@@ -105,7 +105,7 @@ public:
         InputControl* currentCtrl = getCurrentInputControl();
 
         if (currentCtrl == NULL ||
-           (currentCtrl != NULL && !currentCtrl->isSelected()))
+			(currentCtrl != NULL && !currentCtrl->getIsSelected()))
         {
 			return BaseT::SetNextInputControl();
         }
@@ -118,7 +118,7 @@ public:
         InputControl* currentCtrl = getCurrentInputControl();
 
         if (currentCtrl == NULL ||
-           (currentCtrl != NULL && !currentCtrl->isSelected()))
+			(currentCtrl != NULL && !currentCtrl->getIsSelected()))
         {
 			return BaseT::SetPreviousInputControl();
         }
@@ -150,7 +150,7 @@ protected:
         if (ctrl != NULL)
         {
 			Panel* line = getCurrentLine();
-            output->SetCursor(line->getPosition(), ctrl->getPosition(), ctrl->isSelected());
+			output->SetCursor(line->getPosition(), ctrl->getPosition(), ctrl->getIsSelected());
         }
         else
         {

@@ -69,39 +69,39 @@ public:
 		_pos = newPos;
 	}
 
-    inline bool isHidden() const
+    inline bool getIsHidden() const
     {
         return _state == Hidden;
     }
 
-    inline bool isVisible() const
+	inline bool getIsVisible() const
     {
-        return !isHidden();
+		return !getIsHidden();
     }
 
-    inline bool isDisabled() const
+	inline bool getIsDisabled() const
     {
         return _state == Disabled;
     }
 
-    inline bool isEnabled() const
+	inline bool getIsEnabled() const
     {
-        return !isDisabled() && !isHidden();
+		return !getIsDisabled() && !getIsHidden();
     }
 
-    inline bool isFocussed() const
+	inline bool getIsFocussed() const
     {
         return _state == Focused;
     }
 
-    inline bool isSelected() const
+	inline bool getIsSelected() const
     {
         return _state == Selected;
     }
 
-    inline bool isActive() const
+	inline bool getIsActive() const
     {
-        return isFocussed() || isSelected();
+		return getIsFocussed() || getIsSelected();
     }
 
     inline ControlState getState() const

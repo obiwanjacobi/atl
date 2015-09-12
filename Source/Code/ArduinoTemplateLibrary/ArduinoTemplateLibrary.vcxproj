@@ -88,6 +88,8 @@
     <ClInclude Include="CollectionRef.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="ControlContainer.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="Default.h" />
     <ClInclude Include="HD44780_DisplayWriter.h" />
     <ClInclude Include="HorizontalPanel.h" />
     <ClInclude Include="DisplayWriter.h" />
@@ -133,6 +135,8 @@
     <ClInclude Include="Serial3WireOutput.h" />
     <ClInclude Include="Arduino\StreamInputStream.h" />
     <ClInclude Include="Arduino\StreamOutputStream.h" />
+    <ClInclude Include="StaticArray.h" />
+    <ClInclude Include="StaticString.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TB6612FNG_Controller.h" />
     <ClInclude Include="TB6612FNG_Driver.h" />
@@ -146,6 +150,7 @@
     <ClInclude Include="URM37V32_Driver.h" />
     <ClInclude Include="ValueContainer.h" />
     <ClInclude Include="VerticalPanel.h" />
+    <ClInclude Include="VolatileData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

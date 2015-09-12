@@ -25,8 +25,8 @@ namespace ATL {
 
 /*
 	BaseT is used as a base class and implements:
-		void [URM37V32_Driver]SendCommand(unsigned char command, unsigned char data1, unsigned char data2);
-		int [URM37V32_Driver]ReceiveResponse(unsigned char& outCommand, unsigned char& outData1, unsigned char& out_Data2);
+		void [URM37V32_Driver]SendCommand(uint8_t command, uint8_t data1, uint8_t data2);
+		int [URM37V32_Driver]ReceiveResponse(uint8_t & outCommand, uint8_t & outData1, uint8_t & out_Data2);
 			returns 0- no data available, 1- some data available waiting on more, 2- error in checksum, 3- success.
 		See also the URM37V32_Driver class.
 
@@ -49,12 +49,12 @@ public:
 	};
 
 	// Mode 2: Autonomous trigger mode
-	bool SetAutonomousTriggerMode(unsigned int threshold)
+	bool SetAutonomousTriggerMode(uint16_t threshold)
 	{
 		if (!WriteEEPROM(0x02, 0xaa)) return false;
-		if (!WriteEEPROM(0x00, (unsigned char)threshold)) return false;
+		if (!WriteEEPROM(0x00, (uint8_t )threshold)) return false;
 
-		return WriteEEPROM(0x01, (unsigned char)(threshold >> 8));
+		return WriteEEPROM(0x01, (uint8_t )(threshold >> 8));
 	}
 
 	// Mode 3: PWM passive control mode
@@ -69,16 +69,16 @@ public:
 	}
 
 	// degrees: 0-270
-	void BeginDistance(unsigned int degrees)
+	void BeginDistance(uint16_t degrees)
 	{
 		BaseT::SendCommand(CMD_DISTANCE, map(degrees, 0, 270, 0, 46), 0x00);
 	}
 
 	ReceiveResult EndDistance(unsigned int& outDistance)
 	{
-		unsigned char command;
-		unsigned char data1;
-		unsigned char data2;
+		uint8_t command;
+		uint8_t data1;
+		uint8_t data2;
 
 		ReceiveResult retVal = (ReceiveResult)BaseT::ReceiveResponse(command, data1, data2);
 
@@ -105,9 +105,9 @@ public:
 
 	ReceiveResult EndTemperature(int& outTemperature)
 	{
-		unsigned char command;
-		unsigned char data1;
-		unsigned char data2;
+		uint8_t command;
+		uint8_t data1;
+		uint8_t data2;
 
 		ReceiveResult retVal = BaseT::ReceiveRespone(command, data1, data2);
 
@@ -134,13 +134,13 @@ public:
 	}
 
 private:
-	bool WriteEEPROM(unsigned char data1, unsigned char data2)
+	bool WriteEEPROM(uint8_t data1, uint8_t data2)
 	{
 		BaseT::SendCommand(CMD_WRITE_EEPROM, data1, data2);
 
-		unsigned char outCommand;
-		unsigned char outData1;
-		unsigned char outData2;
+		uint8_t outCommand;
+		uint8_t outData1;
+		uint8_t outData2;
 
 		// TODO: timeout?
 		while(BaseT::ReceiveResponse(outCommand, outData1, outData2) != Success);

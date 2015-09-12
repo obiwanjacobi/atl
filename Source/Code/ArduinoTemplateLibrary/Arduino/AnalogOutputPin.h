@@ -21,6 +21,7 @@
 #ifndef __ANALOGOUTPUTPIN_H__
 #define __ANALOGOUTPUTPIN_H__
 
+#include <stdint.h>
 #include "DigitalOutputPin.h"
 
 namespace ATL {
@@ -29,12 +30,12 @@ namespace ATL {
 	Writes a PWM to an output pin. The pin must support PWM.
 	The class derives from the DigitalOutputPin class.
  */
-template<const byte BoardPinNumber>
+template<const uint8_t BoardPinNumber>
 class AnalogOutputPin : public DigitalOutputPin<BoardPinNumber>
 {
 public:
 
-	inline void Write(byte value)
+	inline void Write(uint8_t value)
 	{
 		analogWrite(BoardPinNumber, value);
 	}

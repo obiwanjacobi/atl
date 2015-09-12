@@ -28,7 +28,7 @@ namespace ATL {
 		void [HD44780_Controller]Initialize(bool);
 		void [HD44780_Controller]ReturnHome();
 		void [HD44780_Controller]WriteData(unsigend char);
-		void [HD44780_Controller]WriteDisplayAddress(unsigned char);
+		void [HD44780_Controller]WriteDisplayAddress(uint8_t );
 		void [HD44780_Controller]SetEntryMode(Direction, bool);
 		[HD44780_Controller]Direction::Left (0);
 		[HD44780_Controller]Direction::Right (1);
@@ -37,7 +37,7 @@ namespace ATL {
 
 	Typically the BaseT is the HD44780_Controller template class or derivative.
 */
-template<class BaseT, const byte Rows, const byte Cols>
+template<class BaseT, const uint8_t Rows, const uint8_t Cols>
 class HD44780_View : public BaseT
 {
 public:
@@ -61,7 +61,7 @@ public:
 
 		This allows a TextWriter template class to be wrapped around the display.
 	 */
-	inline bool Write(byte character)
+	inline bool Write(uint8_t character)
 	{
 		// check for new-line and carriage return
 		if (character == '\n')
@@ -85,22 +85,22 @@ public:
 	/*inline void Flush()
 	{}*/
 
-	inline static byte getTotalRows()
+	inline static uint8_t getTotalRows()
 	{
 		return Rows;
 	}
 
-	inline static byte getTotalColumns()
+	inline static uint8_t getTotalColumns()
 	{
 		return 80 / Rows;
 	}
 
-	inline static byte getVisibleRows()
+	inline static uint8_t getVisibleRows()
 	{
 		return Rows;
 	}
 
-	inline static byte getVisibleColumns()
+	inline static uint8_t getVisibleColumns()
 	{
 		return Cols;
 	}
@@ -109,7 +109,7 @@ public:
 		Sets the current cursor position.
 		The indexes as zero-based.
 	 */
-	inline void SetCursor(byte rowIndex, byte colIndex)
+	inline void SetCursor(uint8_t rowIndex, uint8_t colIndex)
 	{
 		_cursorRow = rowIndex;
 		_cursorCol = colIndex;
@@ -119,7 +119,7 @@ public:
 	/*
 		Returns the current Cursor row position index.
 	 */
-	inline byte getCursorRow() const
+	inline uint8_t getCursorRow() const
 	{
 		return _cursorRow;
 	}
@@ -127,7 +127,7 @@ public:
 	/*
 		Returns the current Cursor column position index.
 	 */
-	inline byte getCursorCol() const
+	inline uint8_t getCursorCol() const
 	{
 		return _cursorCol;
 	}
@@ -143,8 +143,8 @@ public:
 	}
 
 private:
-	byte _cursorRow;
-	byte _cursorCol;
+	uint8_t _cursorRow;
+	uint8_t _cursorCol;
 
 	void IncrementCurrentRow()
 	{
@@ -171,9 +171,9 @@ private:
 		}
 	}
 
-	inline byte CalcAddress(byte rowIndex, byte colIndex)
+	inline uint8_t CalcAddress(uint8_t rowIndex, uint8_t colIndex)
 	{
-		static byte rowOffsets[] = { 0x00, 0x40, 0x14, 0x54 };
+		static uint8_t rowOffsets[] = { 0x00, 0x40, 0x14, 0x54 };
 
 		if (rowIndex >= getTotalRows())
 		{

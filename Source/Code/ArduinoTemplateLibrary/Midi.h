@@ -68,18 +68,18 @@ public:
 	};
 
 	// Returns true when the midiByte is a mid status byte.
-	inline static bool IsStatus(byte midiByte)
+	inline static bool IsStatus(uint8_t midiByte)
 	{
 		return ((midiByte & 0x80) > 0);
 	}
 
-	// Returns the status portion of a midi status byte (stripping of channel)
+	// Returns the status portion of a midi status uint8_t (stripping of channel)
 	// or returns 0 (zero) if midiByte is not a midi status byte.
-	inline static MessageTypes GetMessageType(byte midiByte)
+	inline static MessageTypes GetMessageType(uint8_t midiByte)
 	{
 		if (IsStatus(midiByte))
 		{
-			byte status = (midiByte & 0xF0);
+			uint8_t status = (midiByte & 0xF0);
 
 			if (status == 0xF0)
 			{
@@ -97,11 +97,11 @@ public:
 	// Returns 0 if statusByte is not a statusByte.
 	// Returns -1 for SysEx messages, for there is no telling how big those messages are going to be.
 	// Returns 1, 2 or 3 for normal midi messages.
-	inline static byte GetMessageLength(byte statusByte)
+	inline static uint8_t GetMessageLength(uint8_t statusByte)
 	{
 		switch (GetMessageType(statusByte))
 		{
-			// 1 byte messages
+			// 1 uint8_t messages
 			case Start:
 			case Continue:
 			case Stop:
@@ -141,23 +141,23 @@ public:
 		}
 	}
 
-	inline static bool IsChannelMessage(byte statusByte)
+	inline static bool IsChannelMessage(uint8_t statusByte)
 	{
 		return (statusByte >= NoteOff && statusByte <= PitchBend);
 	}
 
-	inline static bool IsRealtimeMessage(byte statusByte)
+	inline static bool IsRealtimeMessage(uint8_t statusByte)
 	{
 		return (statusByte >= Clock && statusByte <= SystemReset);
 	}
 
-	inline static bool IsSystemCommonMessage(byte statusByte)
+	inline static bool IsSystemCommonMessage(uint8_t statusByte)
 	{
 		return (statusByte >= SystemExclusive && statusByte <= 0xF7);
 	}
 
 	// Both System Common as well as Realtime
-	inline static bool IsSystemMessage(byte statusByte)
+	inline static bool IsSystemMessage(uint8_t statusByte)
 	{
 		return (statusByte >= SystemExclusive && statusByte <= SystemReset);
 	}

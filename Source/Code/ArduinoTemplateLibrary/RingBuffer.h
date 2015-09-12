@@ -21,6 +21,8 @@
 #ifndef __RINGBUFFER_H__
 #define __RINGBUFFER_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 // A RingBuffer uses a fixed amount of memory to simulate an 'endless' buffer.
@@ -29,7 +31,7 @@ namespace ATL {
 // T is the data type of the buffer items.
 // Size is the number of 'T' items in the buffer. 
 // An Array of T[Size] is allocated.
-template <typename T, const unsigned int Size>
+template <typename T, const uint16_t Size>
 class RingBuffer
 {
 public:
@@ -77,7 +79,7 @@ public:
 		return result;
 	}
 
-	inline unsigned int getLength() const
+	inline uint16_t getLength() const
 	{
 		if (_writePtr >= _readPtr)
 		{

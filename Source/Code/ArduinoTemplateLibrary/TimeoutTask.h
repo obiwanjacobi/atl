@@ -32,7 +32,7 @@ namespace ATL {
 
 	BaseT is used as a base class and implements:
 		void OnTimeout();
-		unsigned int [IdentifiableObject] getId();
+		uint16_t [IdentifiableObject] getId();
 
 	The DelaysT is a Delays<> type used to keep track of time.
 	The Timeout is specified in the same quantity as the DelaysT is specified (Milli- or MicroSeconds).
@@ -68,7 +68,7 @@ public:
 	}
 
 private:
-	unsigned int _task;
+	uint16_t _task;
 };
 
 } // ATL

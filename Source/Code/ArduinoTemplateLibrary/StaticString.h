@@ -18,39 +18,32 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#ifndef __STATICSTRING_H__
+#define __STATICSTRING_H__
 
-#ifndef __DELAY_H__
-#define __DELAY_H__
+#include <avr/pgmspace.h>
+#include <stdint.h>
 
-#include "../Time.h"
+namespace ATL {
 
-template<const TimeResolution TimeRes>
-class Delay
+// container class for static (prog-mem) strings
+class StaticString
 {
 public:
-    inline static void Delay(uint16_t timeout)
-    {
+	// declare PROGMEM string and pass in the var
+	StaticString(const char* str)
+		: _str(str)
+	{ }
 
-    }
+	inline void Read(char* target, size_t targetLen)
+	{
+		strncpy_P(target, _str, targetLen);
+	}
+
+private:
+	const char* _str;
 };
 
-template<>
-class Delay<Milliseconds>
-{
-public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_ms(timeout);
-    }
-};
+} // ATL
 
-template<>
-class Delay<Microseconds>
-{
-    public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_us(timeout);
-    }
-};
-#endif /* __DELAY_H__ */
+#endif //__STATICSTRING_H__

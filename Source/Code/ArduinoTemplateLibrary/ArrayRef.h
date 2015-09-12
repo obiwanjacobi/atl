@@ -21,6 +21,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __ARRAYREF_H__
 #define __ARRAYREF_H__
 
+#include <stdint.h>
+#include "Default.h"
+
 namespace ATL {
 
 
@@ -28,7 +31,7 @@ namespace ATL {
 * Bounds-checked wrapper for an array reference
 *
 */
-template<typename T, const unsigned char MaxItems>
+template<typename T, const uint8_t MaxItems>
 class ArrayRef
 {
 public:
@@ -38,44 +41,38 @@ public:
 		: _arr(array)
 	{ }
 
-	inline unsigned char getMaxCount() const
+	inline uint8_t getMaxCount() const
 	{
 		return MaxItems;
 	}
 
-	inline T GetAt(unsigned char index) const
+	inline T GetAt(uint8_t index) const
 	{
-		if (!IsValidIndex(index)) return DefaultOfT;
+		if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
 		return _arr[index];
 	}
 
-	inline void SetAt(unsigned char index, T value)
+	inline void SetAt(uint8_t index, T value)
 	{
 		if (!IsValidIndex(index)) return;
 
 		_arr[index] = value;
 	}
 
-	inline bool IsValidIndex(unsigned char index) const
+	inline bool IsValidIndex(uint8_t index) const
 	{
 		return index >= 0 && index < MaxItems;
 	}
 
-	inline T operator[](unsigned char index) const
+	inline T operator[](uint8_t index) const
 	{
 		return GetAt(index);
 	}
 
-	static T DefaultOfT;
-
 private:
 	T(&_arr)[MaxItems];
 };
-
-
-template<typename T, const unsigned char MaxItems>
-T ArrayRef<T, MaxItems>::DefaultOfT;
 
 
 } // ATL

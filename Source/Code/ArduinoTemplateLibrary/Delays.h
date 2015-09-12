@@ -21,21 +21,18 @@
 #ifndef __DELAYS_H__
 #define __DELAYS_H__
 
+#include <stdint.h>
 #include "Time.h"
 
 namespace ATL {
 
-/*
-	A 32-bits timeout datatype.
- */
-typedef unsigned long int timeout_t;
 
 /*
-	TimeT implements: unsigned int [Time]Update() - returns the delta-Time.
+	TimeT implements: uint16_t [Time]Update() - returns the delta-Time.
 	MaxItems: the max number of delays that can be tracked.
  */
 
-template<class TimeT, const unsigned char MaxItems>
+template<class TimeT, const uint8_t MaxItems>
 class Delays
 {
 public:
@@ -43,7 +40,7 @@ public:
 	/*
 		Calls TimeT::Update and returns the delta time.
 	 */
-	static unsigned int Update()
+	static uint16_t Update()
 	{
 		_delta = _time.Update();
 		return _delta;
@@ -52,7 +49,7 @@ public:
 	/*
 		Returns true when the id is listed.
 	 */
-	static bool IsWaiting(unsigned int id)
+	static bool IsWaiting(uint16_t id)
 	{
 		for (int i = 0; i < MaxItems; i++)
 		{
@@ -69,7 +66,7 @@ public:
 		Zero's out the delay time but keeps the id in the list.
 		The next call to Wait will report done.
 	 */
-	static void Abort(unsigned int id)
+	static void Abort(uint16_t id)
 	{
 		for (int i = 0; i < MaxItems; i++)
 		{
@@ -89,7 +86,7 @@ public:
 
 		Returns true to indicate the delay has reached zero.
 	 */
-	static bool Wait(unsigned int id, timeout_t time)
+	static bool Wait(uint16_t id, uint32_t time)
 	{
 		int emptyIndex = -1;
 
@@ -136,7 +133,7 @@ public:
 	/*
 		Removes the id from the listing.
 	 */
-	static void Clear(unsigned int id)
+	static void Clear(uint16_t id)
 	{
 		for (int i = 0; i < MaxItems; i++)
 		{
@@ -152,31 +149,31 @@ public:
 	*/
 	static TimeT& getTime() { return _time; }
 
-	static unsigned int getLastDeltaTime()
+	static uint16_t getLastDeltaTime()
 	{
 		return _delta;
 	}
 
 private:
 	static TimeT _time;
-	static unsigned int _delta;
-	static unsigned int _ids[MaxItems];
-	static timeout_t _delays[MaxItems];
+	static uint16_t _delta;
+	static uint16_t _ids[MaxItems];
+	static uint32_t _delays[MaxItems];
 
 	Delays() {}
 };
 
-template<class TimeT, const unsigned char MaxItems> 
+template<class TimeT, const uint8_t MaxItems> 
 TimeT Delays<TimeT, MaxItems>::_time;
 
-template<class TimeT, const unsigned char MaxItems> 
-unsigned int Delays<TimeT, MaxItems>::_delta = 0;
+template<class TimeT, const uint8_t MaxItems> 
+uint16_t Delays<TimeT, MaxItems>::_delta = 0;
 
-template<class TimeT, const unsigned char MaxItems> 
-unsigned int Delays<TimeT, MaxItems>::_ids[] = {};
+template<class TimeT, const uint8_t MaxItems> 
+uint16_t Delays<TimeT, MaxItems>::_ids[] = {};
 
-template<class TimeT, const unsigned char MaxItems> 
-timeout_t Delays<TimeT, MaxItems>::_delays[] = {};
+template<class TimeT, const uint8_t MaxItems> 
+uint32_t Delays<TimeT, MaxItems>::_delays[] = {};
 
 } // ATL
 

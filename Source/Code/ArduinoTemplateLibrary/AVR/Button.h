@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __BUTTON_H__
 #define __BUTTON_H__
 
+#include <stdint.h>
 #include "../BitArray.h"
 
 namespace ATL {
@@ -142,7 +143,7 @@ protected:
     }
 
 private:
-    BitArray<unsigned char> _states;
+    BitArray<uint8_t> _states;
 };
 
 } // ATL

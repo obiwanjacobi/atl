@@ -21,13 +21,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __BIT_H__
 #define __BIT_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 /*
  *
  *
  */
-template<const unsigned char BitIndex = -1>
+template<const uint8_t BitIndex>
 class Bit
 {
 public:

@@ -21,6 +21,8 @@
 #ifndef __STREAMOUTPUTSTREAM_H__
 #define __STREAMOUTPUTSTREAM_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 /*
@@ -58,7 +60,7 @@ public:
 	/*
 		Returns the number of bytes that are available in the stream.
 	 */
-	unsigned int getLength() const
+	uint8_t getLength() const
 	{
 		if (_stream == NULL) return 0;
 
@@ -78,7 +80,7 @@ public:
 	/*
 		Writes one byte to the stream.
 	 */
-	void Write(byte data)
+	void Write(uint8_t data)
 	{
 		if (_stream == NULL) return;
 

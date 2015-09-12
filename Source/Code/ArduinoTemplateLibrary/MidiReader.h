@@ -25,7 +25,7 @@ namespace ATL {
 
 /*
 	BaseT is used as a base class and implements:
-		unsigned int [IO.Stream.]getLength();
+		uint16_t [IO.Stream.]getLength();
 		int [IO.InputStream.]Read();
 		void [Midi.MidiReader.]OnMessage(MidiMessage*);
 		void [Midi.MidiReader.]OnRealTime(Midi::MessageTypes);
@@ -75,7 +75,7 @@ private:
 	// Running status is when the next midi message has the same status 
 	// as the previous midi message. This way status byte do not have to
 	// be repeated when they are the same, saving some bandwidth.
-	byte _runningStatus;
+	uint8_t _runningStatus;
 	
 	// TODO: both these fields can be merged to one. 
 	//   Use a bit mask to check one or the other.
@@ -92,7 +92,7 @@ private:
 		BaseT::OnMessage(&_midiMsg);
 	}
 
-	inline void CallOnRealtime(byte midiStatus)
+	inline void CallOnRealtime(uint8_t midiStatus)
 	{
 		BaseT::OnRealtime((Midi::MessageTypes)midiStatus);
 	}
@@ -123,7 +123,7 @@ private:
 			- process status byte (must be real time -or eox?)
 		- insert byte read
 	*/
-	bool Dispatch(byte midiByte)
+	bool Dispatch(uint8_t midiByte)
 	{
 		bool success = false;
 
@@ -200,7 +200,7 @@ private:
 	}
 
 
-	bool ProcessStatusByte(byte statusByte)
+	bool ProcessStatusByte(uint8_t statusByte)
 	{
 		bool success = true;
 
@@ -244,7 +244,7 @@ private:
 	}
 
 
-	bool ProcessDataByte(byte midiByte)
+	bool ProcessDataByte(uint8_t midiByte)
 	{
 		bool success = true;
 

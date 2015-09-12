@@ -28,8 +28,8 @@ namespace ATL {
 
 /*
 	BaseT is used as a base class and implements:
-		void [HD44780_Driver]Write4(unsigned char);
-		void [HD44780_Driver]WriteCommand(unsigned char);
+		void [HD44780_Driver]Write4(uint8_t );
+		void [HD44780_Driver]WriteCommand(uint8_t );
 		void [HD44780_Driver]Initialize();
 	TimingProfileT is used to perform synchronous delays. See also HD44780_Profile.
 
@@ -205,13 +205,13 @@ public:
 
 protected:
 
-	inline void WriteDisplayAddress(byte address)
+	inline void WriteDisplayAddress(uint8_t address)
 	{
 		BaseT::WriteCommand(address | SetDdRamAddressCommand);
 		TimingProfileT::WaitForCommand();
 	}
 
-	inline void WriteCharacterAddress(byte address)
+	inline void WriteCharacterAddress(uint8_t address)
 	{
 		BaseT::WriteCommand((address & 0x3F) | SetCgRamAddressCommand);
 		TimingProfileT::WaitForCommand();
@@ -219,7 +219,7 @@ protected:
 
 	inline void WriteCursorShift(bool shiftDisplay, Direction shiftDir)
 	{
-		byte cmd = ShiftCursorCommand;
+		uint8_t cmd = ShiftCursorCommand;
 		cmd |= shiftDisplay ? 0x08 : 0;
 		cmd |= shiftDir == Right ? 0x04 : 0;
 		
@@ -258,7 +258,7 @@ private:
 		EntryModeMask = 0x18,
 	};
 
-	BitArray<byte> _registers;
+	BitArray<uint8_t> _registers;
 
 	enum Commands
 	{

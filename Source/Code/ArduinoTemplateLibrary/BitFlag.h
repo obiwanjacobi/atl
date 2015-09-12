@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __BITFLAG_H__
 #define __BITFLAG_H__
 
+#include <stdint.h>
+
 #ifndef CHAR_BITS
 #define CHAR_BITS 8
 #endif
@@ -35,7 +37,7 @@ class BitFlag
 {
 public:
 	template<typename T>
-	inline static void Set(T& target, const unsigned char bitIndex)
+	inline static void Set(T& target, const uint8_t bitIndex)
 	{
 		if (bitIndex > getMaxBits<T>()) return;
 
@@ -43,7 +45,7 @@ public:
 	}
 
 	template<typename T>
-	inline static void Set(T& target, const unsigned char bitIndex, bool value)
+	inline static void Set(T& target, const uint8_t bitIndex, bool value)
 	{
 		if (bitIndex > getMaxBits<T>()) return;
 
@@ -60,7 +62,7 @@ public:
 	}
 
 	template<typename T>
-	inline static void Reset(T& target, const unsigned char bitIndex)
+	inline static void Reset(T& target, const uint8_t bitIndex)
 	{
 		if (bitIndex > getMaxBits<T>()) return;
 
@@ -69,7 +71,7 @@ public:
 	}
 
 	template<typename T>
-	inline static void Toggle(T& target, const unsigned char bitIndex)
+	inline static void Toggle(T& target, const uint8_t bitIndex)
 	{
 		if (bitIndex > getMaxBits<T>()) return;
 
@@ -77,7 +79,7 @@ public:
 	}
 
 	template<typename T>
-	inline static bool IsTrue(T target, const unsigned char bitIndex)
+	inline static bool IsTrue(T target, const uint8_t bitIndex)
 	{
 		if (bitIndex > getMaxBits<T>()) return false;
 
@@ -85,7 +87,7 @@ public:
 	}
 
 	template<typename T>
-	inline static bool IsFalse(T target, const unsigned char bitIndex)
+	inline static bool IsFalse(T target, const uint8_t bitIndex)
 	{
 		if (bitIndex > getMaxBits<T>()) return false;
 
@@ -93,14 +95,14 @@ public:
 	}
 
 	template<typename T>
-	inline static unsigned char getMaxBits()
+	inline static uint8_t getMaxBits()
 	{
 		return (sizeof(T) * CHAR_BITS);
 	}
 
 protected:
 	template<typename T>
-	inline static T BitToMask(const unsigned char bitIndex)
+	inline static T BitToMask(const uint8_t bitIndex)
 	{
 		return 1 << bitIndex;
 	}

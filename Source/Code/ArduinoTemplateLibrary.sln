@@ -98,6 +98,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{DECEBAE1-130F-4879-A761-948F4CDE46E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{E57745DF-1AF7-4CA1-9BEB-3986F42E001B}"
+	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_Process\examples\Task\Task.ino = Arduino Libraries\ATL_Process\examples\Task\Task.ino
+		Arduino Libraries\ATL_Process\examples\TimeoutTask\TimeoutTask.ino = Arduino Libraries\ATL_Process\examples\TimeoutTask\TimeoutTask.ino
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{B73DDCC8-18B5-40B6-B895-3866E6C883C3}"
 EndProject

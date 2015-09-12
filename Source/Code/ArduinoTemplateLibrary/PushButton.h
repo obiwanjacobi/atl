@@ -81,7 +81,7 @@ struct ConvertBoolToButtonState<true>
 
 	BaseT is used as base class and implements:
 		bool [IO::DigitalInputPin] Read();
-		unsigned int [IdentifiableObject] getId();
+		uint16_t [IdentifiableObject] getId();
 	DelaysT see Delays.h
 	debounceTimeout: timeout for contact debounce in units used in DelaysT
 	holdTimout: button contact closed timeout for stateHold

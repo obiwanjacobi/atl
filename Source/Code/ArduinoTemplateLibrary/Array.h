@@ -21,65 +21,64 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __ARRAY_H__
 #define __ARRAY_H__
 
+#include <stdint.h>
+#include "Default.h"
+
 namespace ATL {
 
 /*
  *	Bounds-checked array.
  *
  */
-template<typename T, const unsigned char MaxItems>
+template<typename T, const uint8_t MaxItems>
 class Array
 {
 public:
 	typedef T ItemT;
 
-	inline unsigned char getMaxCount() const
+	inline uint8_t getMaxCount() const
 	{
 		return MaxItems;
 	}
 
-	inline T GetAt(unsigned char index) const
+	inline T GetAt(uint8_t index) const
 	{
-		if (!IsValidIndex(index)) return DefaultOfT;
+		if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
 		return _arr[index];
 	}
 
-	inline void SetAt(unsigned char index, T value)
+	inline void SetAt(uint8_t index, T value)
 	{
 		if (!IsValidIndex(index)) return;
 
 		_arr[index] = value;
 	}
 
-	inline bool IsValidIndex(unsigned char index) const
+	inline bool IsValidIndex(uint8_t index) const
 	{
 		return index >= 0 && index < MaxItems;
 	}
 
-	inline T operator[](unsigned char index) const
+	inline T operator[](uint8_t index) const
 	{
 		return GetAt(index);
 	}
 
 	// return value for invalid index is undetermined.
-	inline T& operator[](unsigned char index)
+	inline T& operator[](uint8_t index)
 	{
 		if (!IsValidIndex(index)) return DummyOfT;
 
 		return _arr[index];
 	}
 
-	static T DefaultOfT;
 	static T DummyOfT;
 private:
 	T _arr[MaxItems];
 };
 
-template<typename T, const unsigned char MaxItems>
-T Array<T, MaxItems>::DefaultOfT;
-
-template<typename T, const unsigned char MaxItems>
+template<typename T, const uint8_t MaxItems>
 T Array<T, MaxItems>::DummyOfT;
 
 

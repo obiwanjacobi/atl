@@ -21,12 +21,14 @@
 #ifndef __DIGITALINPUTPIN_H__
 #define __DIGITALINPUTPIN_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 /*
 	Initializes a BoardPinNumber to input.
  */
-template <const byte BoardPinNumber>
+template <const uint8_t BoardPinNumber>
 class DigitalInputPin
 {
 public:
@@ -57,7 +59,7 @@ public:
 	/*
 		Returns the BoardPinNumber template parameter.
 	 */
-	inline byte getPinNumber() const
+	inline uint8_t getPinNumber() const
 	{
 		return BoardPinNumber;
 	}

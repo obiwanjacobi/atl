@@ -21,6 +21,8 @@
 #ifndef __TEXTFORMATINFO_H__
 #define __TEXTFORMATINFO_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 /*
@@ -39,17 +41,17 @@ public:
 	};
 
 	static char NewLine[];
-	static unsigned char DecimalDigits;
+	static uint8_t DecimalDigits;
 	static char NegativeSign;
 	static char DecimalSeparator;
-	static unsigned char DefaultBase;
+	static uint8_t DefaultBase;
 };
 
 char TextFormatInfo::NewLine[] = { '\n', '\r', '\0' };
-unsigned char TextFormatInfo::DecimalDigits = (unsigned char)2;
+uint8_t TextFormatInfo::DecimalDigits = (uint8_t )2;
 char TextFormatInfo::NegativeSign = { '-' };
 char TextFormatInfo::DecimalSeparator = { '.' } ;
-unsigned char TextFormatInfo::DefaultBase = (unsigned char)baseDecimal;
+uint8_t TextFormatInfo::DefaultBase = (uint8_t )baseDecimal;
 
 } // ATL
 

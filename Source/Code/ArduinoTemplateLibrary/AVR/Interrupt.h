@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __INTERRUPT_H__
 #define __INTERRUPT_H__
 
+#include <stdint.h>
 #include <io.h>
 #include <interrupt.h>
 #include "Port.h"

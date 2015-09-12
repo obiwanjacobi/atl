@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 
-template<const unsigned char MaxItems>
+template<const uint8_t MaxItems>
 class HorizontalPanel : public PanelControlContainer<MaxItems>
 {
 	typedef PanelControlContainer<MaxItems> PanelT;
@@ -64,7 +64,7 @@ public:
 		Control* ctrl = PanelT::getNext(NULL);
 		while (ctrl != NULL)
 		{
-			if (ctrl->isVisible())
+			if (ctrl->getIsVisible())
 			{
 				output->GoTo(DisplayWriter::DontCare, ctrl->getPosition());
 				ctrl->Display(output);

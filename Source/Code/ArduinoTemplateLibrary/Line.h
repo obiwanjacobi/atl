@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-template<const unsigned char MaxItems>
+template<const uint8_t MaxItems>
 class Line : public HorizontalPanel<MaxItems>
 {
 	typedef HorizontalPanel<MaxItems> BaseT;

@@ -28,7 +28,7 @@ This code was taken from http://msdn.microsoft.com/en-us/magazine/jj553509.aspx
 It seems a lightweight way to implement cooperative multitasking.
 
 See Also TimeoutTask for an example.
-You MUST have an "unsigned int _task" (private) variable to store the task state (FSM).
+You MUST have an "uint16_t _task" (private) variable to store the task state (FSM).
 */
 
 /*

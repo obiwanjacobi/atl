@@ -65,7 +65,7 @@ struct MidiMessage
 	{
 		struct // channel messages
 		{
-			byte Channel;
+			uint8_t Channel;
 
 			union
 			{
@@ -73,15 +73,15 @@ struct MidiMessage
 				{
 					union
 					{
-						byte Note;		// note number
-						byte Number;	// Program- and Control Change numbers
+						uint8_t Note;		// note number
+						uint8_t Number;	// Program- and Control Change numbers
 					};
 
 					union
 					{
-						byte Velocity;	// note
-						byte Value;		// Control Change values
-						byte Pressure;	// after touch
+						uint8_t Velocity;	// note
+						uint8_t Value;		// Control Change values
+						uint8_t Pressure;	// after touch
 					};
 				};
 
@@ -89,14 +89,14 @@ struct MidiMessage
 			};
 		};
 			
-		unsigned int Beats;	// song position
-		byte SongNumber;	// song select
-		byte Data;			// time code
+		uint16_t Beats;	// song position
+		uint8_t SongNumber;	// song select
+		uint8_t Data;			// time code
 	};
 
-	//byte reserved[3];		// filler to get to power of 2 struct size (8 bytes)
+	//uint8_t reserved[3];		// filler to get to power of 2 struct size (8 bytes)
 
-	byte GetStatusByte() const
+	uint8_t GetStatusByte() const
 	{
 		if (!Midi::IsSystemMessage(MessageType))
 		{
@@ -106,7 +106,7 @@ struct MidiMessage
 		return MessageType;
 	}
 
-	void SetStatusByte(byte statusByte)
+	void SetStatusByte(uint8_t statusByte)
 	{
 		MessageType = Midi::GetMessageType(statusByte);
 		// reset state
@@ -120,9 +120,9 @@ struct MidiMessage
 		}
 	}
 
-	byte GetDataByte1() const
+	uint8_t GetDataByte1() const
 	{
-		byte value = 0;
+		uint8_t value = 0;
 
 		switch(MessageType)
 		{
@@ -159,7 +159,7 @@ struct MidiMessage
 		return (value & MASK_DATABYTE);
 	}
 
-	void SetDataByte1(byte dataByte)
+	void SetDataByte1(uint8_t dataByte)
 	{
 		switch(MessageType)
 		{
@@ -194,9 +194,9 @@ struct MidiMessage
 		}
 	}
 
-	byte GetDataByte2() const
+	uint8_t GetDataByte2() const
 	{
-		byte value = 0;
+		uint8_t value = 0;
 
 		switch(MessageType)
 		{
@@ -222,7 +222,7 @@ struct MidiMessage
 		return (value & MASK_DATABYTE);
 	}
 
-	void SetDataByte2(byte dataByte)
+	void SetDataByte2(uint8_t dataByte)
 	{
 		switch(MessageType)
 		{

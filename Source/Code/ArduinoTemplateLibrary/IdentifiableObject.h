@@ -33,7 +33,7 @@ class IdentifiableObject : public BaseT
 {
 public:
 	// returns an id based on the this pointer.
-	inline unsigned int getId() const
+	inline uint16_t getId() const
 	{
 		return (unsigned int)this;
 	}

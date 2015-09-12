@@ -44,7 +44,7 @@ public:
 	template<typename T>
 	void WriteReverse(BitArray<T>* dataBits)
 	{
-		for (byte i = 0; i < dataBits->getMaxBits(); i++)
+		for (uint8_t i = 0; i < dataBits->getMaxBits(); i++)
 		{
 			_serialData.Write(dataBits->IsTrue(i));
 
@@ -58,7 +58,7 @@ public:
 	template<typename T>
 	void Write(BitArray<T>* dataBits)
 	{
-		for (byte i = dataBits->getMaxBits(); i > 0; i--)
+		for (uint8_t i = dataBits->getMaxBits(); i > 0; i--)
 		{
 			_serialData.Write(dataBits->IsTrue(i - 1));
 

@@ -21,6 +21,8 @@
 #ifndef __URM37V32_DRIVER_H__
 #define __URM37V32_DRIVER_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 /*
@@ -28,7 +30,7 @@ namespace ATL {
 		int getLength() (available)
 		int Read() (read)
 	The OutputStreamT class implements a stream for sending commands to the Sensor (our output).
-		void Write (byte data) (write)
+		void Write (uint8_t data) (write)
 
 	Note: Serial communication is done over 9600 baud, no parity, 1 stop bit.
 */
@@ -44,7 +46,7 @@ public:
 		Success
 	};
 
-	void SendCommand(unsigned char command, unsigned char data1, unsigned char data2)
+	void SendCommand(uint8_t command, uint8_t data1, uint8_t data2)
 	{
 		OutputStreamT::Write(command);
 		OutputStreamT::Write(data1);
@@ -52,14 +54,14 @@ public:
 		OutputStreamT::Write(CalculateChecksum(command, data1, data2));
 	}
 
-	int ReceiveResponse(unsigned char& outCommand, unsigned char& outData1, unsigned char& outData2)
+	int ReceiveResponse(uint8_t & outCommand, uint8_t & outData1, uint8_t & outData2)
 	{
 		if(InputStreamT::getLength() > 3)
 		{
 			outCommand = InputStreamT::Read();
 			outData1 = InputStreamT::Read();
 			outData2 = InputStreamT::Read();
-			unsigned char sum = InputStreamT::Read();
+			uint8_t sum = InputStreamT::Read();
 
 			return ValidateChecksum(outCommand, outData1, outData2, sum) ? Success : ChecksumError;
 		}
@@ -68,18 +70,18 @@ public:
 	}
 	
 private:
-	inline bool ValidateChecksum(unsigned char command, unsigned char data1, unsigned char data2, unsigned char checksum)
+	inline bool ValidateChecksum(uint8_t command, uint8_t data1, uint8_t data2, uint8_t checksum)
 	{
 		return CalculateChecksum(command, data1, data2) == checksum;
 	}
 
-	inline unsigned char CalculateChecksum(unsigned char command, unsigned char data1, unsigned char data2)
+	inline uint8_t CalculateChecksum(uint8_t command, uint8_t data1, uint8_t data2)
 	{
-		int value = command;
+		uint16_t value = command;
 		value += data1;
 		value += data2;
 
-		return (unsigned char)value;
+		return (uint8_t)value;
 	}
 };
 

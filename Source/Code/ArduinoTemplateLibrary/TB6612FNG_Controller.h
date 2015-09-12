@@ -21,11 +21,13 @@
 #ifndef __TB6612FNG_CONTROLLER_H__
 #define __TB6612FNG_CONTROLLER_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 /*
 	BaseT is used as a base class and implements:
-		void [TB6612FNG_Driver]Send(bool in1, bool in2, byte pwm);
+		void [TB6612FNG_Driver]Send(bool in1, bool in2, uint8_t pwm);
 	See also the TB6612FNG_Driver template class.
 
 	The controller class implements the logic of how to talk to the chip
@@ -45,12 +47,12 @@ public:
 		BaseT::Send(true, true, 0);
 	}
 
-	inline void Clockwise(unsigned char speed)
+	inline void Clockwise(uint8_t speed)
 	{
 		BaseT::Send(true, false, speed);
 	}
 
-	inline void CounterClockwise(unsigned char speed)
+	inline void CounterClockwise(uint8_t speed)
 	{
 		BaseT::Send(false, true, speed);
 	}

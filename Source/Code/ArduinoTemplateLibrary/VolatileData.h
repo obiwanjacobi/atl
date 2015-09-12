@@ -18,39 +18,33 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#ifndef __VOLATILEDATA_H__
+#define __VOLATILEDATA_H__
 
-#ifndef __DELAY_H__
-#define __DELAY_H__
+namespace ATL {
 
-#include "../Time.h"
-
-template<const TimeResolution TimeRes>
-class Delay
+// container class for volatile RAM data
+template<typename T>
+class VolatileData
 {
 public:
-    inline static void Delay(uint16_t timeout)
-    {
+	VolatileData(T data)
+	{
+		Data = data;
+	}
 
-    }
+	inline T operator T() const
+	{
+	    return Data;
+	}
+	inline operator=(T data)
+	{
+	    Data = data;
+	}
+
+	volatile T Data;
 };
 
-template<>
-class Delay<Milliseconds>
-{
-public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_ms(timeout);
-    }
-};
+} // ATL
 
-template<>
-class Delay<Microseconds>
-{
-    public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_us(timeout);
-    }
-};
-#endif /* __DELAY_H__ */
+#endif //__VOLATILEDATA_H__

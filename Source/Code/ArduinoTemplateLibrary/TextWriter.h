@@ -21,6 +21,7 @@
 #ifndef __TEXTWRITER_H__
 #define __TEXTWRITER_H__
 
+#include <stdint.h>
 #include "TextFormatInfo.h"
 
 namespace ATL {
@@ -38,7 +39,7 @@ public:
 		Write((int)value);
 	}
 
-	inline void Write(const unsigned char value)
+	inline void Write(const uint8_t value)
 	{
 		Write((unsigned int)value);
 	}
@@ -76,7 +77,7 @@ public:
 		}
 	}
 
-	inline void Write(const unsigned int value)
+	inline void Write(const uint16_t value)
 	{
 		WriteInt(value, FormatInfoT::DefaultBase);
 	}
@@ -102,7 +103,7 @@ public:
 		}
 	}
 
-	inline void Write(const unsigned long value)
+	inline void Write(const uint32_t value)
 	{
 		WriteLong(value, FormatInfoT::DefaultBase);
 	}
@@ -128,7 +129,7 @@ public:
 		WriteLine();
 	}
 
-	inline void WriteLine(const unsigned char value)
+	inline void WriteLine(const uint8_t value)
 	{
 		Write(value);
 		WriteLine();
@@ -146,7 +147,7 @@ public:
 		WriteLine();
 	}
 
-	inline void WriteLine(const unsigned int value)
+	inline void WriteLine(const uint16_t value)
 	{
 		Write(value);
 		WriteLine();
@@ -158,7 +159,7 @@ public:
 		WriteLine();
 	}
 
-	inline void WriteLine(const unsigned long value)
+	inline void WriteLine(const uint32_t value)
 	{
 		Write(value);
 		WriteLine();
@@ -171,20 +172,20 @@ public:
 	}
 
 private:
-	void WriteInt(unsigned int integer, unsigned char base)
+	void WriteInt(uint16_t integer, uint8_t base)
 	{
 		// an int is 2^32 and has 10 digits + terminating 0
 		WriteInternal<unsigned int, 11>(integer, base);
 	}
 
-	void WriteLong(unsigned long integer, unsigned char base)
+	void WriteLong(uint32_t integer, uint8_t base)
 	{
 		// a long is 2^64 and has 20 digits + terminating 0
-		WriteInternal<unsigned long, 21>(integer, base);
+		WriteInternal<uint32_t, 21>(integer, base);
 	}
 
-	template<typename T, const unsigned char bufferSize>
-	void WriteInternal(T integer, unsigned char base)
+	template<typename T, const uint8_t bufferSize>
+	void WriteInternal(T integer, uint8_t base)
 	{
 		char buffer[bufferSize];
 		char* strPos = &buffer[sizeof(buffer) - 1];
@@ -210,7 +211,7 @@ private:
 		Write(strPos);
 	}
 
-	void WriteReal(double real, unsigned char digits)
+	void WriteReal(double real, uint8_t digits)
 	{
 		if (real < 0.0)
 		{
@@ -231,7 +232,7 @@ private:
 		real += rounding;
 
 		// integral part
-		unsigned long integer = (unsigned long)real;
+		uint32_t integer = (uint32_t)real;
 		double remainder = real - (double)integer;
 		WriteLong(integer, TextFormatInfo::baseDecimal);
 
@@ -244,7 +245,7 @@ private:
 			while (digits > 0)
 			{
 				remainder *= 10.0;
-				unsigned int number = (unsigned int)remainder;
+				uint16_t number = (unsigned int)remainder;
 				WriteInt(number, TextFormatInfo::baseDecimal);
 				remainder -= number;
 

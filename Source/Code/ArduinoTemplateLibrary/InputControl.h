@@ -49,7 +49,7 @@ public:
 
 	bool TrySelect()
 	{
-		if (isFocussed())
+		if (getIsFocussed())
 		{
 			setState(Selected);
 			return true;
@@ -59,7 +59,7 @@ public:
 
 	bool TryDeselect()
 	{
-		if (isSelected())
+		if (getIsSelected())
 		{
 			setState(Focused);
 			return true;

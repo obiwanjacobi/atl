@@ -21,6 +21,8 @@
 #ifndef __TIME_H__
 #define __TIME_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 /*
@@ -53,26 +55,12 @@ public:
 		Captures the time ticks.
 		Returns delta-time in 'resolution'
 	 */
-	inline unsigned long Update();
-	/*{
-		unsigned long previous = _ticks;
-
-		if (resolution == Milliseconds)
-		{
-			_ticks = millis();
-		}
-		else
-		{
-			_ticks = micros();
-		}
-
-		return _ticks - previous;
-	}*/
+	inline uint32_t Update();
 
 	/*
 		Returns the time ticks in milli-seconds.
 	 */
-	inline unsigned long getMilliseconds() const
+	inline uint32_t getMilliseconds() const
 	{
 		return getMilliseconds(_ticks);
 	}
@@ -80,7 +68,7 @@ public:
 	/*
 		Returns the time ticks in micro-seconds.
 	 */
-	inline unsigned long getMicroseconds() const
+	inline uint32_t getMicroseconds() const
 	{
 		return getMicroseconds(_ticks);
 	}
@@ -98,7 +86,7 @@ protected:
 	/*
 		Returns the raw time ticks.
 	 */
-	inline unsigned long getTicks() const 
+	inline uint32_t getTicks() const 
 	{
 		return _ticks;
 	}
@@ -106,75 +94,39 @@ protected:
 	/*
 		Returns the ticks in milli-seconds.
 	 */
-	inline static unsigned long getMilliseconds(unsigned long ticks);
-	/*{
-		if (resolution == Milliseconds)
-		{
-			return ticks;
-		}
-
-		return ticks / 1000;
-	}*/
+	inline static uint32_t getMilliseconds(uint32_t ticks);
 
 	/*
 		Returns the ticks in micro-seconds.
 	 */
-	inline static unsigned long getMicroseconds(unsigned long ticks);
-	/*{
-		if (resolution == Milliseconds)
-		{
-			return ticks * 1000;
-		}
-
-		return ticks;
-	}*/
+	inline static uint32_t getMicroseconds(uint32_t ticks);
 
 private:
-	unsigned long _ticks;
+	uint32_t _ticks;
 };
 
 // Time template specializations
 
-//template<>
-//unsigned long Time<Milliseconds>::Update()
-//{
-//	unsigned long previous = _ticks;
-//
-//	_ticks = millis();
-//
-//	return _ticks - previous;
-//}
-
 template<>
-inline unsigned long Time<Milliseconds>::getMilliseconds(unsigned long ticks)
+inline uint32_t Time<Milliseconds>::getMilliseconds(uint32_t ticks)
 {
 	return ticks;
 }
 
 template<>
-inline unsigned long Time<Milliseconds>::getMicroseconds(unsigned long ticks)
+inline uint32_t Time<Milliseconds>::getMicroseconds(uint32_t ticks)
 {
 	return ticks * 1000;
 }
 
-//template<>
-//unsigned long Time<Microseconds>::Update()
-//{
-//	unsigned long previous = _ticks;
-//
-//	_ticks = micros();
-//
-//	return _ticks - previous;
-//}
-
 template<>
-inline unsigned long Time<Microseconds>::getMilliseconds(unsigned long ticks)
+inline uint32_t Time<Microseconds>::getMilliseconds(uint32_t ticks)
 {
 	return ticks / 1000;
 }
 
 template<>
-inline unsigned long Time<Microseconds>::getMicroseconds(unsigned long ticks)
+inline uint32_t Time<Microseconds>::getMicroseconds(uint32_t ticks)
 {
 	return ticks;
 }
@@ -206,7 +158,7 @@ public:
 	/*
 		Updates the time ticks (Time<>) and delta time.
 	 */
-	unsigned long Update()
+	uint32_t Update()
 	{
 		_previous = Time<resolution>::getTicks();
 
@@ -216,7 +168,7 @@ public:
 	/*
 		Returns the start time in milli-seconds.
 	 */
-	inline unsigned long getStartMilliseconds() const
+	inline uint32_t getStartMilliseconds() const
 	{
 		return Time<resolution>::getMilliseconds(_start);
 	}
@@ -224,7 +176,7 @@ public:
 	/*
 		Returns the start time in micro-seconds.
 	 */
-	inline unsigned long getStartMicroseconds() const
+	inline uint32_t getStartMicroseconds() const
 	{
 		return Time<resolution>::getMicroseconds(_start);
 	}
@@ -232,14 +184,14 @@ public:
 	/*
 		Returns the delta-time in ticks.
 	 */
-	inline unsigned int getDeltaTime() const
+	inline uint16_t getDeltaTime() const
 	{
 		return (unsigned int)(Time<resolution>::getTicks() - _previous);
 	}
 
 private:
-	unsigned long _start;
-	unsigned long _previous;
+	uint32_t _start;
+	uint32_t _previous;
 };
 
 } //ATL

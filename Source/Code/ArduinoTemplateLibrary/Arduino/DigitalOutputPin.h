@@ -21,12 +21,14 @@
 #ifndef __DIGITALOUTPUTPIN_H__
 #define __DIGITALOUTPUTPIN_H__
 
+#include <stdint.h>
+
 namespace ATL {
 
 /*
 	Initializes a BoardPinNumber to output.
  */
-template<const byte BoardPinNumber>
+template<const uint8_t BoardPinNumber>
 class DigitalOutputPin
 {
 public:
@@ -74,7 +76,7 @@ public:
 	/*
 		Returns the BoardPinNumber template parameter.
 	 */
-	inline byte getPinNumber() const
+	inline uint8_t getPinNumber() const
 	{
 		return BoardPinNumber;
 	}

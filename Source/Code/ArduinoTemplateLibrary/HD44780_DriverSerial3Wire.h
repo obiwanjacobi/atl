@@ -29,8 +29,8 @@ namespace ATL {
 	BaseT is used as a base class and implements:
 		[Serial3WireOutput]
 */
-template<class BaseT, const byte RegSetIndex, const byte EnableIndex,
-	const byte Data04Index, const byte Data15Index, const byte Data26Index, const byte Data37Index, 
+template<class BaseT, const uint8_t RegSetIndex, const uint8_t EnableIndex,
+	const uint8_t Data04Index, const uint8_t Data15Index, const uint8_t Data26Index, const uint8_t Data37Index, 
 	typename BitArrayT, typename TimingProfileT = HD44780_Profile>
 class HD44780_DriverSerial3Wire : public BaseT
 {
@@ -60,13 +60,13 @@ public:
 		WriteFunctionSet();
 	}
 
-	inline void WriteCommand(byte cmd)
+	inline void WriteCommand(uint8_t cmd)
 	{
 		_dataReg->Set(RegSetIndex, false);
 		Write8(cmd);
 	}
 
-	inline void WriteData(byte data)
+	inline void WriteData(uint8_t data)
 	{
 		_dataReg->Set(RegSetIndex, true);
 		Write8(data);
@@ -74,13 +74,13 @@ public:
 
 protected:
 
-	inline void Write8(byte data)
+	inline void Write8(uint8_t data)
 	{
 		Write4(data >> 4);
 		Write4(data);
 	}
 
-	inline void Write4(byte data)
+	inline void Write4(uint8_t data)
 	{
 		_dataReg->Set(Data04Index, data & 0x01);
 		_dataReg->Set(Data15Index, data & 0x02);
