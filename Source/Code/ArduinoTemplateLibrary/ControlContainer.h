@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stddef.h>
 #include <stdint.h>
 
-#include "Array.h"
+#include "FixedArray.h"
 #include "Collection.h"
 #include "Control.h"
 
@@ -32,9 +32,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 template<const uint8_t MaxItems>
-class ControlContainer : public Collection<Array<Control*, MaxItems> >
+class ControlContainer : public Collection<FixedArray<Control*, MaxItems> >
 {
-	typedef Collection<Array<Control*, MaxItems> > BaseT;
+	typedef Collection<FixedArray<Control*, MaxItems> > BaseT;
 
 public:
     Control* getNext(Control* currentCtrl, ControlTypes type = typeControl) const

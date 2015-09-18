@@ -27,8 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 
-// ArrayT is either Array or ArrayRef 
-//   and implements T GetAt(int16_t index), SetAt(int16_t index, T item) and uint8_t getMaxCount()
+// ArrayT is an Array type
+//   and implements T GetAt(int16_t index), SetAt(int16_t index, T item) and uint8_t getCapacity()
 // ArrayT::ItemT is the type of the item in ArrayT (typedef in ArrayT)
 template<typename ArrayT>
 class CollectionRef
@@ -39,6 +39,11 @@ public:
 	CollectionRef(ArrayT& array)
 		: _array(array), _count(0)
 	{ }
+
+    inline uint16_t getCapacity() const
+    {
+        return _array.getCapacity();
+    }
 
 	inline uint16_t getCount() const
 	{
@@ -75,12 +80,19 @@ public:
 
 	inline void Add(typename ArrayT::ItemT item)
 	{
-		if (_count < _array.getMaxCount())
+		if (_count < _array.getCapacity())
 		{
 			_array.SetAt(_count, item);
 			_count++;
 		}
 	}
+
+    inline void SetAt(int16_t index, typename ArrayT::ItemT value)
+    {
+        if (!IsValidIndex(index)) return;
+
+        _array.SetAt(index, value);
+    }
 
 	// does NOT call ArrayT::Clear() !!
 	inline void Clear()
@@ -92,7 +104,6 @@ private:
 	ArrayT& _array;
 	uint16_t _count;
 };
-
 
 
 } // ATL

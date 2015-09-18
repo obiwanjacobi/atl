@@ -12,7 +12,7 @@ using namespace ATL;
  */
 
 // use typedef for easy reuse.
-typedef Array<int, 2> IntArray;
+typedef FixedArray<int, 2> IntArray;
 
 IntArray myArray;
 CollectionRef<IntArray> myCollection(myArray);

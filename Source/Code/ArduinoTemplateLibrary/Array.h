@@ -22,14 +22,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define __ARRAY_H__
 
 #include <stdint.h>
-#include <string.h>
 #include "Default.h"
 
 namespace ATL {
 
 /*
- *	Bounds-checked array.
- *
+ *	Bounds-checked (read-only) array.
+ * 
  */
 template<typename T, const uint16_t MaxItems>
 class Array
@@ -37,7 +36,7 @@ class Array
 public:
 	typedef T ItemT;
 
-	inline uint16_t getMaxCount() const
+	inline uint16_t getCapacity() const
 	{
 		return MaxItems;
 	}
@@ -52,13 +51,6 @@ public:
 		if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
 		return _arr[index];
-	}
-
-	inline void SetAt(int16_t index, T value)
-	{
-		if (!IsValidIndex(index)) return;
-
-		_arr[index] = value;
 	}
 
 	inline bool IsValidIndex(int16_t index) const
@@ -82,22 +74,6 @@ public:
 		return GetAt(index);
 	}
 
-	// return value for invalid index is undetermined.
-	inline T& operator[](int16_t index)
-	{
-		if (!IsValidIndex(index)) return DummyOfT;
-
-		return _arr[index];
-	}
-
-	inline void Clear()
-	{
-		memset(_arr, 0, MaxItems);
-	}
-
-protected:
-	static T DummyOfT;
-
 	inline T* getBuffer()
 	{
 		return _arr;
@@ -106,9 +82,6 @@ protected:
 private:
 	T _arr[MaxItems];
 };
-
-template<typename T, const uint16_t MaxItems>
-T Array<T, MaxItems>::DummyOfT;
 
 
 } // ATL

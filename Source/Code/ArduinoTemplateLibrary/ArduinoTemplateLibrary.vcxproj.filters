@@ -109,7 +109,6 @@
     <ClInclude Include="AVR\Interrupt.h" />
     <ClInclude Include="AVR\Port.h" />
     <ClInclude Include="Bit.h" />
-    <ClInclude Include="Array.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Panel.h" />
@@ -137,6 +136,10 @@
     <ClInclude Include="TextControl.h" />
     <ClInclude Include="FixedString.h" />
     <ClInclude Include="Iterator.h" />
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="FixedArray.h" />
+    <ClInclude Include="FixedArrayRef.h" />
+    <ClInclude Include="ProgMemAccessor.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

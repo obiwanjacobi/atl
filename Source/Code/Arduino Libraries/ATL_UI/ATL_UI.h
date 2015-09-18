@@ -11,6 +11,7 @@
 #include "utility\ControlContainer.h"
 #include "utility\Default.h"
 #include "utility\DisplayWriter.h"
+#include "utility\FixedArray.h"
 #include "utility\HD44780_DisplayWriter.h"
 #include "utility\HorizontalPanel.h"
 #include "utility\InputControl.h"

@@ -17,7 +17,7 @@ namespace ArduinoTemplateLibraryTests
 		void InitWithData_Read_ProducesBytes()
 		{
 			const int size = 256;
-			BufferedInputStream<RingBuffer<unsigned char, size>> target;
+			BufferedInputStream<RingBuffer<uint8_t, size>> target;
 
 			for (int i = 0; i < size / 2; i++)
 			{

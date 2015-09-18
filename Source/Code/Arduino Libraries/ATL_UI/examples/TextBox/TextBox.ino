@@ -69,7 +69,7 @@ StaticArray<NavigationCommands, 13> navCmds(pgmNavCmds);
 void loop() {
   // put your main code here, to run repeatedly:
   
-  for(int i = 0; i < navCmds.getMaxCount(); i++)
+  for(uint16_t i = 0; i < navCmds.getCapacity(); i++)
   {
     page.OnNavigationCommand(navCmds[i]);
     page.Display(&lcd);

@@ -3,11 +3,11 @@
 using namespace ATL;
 
 // declare an array of 4 int's
-Array<int, 4> intArray;
+FixedArray<int, 4> intArray;
 // declare an array of 4 float's
-Array<float, 4> floatArray;
+FixedArray<float, 4> floatArray;
 // declare an array of 4 ptr's (to int's)
-Array<int*, 4> ptrArray;
+FixedArray<int*, 4> ptrArray;
 
 void setup() {
   // put your setup code here, to run once:

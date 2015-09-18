@@ -1,6 +1,7 @@
 #ifndef __TESTINPUTSTREAM_H__
 #define __TESTINPUTSTREAM_H__
 
+#include <stddef.h>
 #include "Arduino.h"
 
 class TestInputStream

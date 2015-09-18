@@ -115,6 +115,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{3F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{42BD9785-228C-4C7C-961E-CA2CA768808F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_Input", "ATL_Input", "{94B66028-C382-4349-A2FE-3A7E47FA66DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{BC6C3083-6DD4-40C9-BB5B-4E552DA1DF77}"
+	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_Input\examples\PushButton\PushButton.ino = Arduino Libraries\ATL_Input\examples\PushButton\PushButton.ino
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 3
@@ -154,6 +161,7 @@ Global
 		{B73DDCC8-18B5-40B6-B895-3866E6C883C3} = {2E078CB8-4343-4CF6-ABA0-53F822B36A7C}
 		{3FEAB1DD-405B-4524-A2FC-1F9D531D8987} = {92E5465D-B7AE-4D3A-856C-D480ABD89D17}
 		{42BD9785-228C-4C7C-961E-CA2CA768808F} = {FA8BA82F-FF4E-4FA3-BEB0-4014079F9BF3}
+		{BC6C3083-6DD4-40C9-BB5B-4E552DA1DF77} = {94B66028-C382-4349-A2FE-3A7E47FA66DB}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ArduinoTemplateLibrary.vsmdi

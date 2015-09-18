@@ -55,7 +55,7 @@ public:
 		}
 	}
 
-	virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode)
+	virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
 	{
 		if (_currentControl != NULL)
 		{

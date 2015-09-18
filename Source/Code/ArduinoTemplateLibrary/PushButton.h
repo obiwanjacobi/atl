@@ -27,22 +27,23 @@
 
 namespace ATL {
 
-	/*
-		The different states the PushButton can be in.
-	 */
-	enum ButtonStates
-	{
-		// button state not initialized / known
-		stateUnknown,
-		// button contact is open / not pushed
-		stateOpen,
-		// button contact is closed / pushed
-		stateClosed,
-		// button contact remains closed / pushed (holdTimeout)
-		stateHold,
-		// button state sensing is pending for debounce (debounceTimeout)
-		statePending,
-	};
+/*
+The different states the PushButton can be in.
+*/
+enum ButtonStates
+{
+    // button state not initialized / known
+    stateUnknown,
+    // button contact is open / not pushed
+    stateOpen,
+    // button contact is closed / pushed
+    stateClosed,
+    // button contact remains closed / pushed (holdTimeout)
+    stateHold,
+    // button state sensing is pending for debounce (debounceTimeout)
+    statePending,
+};
+
 
 namespace Implementation {
 
@@ -76,11 +77,12 @@ struct ConvertBoolToButtonState<true>
 
 } // ATL::IO::Implementation
 
+
 /*
 	The class implements full tactile push button handling, including debouncing and hold detection.
 
 	BaseT is used as base class and implements:
-		bool [IO::DigitalInputPin] Read();
+		bool [DigitalInputPin] Read();
 		uint16_t [IdentifiableObject] getId();
 	DelaysT see Delays.h
 	debounceTimeout: timeout for contact debounce in units used in DelaysT
@@ -90,7 +92,7 @@ struct ConvertBoolToButtonState<true>
 		true => 0=stateClosed | 1=stateOpen
 */
 template<class BaseT, typename DelaysT, 
-	const timeout_t debounceTimeout, const timeout_t holdTimeout, 
+    const uint32_t debounceTimeout, const uint32_t holdTimeout, 
 	const bool InverseValue=false>
 class PushButton : public BaseT
 {
@@ -145,7 +147,7 @@ public:
 	/*
 		Returns the debounceTimeout template parameter.
 	 */
-	inline timeout_t getDebounceTimeout() const
+    inline uint32_t getDebounceTimeout() const
 	{
 		return debounceTimeout;
 	}
@@ -153,7 +155,7 @@ public:
 	/*
 		Returns the holdTimeout template parameter.
 	 */
-	inline timeout_t getHoldTimeout() const
+    inline uint32_t getHoldTimeout() const
 	{
 		return holdTimeout;
 	}
@@ -167,8 +169,8 @@ public:
 	}
 
 private:
-	int _task;
-	BitArray<byte> _states;
+	int16_t _task;
+	BitArray<uint8_t> _states;
 
 	inline void SampleButtonState()
 	{

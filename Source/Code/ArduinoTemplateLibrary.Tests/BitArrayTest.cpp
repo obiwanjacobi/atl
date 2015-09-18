@@ -10,51 +10,73 @@ namespace ArduinoTemplateLibraryTests
 	[TestClass]
 	public ref class BitArrayTest
 	{
-	private:
-		TestContext^ testContextInstance;
+        typedef BitArray<uint8_t> TestBitArray;
 
-	public: 
-		/// <summary>
-		///Gets or sets the test context which provides
-		///information about and functionality for the current test run.
-		///</summary>
-		property Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ TestContext
-		{
-			Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ get()
-			{
-				return testContextInstance;
-			}
-			System::Void set(Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ value)
-			{
-				testContextInstance = value;
-			}
-		};
-
+    public:
 		[TestMethod]
 		void Constructor_Initialization_Test()
 		{
-			BitArray<unsigned char> tested(0x04);
+			TestBitArray tested(0x04);
 
 			Assert::IsTrue(tested.IsTrue(2));
 		}
 
+        [TestMethod]
+        void Set_Bit_Test()
+        {
+            TestBitArray tested;
+
+            tested.Set(3, true);
+
+            Assert::AreEqual((int)tested, (int)0x08);
+        }
+
+        [TestMethod]
+        void Set_BitToFalse_Test()
+        {
+            TestBitArray tested(0x08);
+
+            tested.Set(3, false);
+
+            Assert::AreEqual((int)tested, (int)0);
+        }
+
+        [TestMethod]
+        void Get_Bit_Test()
+        {
+            TestBitArray tested(0x08);
+
+            Assert::IsTrue(tested.Get(3));
+        }
+
 		[TestMethod]
 		void Set_MultiBit_Test()
 		{
-			BitArray<unsigned char> tested;
+			TestBitArray tested;
 
 			// 0x11 masked to 0x01
 			tested.Set(3, 0x11, 2);
 
-			Assert::AreEqual((unsigned char)tested, (unsigned char)0x08);
+			Assert::AreEqual((int)tested, (int)0x08);
 		}
 
 		[TestMethod]
 		void Get_MultiBit_Test()
 		{
-			BitArray<unsigned char> tested(0x08);
+			TestBitArray tested(0x08);
 
-			Assert::AreEqual(tested.Get(3, 2), (unsigned char)0x01);
+			Assert::AreEqual((int)tested.Get(3, 2), (int)0x01);
 		}
+
+        [TestMethod]
+        void Reverse_MultiBit_Test()
+        {
+            // 01010101
+            TestBitArray tested(0x55);
+
+            tested.Reverse();
+
+            Assert::AreEqual((int)tested, (int)0xAA);
+        }
 	};
 }

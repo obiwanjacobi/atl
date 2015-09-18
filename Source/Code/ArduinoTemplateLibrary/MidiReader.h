@@ -28,7 +28,7 @@ namespace ATL {
 /*
 	BaseT is used as a base class and implements:
 		uint16_t [IO.Stream.]getLength();
-		int [IO.InputStream.]Read();
+		int16_t [IO.InputStream.]Read();
 		void [Midi.MidiReader.]OnMessage(MidiMessage*);
 		void [Midi.MidiReader.]OnRealTime(Midi::MessageTypes);
 		void [Midi.MidiReader.]OnSysEx(BaseT*);
@@ -50,11 +50,11 @@ public:
 
 		if (availableBytes > 0)
 		{
-			int midiByte = BaseT::Read();
+			int16_t midiByte = BaseT::Read();
 
 			if (midiByte != -1)
 			{
-				return Dispatch((byte)midiByte);
+				return Dispatch((uint8_t)midiByte);
 			}
 		}
 

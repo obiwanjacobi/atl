@@ -1,6 +1,8 @@
 #ifndef __TESTOUTPUTSTREAM_H__
 #define __TESTOUTPUTSTREAM_H__
 
+#include <stddef.h>
+#include <stdint.h>
 #include "Arduino.h"
 
 class TestOutputStream
@@ -25,7 +27,7 @@ public:
 	{
 		return getLength();
 	}
-	void write(byte data)
+	void write(uint8_t data)
 	{
 		Write(data);
 	}
@@ -55,9 +57,9 @@ public:
 	}
 
 private:
-	int _index;
-	unsigned int _length;
-	unsigned char* _buffer;
+	int16_t _index;
+	uint16_t _length;
+	uint8_t* _buffer;
 };
 
 #endif //__TESTOUTPUTSTREAM_H__

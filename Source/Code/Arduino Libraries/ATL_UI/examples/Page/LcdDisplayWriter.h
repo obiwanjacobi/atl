@@ -41,7 +41,7 @@ public:
 	}
 
 	// sets the (blinking) cursor position to indicate a selected state of the control.
-	virtual void SetCursor(uint8_t lineIndex, uint8_t columnIndex, bool blink)
+	virtual void SetCursor(uint8_t /*lineIndex*/, uint8_t /*columnIndex*/, bool /*blink*/)
 	{
 		// not used in this example
 	}

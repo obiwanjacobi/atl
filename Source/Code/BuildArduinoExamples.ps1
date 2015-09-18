@@ -30,8 +30,6 @@ function BuildAllArduinoExamples()
 
         [int]$exitCode = BuildArduinoExample $file
 
-        $exitCode.ToString();
-
         if ($exitCode -ne 0)
         {
            "======> FAILED!"

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "..\ArduinoTemplateLibrary\Array.h"
+#include "..\ArduinoTemplateLibrary\FixedArray.h"
 #include "..\ArduinoTemplateLibrary\CollectionRef.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
@@ -9,9 +9,9 @@ using namespace ATL;
 namespace ArduinoTemplateLibraryTests
 {
 	[TestClass]
-	public ref class CollectionTest
+	public ref class CollectionRefTest
 	{
-		typedef Array<int, 2> ValueArray;
+		typedef FixedArray<int, 2> ValueArray;
 
 		static const int MagicNumber = 42;
 
@@ -22,7 +22,7 @@ namespace ArduinoTemplateLibraryTests
 			ValueArray array;
 			CollectionRef<ValueArray> tested(array);
 
-			Assert::AreEqual((unsigned char)0, tested.getCount());
+			Assert::AreEqual((int)0, (int)tested.getCount());
 		}
 
 		[TestMethod]
@@ -33,7 +33,7 @@ namespace ArduinoTemplateLibraryTests
 
 			tested.Add(0);
 
-			Assert::AreEqual((unsigned char)1, tested.getCount());
+			Assert::AreEqual((int)1, (int)tested.getCount());
 		}
 
 		[TestMethod]
@@ -87,7 +87,7 @@ namespace ArduinoTemplateLibraryTests
 				tested.Add(MagicNumber);
 			}
 
-			Assert::AreEqual(array.getMaxCount(), tested.getCount());
+			Assert::AreEqual(array.getCapacity(), tested.getCount());
 		}
 	};
 }

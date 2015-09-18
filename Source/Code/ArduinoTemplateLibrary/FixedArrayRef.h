@@ -18,32 +18,45 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __STATICSTRING_H__
-#define __STATICSTRING_H__
+#ifndef __FIXEDARRAYREF_H__
+#define __FIXEDARRAYREF_H__
 
-#include <avr/pgmspace.h>
 #include <stdint.h>
+#include "ArrayRef.h"
 
 namespace ATL {
 
-// container class for static (prog-mem) strings
-class StaticString
+
+/*
+* Bounds-checked wrapper for an array reference
+*
+*/
+template<typename T, const uint16_t MaxItems>
+class FixedArrayRef : public ArrayRef<T, MaxItems>
 {
+    typedef ArrayRef<T, MaxItems> BaseT;
+
 public:
-	// declare PROGMEM string and pass in the var
-	StaticString(const char* str)
-		: _str(str)
-	{ }
+    typedef T ItemT;
 
-	inline void Read(char* target, size_t targetLen)
-	{
-		strncpy_P(target, _str, targetLen);
-	}
+    FixedArrayRef(T* array)
+        : BaseT(array)
+    { }
 
-private:
-	const char* _str;
+    inline void SetAt(int16_t index, T value)
+    {
+        if (!BaseT::IsValidIndex(index)) return;
+
+        BaseT::getBuffer()[index] = value;
+    }
+
+    inline void Clear()
+    {
+        memset(BaseT::getBuffer(), 0, MaxItems);
+    }
 };
+
 
 } // ATL
 
-#endif //__STATICSTRING_H__
+#endif //__FIXEDARRAYREF_H__

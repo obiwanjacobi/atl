@@ -30,9 +30,9 @@
 namespace ATL {
 
 /*
-	The BitArray class stores its bits in one or more uint8_t . 
+	The BitArray class stores its bits in one or more bytes.
 	This class can be used for maintaining boolean flags in a memory efficient way.
-	A normal boolean takes up a whole uint8_t .
+	A normal boolean takes up a whole byte.
 	T is an (unsigned) integer data-type.
  */
 template<typename T>
@@ -257,21 +257,23 @@ private:
 
 template<>
 void BitArray<uint8_t >::Reverse()
-	{
-		_bits = (_bits & 0xF0) >> 4 | (_bits & 0x0F) << 4;
-		_bits = (_bits & 0xCC) >> 2 | (_bits & 0x33) << 2;
-		_bits = (_bits & 0xAA) >> 1 | (_bits & 0x55) << 1;
-	}
+{
+	_bits = (_bits & 0xF0) >> 4 | (_bits & 0x0F) << 4;
+	_bits = (_bits & 0xCC) >> 2 | (_bits & 0x33) << 2;
+	_bits = (_bits & 0xAA) >> 1 | (_bits & 0x55) << 1;
+}
 
 template<>
-void BitArray<unsigned short>::Reverse()
-	{
-		_bits = (_bits & 0xFF00) >> 8 | (_bits & 0x00FF) << 8;
-		_bits = (_bits & 0xF0F0) >> 4 | (_bits & 0x0F0F) << 4;
-		_bits = (_bits & 0xCCCC) >> 2 | (_bits & 0x3333) << 2;
-		_bits = (_bits & 0xAAAA) >> 1 | (_bits & 0x5555) << 1;
-	}
+void BitArray<uint16_t>::Reverse()
+{
+	_bits = (_bits & 0xFF00) >> 8 | (_bits & 0x00FF) << 8;
+	_bits = (_bits & 0xF0F0) >> 4 | (_bits & 0x0F0F) << 4;
+	_bits = (_bits & 0xCCCC) >> 2 | (_bits & 0x3333) << 2;
+	_bits = (_bits & 0xAAAA) >> 1 | (_bits & 0x5555) << 1;
+}
+
 
 } //ATL
+
 
 #endif //__BITARRAY_H__

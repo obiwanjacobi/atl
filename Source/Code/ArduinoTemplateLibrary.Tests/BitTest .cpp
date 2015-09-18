@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "..\ArduinoTemplateLibrary\Bit.h"
-#include "..\ArduinoTemplateLibrary\BitFlag.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
@@ -11,92 +10,52 @@ namespace ArduinoTemplateLibraryTests
 	[TestClass]
 	public ref class BitTest
 	{
-	private:
-		TestContext^ testContextInstance;
-
-	public: 
-		/// <summary>
-		///Gets or sets the test context which provides
-		///information about and functionality for the current test run.
-		///</summary>
-		property Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ TestContext
-		{
-			Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ get()
-			{
-				return testContextInstance;
-			}
-			System::Void set(Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ value)
-			{
-				testContextInstance = value;
-			}
-		};
-
-		const static unsigned char TestBitIndex = 2;
-		const static unsigned char TestBitValue = 0x04;
-		typedef Bit<TestBitIndex> TestBit2;
-		typedef BitFlag TestBit1;
+        const static uint8_t TestBitValue = 0x04;
 		
-
+    public:
 		[TestMethod]
-		void Bit2_Set_Test()
+		void Bit_Set8_Test()
 		{
-			unsigned char target = 0;
-			TestBit2::Set(target);
+			uint8_t target = 0;
+            Bit<2>::Set(target);
 
 			Assert::AreEqual(TestBitValue, target);
 		}
 
-		[TestMethod]
-		void Bit1_Set_Test()
-		{
-			unsigned char target = 0;
-			TestBit1::Set(target, TestBitIndex);
+        [TestMethod]
+        void Bit_Set16_Test()
+        {
+            uint16_t target = 0;
+            Bit<2 + 8>::Set(target);
 
-			Assert::AreEqual(TestBitValue, target);
+            Assert::AreEqual((uint16_t)(TestBitValue << 8), target);
+        }
+
+        [TestMethod]
+        void Bit_Set32_Test()
+        {
+            uint32_t target = 0;
+            Bit<2 + 16>::Set(target);
+
+            Assert::AreEqual((uint32_t)(TestBitValue << 16), target);
+        }
+
+		[TestMethod]
+		void Bit_SetIsTrue_Test()
+		{
+            uint8_t target = 0;
+            Bit<2>::Set(target);
+
+            Assert::AreEqual(true, Bit<2>::IsTrue(target));
 		}
 
 		[TestMethod]
-		void Bit2_SetIsTrue_Test()
+		void Bit_SetIsFalse_Test()
 		{
-			unsigned char target = 0;
-			TestBit2::Set(target);
+            uint8_t target = TestBitValue;
+            Bit<2>::Set(target, false);
 
-			Assert::AreEqual(true, TestBit2::IsTrue(target));
-		}
-
-		[TestMethod]
-		void Bit1_SetIsTrue_Test()
-		{
-			unsigned char target = 0;
-			TestBit1::Set(target, TestBitIndex);
-
-			Assert::AreEqual(true, TestBit1::IsTrue(target, TestBitIndex));
-		}
-
-		[TestMethod]
-		void Bit2_SetIsFalse_Test()
-		{
-			unsigned char target = TestBitValue;
-			TestBit2::Set(target, false);
-
-			Assert::AreEqual(true, TestBit2::IsFalse(target));
-		}
-
-		[TestMethod]
-		void Bit1_SetIsFalse_Test()
-		{
-			unsigned char target = TestBitValue;
-			TestBit1::Set(target, TestBitIndex, false);
-
-			Assert::AreEqual(true, TestBit1::IsFalse(target, TestBitIndex));
-		}
-
-		void CompileErrorTest()
-		{
-			unsigned char compileErr = 0;
-			
-			// Bit index 8 is too large for unsigned char (0-7)
-			//Bit<unsigned char, 8>::Set(compileErr);
+            Assert::AreEqual(true, Bit<2>::IsFalse(target));
 		}
 	};
 }

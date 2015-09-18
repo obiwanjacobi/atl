@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __ARRAYREF_H__
 #define __ARRAYREF_H__
 
+#include <stddef.h>
 #include <stdint.h>
 #include "Default.h"
 
@@ -28,7 +29,7 @@ namespace ATL {
 
 
 /*
-* Bounds-checked wrapper for an array reference
+* Bounds-checked read-only wrapper for an array reference
 *
 */
 template<typename T, const uint16_t MaxItems>
@@ -41,7 +42,7 @@ public:
 		: _arr(array)
 	{ }
 
-	inline uint16_t getMaxCount() const
+	inline uint16_t getCapacity() const
 	{
 		return MaxItems;
 	}
@@ -56,13 +57,6 @@ public:
 		if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
 		return _arr[index];
-	}
-
-	inline void SetAt(int16_t index, T value)
-	{
-		if (!IsValidIndex(index)) return;
-
-		_arr[index] = value;
 	}
 
 	inline bool IsValidIndex(int16_t index) const
@@ -86,20 +80,19 @@ public:
 		return GetAt(index);
 	}
 
-	inline void Clear()
-	{
-		memset(_arr, 0, MaxItems);
-	}
+    inline T* getBuffer()
+    {
+        return _arr;
+    }
 
 protected:
+    ArrayRef()
+        : _arr(NULL)
+    { }
+
 	inline void setBuffer(T* array)
 	{
 		_arr = array;
-	}
-
-	inline T* getBuffer() const
-	{
-		return _arr;
 	}
 
 private:

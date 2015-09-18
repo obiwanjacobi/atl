@@ -21,60 +21,12 @@
 #ifndef __STATICARRAY_H__
 #define __STATICARRAY_H__
 
+#include <stdint.h>
+#include "ProgMemAccessor.h"
+#include "ArrayRef.h"
+
 namespace ATL {
 
-namespace Implementation {
-
-template<typename T, const uint8_t TypeSize = sizeof(T)>
-class ProgMemAccessor
-{
-public:
-	inline static T Read(uint16_t address);
-};
-
-// Specializations based on type size
-
-template<typename T>
-class ProgMemAccessor<T, 1>
-{
-public:
-	inline static T Read(uint16_t address)
-	{
-		return (T)pgm_read_byte_near(address);
-	}
-};
-
-template<typename T>
-class ProgMemAccessor<T, 2>
-{
-public:
-	inline static T Read(uint16_t address)
-	{
-		return (T)pgm_read_word_near(address);
-	}
-};
-
-template<typename T>
-class ProgMemAccessor<T, 4>
-{
-public:
-	inline static T Read(uint16_t address)
-	{
-		return (T)pgm_read_dword_near(address);
-	}
-};
-
-template<>
-class ProgMemAccessor<float, 4>
-{
-public:
-	inline static float Read(uint16_t address)
-	{
-		return (float)pgm_read_float_near(address);
-	}
-};
-
-} // Implementation
 
 template<typename T, const uint16_t MaxItems>
 class StaticArray
@@ -87,10 +39,10 @@ public:
 		: _arr(array)
 	{ }
 
-	inline uint16_t getMaxCount() const
-	{
-		return MaxItems;
-	}
+    inline uint16_t getCapacity() const
+    {
+        return MaxItems;
+    }
 
     inline uint16_t getCount() const
     {
@@ -101,46 +53,48 @@ public:
 	{
 		if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
-		return Implementation::ProgMemAccessor<T>::Read((uint16_t)&_arr[index]);
+		return Implementation::ProgMemAccessor<T>::Read(&_arr[index]);
 	}
 
-	inline bool IsValidIndex(int16_t index) const
-	{
-		return index >= 0 && index < MaxItems;
-	}
+    inline bool IsValidIndex(int16_t index) const
+    {
+        return index >= 0 && index < MaxItems;
+    }
 
-	inline int8_t IndexOf(T item) const
-	{
-		for (uint8_t i = 0; i < MaxItems; i++)
-		{
-			if (GetAt(i) == item)
-				return i;
-		}
+    inline int8_t IndexOf(T item) const
+    {
+        for (uint8_t i = 0; i < MaxItems; i++)
+        {
+            if (GetAt(i) == item)
+                return i;
+        }
 
-		return -1;
-	}
+        return -1;
+    }
 
-	inline T operator[](int16_t index) const
-	{
-		return GetAt(index);
-	}
+    inline T operator[](int16_t index) const
+    {
+        return GetAt(index);
+    }
 
 protected:
-	inline void setBuffer(const T* array)
-	{
-		_arr = array;
-	}
+    StaticArray()
+        : _arr(NULL)
+    { }
 
-	inline const T* getBuffer() const
-	{
-		return _arr;
-	}
+    inline void setBuffer(const T* array)
+    {
+        _arr = array;
+    }
+
+    inline const T* getBuffer() const
+    {
+        return _arr;
+    }
 
 private:
-	const T* _arr;
-
+    const T* _arr;
 };
-
 
 
 } // ATL

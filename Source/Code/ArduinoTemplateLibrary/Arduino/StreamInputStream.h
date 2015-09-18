@@ -21,6 +21,9 @@
 #ifndef __STREAMINPUTSTREAM_H__
 #define __STREAMINPUTSTREAM_H__
 
+#include <stddef.h>
+#include <stdint.h>
+
 namespace ATL {
 
 /*

@@ -55,12 +55,18 @@
     <ClCompile Include="BitTest .cpp" />
     <ClCompile Include="InputControlTest.cpp" />
     <ClCompile Include="UpDownControlTest.cpp" />
-    <ClCompile Include="ArrayTest.cpp" />
     <ClCompile Include="TestControls.cpp" />
-    <ClCompile Include="PanelTest.cpp" />
     <ClCompile Include="PageTest.cpp" />
     <ClCompile Include="CollectionRefTest.cpp" />
     <ClCompile Include="TextControlTest.cpp" />
+    <ClCompile Include="FixedArrayTest.cpp" />
+    <ClCompile Include="FixedArrayRefTest.cpp" />
+    <ClCompile Include="BitFlagTest.cpp" />
+    <ClCompile Include="CollectionTest.cpp" />
+    <ClCompile Include="ArrayTest.cpp" />
+    <ClCompile Include="HorizontalPanelTest.cpp" />
+    <ClCompile Include="VerticalPanelTest.cpp" />
+    <ClCompile Include="PanelControlContainerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

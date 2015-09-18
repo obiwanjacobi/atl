@@ -18,32 +18,56 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __STATICSTRING_H__
-#define __STATICSTRING_H__
+#ifndef __FIXEDARRAY_H__
+#define __FIXEDARRAY_H__
 
-#include <avr/pgmspace.h>
 #include <stdint.h>
+#include <string.h>
+#include "Array.h"
 
 namespace ATL {
 
-// container class for static (prog-mem) strings
-class StaticString
+/*
+*	Bounds-checked array.
+*
+*/
+template<typename T, const uint16_t MaxItems>
+class FixedArray : public Array<T, MaxItems>
 {
+    typedef Array<T, MaxItems> BaseT;
+
 public:
-	// declare PROGMEM string and pass in the var
-	StaticString(const char* str)
-		: _str(str)
-	{ }
+    typedef T ItemT;
 
-	inline void Read(char* target, size_t targetLen)
-	{
-		strncpy_P(target, _str, targetLen);
-	}
+    inline void SetAt(int16_t index, T value)
+    {
+        if (!BaseT::IsValidIndex(index)) return;
 
-private:
-	const char* _str;
+        BaseT::getBuffer()[index] = value;
+    }
+
+    // return value for invalid index is undetermined.
+    inline T& operator[](int16_t index)
+    {
+        if (!BaseT::IsValidIndex(index)) return DummyOfT;
+
+        return BaseT::getBuffer()[index];
+    }
+
+    inline void Clear()
+    {
+        memset(BaseT::getBuffer(), 0, MaxItems);
+    }
+
+protected:
+    static T DummyOfT;
+
 };
+
+template<typename T, const uint16_t MaxItems>
+T FixedArray<T, MaxItems>::DummyOfT;
+
 
 } // ATL
 
-#endif //__STATICSTRING_H__
+#endif //__FIXEDARRAY_H__

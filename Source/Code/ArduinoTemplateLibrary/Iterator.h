@@ -111,7 +111,7 @@ private:
 
 
 
-template<class BaseT>
+template<typename BaseT>
 class WrapAroundIterator : public Iterator<BaseT>
 {
     typedef Iterator<BaseT> IteratorT;
@@ -122,7 +122,7 @@ public:
         if (!IteratorT::MoveNext())
         {
             IteratorT::Reset();
-            IteratorT::MoveNext()
+            IteratorT::MoveNext();
         }
 
         return true;
@@ -133,7 +133,7 @@ public:
         if (!IteratorT::MoveBack())
         {
             IteratorT::ResetToEnd();
-            IteratorT::MoveBack()
+            IteratorT::MoveBack();
         }
 
         return true;

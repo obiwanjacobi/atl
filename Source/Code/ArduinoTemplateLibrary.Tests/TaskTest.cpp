@@ -42,26 +42,7 @@ namespace ArduinoTemplateLibraryTests
 	[TestClass]
 	public ref class TaskTest
 	{
-	private:
-		TestContext^ testContextInstance;
-
-	public: 
-		/// <summary>
-		///Gets or sets the test context which provides
-		///information about and functionality for the current test run.
-		///</summary>
-		property Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ TestContext
-		{
-			Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ get()
-			{
-				return testContextInstance;
-			}
-			System::Void set(Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ value)
-			{
-				testContextInstance = value;
-			}
-		};
-
+    public:
 		[TestMethod]
 		void CountingTaskTest()
 		{

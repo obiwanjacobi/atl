@@ -90,6 +90,8 @@
     <ClInclude Include="ControlContainer.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Default.h" />
+    <ClInclude Include="FixedArray.h" />
+    <ClInclude Include="FixedArrayRef.h" />
     <ClInclude Include="FixedString.h" />
     <ClInclude Include="HD44780_DisplayWriter.h" />
     <ClInclude Include="HorizontalPanel.h" />
@@ -131,6 +133,7 @@
     <ClInclude Include="MidiWriter.h" />
     <ClInclude Include="PanelControlContainer.h" />
     <ClInclude Include="PID.h" />
+    <ClInclude Include="ProgMemAccessor.h" />
     <ClInclude Include="PushButton.h" />
     <ClInclude Include="Range.h" />
     <ClInclude Include="RingBuffer.h" />

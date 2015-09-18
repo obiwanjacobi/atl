@@ -22,15 +22,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define __FIXEDSTRING_H__
 
 #include <stdint.h>
-#include "Array.h"
+#include "FixedArray.h"
 
 namespace ATL {
 
 
 template<const uint8_t MaxChars>
-class FixedString : public Array<char, MaxChars + 1>
+class FixedString : public FixedArray<char, MaxChars + 1>
 {
-	typedef Array<char, MaxChars + 1> BaseT;
+	typedef FixedArray<char, MaxChars + 1> BaseT;
 
 public:
 	typedef typename BaseT::ItemT ItemT;
@@ -50,6 +50,11 @@ public:
 	{
 		return MaxChars;
 	}
+
+    inline uint8_t getCount() const
+    {
+        return MaxChars;
+    }
 
 	inline void CopyFrom(const char* text)
 	{
