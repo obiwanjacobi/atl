@@ -57,18 +57,23 @@ public:
 		return BaseT::OnNavigationCommand(navCmd);
 	}
 
-	virtual void Display(DisplayWriter* output)
+	virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
 	{
-		Control* ctrl = BaseT::getNext(NULL);
-		while (ctrl != NULL)
+		if (mode == Control::modeCursor)
 		{
+			BaseT::Display(output, mode);
+			return;
+		}
+
+		for (uint8_t i = 0; i < BaseT::getCount(); i++)
+		{
+			Control* ctrl = BaseT::GetAt(i);
+
 			if (ctrl->getIsVisible())
 			{
 				output->GoTo(ctrl->getPosition(), 0);
-				ctrl->Display(output);
+				ctrl->Display(output, mode);
 			}
-
-			ctrl = BaseT::getNext(ctrl);
 		}
 	}
 };

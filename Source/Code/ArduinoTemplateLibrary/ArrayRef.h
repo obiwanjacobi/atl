@@ -31,47 +31,79 @@ namespace ATL {
 * Bounds-checked wrapper for an array reference
 *
 */
-template<typename T, const uint8_t MaxItems>
+template<typename T, const uint16_t MaxItems>
 class ArrayRef
 {
 public:
 	typedef T ItemT;
 
-	ArrayRef(T(&array)[MaxItems])
+	ArrayRef(T* array)
 		: _arr(array)
 	{ }
 
-	inline uint8_t getMaxCount() const
+	inline uint16_t getMaxCount() const
 	{
 		return MaxItems;
 	}
+    
+    inline uint16_t getCount() const
+    {
+        return MaxItems;
+    }
 
-	inline T GetAt(uint8_t index) const
+	inline T GetAt(int16_t index) const
 	{
 		if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
 		return _arr[index];
 	}
 
-	inline void SetAt(uint8_t index, T value)
+	inline void SetAt(int16_t index, T value)
 	{
 		if (!IsValidIndex(index)) return;
 
 		_arr[index] = value;
 	}
 
-	inline bool IsValidIndex(uint8_t index) const
+	inline bool IsValidIndex(int16_t index) const
 	{
 		return index >= 0 && index < MaxItems;
 	}
 
-	inline T operator[](uint8_t index) const
+	inline int8_t IndexOf(T item) const
+	{
+		for (uint8_t i = 0; i < MaxItems; i++)
+		{
+			if (_arr[i] == item)
+				return i;
+		}
+
+		return -1;
+	}
+
+	inline T operator[](int16_t index) const
 	{
 		return GetAt(index);
 	}
 
+	inline void Clear()
+	{
+		memset(_arr, 0, MaxItems);
+	}
+
+protected:
+	inline void setBuffer(T* array)
+	{
+		_arr = array;
+	}
+
+	inline T* getBuffer() const
+	{
+		return _arr;
+	}
+
 private:
-	T(&_arr)[MaxItems];
+	T* _arr;
 };
 
 

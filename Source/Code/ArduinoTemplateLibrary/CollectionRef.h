@@ -28,34 +28,36 @@ namespace ATL {
 
 
 // ArrayT is either Array or ArrayRef 
-//   and implements T GetAt(uint8_t index), SetAt(uint8_t index, T item) and uint8_t getMaxCount()
+//   and implements T GetAt(int16_t index), SetAt(int16_t index, T item) and uint8_t getMaxCount()
 // ArrayT::ItemT is the type of the item in ArrayT (typedef in ArrayT)
 template<typename ArrayT>
 class CollectionRef
 {
 public:
+	typedef typename ArrayT::ItemT ItemT;
+
 	CollectionRef(ArrayT& array)
 		: _array(array), _count(0)
 	{ }
 
-	inline uint8_t getCount() const
+	inline uint16_t getCount() const
 	{
 		return _count;
 	}
 
-	inline bool IsValidIndex(uint8_t index) const
+	inline bool IsValidIndex(int16_t index) const
 	{
 		return index >= 0 && index < _count;
 	}
 
-	inline typename ArrayT::ItemT GetAt(uint8_t index) const
+	inline typename ArrayT::ItemT GetAt(int16_t index) const
 	{
 		if (!IsValidIndex(index)) return Default<typename ArrayT::ItemT>::DefaultOfT;
 
 		return _array.GetAt(index);
 	}
 
-	inline typename ArrayT::ItemT operator[](uint8_t index) const
+	inline typename ArrayT::ItemT operator[](int16_t index) const
 	{
 		return GetAt(index);
 	}
@@ -80,6 +82,7 @@ public:
 		}
 	}
 
+	// does NOT call ArrayT::Clear() !!
 	inline void Clear()
 	{
 		_count = 0;
@@ -87,7 +90,7 @@ public:
 
 private:
 	ArrayT& _array;
-	uint8_t _count;
+	uint16_t _count;
 };
 
 

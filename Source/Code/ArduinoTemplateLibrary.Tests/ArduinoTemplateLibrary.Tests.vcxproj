@@ -112,6 +112,7 @@
     <ClCompile Include="CollectionRefTest.cpp" />
     <ClCompile Include="PanelTest.cpp" />
     <ClCompile Include="PageTest.cpp" />
+    <ClCompile Include="TextControlTest.cpp" />
     <ClCompile Include="UpDownControlTest.cpp" />
     <ClCompile Include="URM37V32_ControllerTest.cpp" />
     <ClCompile Include="ValueContainerTest.cpp" />

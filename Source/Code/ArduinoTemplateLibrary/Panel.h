@@ -42,24 +42,24 @@ public:
 	{
 		if (_currentControl != NULL)
 		{
-			_currentControl->setState(Normal);
-			setState(Normal);
+			_currentControl->setState(Control::stateNormal);
+			setState(Control::stateNormal);
 		}
 
 		_currentControl = ctrl;
 
 		if (_currentControl != NULL)
 		{
-			_currentControl->setState(Focused);
-			setState(Focused);
+			_currentControl->setState(Control::stateFocused);
+			setState(Control::stateFocused);
 		}
 	}
 
-	virtual void Display(DisplayWriter* output)
+	virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode)
 	{
 		if (_currentControl != NULL)
 		{
-			_currentControl->Display(output);
+			_currentControl->Display(output, mode);
 		}
 	}
 
@@ -83,9 +83,9 @@ protected:
 		: InputControl(pos), _currentControl(NULL)
 	{ }
 
-	virtual bool BeforeChangeState(ControlState newState)
+	virtual bool BeforeChangeState(Control::ControlState newState)
 	{
-		return newState != Selected;
+		return newState != Control::stateSelected;
 	}
 
 private:

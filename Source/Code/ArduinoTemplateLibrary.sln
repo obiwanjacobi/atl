@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		_template.h = _template.h
 		ArduinoTemplateLibrary.vsmdi = ArduinoTemplateLibrary.vsmdi
+		BuildArduinoExamples.ps1 = BuildArduinoExamples.ps1
 		BuildArduinoLibraries.ps1 = BuildArduinoLibraries.ps1
 		Contracts.txt = Contracts.txt
 		Local.testsettings = Local.testsettings
@@ -109,6 +110,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{3F
 	ProjectSection(SolutionItems) = preProject
 		Arduino Libraries\ATL_UI\examples\Page\Page.ino = Arduino Libraries\ATL_UI\examples\Page\Page.ino
 		Arduino Libraries\ATL_UI\examples\PageController\PageController.ino = Arduino Libraries\ATL_UI\examples\PageController\PageController.ino
+		Arduino Libraries\ATL_UI\examples\TextBox\TextBox.ino = Arduino Libraries\ATL_UI\examples\TextBox\TextBox.ino
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{42BD9785-228C-4C7C-961E-CA2CA768808F}"

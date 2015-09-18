@@ -23,7 +23,7 @@ void setup() {
   textStream.WriteLine(42);
   // Note that not all digits are displayed. 4 digits defined in MyTextFormatInfo.
   // And the decimal separator has been changed to a comma.
-  textStream.WriteLine(3.141529f);
+  textStream.WriteLine(3.141592f);
 }
 
 void loop() {

@@ -34,42 +34,43 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 template<const uint8_t MaxLines>
-class Page : public VerticalPanel<MaxLines>
+class Page : public VerticalPanel < MaxLines >
 {
-	typedef VerticalPanel<MaxLines> BaseT;
+    typedef VerticalPanel<MaxLines> BaseT;
 
 public:
-	Page() {}
+    Page() {}
 
-	Page(Panel* line1, Panel* line2)
+    Page(Panel* line1, Panel* line2)
     {
-		Add(line1);
-		Add(line2);
+        Add(line1);
+        Add(line2);
     }
 
-	Page(Panel* line1, Panel* line2, Panel* line3, Panel* line4)
-	{
-		Add(line1);
-		Add(line2);
-		Add(line3);
-		Add(line4);
-	}
-
-	inline void Add(Panel* line)
-	{
-		if (line == NULL) return;
-
-		if (line->getPosition() == 0)
-		{
-			line->setPosition(BaseT::getCount());
-		}
-
-		BaseT::Add(line);
-	}
-
-    virtual void Display(DisplayWriter* output)
+    Page(Panel* line1, Panel* line2, Panel* line3, Panel* line4)
     {
-		BaseT::Display(output);
+        Add(line1);
+        Add(line2);
+        Add(line3);
+        Add(line4);
+    }
+
+    inline void Add(Panel* line)
+    {
+        if (line == NULL) return;
+
+        if (line->getPosition() == 0)
+        {
+            line->setPosition((uint8_t)BaseT::getCount());
+        }
+
+        BaseT::Add(line);
+    }
+
+    // mode is ignored. Page implements display sequence (normal -> cursor).
+    virtual void Display(DisplayWriter* output, Control::ControlDisplayMode /*mode*/ = Control::modeNormal)
+    {
+        BaseT::Display(output, Control::modeNormal);
         DisplayCursor(output);
     }
 
@@ -77,37 +78,37 @@ public:
     {
         bool handled = false;
 
-		switch (navCmd)
+        switch (navCmd)
         {
-            case Up:
+        case Up:
             handled = TrySelectPreviousLine();
             break;
-            case Down:
+        case Down:
             handled = TrySelectNextLine();
             break;
-            default:
+        default:
             break;
         }
 
         if (handled) return true;
 
         // skip VerticalPanel!
-		return PanelControlContainer<MaxLines>::OnNavigationCommand(navCmd);
+        return PanelControlContainer<MaxLines>::OnNavigationCommand(navCmd);
     }
 
-	virtual bool IsOfType(ControlTypes type) const
-	{
-		return ((typePage & type) == typePage) || BaseT::IsOfType(type);
-	}
+    virtual bool IsOfType(ControlTypes type) const
+    {
+        return ((typePage & type) == typePage) || BaseT::IsOfType(type);
+    }
 
     bool TrySelectNextLine()
     {
         InputControl* currentCtrl = getCurrentInputControl();
 
         if (currentCtrl == NULL ||
-			(currentCtrl != NULL && !currentCtrl->getIsSelected()))
+            (currentCtrl != NULL && !currentCtrl->getIsSelected()))
         {
-			return BaseT::SetNextInputControl();
+            return BaseT::SetNextInputControl();
         }
 
         return false;
@@ -118,22 +119,22 @@ public:
         InputControl* currentCtrl = getCurrentInputControl();
 
         if (currentCtrl == NULL ||
-			(currentCtrl != NULL && !currentCtrl->getIsSelected()))
+            (currentCtrl != NULL && !currentCtrl->getIsSelected()))
         {
-			return BaseT::SetPreviousInputControl();
+            return BaseT::SetPreviousInputControl();
         }
 
         return false;
     }
 
-	inline Panel* getCurrentLine() const
+    inline Panel* getCurrentLine() const
     {
-		return (Panel*)Control::DynamicCast(BaseT::getCurrentControl(), typePanel);
+        return (Panel*)Control::DynamicCast(BaseT::getCurrentControl(), typePanel);
     }
 
     InputControl* getCurrentInputControl() const
     {
-		Panel* currentLine = getCurrentLine();
+        Panel* currentLine = getCurrentLine();
 
         if (currentLine != NULL)
         {
@@ -149,8 +150,10 @@ protected:
         InputControl* ctrl = getCurrentInputControl();
         if (ctrl != NULL)
         {
-			Panel* line = getCurrentLine();
-			output->SetCursor(line->getPosition(), ctrl->getPosition(), ctrl->getIsSelected());
+            Panel* line = getCurrentLine();
+            output->SetCursor(line->getPosition(), ctrl->getPosition(), ctrl->getIsSelected());
+
+            BaseT::Display(output, Control::modeCursor);
         }
         else
         {

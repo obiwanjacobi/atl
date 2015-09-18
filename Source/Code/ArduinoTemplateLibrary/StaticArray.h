@@ -76,47 +76,68 @@ public:
 
 } // Implementation
 
-template<typename T, const uint8_t MaxItems>
+template<typename T, const uint16_t MaxItems>
 class StaticArray
 {
 public:
 	typedef T ItemT;
 
 	// declare a PROGMEM array and pass in the var
-	StaticArray(const T array[MaxItems])
-		: _array(array)
+	StaticArray(const T* array)
+		: _arr(array)
 	{ }
 
-	inline uint8_t getMaxCount() const
+	inline uint16_t getMaxCount() const
 	{
 		return MaxItems;
 	}
 
-	inline T GetAt(uint8_t index) const
+    inline uint16_t getCount() const
+    {
+        return MaxItems;
+    }
+
+	inline T GetAt(int16_t index) const
 	{
 		if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
-		return Implementation::ProgMemAccessor<T>::Resolve((uint16_t)&_array[index]);
+		return Implementation::ProgMemAccessor<T>::Read((uint16_t)&_arr[index]);
 	}
 
-	inline bool IsValidIndex(uint8_t index) const
+	inline bool IsValidIndex(int16_t index) const
 	{
 		return index >= 0 && index < MaxItems;
 	}
 
-	inline T operator[](uint8_t index) const
+	inline int8_t IndexOf(T item) const
+	{
+		for (uint8_t i = 0; i < MaxItems; i++)
+		{
+			if (GetAt(i) == item)
+				return i;
+		}
+
+		return -1;
+	}
+
+	inline T operator[](int16_t index) const
 	{
 		return GetAt(index);
 	}
 
 protected:
-	inline const T* getArray() const
+	inline void setBuffer(const T* array)
 	{
-		return _array;
+		_arr = array;
+	}
+
+	inline const T* getBuffer() const
+	{
+		return _arr;
 	}
 
 private:
-	const T* _array;
+	const T* _arr;
 
 };
 

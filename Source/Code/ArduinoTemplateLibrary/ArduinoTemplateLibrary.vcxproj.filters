@@ -134,6 +134,9 @@
     <ClInclude Include="StaticArray.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="VolatileData.h" />
+    <ClInclude Include="TextControl.h" />
+    <ClInclude Include="FixedString.h" />
+    <ClInclude Include="Iterator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

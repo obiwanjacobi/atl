@@ -60,6 +60,7 @@
     <ClCompile Include="PanelTest.cpp" />
     <ClCompile Include="PageTest.cpp" />
     <ClCompile Include="CollectionRefTest.cpp" />
+    <ClCompile Include="TextControlTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

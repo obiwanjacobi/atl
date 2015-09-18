@@ -21,7 +21,7 @@ void setup() {
   textStream.WriteLine("Hello World!");
   textStream.WriteLine(42);
   // note that not all digits are displayed. See also TextFormatInfo.
-  textStream.WriteLine(3.141529f);
+  textStream.WriteLine(3.141592f);
 }
 
 void loop() {

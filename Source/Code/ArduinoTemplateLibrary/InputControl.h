@@ -51,7 +51,7 @@ public:
 	{
 		if (getIsFocussed())
 		{
-			setState(Selected);
+			setState(Control::stateSelected);
 			return true;
 		}
 		return false;
@@ -61,7 +61,7 @@ public:
 	{
 		if (getIsSelected())
 		{
-			setState(Focused);
+			setState(Control::stateFocused);
 			return true;
 		}
 		return false;
@@ -77,6 +77,20 @@ protected:
 	InputControl(uint8_t pos = 0)
 		: Control(pos)
 	{ }
+
+    virtual bool BeforeChangeState(ControlState newState)
+    {
+        if (!Control::BeforeChangeState(newState)) return false;
+
+        // don't allow focus when disabled (or hidden).
+        if (newState == Control::stateFocused &&
+            !getIsEnabled())
+        {
+            return false;
+        }
+
+        return true;
+    }
 };
 
 

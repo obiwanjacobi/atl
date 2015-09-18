@@ -31,7 +31,7 @@ namespace ArduinoTemplateLibraryTests
 			TestValue tv;
 			UpDownControl<TestValue> udc(&tv);
 
-			udc.setState(Selected);
+			udc.setState(Control::stateSelected);
 
 			bool successful = udc.TryValueUp();
 
@@ -57,7 +57,7 @@ namespace ArduinoTemplateLibraryTests
 			TestValue tv;
 			UpDownControl<TestValue> udc(&tv);
 
-			udc.setState(Selected);
+			udc.setState(Control::stateSelected);
 
 			bool successful = udc.TryValueDown();
 

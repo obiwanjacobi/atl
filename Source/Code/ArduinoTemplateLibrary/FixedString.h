@@ -18,56 +18,51 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __LABELCONTROL_H__
-#define __LABELCONTROL_H__
+#ifndef __FIXEDSTRING_H__
+#define __FIXEDSTRING_H__
 
-#include <stddef.h>
 #include <stdint.h>
-#include "Control.h"
+#include "Array.h"
 
 namespace ATL {
 
-class LabelControl : public Control
+
+template<const uint8_t MaxChars>
+class FixedString : public Array<char, MaxChars + 1>
 {
+	typedef Array<char, MaxChars + 1> BaseT;
+
 public:
-	LabelControl(uint8_t pos = 0)
-		: Control(pos), _text(NULL)
-	{ }
+	typedef typename BaseT::ItemT ItemT;
 
-	LabelControl(const char* text, uint8_t pos = 0)
-		: Control(pos), _text(text)
-	{ }
-
-	virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
+	FixedString()
 	{
-		if (mode == Control::modeCursor) return;
-
-		if (_text != NULL)
-		{
-			output->Write(_text);
-		}
+		BaseT::Clear();
 	}
 
-	inline const char* getText() const
+	FixedString(const char* text)
 	{
-		return _text;
+		BaseT::Clear();
+		CopyFrom(text);
 	}
 
-	inline void setText(const char* text)
+	inline uint8_t getMaxCount() const
 	{
-		_text = text;
+		return MaxChars;
 	}
 
-protected:
-	virtual bool BeforeChangeState(Control::ControlState newState)
+	inline void CopyFrom(const char* text)
 	{
-		return newState != Control::stateFocused && newState != Control::stateSelected;
+		strncpy(BaseT::getBuffer(), text, MaxChars);
 	}
 
-private:
-	const char* _text;
+	inline void operator=(const char* text)
+	{
+		CopyFrom(text);
+	}
 };
+
 
 } // ATL
 
-#endif //__LABELCONTROL_H__
+#endif //__FIXEDSTRING_H__

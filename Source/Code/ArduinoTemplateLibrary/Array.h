@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define __ARRAY_H__
 
 #include <stdint.h>
+#include <string.h>
 #include "Default.h"
 
 namespace ATL {
@@ -30,55 +31,83 @@ namespace ATL {
  *	Bounds-checked array.
  *
  */
-template<typename T, const uint8_t MaxItems>
+template<typename T, const uint16_t MaxItems>
 class Array
 {
 public:
 	typedef T ItemT;
 
-	inline uint8_t getMaxCount() const
+	inline uint16_t getMaxCount() const
 	{
 		return MaxItems;
 	}
 
-	inline T GetAt(uint8_t index) const
+    inline uint16_t getCount() const
+    {
+        return MaxItems;
+    }
+
+	inline T GetAt(int16_t index) const
 	{
 		if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
 		return _arr[index];
 	}
 
-	inline void SetAt(uint8_t index, T value)
+	inline void SetAt(int16_t index, T value)
 	{
 		if (!IsValidIndex(index)) return;
 
 		_arr[index] = value;
 	}
 
-	inline bool IsValidIndex(uint8_t index) const
+	inline bool IsValidIndex(int16_t index) const
 	{
 		return index >= 0 && index < MaxItems;
 	}
 
-	inline T operator[](uint8_t index) const
+	inline int16_t IndexOf(T item) const
+	{
+		for (uint16_t i = 0; i < MaxItems; i++)
+		{
+			if (_arr[i] == item)
+				return i;
+		}
+
+		return -1;
+	}
+
+	inline T operator[](int16_t index) const
 	{
 		return GetAt(index);
 	}
 
 	// return value for invalid index is undetermined.
-	inline T& operator[](uint8_t index)
+	inline T& operator[](int16_t index)
 	{
 		if (!IsValidIndex(index)) return DummyOfT;
 
 		return _arr[index];
 	}
 
+	inline void Clear()
+	{
+		memset(_arr, 0, MaxItems);
+	}
+
+protected:
 	static T DummyOfT;
+
+	inline T* getBuffer()
+	{
+		return _arr;
+	}
+
 private:
 	T _arr[MaxItems];
 };
 
-template<typename T, const uint8_t MaxItems>
+template<typename T, const uint16_t MaxItems>
 T Array<T, MaxItems>::DummyOfT;
 
 

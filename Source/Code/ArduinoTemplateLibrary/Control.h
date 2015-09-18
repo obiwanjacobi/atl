@@ -28,37 +28,39 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-
 enum ControlTypes
 {
-    typeUnknown = 0,
-    typeControl = 0x01,
-    typeInputControl = 0x02,
-    typePanel = 0x03,
+	typeUnknown = 0,
+	typeControl = 0x01,
+	typeInputControl = 0x02,
+	typePanel = 0x03,
 	typePage = 0x04,
 };
-
-
-enum ControlState
-{
-    Normal,     // no other states active
-    Hidden,     // control is not displayed
-    Disabled,   // control is displayed as read-only
-    Focused,    // control is high-lighted
-    Selected,   // control is active/selected (entered)
-};
-
-
 
 // abstract
 class Control
 {
 protected:
     Control(uint8_t position = 0)
-		: _pos(position)
+		: _state(stateNormal), _pos(position)
     { }
 
 public:
+	enum ControlState
+	{
+		stateNormal,     // no other states active
+		stateHidden,     // control is not displayed
+		stateDisabled,   // control is displayed as read-only
+		stateFocused,    // control is high-lighted
+		stateSelected,   // control is active/selected (entered)
+	};
+
+	enum ControlDisplayMode
+	{
+		modeNormal,	// display content
+		modeCursor, // position cursor for selected/edit mode
+	};
+
     inline uint8_t getPosition() const
     {
         return _pos;
@@ -71,7 +73,7 @@ public:
 
     inline bool getIsHidden() const
     {
-        return _state == Hidden;
+        return _state == stateHidden;
     }
 
 	inline bool getIsVisible() const
@@ -81,7 +83,7 @@ public:
 
 	inline bool getIsDisabled() const
     {
-        return _state == Disabled;
+        return _state == stateDisabled;
     }
 
 	inline bool getIsEnabled() const
@@ -91,12 +93,12 @@ public:
 
 	inline bool getIsFocussed() const
     {
-        return _state == Focused;
+        return _state == stateFocused;
     }
 
 	inline bool getIsSelected() const
     {
-        return _state == Selected;
+        return _state == stateSelected;
     }
 
 	inline bool getIsActive() const
@@ -119,7 +121,7 @@ public:
         return false;
     }
 
-    virtual void Display(DisplayWriter* /*output*/) {}
+	virtual void Display(DisplayWriter* /*output*/, ControlDisplayMode /*mode*/) {}
 
     virtual bool IsOfType(ControlTypes type) const
     {

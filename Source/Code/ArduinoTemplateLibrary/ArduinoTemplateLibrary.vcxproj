@@ -90,9 +90,11 @@
     <ClInclude Include="ControlContainer.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Default.h" />
+    <ClInclude Include="FixedString.h" />
     <ClInclude Include="HD44780_DisplayWriter.h" />
     <ClInclude Include="HorizontalPanel.h" />
     <ClInclude Include="DisplayWriter.h" />
+    <ClInclude Include="Iterator.h" />
     <ClInclude Include="PageController.h" />
     <ClInclude Include="InputControl.h" />
     <ClInclude Include="LabelControl.h" />
@@ -141,6 +143,7 @@
     <ClInclude Include="TB6612FNG_Controller.h" />
     <ClInclude Include="TB6612FNG_Driver.h" />
     <ClInclude Include="TB6612FNG_DriverSerial3Wire.h" />
+    <ClInclude Include="TextControl.h" />
     <ClInclude Include="TextFormatInfo.h" />
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Time.h" />

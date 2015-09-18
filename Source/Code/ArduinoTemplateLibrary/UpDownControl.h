@@ -37,11 +37,12 @@ public:
 		: InputControl(pos), _value(value)
 	{ }
 
-	virtual void Display(DisplayWriter* output)
+	virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
 	{
-		InputControl::Display(output);
-
-		output->Write(_value->ToString());
+		if (mode == Control::modeNormal)
+		{
+			output->Write(_value->ToString());
+		}
 	}
 
 	virtual bool OnNavigationCommand(NavigationCommands navCmd)
@@ -85,6 +86,11 @@ public:
 		}
 
 		return false;
+	}
+
+	inline ValueT* getValueObject() const
+	{
+		return _value;
 	}
 
 private:

@@ -35,40 +35,62 @@ namespace ATL {
 template<const uint8_t MaxItems>
 class HorizontalPanel : public PanelControlContainer<MaxItems>
 {
-	typedef PanelControlContainer<MaxItems> PanelT;
+	typedef PanelControlContainer<MaxItems> BaseT;
 
 public:
 	HorizontalPanel(uint8_t pos = 0)
-		: PanelT(pos)
+		: BaseT(pos)
 	{ }
 
 	virtual bool OnNavigationCommand(NavigationCommands navCmd)
 	{
+        bool handled = false;
+
+        switch (navCmd)
+        {
+        case Left:
+        case Right:
+            handled = BaseT::OnNavigationCommand(navCmd);
+            break;
+        default:
+            break;
+        }
+
+        if (handled) return true;
+
 		switch (navCmd)
 		{
 		case Left:
-			return PanelT::SetPreviousInputControl();
+			handled = BaseT::SetPreviousInputControl();
+            break;
 		case Right:
-			return PanelT::SetNextInputControl();
+			handled = BaseT::SetNextInputControl();
+            break;
 		default:
-			break;
+            handled = BaseT::OnNavigationCommand(navCmd);
+            break;
 		}
 
-		return PanelT::OnNavigationCommand(navCmd);
+        return handled;
 	}
 
-	virtual void Display(DisplayWriter* output)
+	virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
 	{
-		Control* ctrl = PanelT::getNext(NULL);
-		while (ctrl != NULL)
+		if (mode == Control::modeCursor)
 		{
+			BaseT::Display(output, mode);
+			return;
+		}
+
+		for (uint8_t i = 0; i < BaseT::getCount(); i++)
+		{
+			Control* ctrl = BaseT::GetAt(i);
+
 			if (ctrl->getIsVisible())
 			{
 				output->GoTo(DisplayWriter::DontCare, ctrl->getPosition());
-				ctrl->Display(output);
+				ctrl->Display(output, mode);
 			}
-
-			ctrl = PanelT::getNext(ctrl);
 		}
 	}
 };
