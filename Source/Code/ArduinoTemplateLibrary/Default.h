@@ -23,19 +23,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-/*
-*	Static default values of T;
-*
-*/
-template<typename T>
-class Default
-{
-public:
-	static T DefaultOfT;
-};
+    /** Static default values of T;
+     *  \tparam T is the type to get the default value for.
+     */
+    template<typename T>
+    class Default
+    {
+    public:
+        /** A statically initialized default value of T.
+         *  Treat as read-only.
+         */
+        static T DefaultOfT;
+    };
 
-template<typename T>
-T Default<T>::DefaultOfT;
+    template<typename T>
+    T Default<T>::DefaultOfT;
 
 
 } // ATL

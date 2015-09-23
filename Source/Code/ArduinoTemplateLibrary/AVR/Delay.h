@@ -24,6 +24,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "../Time.h"
 
+namespace ATL {
+namespace AVR {
+
 template<const TimeResolution TimeRes>
 class Delay
 {
@@ -53,4 +56,6 @@ class Delay<Microseconds>
         _delay_us(timeout);
     }
 };
+
+}} // ATL::AVR
 #endif /* __DELAY_H__ */

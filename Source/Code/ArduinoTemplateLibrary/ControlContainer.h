@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <stddef.h>
 #include <stdint.h>
-
 #include "FixedArray.h"
 #include "Collection.h"
 #include "Control.h"
@@ -31,62 +30,86 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-template<const uint8_t MaxItems>
-class ControlContainer : public Collection<FixedArray<Control*, MaxItems> >
-{
-	typedef Collection<FixedArray<Control*, MaxItems> > BaseT;
-
-public:
-    Control* getNext(Control* currentCtrl, ControlTypes type = typeControl) const
+    /** The ControlContainer represents a collection of `Control`s.
+     *  It uses Collection and FixedArray to implement the collection.
+     *  \tparam MaxItems is the maximum number of controls in the container.
+     */
+    template<const uint8_t MaxItems>
+    class ControlContainer : public Collection<FixedArray<Control*, MaxItems> >
     {
-		int8_t index = BaseT::IndexOf(currentCtrl);
+        typedef Collection<FixedArray<Control*, MaxItems> > BaseT;
 
-        if (index != -1)
+    public:
+        /** Retrieves the Control that is next to the currentCtrl.
+         *  \param currentCtrl is a pointer to the Control to use as reference.
+         *  \param type is the type of Control to look for. Uses Control::DynamicCast.
+         *  \return Returns NULL if no suitable Control (type) could be found.
+         */
+        Control* getNext(Control* currentCtrl, ControlTypes type = typeControl) const
         {
-            index++;
-        }
-		else if (BaseT::getCount() > 0)
-        {
-            index = 0;
-        }
+            int8_t index = BaseT::IndexOf(currentCtrl);
 
-		while (index >= 0 && index < BaseT::getCount())
-        {
-			Control* ctrl = Control::DynamicCast(BaseT::GetAt(index), type);
+            if (index != -1)
+            {
+                index++;
+            }
+            else if (BaseT::getCount() > 0)
+            {
+                index = 0;
+            }
 
-            if (ctrl != NULL) return ctrl;
+            while (index >= 0 && index < BaseT::getCount())
+            {
+                Control* ctrl = Control::DynamicCast(BaseT::GetAt(index), type);
 
-            index++;
-        }
+                if (ctrl != NULL) return ctrl;
 
-        return NULL;
-    }
+                index++;
+            }
 
-    Control* getPrevious(Control* currentCtrl, ControlTypes type = typeControl) const
-    {
-		int8_t index = BaseT::IndexOf(currentCtrl);
-
-        if (index != -1)
-        {
-            index--;
-        }
-		else if (BaseT::getCount() > 0)
-        {
-			index = BaseT::getCount() - 1;
+            return NULL;
         }
 
-		while (index >= 0 && index < BaseT::getCount())
+        /** Retrieves the Control that is before the currentCtrl.
+         *  \param currentCtrl is a pointer to the Control to use as reference.
+         *  \param type is the type of Control to look for. Uses Control::DynamicCast.
+         *  \return Returns NULL if no suitable Control (type) could be found.
+         */
+        Control* getPrevious(Control* currentCtrl, ControlTypes type = typeControl) const
         {
-			Control* ctrl = Control::DynamicCast(BaseT::GetAt(index), type);
+            int8_t index = BaseT::IndexOf(currentCtrl);
 
-            if (ctrl != NULL) return ctrl;
+            if (index != -1)
+            {
+                index--;
+            }
+            else if (BaseT::getCount() > 0)
+            {
+                index = BaseT::getCount() - 1;
+            }
 
-            index--;
+            while (index >= 0 && index < BaseT::getCount())
+            {
+                Control* ctrl = Control::DynamicCast(BaseT::GetAt(index), type);
+
+                if (ctrl != NULL) return ctrl;
+
+                index--;
+            }
+
+            return NULL;
         }
 
-        return NULL;
-    }
-};
+        /** Overrides Collection::Add to disallow NULL pointer in the collection.
+         *  \param control is the control to add. If NULL nothing happens.
+         */
+        inline void Add(Control* control)
+        {
+            if (control == NULL) return;
+
+            BaseT::Add(control);
+        }
+    };
 
 
 } // ATL

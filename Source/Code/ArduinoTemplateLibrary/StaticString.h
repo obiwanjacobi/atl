@@ -26,23 +26,32 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-// container class for static (prog-mem) strings
-class StaticString
-{
-public:
-	// declare PROGMEM string and pass in the var
-	StaticString(const char* str)
-		: _str(str)
-	{ }
+    /** The StaticString class contains a string stored in PROGMEM.
+     */
+    class StaticString
+    {
+    public:
+        // declare PROGMEM string and pass in the var
+        /** Constructs an initialized instance.
+         *  Declare a PROGMEM array and pass in the variable.
+         *  \param str points to the PROGMEM string.
+         */
+        StaticString(const char* str)
+            : _str(str)
+        { }
 
-	inline void Read(char* target, size_t targetLen)
-	{
-		strncpy_P(target, _str, targetLen);
-	}
+        /** Reads the entire string from PROGMEM.
+         *  \param target points to a buffer that will receive the string.
+         *  \param targetLen indicates the size of the target buffer.
+         */
+        inline void Read(char* target, size_t targetLen)
+        {
+            strncpy_P(target, _str, targetLen);
+        }
 
-private:
-	const char* _str;
-};
+    private:
+        const char* _str;
+    };
 
 } // ATL
 

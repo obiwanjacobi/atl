@@ -23,55 +23,92 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <stddef.h>
 #include <stdint.h>
-
 #include "Control.h"
 #include "HorizontalPanel.h"
 
 namespace ATL {
 
-template<const uint8_t MaxItems>
-class Line : public HorizontalPanel<MaxItems>
-{
-	typedef HorizontalPanel<MaxItems> BaseT;
+    /** The Line class represent a single line on a display that may contain multiple Controls.
+     *  The Line class derives from the HorizontalPanel class.
+     *  \tparam MaxItems is the maximum number of Controls on the Line.
+     */
+    template<const uint8_t MaxItems>
+    class Line : public HorizontalPanel<MaxItems>
+    {
+        typedef HorizontalPanel<MaxItems> BaseT;
 
-public:
-	Line() { }
+    public:
+        /** Constructs the instance.
+         *  Controls have to be added with the Add method.
+         */
+        Line()
+        { }
 
-	Line(Control* control1)
-	{
-		if (control1 != NULL) BaseT::Add(control1);
-	}
+        /** Constructs the instance.
+         *  Controls can be added with the Add method.
+         *  \param control1 is the first control.
+         */
+        Line(Control* control1)
+        {
+            if (control1 != NULL) BaseT::Add(control1);
+        }
 
-	Line(Control* control1, Control* control2)
-	{
-		if (control1 != NULL) BaseT::Add(control1);
-		if (control2 != NULL) BaseT::Add(control2);
-	}
+        /** Constructs the instance.
+         *  Controls can be added with the Add method.
+         *  \param control1 is the first control.
+         *  \param control2 is the second control.
+         */
+        Line(Control* control1, Control* control2)
+        {
+            if (control1 != NULL) BaseT::Add(control1);
+            if (control2 != NULL) BaseT::Add(control2);
+        }
 
-	Line(Control* control1, Control* control2, Control* control3)
-	{
-		if (control1 != NULL) BaseT::Add(control1);
-		if (control2 != NULL) BaseT::Add(control2);
-		if (control3 != NULL) BaseT::Add(control3);
-	}
+        /** Constructs the instance.
+         *  Controls can be added with the Add method.
+         *  \param control1 is the first control.
+         *  \param control2 is the second control.
+         *  \param control3 is the third control.
+         */
+        Line(Control* control1, Control* control2, Control* control3)
+        {
+            if (control1 != NULL) BaseT::Add(control1);
+            if (control2 != NULL) BaseT::Add(control2);
+            if (control3 != NULL) BaseT::Add(control3);
+        }
 
-	Line(Control* control1, Control* control2, Control* control3, Control* control4)
-	{
-		if (control1 != NULL) BaseT::Add(control1);
-		if (control2 != NULL) BaseT::Add(control2);
-		if (control3 != NULL) BaseT::Add(control3);
-		if (control4 != NULL) BaseT::Add(control4);
-	}
+        /** Constructs the instance.
+         *  Controls can be added with the Add method.
+         *  \param control1 is the first control.
+         *  \param control2 is the second control.
+         *  \param control3 is the third control.
+         *  \param control4 is the fourth control.
+         */
+        Line(Control* control1, Control* control2, Control* control3, Control* control4)
+        {
+            if (control1 != NULL) BaseT::Add(control1);
+            if (control2 != NULL) BaseT::Add(control2);
+            if (control3 != NULL) BaseT::Add(control3);
+            if (control4 != NULL) BaseT::Add(control4);
+        }
 
-	Line(Control* control1, Control* control2, Control* control3, Control* control4, Control* control5)
-	{
-		if (control1 != NULL) BaseT::Add(control1);
-		if (control2 != NULL) BaseT::Add(control2);
-		if (control3 != NULL) BaseT::Add(control3);
-		if (control4 != NULL) BaseT::Add(control4);
-		if (control5 != NULL) BaseT::Add(control5);
-	}
-};
+        /** Constructs the instance.
+         *  Controls can be added with the Add method.
+         *  \param control1 is the first control.
+         *  \param control2 is the second control.
+         *  \param control3 is the third control.
+         *  \param control4 is the fourth control.
+         *  \param control5 is the fifth control.
+         */
+        Line(Control* control1, Control* control2, Control* control3, Control* control4, Control* control5)
+        {
+            if (control1 != NULL) BaseT::Add(control1);
+            if (control2 != NULL) BaseT::Add(control2);
+            if (control3 != NULL) BaseT::Add(control3);
+            if (control4 != NULL) BaseT::Add(control4);
+            if (control5 != NULL) BaseT::Add(control5);
+        }
+    };
 
 
 } // ATL

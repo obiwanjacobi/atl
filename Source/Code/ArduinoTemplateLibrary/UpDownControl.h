@@ -26,76 +26,102 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 
-// ValueT implements: const char* ToString();
-//                    void IncrmentValue();
-//                    void DecrmentValue();
-template<class ValueT>
-class UpDownControl : public InputControl
-{
-public:
-	UpDownControl(ValueT* value, uint8_t pos = 0)
-		: InputControl(pos), _value(value)
-	{ }
+    /** The UpDownControl edits a value with the `Up` and `Down` commands.
+     *  Management of the value itself is outside this class.
+     *  \tparam ValueT represents the type that controls the value and implements:
+     *  `const char* ToString()`
+     *  `void IncrmentValue()`
+     *  `void DecrmentValue()`.
+     */
+    template<class ValueT>
+    class UpDownControl : public InputControl
+    {
+    public:
+        /** Constructs an initialized instance.
+         *  \param value points to the value instance. Must not be NULL.
+         *  \pos is the optional position relative to its siblings.
+         */
+        UpDownControl(ValueT* value, uint8_t pos = 0)
+            : InputControl(pos), _value(value)
+        { }
 
-	virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
-	{
-		if (mode == Control::modeNormal)
-		{
-			output->Write(_value->ToString());
-		}
-	}
+        /** Writes the value as text to the DisplayWriter.
+         *  Calls ValueT::ToString() to retrieve that text.
+         *  \param output is used to output text and position the cursor.
+         *  \mode indicates what to display.
+         */
+        virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
+        {
+            if (mode == Control::modeNormal)
+            {
+                output->Write(_value->ToString());
+            }
+        }
 
-	virtual bool OnNavigationCommand(NavigationCommands navCmd)
-	{
-		bool handled = false;
+        /** Overridden to increment and decrement the value on the `Up` and `Down` commands.
+         *  \param navCmd is the navigation command.
+         *  \return Returns true if the command was handled.
+         */
+        virtual bool OnNavigationCommand(NavigationCommands navCmd)
+        {
+            bool handled = false;
 
-		switch (navCmd)
-		{
-		case Up:
-			handled = TryValueUp();
-			break;
-		case Down:
-			handled = TryValueDown();
-			break;
-		default:
-			break;
-		}
+            switch (navCmd)
+            {
+            case Up:
+                handled = TryValueUp();
+                break;
+            case Down:
+                handled = TryValueDown();
+                break;
+            default:
+                break;
+            }
 
-		if (handled) return true;
+            if (handled) return true;
 
-		return InputControl::OnNavigationCommand(navCmd);
-	}
+            return InputControl::OnNavigationCommand(navCmd);
+        }
 
-	bool TryValueUp()
-	{
-		if (getIsSelected())
-		{
-			_value->IncrementValue();
-			return true;
-		}
+        /** Attempts to increment the value.
+         *  \return Returns true if successful.
+         */
+        bool TryValueUp()
+        {
+            if (getIsSelected())
+            {
+                _value->IncrementValue();
+                return true;
+            }
 
-		return false;
-	}
+            return false;
+        }
 
-	bool TryValueDown()
-	{
-		if (getIsSelected())
-		{
-			_value->DecrementValue();
-			return true;
-		}
+        /** Attempts to decrement the value.
+         *  \return Returns true if successful.
+         */
+        bool TryValueDown()
+        {
+            if (getIsSelected())
+            {
+                _value->DecrementValue();
+                return true;
+            }
 
-		return false;
-	}
+            return false;
+        }
 
-	inline ValueT* getValueObject() const
-	{
-		return _value;
-	}
+        /** Retrieve the reference to the value object this instance was constructed with.
+         *  \return Returns the ValueT pointer.
+         */
+        inline ValueT* getValueObject() const
+        {
+            return _value;
+        }
 
-private:
-	ValueT* _value;
-};
+    private:
+        ValueT* _value;
+    };
 
 
 } // ATL

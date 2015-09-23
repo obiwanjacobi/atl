@@ -1,21 +1,21 @@
-/*  
-	Arduino Template Library http://atl.codeplex.com
-	Written by Marc Jacobi
-	Copyright 2012-2015 All Rights Reserved
+/*
+Arduino Template Library http://atl.codeplex.com
+Written by Marc Jacobi
+Copyright 2012-2015 All Rights Reserved
 
-	This library is free software; you can redistribute it and/or
-	modify it under the terms of the GNU Lesser General Public
-	License as published by the Free Software Foundation; either
-	version 2.1 of the License, or (at your option) any later version.
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
-	This library is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	Lesser General Public License for more details.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
-	You should have received a copy of the GNU Lesser General Public
-	License along with this library; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #ifndef __STREAMOUTPUTSTREAM_H__
@@ -26,71 +26,67 @@
 
 namespace ATL {
 
-/*
-	This class is an adapter class to treat an Arduino Stream as an ATL OutputStream.
-	StreamT is a class with 'void write()' and 'void flush()' (typical Arduino Stream).
- */
-template<class StreamT>
-class StreamOutputStream
-{
-public:
+    /** This class is an adapter class to treat an Arduino Stream as an ATL OutputStream.
+      * \tparam StreamT is a class with 'void write()' and 'void flush()' (typical Arduino Stream).
+      */
+    template<class StreamT>
+    class StreamOutputStream
+    {
+    public:
 
-	/*
-		Call AttachInputStream afterwards.
-	 */
-	StreamOutputStream() 
-		: _stream(NULL)
-	{}
+        /** Default ctor.
+         *  Call AttachInputStream afterwards.
+         */
+        StreamOutputStream() 
+            : _stream(NULL)
+        {}
 
-	/*
-		Initializes the stream.
-	 */
-	StreamOutputStream(StreamT* serialStream)
-	{
-		AttachOutputStream(serialStream);
-	}
+        /** Initializes the stream.
+         *  \param serialStream is a pointer to an Arduino stream.
+         */
+        StreamOutputStream(StreamT* serialStream)
+        {
+            AttachOutputStream(serialStream);
+        }
 
-	/*
-		Sets the ATL stream.
-	 */
-	inline void AttachOutputStream(StreamT* serialStream)
-	{
-		_stream = serialStream;
-	}
+        /** Sets the Arduino stream.
+         *  \param serialStream is a pointer to an Arduino stream.
+         */
+        inline void AttachOutputStream(StreamT* serialStream)
+        {
+            _stream = serialStream;
+        }
 
-	/*
-		Returns the number of bytes that are available in the stream.
-	 */
-	uint8_t getLength() const
-	{
-		if (_stream == NULL) return 0;
+        /** Returns the number of bytes that are `available()` in the stream.
+         *  \return Always returns 0 (zero) - not used for output streams.
+         */
+        inline uint8_t getLength() const
+        {
+            return 0;
+        }
 
-		return 0;
-	}
+        /** Removes all content from the output stream.
+         */
+        inline void Flush()
+        {
+            if (_stream == NULL) return;
 
-	/*
-		Removes all content from the stream.
-	 */
-	void Flush()
-	{
-		if (_stream == NULL) return;
+            _stream->flush();
+        }
 
-		_stream->flush();
-	}
+        /** Writes one byte to the stream.
+         *  \param data the byte that is written to the output stream.
+         */
+        inline void Write(uint8_t data)
+        {
+            if (_stream == NULL) return;
 
-	/*
-		Writes one byte to the stream.
-	 */
-	void Write(uint8_t data)
-	{
-		if (_stream == NULL) return;
+            _stream->write(data);
+        }
 
-		_stream->write(data);
-	}
-
-private:
-	StreamT* _stream;
-};
+    private:
+        StreamT* _stream;
+    };
 
 } // ATL
 

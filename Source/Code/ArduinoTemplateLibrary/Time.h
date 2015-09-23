@@ -1,21 +1,21 @@
-/*  
-	Arduino Template Library http://atl.codeplex.com
-	Written by Marc Jacobi
-	Copyright 2012-2015 All Rights Reserved
+/*
+Arduino Template Library http://atl.codeplex.com
+Written by Marc Jacobi
+Copyright 2012-2015 All Rights Reserved
 
-	This library is free software; you can redistribute it and/or
-	modify it under the terms of the GNU Lesser General Public
-	License as published by the Free Software Foundation; either
-	version 2.1 of the License, or (at your option) any later version.
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
-	This library is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	Lesser General Public License for more details.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
-	You should have received a copy of the GNU Lesser General Public
-	License along with this library; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #ifndef __TIME_H__
@@ -25,174 +25,169 @@
 
 namespace ATL {
 
-/*
-	Time resolution in either milli-seconds or micro-seconds.
- */
-enum TimeResolution
-{
-	Milliseconds,
-	Microseconds
-};
+    /** Time resolution in either milli-seconds or micro-seconds.
+     */
+    enum TimeResolution
+    {
+        /** Time units are milliseconds. */
+        Milliseconds,
+        /** Time units are microseconds. */
+        Microseconds
+    };
 
-/*
-	Keeps track of time ticks (either milli- or micro-seconds).
- */
-template<TimeResolution resolution = Milliseconds>
-class Time
-{
-public:
+    /** The Time class keeps track of time ticks (either milli- or micro-seconds).
+     *  \tparam TimeResolution indicates the time units.
+     */
+    template<const TimeResolution resolution = Milliseconds>
+    class Time
+    {
+    public:
 
-	/*
-		Constructs a new instance.
-	 */
-	Time() 
-		: _ticks(0)
-	{
-		Update();
-	}
+        /** Constructs a new instance.
+         */
+        Time() 
+            : _ticks(0)
+        {
+            Update();
+        }
 
-	/*
-		Captures the time ticks.
-		Returns delta-time in 'resolution'
-	 */
-	inline uint32_t Update();
+        /** Captures the time ticks.
+         *  \return Returns delta-time in 'resolution'
+         */
+        inline uint32_t Update();
 
-	/*
-		Returns the time ticks in milli-seconds.
-	 */
-	inline uint32_t getMilliseconds() const
-	{
-		return getMilliseconds(_ticks);
-	}
+        /** Returns the time ticks in milli-seconds.
+         */
+        inline uint32_t getMilliseconds() const
+        {
+            return getMilliseconds(_ticks);
+        }
 
-	/*
-		Returns the time ticks in micro-seconds.
-	 */
-	inline uint32_t getMicroseconds() const
-	{
-		return getMicroseconds(_ticks);
-	}
+        /** Returns the time ticks in micro-seconds.
+         */
+        inline uint32_t getMicroseconds() const
+        {
+            return getMicroseconds(_ticks);
+        }
 
-	/*
-		Returns the resolution template parameter.
-	 */
-	inline TimeResolution getResolution() const 
-	{
-		return resolution;
-	}
+        /** Returns the TimeResolution template parameter.
+         */
+        inline TimeResolution getResolution() const 
+        {
+            return resolution;
+        }
 
-protected:
+    protected:
 
-	/*
-		Returns the raw time ticks.
-	 */
-	inline uint32_t getTicks() const 
-	{
-		return _ticks;
-	}
+        /** Returns the raw time ticks.
+         */
+        inline uint32_t getTicks() const 
+        {
+            return _ticks;
+        }
 
-	/*
-		Returns the ticks in milli-seconds.
-	 */
-	inline static uint32_t getMilliseconds(uint32_t ticks);
+        /** Returns the ticks in milli-seconds.
+         */
+        inline static uint32_t getMilliseconds(uint32_t ticks);
 
-	/*
-		Returns the ticks in micro-seconds.
-	 */
-	inline static uint32_t getMicroseconds(uint32_t ticks);
+        /** Returns the ticks in micro-seconds.
+         */
+        inline static uint32_t getMicroseconds(uint32_t ticks);
 
-private:
-	uint32_t _ticks;
-};
+    private:
+        uint32_t _ticks;
+    };
 
-// Time template specializations
+    // Time template specializations
 
-template<>
-inline uint32_t Time<Milliseconds>::getMilliseconds(uint32_t ticks)
-{
-	return ticks;
-}
+    /** Specialization for Time in Milliseconds.
+     */
+    template<>
+    inline uint32_t Time<Milliseconds>::getMilliseconds(uint32_t ticks)
+    {
+        return ticks;
+    }
 
-template<>
-inline uint32_t Time<Milliseconds>::getMicroseconds(uint32_t ticks)
-{
-	return ticks * 1000;
-}
+    /** Specialization for Time in Milliseconds.
+     */
+    template<>
+    inline uint32_t Time<Milliseconds>::getMicroseconds(uint32_t ticks)
+    {
+        return ticks * 1000;
+    }
 
-template<>
-inline uint32_t Time<Microseconds>::getMilliseconds(uint32_t ticks)
-{
-	return ticks / 1000;
-}
+    /** Specialization for Time in Microseconds.
+     */
+    template<>
+    inline uint32_t Time<Microseconds>::getMilliseconds(uint32_t ticks)
+    {
+        return ticks / 1000;
+    }
 
-template<>
-inline uint32_t Time<Microseconds>::getMicroseconds(uint32_t ticks)
-{
-	return ticks;
-}
+    /** Specialization for Time in Microseconds.
+     */
+    template<>
+    inline uint32_t Time<Microseconds>::getMicroseconds(uint32_t ticks)
+    {
+        return ticks;
+    }
 
-/*
-	The TimeEx class adds start-time and delta-time keeping.
- */
-template<TimeResolution resolution = Milliseconds>
-class TimeEx : public Time<resolution>
-{
-public:
+    /** The TimeEx class adds start-time and delta-time members to Time.
+     *  \tparam TimeResolution indicates the time units.
+     */
+    template<TimeResolution resolution = Milliseconds>
+    class TimeEx : public Time<resolution>
+    {
+    public:
+        /** Initializes a new instance.
+         */
+        TimeEx() 
+        {
+            Reset();
+        }
 
-	/*
-		Initializes a new instance.
-	 */
-	TimeEx() 
-	{
-		Reset();
-	}
+        /** Resets the start time.
+         */
+        inline void Reset()
+        {
+            _start = _previous = Time<resolution>::getTicks();
+        }
 
-	/*
-		Resets the start time.
-	 */
-	void Reset()
-	{
-		_start = _previous = Time<resolution>::getTicks();
-	}
+        /** Updates the time ticks (Time<>) and delta time.
+         *  \returns Returns the delta-time.
+         */
+        inline uint32_t Update()
+        {
+            _previous = Time<resolution>::getTicks();
 
-	/*
-		Updates the time ticks (Time<>) and delta time.
-	 */
-	uint32_t Update()
-	{
-		_previous = Time<resolution>::getTicks();
+            return Time<resolution>::Update();
+        }
 
-		return Time<resolution>::Update();
-	}
+        /** Returns the start time in milli-seconds.
+         */
+        inline uint32_t getStartMilliseconds() const
+        {
+            return Time<resolution>::getMilliseconds(_start);
+        }
 
-	/*
-		Returns the start time in milli-seconds.
-	 */
-	inline uint32_t getStartMilliseconds() const
-	{
-		return Time<resolution>::getMilliseconds(_start);
-	}
+        /** Returns the start time in micro-seconds.
+         */
+        inline uint32_t getStartMicroseconds() const
+        {
+            return Time<resolution>::getMicroseconds(_start);
+        }
 
-	/*
-		Returns the start time in micro-seconds.
-	 */
-	inline uint32_t getStartMicroseconds() const
-	{
-		return Time<resolution>::getMicroseconds(_start);
-	}
+        /** Returns the delta-time in ticks.
+         */
+        inline uint16_t getDeltaTime() const
+        {
+            return (uint16_t)(Time<resolution>::getTicks() - _previous);
+        }
 
-	/*
-		Returns the delta-time in ticks.
-	 */
-	inline uint16_t getDeltaTime() const
-	{
-		return (unsigned int)(Time<resolution>::getTicks() - _previous);
-	}
-
-private:
-	uint32_t _start;
-	uint32_t _previous;
-};
+    private:
+        uint32_t _start;
+        uint32_t _previous;
+    };
 
 } //ATL
 

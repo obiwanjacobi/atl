@@ -26,23 +26,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../BitArray.h"
 
 namespace ATL {
+namespace AVR {
 
-	/*
-		The different states the PushButton can be in.
-	 */
-	enum ButtonStates
-	{
-		// button state not initialized / known
-		stateUnknown,
-		// button contact is open / not pushed
-		stateOpen,
-		// button contact is closed / pushed
-		stateClosed,
-		// button contact remains closed / pushed (holdTimeout)
-		stateHold,
-		// button state sensing is pending for debounce (debounceTimeout)
-		statePending,
-	};
+    /*
+        The different states the PushButton can be in.
+     */
+    enum ButtonStates
+    {
+        // button state not initialized / known
+        stateUnknown,
+        // button contact is open / not pushed
+        stateOpen,
+        // button contact is closed / pushed
+        stateClosed,
+        // button contact remains closed / pushed (holdTimeout)
+        stateHold,
+        // button state sensing is pending for debounce (debounceTimeout)
+        statePending,
+    };
 
 namespace Implementation {
 
@@ -50,28 +51,28 @@ namespace Implementation {
 template<const bool ReversedLogic>
 struct ConvertBoolToButtonState
 {
-	inline static ButtonStates Convert(bool value)
-	{
-		return stateUnknown;
-	}
+    inline static ButtonStates Convert(bool value)
+    {
+        return stateUnknown;
+    }
 };
 
 template<>
 struct ConvertBoolToButtonState<false>
 {
-	inline static ButtonStates Convert(bool value)
-	{
-		return value ? stateClosed : stateOpen;
-	}
+    inline static ButtonStates Convert(bool value)
+    {
+        return value ? stateClosed : stateOpen;
+    }
 };
 
 template<>
 struct ConvertBoolToButtonState<true>
 {
-	inline static ButtonStates Convert(bool value)
-	{
-		return value ? stateOpen : stateClosed;
-	}
+    inline static ButtonStates Convert(bool value)
+    {
+        return value ? stateOpen : stateClosed;
+    }
 };
 
 } // ATL::IO::Implementation
@@ -87,12 +88,12 @@ class Button : public BaseT
 
 public:
     /*
-		Returns the current state of the push button.
-	 */
-	inline ButtonStates getButtonState() const
-	{
-		return (ButtonStates)_states.Get(CurrentStateIndex, ButtonStateLength);
-	}
+        Returns the current state of the push button.
+     */
+    inline ButtonStates getButtonState() const
+    {
+        return (ButtonStates)_states.Get(CurrentStateIndex, ButtonStateLength);
+    }
 
     inline void SetButtonValue()
     {
@@ -146,6 +147,6 @@ private:
     BitArray<uint8_t> _states;
 };
 
-} // ATL
+}} // ATL::AVR
 
 #endif /* __BUTTON_H__ */

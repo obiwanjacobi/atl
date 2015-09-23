@@ -27,45 +27,60 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-/*
-*	Bounds-checked array.
-*
-*/
-template<typename T, const uint16_t MaxItems>
-class FixedArray : public Array<T, MaxItems>
-{
-    typedef Array<T, MaxItems> BaseT;
-
-public:
-    typedef T ItemT;
-
-    inline void SetAt(int16_t index, T value)
+    /** The FixedArray adds methods that change the Array.
+     *  Fixed refers to its size, it's predetermined when it is constructed.
+     *  \tparam T the datatype of the items in the array.
+     *  \tparam MaxItems is the maximum number of items in the array.
+     */
+    template<typename T, const uint16_t MaxItems>
+    class FixedArray : public Array < T, MaxItems >
     {
-        if (!BaseT::IsValidIndex(index)) return;
+        typedef Array<T, MaxItems> BaseT;
 
-        BaseT::getBuffer()[index] = value;
-    }
+    public:
+        /** ItemT defines the type of array items.
+         */
+        typedef T ItemT;
 
-    // return value for invalid index is undetermined.
-    inline T& operator[](int16_t index)
-    {
-        if (!BaseT::IsValidIndex(index)) return DummyOfT;
+        /** Assigns the item to the specified position (index).
+         *  Does nothing when the index is invalid.
+         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
+         *  \param item is the new value for the position indicated by index.
+         */
+        inline void SetAt(int16_t index, T item)
+        {
+            if (!BaseT::IsValidIndex(index)) return;
 
-        return BaseT::getBuffer()[index];
-    }
+            BaseT::getBuffer()[index] = item;
+        }
 
-    inline void Clear()
-    {
-        memset(BaseT::getBuffer(), 0, MaxItems);
-    }
+        /** Retrieves the (writable) item (reference) for the specified position (index).
+         *  Does nothing when the index is invalid.
+         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
+         *  \return Returns the item value for the position indicated by index. The return value for an invalid index is undetermined.
+         */
+        inline T& operator[](int16_t index)
+        {
+            if (!BaseT::IsValidIndex(index)) return DummyOfT;
 
-protected:
-    static T DummyOfT;
+            return BaseT::getBuffer()[index];
+        }
 
-};
+        /** Clears the memory occupied by the array.
+         *  All bytes are reset to 0 (zero).
+         */
+        inline void Clear()
+        {
+            memset(BaseT::getBuffer(), 0, MaxItems);
+        }
 
-template<typename T, const uint16_t MaxItems>
-T FixedArray<T, MaxItems>::DummyOfT;
+    protected:
+        static T DummyOfT;
+
+    };
+
+    template<typename T, const uint16_t MaxItems>
+    T FixedArray<T, MaxItems>::DummyOfT;
 
 
 } // ATL

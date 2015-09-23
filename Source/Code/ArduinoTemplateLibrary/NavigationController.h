@@ -23,27 +23,42 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
+    /** Enumerates the navigation commands for the UI framework.
+     */
+    enum NavigationCommands //: uint8_t
+    {
+        /** Not a navigation command. */
+        None,
+        /** Navigate Up. */
+        Up,
+        /** Navigate Down. */
+        Down,
+        /** Navigate Left. */
+        Left,
+        /** Navigate Right. */
+        Right,
+        /** Enter edit mode. */
+        Enter,
+        /** Exit edit mode. */
+        Exit
+    };
 
-enum NavigationCommands //: uint8_t
-{
-	None,
-	Up,
-	Down,
-	Left,
-	Right,
-	Enter,
-	Exit
-};
-
-
-class NavigationController
-{
-public:
-	virtual bool OnNavigationCommand(NavigationCommands /*navCmd*/)
-	{
-		return false;
-	}
-};
+    /** The NavigationController class is a template for Controls that receive input stimuli.
+     *  See also InputControl.
+     */
+    class NavigationController
+    {
+    public:
+        /** Called when an input event has happened and is translated into a navigation command.
+         *  \param navCmd is the navigation command.
+         *  \return The return value indicates if the command was handled. Returning false may cause
+         *  the navigation command to be routed to other controls.
+         */
+        virtual bool OnNavigationCommand(NavigationCommands /*navCmd*/)
+        {
+            return false;
+        }
+    };
 
 
 } // ATL

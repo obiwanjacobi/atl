@@ -27,8 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <interrupt.h>
 #include "Port.h"
 
-namespace ATL
-{
+namespace ATL {
+namespace AVR {
 
 /*
  *  A static class that lets you enable and disable interrupts easily.
@@ -130,6 +130,6 @@ private:
     Interrupt(){}
 };
 
-} // ATL
+}} // ATL::AVR
 
 #endif /* __INTERRUPT_H__ */

@@ -26,59 +26,60 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "Port.h"
 
 namespace ATL {
+namespace AVR {
 
 
 /*
-	Initializes a BoardPinNumber to output.
+    Initializes a BoardPinNumber to output.
  */
 template<const Ports PortId, const Pins PinId>
 class DigitalOutputPin
 {
 public:
-	/*
-		The ctor sets the Pin on the Port to Output.
-	 */
-	DigitalOutputPin()
-	{
-		Port<PortId>::SetDirection(PinId, Output);
+    /*
+        The ctor sets the Pin on the Port to Output.
+     */
+    DigitalOutputPin()
+    {
+        Port<PortId>::SetDirection(PinId, Output);
         //Write(false);
-	}
+    }
 
-	/*
-		The ctor sets the pinMode and initialValue.
-	 */
-	DigitalOutputPin(bool initialValue)
-	{
-		Port<PortId>::SetDirection(PinId, Output);
-		Write(initialValue);
-	}
+    /*
+        The ctor sets the pinMode and initialValue.
+     */
+    DigitalOutputPin(bool initialValue)
+    {
+        Port<PortId>::SetDirection(PinId, Output);
+        Write(initialValue);
+    }
 
-	/*
-		Writes the value to the BoardPinNumder.
-	 */
-	inline void Write(bool value) const
-	{
-		Port<PortId>::Write(PinId, value);
-	}
+    /*
+        Writes the value to the BoardPinNumder.
+     */
+    inline void Write(bool value) const
+    {
+        Port<PortId>::Write(PinId, value);
+    }
 
-	/*
-		Returns the PortId template parameter.
-	 */
-	inline uint8_t getPortNumber() const
-	{
-		return PortId;
-	}
+    /*
+        Returns the PortId template parameter.
+     */
+    inline uint8_t getPortNumber() const
+    {
+        return PortId;
+    }
 
-	/*
-		Returns the PinId template parameter.
-	 */
-	inline uint8_t getPinNumber() const
-	{
-		return PinId;
-	}
+    /*
+        Returns the PinId template parameter.
+     */
+    inline uint8_t getPinNumber() const
+    {
+        return PinId;
+    }
 };
 
-} // ATL
+}} // ATL::AVR
 
 
 

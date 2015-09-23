@@ -23,27 +23,27 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-// container class for volatile RAM data
-template<typename T>
-class VolatileData
-{
-public:
-	VolatileData(T data)
-	{
-		Data = data;
-	}
+    // container class for volatile RAM data
+    template<typename T>
+    class VolatileData
+    {
+    public:
+        VolatileData(T data)
+        {
+            Data = data;
+        }
 
-	inline T operator T() const
-	{
-	    return Data;
-	}
-	inline operator=(T data)
-	{
-	    Data = data;
-	}
+        inline T operator T() const
+        {
+            return Data;
+        }
+        inline operator=(T data)
+        {
+            Data = data;
+        }
 
-	volatile T Data;
-};
+        volatile T Data;
+    };
 
 } // ATL
 

@@ -23,128 +23,210 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <stddef.h>
 #include <stdint.h>
-
 #include "DisplayWriter.h"
 
 namespace ATL {
 
-enum ControlTypes
-{
-	typeUnknown = 0,
-	typeControl = 0x01,
-	typeInputControl = 0x02,
-	typePanel = 0x03,
-	typePage = 0x04,
-};
-
-// abstract
-class Control
-{
-protected:
-    Control(uint8_t position = 0)
-		: _state(stateNormal), _pos(position)
-    { }
-
-public:
-	enum ControlState
-	{
-		stateNormal,     // no other states active
-		stateHidden,     // control is not displayed
-		stateDisabled,   // control is displayed as read-only
-		stateFocused,    // control is high-lighted
-		stateSelected,   // control is active/selected (entered)
-	};
-
-	enum ControlDisplayMode
-	{
-		modeNormal,	// display content
-		modeCursor, // position cursor for selected/edit mode
-	};
-
-    inline uint8_t getPosition() const
+    /** Enumerates the base types of controls.
+     *  Used to implement a DynamicCast.
+     */
+    enum ControlTypes
     {
-        return _pos;
-    }
+        /** Control type is not set or unknown. */
+        typeUnknown = 0,
+        /** Control type is the root class for controls. */
+        typeControl = 0x01,
+        /** Control type is an input control (navigation). */
+        typeInputControl = 0x02,
+        /** Control type is a control panel (collection). */
+        typePanel = 0x03,
+        /** Control type is page (lines with controls). */
+        typePage = 0x04,
+    };
 
-	inline void setPosition(uint8_t newPos)
-	{
-		_pos = newPos;
-	}
-
-    inline bool getIsHidden() const
+    // abstract
+    /** The Control class is the root base class for all controls in the UI framework.
+     *  It implements that basic interface (virtual methods) for interacting with all controls.
+     *  The Control class is abstract - it cannot be instantiated.
+     */
+    class Control
     {
-        return _state == stateHidden;
-    }
-
-	inline bool getIsVisible() const
-    {
-		return !getIsHidden();
-    }
-
-	inline bool getIsDisabled() const
-    {
-        return _state == stateDisabled;
-    }
-
-	inline bool getIsEnabled() const
-    {
-		return !getIsDisabled() && !getIsHidden();
-    }
-
-	inline bool getIsFocussed() const
-    {
-        return _state == stateFocused;
-    }
-
-	inline bool getIsSelected() const
-    {
-        return _state == stateSelected;
-    }
-
-	inline bool getIsActive() const
-    {
-		return getIsFocussed() || getIsSelected();
-    }
-
-    inline ControlState getState() const
-    {
-        return _state;
-    }
-
-    inline bool setState(ControlState newState)
-    {
-        if (BeforeChangeState(newState))
+    public:
+        /** Enumerates the state a Control can be in.
+         *  Only one state is active at a time.
+         */
+        enum ControlState
         {
-            _state = newState;
-            return true;
+            /** Control state is normal - no special considerations. */
+            stateNormal,     // no other states active
+            /** Control state is hidden, it will not be displayed and cannot receive input. */
+            stateHidden,     // control is not displayed
+            /** Control state is disabled, it cannot receive input but it is still displayed. */
+            stateDisabled,   // control is displayed as read-only
+            /** Control state is focused, the cursor is displayed at its start.
+             *  Only one Control can have the focus at one time. */
+            stateFocused,    // control is high-lighted
+            /** Control state is selected, the edit-cursor is displayed at its start.
+             *  Only one Control can have be selected at one time. */
+            stateSelected,   // control is active/selected (entered)
+        };
+
+        /** Enumerates the mode in which the Display method can be called.
+         */
+        enum ControlDisplayMode
+        {
+            /** Display normal content based on the control state. */
+            modeNormal,
+            /** Display is called to position the cursor for selected/edit mode */
+            modeCursor,
+        };
+
+        /** Retrieves the position for the control.
+         *  \return the position value.
+         */
+        inline uint8_t getPosition() const
+        {
+            return _pos;
         }
-        return false;
-    }
 
-	virtual void Display(DisplayWriter* /*output*/, ControlDisplayMode /*mode*/) {}
+        /** Assigns a new position value to the control.
+         *  \param newPos is the new position value.
+         */
+        inline void setPosition(uint8_t newPos)
+        {
+            _pos = newPos;
+        }
 
-    virtual bool IsOfType(ControlTypes type) const
-    {
-        return (type & typeControl) == typeControl;
-    }
+        /** Indicates if the control is hidden (not visible).
+         *  \returns Returns true if hidden.
+         */
+        inline bool getIsHidden() const
+        {
+            return _state == stateHidden;
+        }
 
-    static Control* DynamicCast(Control* ctrl, ControlTypes type)
-    {
-        if (ctrl == NULL) return NULL;
-        if (ctrl->IsOfType(type)) return ctrl;
-        return NULL;
-    }
+        /** Indicates if the control is visible (not hidden).
+         *  \returns Returns true if visible.
+         */
+        inline bool getIsVisible() const
+        {
+            return !getIsHidden();
+        }
 
-protected:
-    virtual bool BeforeChangeState(ControlState newState)
-    {
-        return _state != newState;
-    }
+        /** Indicates if the control is disabled.
+         *  \returns Returns true if disabled.
+         */
+        inline bool getIsDisabled() const
+        {
+            return _state == stateDisabled;
+        }
 
-private:
-    ControlState _state;
-    uint8_t _pos;
-};
+        /** Indicates if the control is not disabled and not hidden.
+         *  \returns Returns true if enabled.
+         */
+        inline bool getIsEnabled() const
+        {
+            return !getIsDisabled() && !getIsHidden();
+        }
+
+        /** Indicates if the control has the focus.
+         *  \returns Returns true if focused.
+         */
+        inline bool getIsFocussed() const
+        {
+            return _state == stateFocused;
+        }
+
+        /** Indicates if the control has the selection.
+         *  \returns Returns true if selected.
+         */
+        inline bool getIsSelected() const
+        {
+            return _state == stateSelected;
+        }
+
+        /** Indicates if the control is focused or selected.
+         *  \returns Returns true if active.
+         */
+        inline bool getIsActive() const
+        {
+            return getIsFocussed() || getIsSelected();
+        }
+
+        /** Retrieves the state of the Control.
+         *  \returns Returns the control state.
+         */
+        inline ControlState getState() const
+        {
+            return _state;
+        }
+
+        /** Assigns a new state to the Control.
+         *  Calls the `BeforeChangeState` method to allow sub-classes to prevent state change.
+         *  \param newState is the new state value to set.
+         *  \return Returns true if successful.
+         */
+        inline bool setState(ControlState newState)
+        {
+            if (BeforeChangeState(newState))
+            {
+                _state = newState;
+                return true;
+            }
+            return false;
+        }
+
+        /** Called to let the Control draw itself using the DisplayWriter.
+         *  At Control level this method does nothing.
+         *  \param output is a pointer to the DisplayWriter object.
+         *  \param mode is the enum that indicates in what mode Display is called.
+         */
+        virtual void Display(DisplayWriter* /*output*/, ControlDisplayMode /*mode*/)
+        { }
+
+        /** Indicates if this object is of the specified type.
+         *  \param type indicates the requested type.
+         *  \return Returns true when the object is of the same type.
+         */
+        virtual bool IsOfType(ControlTypes type) const
+        {
+            return (type & typeControl) == typeControl;
+        }
+
+        /** Dynamically casts a Control pointer to the specified type.
+         *  \param ctrl is the pointer to the Control. Can be NULL.
+         *  \param type is the Control type to cast ctrl to.
+         *  \return Returns NULL if ctrl is NULL or ctrl is not of the same type. Otherwise the ctrl pointer is returned.
+         */
+        static Control* DynamicCast(Control* ctrl, ControlTypes type)
+        {
+            if (ctrl == NULL) return NULL;
+            if (ctrl->IsOfType(type)) return ctrl;
+            return NULL;
+        }
+
+    protected:
+        /** Constructor for derived classes.
+        *  \param position indicates the position of this control relative to others.
+        */
+        Control(uint8_t position = 0)
+            : _state(stateNormal), _pos(position)
+        { }
+
+        /** Called by `setState()` to allow derived classes to prevent state changes.
+         *  This method will not allow setting the same state multiple times.
+         *  \param newState is the proposed state to set. The current state can be retrieved with `getState()`.
+         *  \return Returns true if the state change is allowed.
+         */
+        virtual bool BeforeChangeState(ControlState newState)
+        {
+            return _state != newState;
+        }
+
+    private:
+        ControlState _state;
+        uint8_t _pos;
+    };
 
 
 } // ATL

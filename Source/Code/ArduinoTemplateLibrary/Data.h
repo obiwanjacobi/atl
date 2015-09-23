@@ -24,38 +24,38 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 
-// container class for RAM data
-template<typename T>
-class Data
-{
-public:
-    Data(T data)
+    // container class for RAM data
+    template<typename T>
+    class Data
     {
-		Value = data;
-    }
+    public:
+        Data(T data)
+        {
+            Value = data;
+        }
 
-    inline operator T() const
-    {
-		return Value;
-    }
+        inline operator T() const
+        {
+            return Value;
+        }
 
-    inline void operator=(T& data)
-    {
-		Value = data;
-    }
+        inline void operator=(T& data)
+        {
+            Value = data;
+        }
 
-	inline void operator|=(T& data)
-	{
-		Value |= data;
-	}
+        inline void operator|=(T& data)
+        {
+            Value |= data;
+        }
 
-	inline void operator&=(T& data)
-	{
-		Value &= data;
-	}
+        inline void operator&=(T& data)
+        {
+            Value &= data;
+        }
 
-    T Value;
-};
+        T Value;
+    };
 
 
 } // ATL

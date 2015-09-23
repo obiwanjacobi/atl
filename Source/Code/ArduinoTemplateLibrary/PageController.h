@@ -29,56 +29,76 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
+    /** The PageController class manages multiple pages and the transition of one page to another.
+     *  \tparam LinesPerPage is the number of lines per page (must be the same for all pages).
+     *  \tparam MaxPages is the maximum number of pages.
+     */
+    template<const uint8_t LinesPerPage, const uint8_t MaxPages>
+    class PageController : public PanelControlContainer<MaxPages>
+    {
+        typedef PanelControlContainer<MaxPages> BaseT;
 
-template<const uint8_t LinesPerPage, const uint8_t MaxPages>
-class PageController : public PanelControlContainer<MaxPages>
-{
-	typedef PanelControlContainer<MaxPages> BaseT;
+    public:
+        /** The Page type. */
+        typedef Page<LinesPerPage> PageT;
 
-public:
-	typedef Page<LinesPerPage> PageT;
+        /** Retrieves the current active page.
+         *  \return Returns NULL when no active page is set.
+         */
+        inline PageT* getCurrentPage() const
+        {
+            return (PageT*)BaseT::getCurrentControl();
+        }
 
-	inline PageT* getCurrentPage() const
-	{
-		return (PageT*)BaseT::getCurrentControl();
-	}
+        /** Navigates to a new page when `Up` or `Down` remain unhandled.
+         *  \param navCmd is the navigation command.
+         *  \return Returns false when the navCmd was not handled.
+         */
+        virtual bool OnNavigationCommand(NavigationCommands navCmd)
+        {
+            bool handled = BaseT::OnNavigationCommand(navCmd);
 
-	virtual bool OnNavigationCommand(NavigationCommands navCmd)
-	{
-		bool handled = BaseT::OnNavigationCommand(navCmd);
+            if (handled) return true;
 
-		if (handled) return true;
+            switch (navCmd)
+            {
+            case Up:
+                handled = TrySetPreviousPage();
+                break;
+            case Down:
+                handled = TrySetNextPage();
+                break;
+            default:
+                break;
+            }
 
-		switch (navCmd)
-		{
-		case Up:
-			handled = TrySetPreviousPage();
-			break;
-		case Down:
-			handled = TrySetNextPage();
-			break;
-		default:
-			break;
-		}
+            return handled;
+        }
 
-		return handled;
-	}
+        /** Attempts to set the first page.
+         *  \return Returns true when successful.
+         */
+        inline bool TrySetFirstPage()
+        {
+            return BaseT::SetFirstInputControl();
+        }
 
-	inline bool TrySetFirstPage()
-	{
-		return BaseT::SetFirstInputControl();
-	}
+        /** Attempts to set the next page.
+         *  \return Returns true when successful.
+         */
+        inline bool TrySetNextPage()
+        {
+            return BaseT::SetNextInputControl();
+        }
 
-	inline bool TrySetNextPage()
-	{
-		return BaseT::SetNextInputControl();
-	}
-
-	inline bool TrySetPreviousPage()
-	{
-		return BaseT::SetPreviousInputControl();
-	}
-};
+        /** Attempts to set the previous page.
+         *  \return Returns true when successful.
+         */
+        inline bool TrySetPreviousPage()
+        {
+            return BaseT::SetPreviousInputControl();
+        }
+    };
 
 
 } // ATL

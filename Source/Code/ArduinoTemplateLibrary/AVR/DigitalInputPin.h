@@ -26,56 +26,57 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "Port.h"
 
 namespace ATL {
+namespace AVR {
 
 /*
-	Initializes a Pin on a Port to input.
+    Initializes a Pin on a Port to input.
  */
 template <const Ports PortId, const Pins PinId>
 class DigitalInputPin
 {
 public:
-	/*
-		The ctor sets the Pin as Input.
-	 */
-	DigitalInputPin()
-	{
-		Port<PortId>::SetDirection(PinId, Input);
-	}
-
-	/*
-		Reads the value from the Pin on the Port.
-	 */
-	inline bool Read()
-	{
-		return Port<PortId>::Read(PinId);
-	}
-
-	/*
-		Enables (true) or disables (false) the internal pull-up resistor the AVR (MCU) has on digital input pins.
-	 */
-	inline void EnableInternalPullup(bool enable = true)
-	{
-		Port<PortId>::EnablePullup(PinId, enable);
-	}
+    /*
+        The ctor sets the Pin as Input.
+     */
+    DigitalInputPin()
+    {
+        Port<PortId>::SetDirection(PinId, Input);
+    }
 
     /*
-		Returns the PortId template parameter.
-	 */
-	inline uint8_t getPortNumber() const
-	{
-		return PortId;
-	}
+        Reads the value from the Pin on the Port.
+     */
+    inline bool Read()
+    {
+        return Port<PortId>::Read(PinId);
+    }
 
-	/*
-		Returns the PinId template parameter.
-	 */
-	inline uint8_t getPinNumber() const
-	{
-		return PinId;
-	}
+    /*
+        Enables (true) or disables (false) the internal pull-up resistor the AVR (MCU) has on digital input pins.
+     */
+    inline void EnableInternalPullup(bool enable = true)
+    {
+        Port<PortId>::EnablePullup(PinId, enable);
+    }
+
+    /*
+        Returns the PortId template parameter.
+     */
+    inline uint8_t getPortNumber() const
+    {
+        return PortId;
+    }
+
+    /*
+        Returns the PinId template parameter.
+     */
+    inline uint8_t getPinNumber() const
+    {
+        return PinId;
+    }
 };
 
-} // ATL
+}} // ATL::AVR
 
 
 #endif /* __DIGITALINPUTPIN_H__ */

@@ -65,19 +65,19 @@ function GetFileName([string]$file)
 {
     [array]$parts = $file.Split('.\/')
 
-	if ($parts.Length -eq 3)
-	{
-	    return $parts[1]
-	}
+    if ($parts.Length -eq 3)
+    {
+        return $parts[1]
+    }
 
-	return $parts[0]
+    return $parts[0]
 }
 
 function GetFileNameWithExtension([string]$file)
 {
     [array]$parts = $file.Split('\/')
 
-	return $parts[$parts.Length - 1]
+    return $parts[$parts.Length - 1]
 }
 
 function CopyFile([string]$sourceFilePath, [string]$targetFilePath)
@@ -118,7 +118,7 @@ function CreateHeaderFile([string]$libraryName, [string[]]$files)
 
     WriteToFile ($headerFilePath) (BuildPreprocessorStart $libraryName)
 
-	WriteToFile $headerFilePath $ArduinoInclude
+    WriteToFile $headerFilePath $ArduinoInclude
 
     foreach ($file in $files)
     {

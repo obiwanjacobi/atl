@@ -26,46 +26,70 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-
-template<const uint8_t MaxChars>
-class FixedString : public FixedArray<char, MaxChars + 1>
-{
-	typedef FixedArray<char, MaxChars + 1> BaseT;
-
-public:
-	typedef typename BaseT::ItemT ItemT;
-
-	FixedString()
-	{
-		BaseT::Clear();
-	}
-
-	FixedString(const char* text)
-	{
-		BaseT::Clear();
-		CopyFrom(text);
-	}
-
-	inline uint8_t getMaxCount() const
-	{
-		return MaxChars;
-	}
-
-    inline uint8_t getCount() const
+    /** FixedString is a specialized FixedArray for character strings.
+     *  \tparam MaxChars indicates the maximum number of characters in the string. 
+     *  The underlying array has one extra byte for the terminating zero.
+     */
+    template<const uint8_t MaxChars>
+    class FixedString : public FixedArray<char, MaxChars + 1>
     {
-        return MaxChars;
-    }
+        typedef FixedArray<char, MaxChars + 1> BaseT;
 
-	inline void CopyFrom(const char* text)
-	{
-		strncpy(BaseT::getBuffer(), text, MaxChars);
-	}
+    public:
+        /** ItemT defines the type of array items.
+         */
+        typedef char ItemT;
 
-	inline void operator=(const char* text)
-	{
-		CopyFrom(text);
-	}
-};
+        /** Constructs a blank instance.
+         */
+        FixedString()
+        {
+            BaseT::Clear();
+        }
+
+        /** Constructs an initialized instance.
+         *  \param text points to a zero-terminated string used to initialize (copy) this instance.
+         */
+        FixedString(const char* text)
+        {
+            BaseT::Clear();
+            CopyFrom(text);
+        }
+
+        /** Gets the maximum number of chars the string can store.
+         *  \return Returns the MaxChars template parameter.
+         */
+        inline uint8_t getCapacity() const
+        {
+            return MaxChars;
+        }
+
+        /** Gets the current number of chars in the string.
+         *  \return Returns the MaxChars template parameter.
+         */
+        inline uint8_t getCount() const
+        {
+            return MaxChars;
+        }
+
+        /** Copy's in the specified text.
+         *  Will never copy more than MaxChars characters from text.
+         *  \param text is a pointer to a zero-terminated string.
+         */
+        inline void CopyFrom(const char* text)
+        {
+            strncpy(BaseT::getBuffer(), text, MaxChars);
+        }
+
+        /** Copy's in the specified text.
+         *  Will never copy more than MaxChars characters from text.
+         *  \param text is a pointer to a zero-terminated string.
+         */
+        inline void operator=(const char* text)
+        {
+            CopyFrom(text);
+        }
+    };
 
 
 } // ATL

@@ -26,25 +26,31 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-template<>
-uint32_t Time<Milliseconds>::Update()
-{
-	uint32_t previous = _ticks;
+    /** Specialized implementation that updates the Milliseconds.
+     *  \return Returns the delta milliseconds that have elapsed since the last call.
+     */
+    template<>
+    uint32_t Time<Milliseconds>::Update()
+    {
+        uint32_t previous = _ticks;
 
-	_ticks = millis();
+        _ticks = millis();
 
-	return _ticks - previous;
-}
+        return _ticks - previous;
+    }
 
-template<>
-uint32_t Time<Microseconds>::Update()
-{
-	uint32_t previous = _ticks;
+    /** Specialized implementation that updates the Microseconds.
+     *  \return Returns the delta micorseconds that have elapsed since the last call.
+     */
+    template<>
+    uint32_t Time<Microseconds>::Update()
+    {
+        uint32_t previous = _ticks;
 
-	_ticks = micros();
+        _ticks = micros();
 
-	return _ticks - previous;
-}
+        return _ticks - previous;
+    }
 
 } // ATL
 

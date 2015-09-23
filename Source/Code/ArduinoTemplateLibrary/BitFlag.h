@@ -29,87 +29,133 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-/*
-*
-*
-*/
-class BitFlag
-{
-public:
-	template<typename T>
-	inline static void Set(T& target, const uint8_t bitIndex)
-	{
-		if (bitIndex > getMaxBits<T>()) return;
+    /** Manipulates a single bit in a variable.
+     *  The BitFlag class has similar functionality as the Bit class.
+     *  BitFlag is a static class, meaning that no instance can be constructed.
+     *  All methods are called like `BitFlag::Set(myVar, 2);` which would set bit2 in myVar.
+     *  Use BitFlag instead of Bit when the bitIndex is dynamic/only known at runtime. 
+     *  Bit is slightly more optimal when the bitIndex is known at compile time (hard-coded).
+     */
+    class BitFlag
+    {
+    public:
+        /** Sets (true) the bit at bitIndex in target.
+         *  \tparam T the data type of the target variable.
+         *  \param target the variable that will be changed.
+         *  \param bitIndex is the zero-based index where the value bits are stored.
+         */
+        template<typename T>
+        inline static void Set(T& target, const uint8_t bitIndex)
+        {
+            if (bitIndex > getMaxBits<T>()) return;
 
-		target |= BitToMask<T>(bitIndex);
-	}
+            target |= BitToMask<T>(bitIndex);
+        }
 
-	template<typename T>
-	inline static void Set(T& target, const uint8_t bitIndex, bool value)
-	{
-		if (bitIndex > getMaxBits<T>()) return;
+        /** Sets the bit at bitIndex in target to the specified value.
+         *  \tparam T the data type of the target variable.
+         *  \param target the variable that will be changed.
+         *  \param bitIndex is the zero-based index where the value bits are stored.
+         *  \param value is the value to be stored.
+         */
+        template<typename T>
+        inline static void Set(T& target, const uint8_t bitIndex, bool value)
+        {
+            if (bitIndex > getMaxBits<T>()) return;
 
-		T mask = BitToMask<T>(bitIndex);
+            T mask = BitToMask<T>(bitIndex);
 
-		// clear bit
-		target &= ~mask;
+            // clear bit
+            target &= ~mask;
 
-		if (value)
-		{
-			// set bit
-			target |= mask;
-		}
-	}
+            if (value)
+            {
+                // set bit
+                target |= mask;
+            }
+        }
 
-	template<typename T>
-	inline static void Reset(T& target, const uint8_t bitIndex)
-	{
-		if (bitIndex > getMaxBits<T>()) return;
+        /** Resets (false) the bit at bitIndex in target.
+         *  \tparam T the data type of the target variable.
+         *  \param target the variable that will be changed.
+         *  \param bitIndex is the zero-based index where the value bits are stored.
+         */
+        template<typename T>
+        inline static void Reset(T& target, const uint8_t bitIndex)
+        {
+            if (bitIndex > getMaxBits<T>()) return;
 
-		// clear bit
-		target &= ~BitToMask<T>(bitIndex);
-	}
+            // clear bit
+            target &= ~BitToMask<T>(bitIndex);
+        }
 
-	template<typename T>
-	inline static void Toggle(T& target, const uint8_t bitIndex)
-	{
-		if (bitIndex > getMaxBits<T>()) return;
+        /** Toggles (inverts) the bit at bitIndex in target.
+         *  \tparam T the data type of the target variable.
+         *  \param target the variable that will be changed.
+         *  \param bitIndex is the zero-based index where the value bits are stored.
+         */
+        template<typename T>
+        inline static void Toggle(T& target, const uint8_t bitIndex)
+        {
+            if (bitIndex > getMaxBits<T>()) return;
 
-		target ^= BitToMask<T>(bitIndex);
-	}
+            target ^= BitToMask<T>(bitIndex);
+        }
 
-	template<typename T>
-	inline static bool IsTrue(T target, const uint8_t bitIndex)
-	{
-		if (bitIndex > getMaxBits<T>()) return false;
+        /** Indicates if the bit at bitIndex in target is set (true).
+         *  \tparam T the data type of the target variable.
+         *  \param target the variable that stores the bit value.
+         *  \param bitIndex is the zero-based index where the value bits are stored.
+         *  \return Returns true if the bit is set.
+         */
+        template<typename T>
+        inline static bool IsTrue(T target, const uint8_t bitIndex)
+        {
+            if (bitIndex > getMaxBits<T>()) return false;
 
-		return (target & BitToMask<T>(bitIndex)) > 0;
-	}
+            return (target & BitToMask<T>(bitIndex)) > 0;
+        }
 
-	template<typename T>
-	inline static bool IsFalse(T target, const uint8_t bitIndex)
-	{
-		if (bitIndex > getMaxBits<T>()) return false;
+        /** Indicates if the bit at bitIndex in target is reset (false).
+         *  \tparam T the data type of the target variable.
+         *  \param target the variable that stores the bit value.
+         *  \param bitIndex is the zero-based index where the value bits are stored.
+         *  \return Returns true if the bit is reset.
+         */
+        template<typename T>
+        inline static bool IsFalse(T target, const uint8_t bitIndex)
+        {
+            if (bitIndex > getMaxBits<T>()) return false;
 
-		return (target & BitToMask<T>(bitIndex)) == 0;
-	}
+            return (target & BitToMask<T>(bitIndex)) == 0;
+        }
 
-	template<typename T>
-	inline static uint8_t getMaxBits()
-	{
-		return (sizeof(T) * CHAR_BITS);
-	}
+        /** Retrieves the maximum number of bits that will fit into T.
+         *  \tparam T the data type of the target variable.
+         *  \return Returns the maximum number of bit positions.
+         */
+        template<typename T>
+        inline static uint8_t getMaxBits()
+        {
+            return (sizeof(T) * CHAR_BITS);
+        }
 
-protected:
-	template<typename T>
-	inline static T BitToMask(const uint8_t bitIndex)
-	{
-		return 1 << bitIndex;
-	}
+    protected:
+        /** Calculates the bit mask for the bitIndex bit.
+         *  \tparam T the data type of the target variable.
+         *  \param bitIndex is the zero-based index a mask is constructed for.
+         *  \return Returns a value with the BitIndex'th bit set.
+         */
+        template<typename T>
+        inline static T BitToMask(const uint8_t bitIndex)
+        {
+            return 1 << bitIndex;
+        }
 
-private:
-	BitFlag(){}
-};
+    private:
+        BitFlag()
+        { }
+    };
 
 
 } // ATL

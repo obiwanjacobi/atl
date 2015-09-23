@@ -25,8 +25,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stdint.h>
 //#include <sfr_defs.h>
 
-namespace ATL
-{
+namespace ATL {
+namespace AVR {
 
 // TODO: make device specific
 enum Ports //: uint8_t
@@ -35,19 +35,19 @@ enum Ports //: uint8_t
     PortA = 0,
 #endif //PORTA
 #ifdef PORTB
-	PortB = 1,
+    PortB = 1,
 #endif //PORTB
 #ifdef PORTC
-	PortC = 2,
+    PortC = 2,
 #endif //PORTC
 #ifdef PORTD
-	PortD = 3,
+    PortD = 3,
 #endif //PORTC
 #ifdef PORTE
-	PortE = 4,
+    PortE = 4,
 #endif //PORTE
 #ifdef PORTF
-	PortF = 5,
+    PortF = 5,
 #endif //PORTF
 };
 
@@ -94,7 +94,7 @@ public:
         return false;
     }
 
-	inline static void SetDirection(Pins pin, PinIO io)
+    inline static void SetDirection(Pins pin, PinIO io)
     {
         uint8_t mask = PinToMask(pin);
 
@@ -102,7 +102,7 @@ public:
         else PortRegDir() &= ~mask;
     }
 
-	inline static void SetDirection(PinIO io7, PinIO io6, PinIO io5, PinIO io4, PinIO io3, PinIO io2, PinIO io1, PinIO io0)
+    inline static void SetDirection(PinIO io7, PinIO io6, PinIO io5, PinIO io4, PinIO io3, PinIO io2, PinIO io1, PinIO io0)
     {
         PortRegDir() = io7 << 7 | io6 << 6 | io5 << 5 | io4 << 4 | io3 << 3 | io2 << 2 | io1 << 1 | io0;
     }
@@ -152,6 +152,6 @@ private:
     }
 };
 
-} // ATL
+}} // ATL::AVR
 
 #endif /* __PORT_H__ */

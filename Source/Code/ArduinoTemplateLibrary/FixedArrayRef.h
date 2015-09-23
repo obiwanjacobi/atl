@@ -27,34 +27,48 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 
-/*
-* Bounds-checked wrapper for an array reference
-*
-*/
-template<typename T, const uint16_t MaxItems>
-class FixedArrayRef : public ArrayRef<T, MaxItems>
-{
-    typedef ArrayRef<T, MaxItems> BaseT;
-
-public:
-    typedef T ItemT;
-
-    FixedArrayRef(T* array)
-        : BaseT(array)
-    { }
-
-    inline void SetAt(int16_t index, T value)
+    /** The FixedArrayRef adds methods that change the ArrayRef.
+     *  Fixed refers to its size, it's predetermined when it is constructed.
+     *  \tparam T the datatype of the items in the array.
+     *  \tparam MaxItems is the maximum number of items in the array.
+     */
+    template<typename T, const uint16_t MaxItems>
+    class FixedArrayRef : public ArrayRef < T, MaxItems >
     {
-        if (!BaseT::IsValidIndex(index)) return;
+        typedef ArrayRef<T, MaxItems> BaseT;
 
-        BaseT::getBuffer()[index] = value;
-    }
+    public:
+        /** ItemT defines the type of array items.
+         */
+        typedef T ItemT;
 
-    inline void Clear()
-    {
-        memset(BaseT::getBuffer(), 0, MaxItems);
-    }
-};
+        /** Constructs and instance with a reference to an array.
+         *  \param array points to the array.
+         */
+        FixedArrayRef(T* array)
+            : BaseT(array)
+        { }
+
+        /** Assigns the item to the specified position (index).
+         *  Does nothing when the index is invalid.
+         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
+         *  \param item is the new value for the position indicated by index.
+         */
+        inline void SetAt(int16_t index, T value)
+        {
+            if (!BaseT::IsValidIndex(index)) return;
+
+            BaseT::getBuffer()[index] = value;
+        }
+
+        /** Clears the memory occupied by the array.
+         *  All bytes are reset to 0 (zero).
+         */
+        inline void Clear()
+        {
+            memset(BaseT::getBuffer(), 0, MaxItems);
+        }
+    };
 
 
 } // ATL

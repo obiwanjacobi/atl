@@ -25,59 +25,73 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-/*
-BaseT is used as a base class and implements:
-	uint8_t [HD44780_View]getCursorRow();
-	uint8_t [HD44780_View]getCursorCol();
-	void [HD44780_View]SetCursor(uint8_t row, uint8_t col);
-	void [HD44780_Controller]setEnableCursor(bool);
-	bool [HD44780_Controller]getEnableCursor();
-	void [HD44780_Controller]setEnableBlink(bool);
-	bool [HD44780_Controller]getEnableBlink();
-*/
-template<class BaseT>
-class HD44780_DisplayWriter : public DisplayWriter, public BaseT
-{
-public:
-	// writes text to the lcd.
-	virtual void Write(const char* text)
-	{
-		BaseT::Write(text);
-	}
+    /** An implementation for the DisplayWriter used in the UI framework for the HD44780 LCD display.
+     *  The class derives from DisplayWriter and BaseT.
+     *  \tparam BaseT is a TextWriter => HD44780_View => HD44780_Controller type that implements:
+     *  `void Write(const char*)` (TextWriter)
+     *  `uint8_t getCursorRow()` (HD44780_View)
+     *  `uint8_t getCursorCol()` (HD44780_View)
+     *  `void SetCursor(uint8_t, uint8_t)` (HD44780_View)
+     *  `void setEnableCursor(bool)` (HD44780_Controller)
+     *  `bool getEnableCursor()` (HD44780_Controller)
+     *  `void setEnableBlink(bool)` (HD44780_Controller)
+     *  `bool getEnableBlink()` (HD44780_Controller).
+     */
+    template<class BaseT>
+    class HD44780_DisplayWriter : public DisplayWriter, public BaseT
+    {
+    public:
+        /** Calls the `TextWriter::Write` method.
+         *  \param text points to a zer-terminated string.
+         */
+        virtual void Write(const char* text)
+        {
+            BaseT::Write(text);
+        }
 
-	// sets the starting position for the following Write call.
-	virtual void GoTo(uint8_t lineIndex, uint8_t columnIndex)
-	{
-		if (lineIndex == DontCare)
-			lineIndex = BaseT::getCursorRow();
-		if (columnIndex == DontCare)
-			columnIndex = BaseT::getCursorCol();
+        /** Calls the `HD44780_View::SetCursor` method.
+         *  Will also call `HD44780_View::getCursorRow` and `HD44780_View::getCursorCol` 
+         *  when `DisplayWriter::DontCare` values are specified.
+         *  \param lineIndex indicates the display line.
+         *  \param columnIndex indicates the display column (char position).
+         */
+        virtual void GoTo(uint8_t lineIndex, uint8_t columnIndex)
+        {
+            if (lineIndex == DontCare)
+                lineIndex = BaseT::getCursorRow();
+            if (columnIndex == DontCare)
+                columnIndex = BaseT::getCursorCol();
 
-		BaseT::SetCursor(lineIndex, columnIndex);
-	}
+            BaseT::SetCursor(lineIndex, columnIndex);
+        }
 
-	// sets the (blinking) cursor position to indicate a selected state of the control.
-	virtual void SetCursor(uint8_t lineIndex, uint8_t columnIndex, bool blink)
-	{
-		if (lineIndex == DontCare && columnIndex == DontCare)
-		{
-			BaseT::setEnableCursor(false);
-			return;
-		}
+        /** Calls the `HD44780_View::SetCursor` and `HD44780_Controller::setEnableCursor` methods.
+         *  May also call the `HD44780_Controller::setEnableBlink` method for edit mode.
+         *  \param lineIndex indicates the display line.
+         *  \param columnIndex indicates the display column (char position).
+         *  \param edit indicates if a blinking cursor is displayed.
+         */
+        virtual void SetCursor(uint8_t lineIndex, uint8_t columnIndex, bool edit)
+        {
+            if (lineIndex == DontCare && columnIndex == DontCare)
+            {
+                BaseT::setEnableCursor(false);
+                return;
+            }
 
-		if (!BaseT::getEnableCursor())
-		{
-			BaseT::setEnableCursor(true);
-		}
+            if (!BaseT::getEnableCursor())
+            {
+                BaseT::setEnableCursor(true);
+            }
 
-		if (BaseT::getEnableBlink() != blink)
-		{
-			BaseT::setEnableBlink(blink);
-		}
+            if (BaseT::getEnableBlink() != edit)
+            {
+                BaseT::setEnableBlink(edit);
+            }
 
-		BaseT::SetCursor(lineIndex, columnIndex);
-	}
-};
+            BaseT::SetCursor(lineIndex, columnIndex);
+        }
+    };
 
 
 } // ATL

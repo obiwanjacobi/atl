@@ -29,55 +29,70 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-// abstract
-template<const uint8_t MaxItems>
-class PanelControlContainer : public Panel,
-	                          public ControlContainer<MaxItems>
-{
-	typedef ControlContainer<MaxItems> BaseT;
 
-public:
-	bool SetFirstInputControl()
-	{
-		InputControl* ctrl = (InputControl*)BaseT::getNext(NULL, typeInputControl);
-		if (ctrl != NULL)
-		{
-			setCurrentControl(ctrl);
-			return true;
-		}
+    /** The PanelControlContainer abstract class manages a collection of Controls.
+     *  \tparam MaxItems is the maximum number of Controls in the container.
+     */
+    template<const uint8_t MaxItems>
+    class PanelControlContainer : public Panel,
+                                  public ControlContainer<MaxItems>
+    {
+        typedef ControlContainer<MaxItems> BaseT;
 
-		return false;
-	}
+    public:
+        /** Assigns the first InputControl in the container to be the current control (Panel).
+         *  \return Returns true if successful.
+         */
+        bool SetFirstInputControl()
+        {
+            InputControl* ctrl = (InputControl*)BaseT::getNext(NULL, typeInputControl);
+            if (ctrl != NULL)
+            {
+                setCurrentControl(ctrl);
+                return true;
+            }
 
-	bool SetNextInputControl()
-	{
-		InputControl* ctrl = (InputControl*)BaseT::getNext(getCurrentControl(), typeInputControl);
-		if (ctrl != NULL)
-		{
-			setCurrentControl(ctrl);
-			return true;
-		}
+            return false;
+        }
 
-		return false;
-	}
+        /** Assigns the next InputControl (relative to the current current-control) in the container to be the current control (Panel).
+         *  \return Returns true if successful.
+         */
+        bool SetNextInputControl()
+        {
+            InputControl* ctrl = (InputControl*)BaseT::getNext(getCurrentControl(), typeInputControl);
+            if (ctrl != NULL)
+            {
+                setCurrentControl(ctrl);
+                return true;
+            }
 
-	bool SetPreviousInputControl()
-	{
-		InputControl* ctrl = (InputControl*)BaseT::getPrevious(getCurrentControl(), typeInputControl);
-		if (ctrl != NULL)
-		{
-			setCurrentControl(ctrl);
-			return true;
-		}
+            return false;
+        }
 
-		return false;
-	}
+        /** Assigns the previous InputControl (relative to the current current-control) in the container to be the current control (Panel).
+         *  \return Returns true if successful.
+         */
+        bool SetPreviousInputControl()
+        {
+            InputControl* ctrl = (InputControl*)BaseT::getPrevious(getCurrentControl(), typeInputControl);
+            if (ctrl != NULL)
+            {
+                setCurrentControl(ctrl);
+                return true;
+            }
 
-protected:
-	PanelControlContainer(uint8_t pos = 0)
-		: Panel(pos)
-	{ }
-};
+            return false;
+        }
+
+    protected:
+        /** For derived classes.
+         *  \param pos is the optional control position.
+         */
+        PanelControlContainer(uint8_t pos = 0)
+            : Panel(pos)
+        { }
+    };
 
 
 } // ATL
