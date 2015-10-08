@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "Port.h"
 
 namespace ATL {
-namespace AVR {
+namespace MCU {
 
 /*
     Initializes a Pin on a Port to input.
@@ -76,7 +76,7 @@ public:
     }
 };
 
-}} // ATL::AVR
+}} // ATL::MCU
 
 
 #endif /* __DIGITALINPUTPIN_H__ */

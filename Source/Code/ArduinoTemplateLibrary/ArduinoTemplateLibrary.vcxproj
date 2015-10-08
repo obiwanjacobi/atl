@@ -81,8 +81,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Arduino\AnalogOutputPin.h" />
+    <ClInclude Include="Arduino\SerialI2COutput.h" />
     <ClInclude Include="Array.h" />
     <ClInclude Include="ArrayRef.h" />
+    <ClInclude Include="AVR\PowerReduction.h" />
+    <ClInclude Include="AVR\Usart.h" />
+    <ClInclude Include="AVR\UsartConfig.h" />
+    <ClInclude Include="AVR\UsartInputStream.h" />
+    <ClInclude Include="AVR\UsartOutputStream.h" />
+    <ClInclude Include="AVR\UsartReceive.h" />
+    <ClInclude Include="AVR\UsartRegisters.h" />
+    <ClInclude Include="AVR\UsartTransmit.h" />
     <ClInclude Include="BitFlag.h" />
     <ClInclude Include="Collection.h" />
     <ClInclude Include="CollectionRef.h" />
@@ -90,13 +99,16 @@
     <ClInclude Include="ControlContainer.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Default.h" />
+    <ClInclude Include="EnumScope.h" />
     <ClInclude Include="FixedArray.h" />
     <ClInclude Include="FixedArrayRef.h" />
     <ClInclude Include="FixedString.h" />
     <ClInclude Include="HD44780_DisplayWriter.h" />
+    <ClInclude Include="HD44780_DriverI2C.h" />
     <ClInclude Include="HorizontalPanel.h" />
     <ClInclude Include="DisplayWriter.h" />
     <ClInclude Include="Iterator.h" />
+    <ClInclude Include="Math.h" />
     <ClInclude Include="PageController.h" />
     <ClInclude Include="InputControl.h" />
     <ClInclude Include="LabelControl.h" />

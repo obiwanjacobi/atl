@@ -26,26 +26,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-    // 
-    //  
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-    //	
-
 #define MASK_7BIT_LO	0x007F
 #define MASK_7BIT_HI	0x3F80
 #define MASK_DATABYTE	0x7F

@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //#include <sfr_defs.h>
 
 namespace ATL {
-namespace AVR {
+namespace MCU {
 
 // TODO: make device specific
 enum Ports //: uint8_t
@@ -152,6 +152,6 @@ private:
     }
 };
 
-}} // ATL::AVR
+}} // ATL::MCU
 
 #endif /* __PORT_H__ */

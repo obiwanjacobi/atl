@@ -18,23 +18,39 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __TEMPLATE_H__
-#define __TEMPLATE_H__
+#ifndef __SERIALI2COUTPUT_H__
+#define __SERIALI2COUTPUT_H__
+
+#include <Wire.h>
 
 namespace ATL {
 
-    /**
-     *  \tparam BaseT is used as a base class and implements:
-     */
-    template<class BaseT>
-    class _template : public BaseT
+    // wrapper class around Arduino Wire library.
+    template<const uint8_t I2CAddress>
+    class SerialI2COutput
     {
     public:
+        inline bool Write(uint8_t data)
+        {
+            Wire.beginTransmission(I2CAddress);
+            Wire.write(data);
+            return Wire.endTransmission() == 0;
+        }
+    
+        inline bool Write(uint8_t data[], uint8_t length)
+        {
+            Wire.beginTransmission(I2CAddress);
+            Wire.write(data, length);
+            return Wire.endTransmission() == 0;
+        }
 
-    private:
-
+        inline uint8_t getI2CAddress() const
+        {
+            return I2CAddress;
+        }
     };
 
 } // ATL
 
-#endif //__TEMPLATE_H__
+#endif // __SERIALI2COUTPUT_H__
+

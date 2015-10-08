@@ -85,6 +85,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL_UI", "ATL_UI", "{92E546
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{68F23C8D-18CF-4969-B229-A43AA9FF52AB}"
 	ProjectSection(SolutionItems) = preProject
+		Arduino Libraries\ATL_HD44780\examples\I2CLCD\I2CLCD.ino = Arduino Libraries\ATL_HD44780\examples\I2CLCD\I2CLCD.ino
 		Arduino Libraries\ATL_HD44780\examples\LCD\LCD.ino = Arduino Libraries\ATL_HD44780\examples\LCD\LCD.ino
 	EndProjectSection
 EndProject
@@ -118,9 +119,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{BC
 		Arduino Libraries\ATL_Input\examples\PushButton\PushButton.ino = Arduino Libraries\ATL_Input\examples\PushButton\PushButton.ino
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AvrTemplateLibrary.Tests", "AvrTemplateLibrary.Tests\AvrTemplateLibrary.Tests.vcxproj", "{9757CB21-B840-49A6-B057-9F322E543DD6}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs01
 		SccLocalPath0 = .
@@ -130,6 +133,9 @@ Global
 		SccProjectUniqueName2 = ArduinoTemplateLibrary.Tests\\ArduinoTemplateLibrary.Tests.vcxproj
 		SccProjectName2 = ArduinoTemplateLibrary.Tests
 		SccLocalPath2 = ArduinoTemplateLibrary.Tests
+		SccProjectUniqueName3 = AvrTemplateLibrary.Tests\\AvrTemplateLibrary.Tests.vcxproj
+		SccProjectName3 = AvrTemplateLibrary.Tests
+		SccLocalPath3 = AvrTemplateLibrary.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -144,6 +150,10 @@ Global
 		{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}.Debug|Win32.Build.0 = Debug|Win32
 		{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}.Release|Win32.ActiveCfg = Release|Win32
 		{E5C7D059-9CB8-4FB1-83FF-99F31EBE6130}.Release|Win32.Build.0 = Release|Win32
+		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Win32.Build.0 = Debug|Win32
+		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.ActiveCfg = Release|Win32
+		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,12 +7,12 @@ using namespace ATL;
 
 namespace ArduinoTemplateLibraryTests
 {
-	[TestClass]
-	public ref class FixedArrayRefTest
-	{
+    [TestClass]
+    public ref class FixedArrayRefTest
+    {
         static const int MagicNumber = 42;
 
-	public: 
+    public: 
         [TestMethod]
         void ArrayRef_IsValidIndex_InvalidIndex_False()
         {
@@ -42,5 +42,5 @@ namespace ArduinoTemplateLibraryTests
 
             Assert::AreEqual(MagicNumber, tested.GetAt(testIndex));
         }
-	};
+    };
 }

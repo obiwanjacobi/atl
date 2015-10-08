@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../BitArray.h"
 
 namespace ATL {
-namespace AVR {
+namespace MCU {
 
     /*
         The different states the PushButton can be in.
@@ -147,6 +147,6 @@ private:
     BitArray<uint8_t> _states;
 };
 
-}} // ATL::AVR
+}} // ATL::MCU
 
 #endif /* __BUTTON_H__ */

@@ -59,7 +59,7 @@ namespace ATL {
         }
 
         /** Returns the number of bytes that are available in the stream.
-         *  \return Returns the mber of bytes `available()`.
+         *  \return Returns the number of bytes `available()`.
          */
         uint16_t getLength() const
         {
@@ -82,7 +82,7 @@ namespace ATL {
          *  \return Returns the byte read in the lsb (up to 9 bits). 
          *  If -1 is returned, no data was available or an error occurred.
          */
-        int Read()
+        int16_t Read()
         {
             if (_stream == NULL) return -1;
 

@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../Time.h"
 
 namespace ATL {
-namespace AVR {
+namespace MCU {
 
 template<const TimeResolution TimeRes>
 class Delay
@@ -57,5 +57,5 @@ class Delay<Microseconds>
     }
 };
 
-}} // ATL::AVR
+}} // ATL::MCU
 #endif /* __DELAY_H__ */

@@ -18,23 +18,29 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __TEMPLATE_H__
-#define __TEMPLATE_H__
+#ifndef __MATH_H__
+#define __MATH_H__
 
 namespace ATL {
 
-    /**
-     *  \tparam BaseT is used as a base class and implements:
-     */
-    template<class BaseT>
-    class _template : public BaseT
+    /*
+    BaseT is used as a base class and implements:
+
+    */
+    class Math
     {
     public:
+        
+        template<typename T>
+        inline static T Abs(T value)
+        {
+            return value >= 0 ? value : -value;
+        }
 
     private:
-
+        Math() { }
     };
 
 } // ATL
 
-#endif //__TEMPLATE_H__
+#endif //__MATH_H__

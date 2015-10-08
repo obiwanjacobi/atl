@@ -18,23 +18,37 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __TEMPLATE_H__
-#define __TEMPLATE_H__
+#ifndef __ENUMSCOPE_H__
+#define __ENUMSCOPE_H__
 
-namespace ATL {
+/** MACRO: Starts an enum with a scope (See also EndEnum).
+ *	Values for the enum has to be scoped with the enum name. e.g. `Color::Red`.
+ *  BeginEnum(Color)
+ *  {
+ *      Red,
+ *      Green,
+ *      Blue
+ *  }
+ *  EndEnum(Color)
+ *	\param name is the name of the enum.
+ */
 
-    /**
-     *  \tparam BaseT is used as a base class and implements:
-     */
-    template<class BaseT>
-    class _template : public BaseT
-    {
-    public:
+#define BeginEnum(name) \
+struct name { \
+public: \
+	enum type \
+		
+/** MACRO: Ends an enum with a scope (See also BeginEnum).
+ *	Values for the enum has to be scoped with the enum name. e.g. `Color::Red`.
+ *	\param name is the name of the enum.
+ */
+#define EndEnum(name) \
+	; \
+	name(type val) : value(val) {} \
+	operator type() const {return value;} \
+	type value; \
+private: template<typename T> operator T () const; \
+};\
 
-    private:
 
-    };
-
-} // ATL
-
-#endif //__TEMPLATE_H__
+#endif /* __ENUMSCOPE_H__ */

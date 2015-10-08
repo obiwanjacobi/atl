@@ -28,7 +28,7 @@ namespace ATL {
     /** This class implements the driver logic for a typical serial to parallel Output conversion
      *  usually made with 74HC595's or similar. Serial data (bits) is clocked into the shift registers.
      *  When all data is in place the latch clock is pulsed to latch the bits to the output's.
-     *  All DigitalOutputPinT template arguments call the void Write(bool) method.
+     *  All DigitalOutputPinT template arguments call the `void Write(bool)` method.
      *  \tparam SerialDataPinT is a DigitalOutputPin for the serial data pin.
      *  \tparam SerialClockPinT is a DigitalOutputPin for the serial clock pulse.
      *  \tparam LatchClockPinT is a DigitalOutputPin for latching clocked-in serial data to the outputs.
@@ -61,9 +61,9 @@ namespace ATL {
         template<typename T>
         void Write(BitArray<T>* dataBits)
         {
-            for (uint8_t i = dataBits->getMaxBits(); i > 0; i--)
+            for (uint8_t i = dataBits->getMaxBits() - 1; i >= 0; i--)
             {
-                _serialData.Write(dataBits->IsTrue(i - 1));
+                _serialData.Write(dataBits->IsTrue(i));
 
                 PulseSerialClock();
             }
@@ -75,7 +75,7 @@ namespace ATL {
         /** Generates a positive pulse on the SerialClockPinT
          *  No delay time is used.
          */
-        void PulseSerialClock()
+        inline void PulseSerialClock()
         {
             _serialClock.Write(true);
             _serialClock.Write(false);
@@ -84,7 +84,7 @@ namespace ATL {
         /** Generates a positive pulse on the LatchClockPinT
          *  No delay time is used.
          */
-        void PulseLatchClock()
+        inline void PulseLatchClock()
         {
             _latchClock.Write(true);
             _latchClock.Write(false);

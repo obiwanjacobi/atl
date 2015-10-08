@@ -140,6 +140,18 @@
     <ClInclude Include="FixedArray.h" />
     <ClInclude Include="FixedArrayRef.h" />
     <ClInclude Include="ProgMemAccessor.h" />
+    <ClInclude Include="HD44780_DriverI2C.h" />
+    <ClInclude Include="Arduino\SerialI2COutput.h" />
+    <ClInclude Include="AVR\PowerReduction.h" />
+    <ClInclude Include="AVR\Usart.h" />
+    <ClInclude Include="AVR\UsartConfig.h" />
+    <ClInclude Include="AVR\UsartReceive.h" />
+    <ClInclude Include="AVR\UsartRegisters.h" />
+    <ClInclude Include="AVR\UsartTransmit.h" />
+    <ClInclude Include="EnumScope.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="AVR\UsartInputStream.h" />
+    <ClInclude Include="AVR\UsartOutputStream.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
