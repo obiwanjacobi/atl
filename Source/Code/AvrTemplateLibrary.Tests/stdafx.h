@@ -4,4 +4,9 @@
 
 #pragma once
 
+#include "avr.h"
 
+#include <stdint.h>
+#include <avr/io.h>
+
+#include "Registers.h"

@@ -54,9 +54,9 @@ class UsartConfig
 {
     #define MAX_UBBR 4096
     #define DIV_SYNC 2
-	#define DIV_ASYNC2SPEED 8
-	#define DIV_ASYNC 16
-	
+    #define DIV_ASYNC2SPEED 8
+    #define DIV_ASYNC 16
+    
 public:
     UsartConfig()
         : _clockDivider(0), _ubrr(0), 
@@ -64,46 +64,46 @@ public:
     { }
     
     bool InitAsync(uint16_t baudRate)
-	{
-		int16_t ubrr8 = CalcUBRR(8, baudRate);
-		int16_t ubrr16 = CalcUBRR(16, baudRate);
+    {
+        int16_t ubrr8 = CalcUBRR(8, baudRate);
+        int16_t ubrr16 = CalcUBRR(16, baudRate);
 
-		// if one (or both) are invalid the other (or none) is correct
-		if (!isValidUBRR(ubrr8) || !isValidUBRR(ubrr16))
-		{
-			if (isValidUBRR(ubrr16))
-			{
-				_clockDivider = DIV_ASYNC;
-				_ubrr = ubrr16;
-				return true;
-			}
+        // if one (or both) are invalid the other (or none) is correct
+        if (!isValidUBRR(ubrr8) || !isValidUBRR(ubrr16))
+        {
+            if (isValidUBRR(ubrr16))
+            {
+                _clockDivider = DIV_ASYNC;
+                _ubrr = ubrr16;
+                return true;
+            }
 
-			if (isValidUBRR(ubrr8))
-			{
-				_clockDivider = DIV_ASYNC2SPEED;
-				_ubrr = ubrr8;
-				return true;
-			}
+            if (isValidUBRR(ubrr8))
+            {
+                _clockDivider = DIV_ASYNC2SPEED;
+                _ubrr = ubrr8;
+                return true;
+            }
 
-			ClearBaudRate();
-			return false;
-		}
+            ClearBaudRate();
+            return false;
+        }
 
-		// if both divider-rates are valid, pick the one with the lowest deviation
-		int16_t delta8 = Math::Abs<int16_t>(baudRate - CalcBaudRate(DIV_ASYNC2SPEED, ubrr8));
-		int16_t delta16 = Math::Abs<int16_t>(baudRate - CalcBaudRate(DIV_ASYNC, ubrr16));
+        // if both divider-rates are valid, pick the one with the lowest deviation
+        int16_t delta8 = Math::Abs<int16_t>(baudRate - CalcBaudRate(DIV_ASYNC2SPEED, ubrr8));
+        int16_t delta16 = Math::Abs<int16_t>(baudRate - CalcBaudRate(DIV_ASYNC, ubrr16));
 
-		if (delta16 > delta8)
-		{
-			_clockDivider = DIV_ASYNC2SPEED;
-			_ubrr = ubrr8;
-			return true;
-		}
+        if (delta16 > delta8)
+        {
+            _clockDivider = DIV_ASYNC2SPEED;
+            _ubrr = ubrr8;
+            return true;
+        }
 
-		_clockDivider = DIV_ASYNC;
-		_ubrr = ubrr16;
-		return true;
-	}
+        _clockDivider = DIV_ASYNC;
+        _ubrr = ubrr16;
+        return true;
+    }
     
     inline bool InitSyncSlave()
     {
@@ -213,7 +213,7 @@ public:
         if (_parity != UsartParity::Off)
         {
             if (_parity == UsartParity::Even)
-				Bit<UPM00>::Set(ucsrc);
+                Bit<UPM00>::Set(ucsrc);
             
             Bit<UPM01>::Set(ucsrc);
         }
@@ -248,7 +248,7 @@ private:
     UsartParity _parity;
     UsartStopBits _stopBits;
     
-	// TODO: ((F_CPU + UART_BAUD_RATE * 8L) / (UART_BAUD_RATE * 16L) - 1)
+    // TODO: ((F_CPU + UART_BAUD_RATE * 8L) / (UART_BAUD_RATE * 16L) - 1)
     // ubrr = (fOsc / ([16,8,2] * baudRate)) - 1
     inline static int16_t CalcUBRR(uint8_t clockDivider, uint16_t baudRate)
     {

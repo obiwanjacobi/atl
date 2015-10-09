@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "avr.h"
 #include "..\ArduinoTemplateLibrary\AVR\UsartConfig.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;

@@ -35,7 +35,7 @@ namespace ArduinoTemplateLibraryTests
 			target.Clear();
 
 			Assert::AreEqual(0, (int)target.getLength());
-			Assert::AreEqual(-1, target.Read());
+			Assert::AreEqual(-1, (int)target.Read());
 		}
 
 		[TestMethod]
@@ -48,11 +48,11 @@ namespace ArduinoTemplateLibraryTests
 
 			for (int i = 0; i < 4; i++)
 			{
-				Assert::AreEqual(i, target.Read());
+				Assert::AreEqual(i, (int)target.Read());
 			}
 
 			Assert::AreEqual(0, (int)target.getLength());
-			Assert::AreEqual(-1, target.Read());
+			Assert::AreEqual(-1, (int)target.Read());
 		}
 	};
 }

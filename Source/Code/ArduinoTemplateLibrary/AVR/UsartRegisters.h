@@ -1,6 +1,7 @@
 #ifndef USARTREGISTERS_H_
 #define USARTREGISTERS_H_
 
+#include <stdint.h>
 #include "../EnumScope.h"
 
 namespace ATL {
@@ -8,9 +9,12 @@ namespace MCU {
 
 BeginEnum(UsartIds)
 {
-    // TODO: make device specific
+#ifdef UBRR0
     UsartId0,
+#endif
+#ifdef UBRR1
     UsartId1
+#endif
     //UsartId2,
     //UsartId3,
 }
