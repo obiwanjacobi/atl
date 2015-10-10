@@ -62,10 +62,10 @@ namespace ATL {
 
             switch (navCmd)
             {
-            case Left:
+            case NavigationCommands::Left:
                 handled = BaseT::SetPreviousInputControl();
                 break;
-            case Right:
+            case NavigationCommands::Right:
                 handled = BaseT::SetNextInputControl();
                 break;
             default:
@@ -82,9 +82,9 @@ namespace ATL {
          *  \param output is a pointer to the display writer that can be used to output and position text.
          *  \param mode is the display mode and results in different behavior.
          */
-        virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
+        virtual void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal)
         {
-            if (mode == Control::modeCursor)
+            if (mode == ControlDisplayMode::Cursor)
             {
                 BaseT::Display(output, mode);
                 return;

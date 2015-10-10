@@ -86,8 +86,8 @@ namespace ATL {
          */
         virtual bool BeforeChangeState(Control::ControlState newState)
         {
-            return newState != Control::stateFocused && 
-                   newState != Control::stateSelected && 
+            return newState != ControlState::Focused && 
+                   newState != ControlState::Selected && 
                    Control::BeforeChangeState(newState);
         }
 

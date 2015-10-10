@@ -21,7 +21,7 @@ namespace ArduinoTemplateLibraryTests
 			bool successful = tic.TrySelect();
 
 			Assert::IsFalse(successful);
-			Assert::AreEqual((int)Control::stateNormal, (int)tic.getState());
+			Assert::AreEqual((int)ControlState::Normal, (int)tic.getState().value);
 		}
 
 		[TestMethod]
@@ -29,7 +29,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TestInputControl tic;
 			// control has to have focus
-			tic.setState(Control::stateFocused);
+			tic.setState(ControlState::Focused);
 
 			bool successful = tic.TrySelect();
 
@@ -42,7 +42,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TestInputControl tic;
 			// control has to be selected
-			tic.setState(Control::stateSelected);
+			tic.setState(ControlState::Selected);
 
 			bool successful = tic.TryDeselect();
 
@@ -77,7 +77,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TestInputControl tic;
 			// control has to have focus
-			tic.setState(Control::stateFocused);
+			tic.setState(ControlState::Focused);
 
 			bool successful = tic.OnNavigationCommand(NavigationCommands::Enter);
 
@@ -90,7 +90,7 @@ namespace ArduinoTemplateLibraryTests
 		{
 			TestInputControl tic;
 			// control has to be selected
-			tic.setState(Control::stateSelected);
+			tic.setState(ControlState::Selected);
 
 			bool successful = tic.OnNavigationCommand(NavigationCommands::Exit);
 

@@ -18,40 +18,46 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef __TIME_ARDUINO_H__
-#define __TIME_ARDUINO_H__
 
-#include <stdint.h>
-#include "..\Time.h"
+#ifndef __DELAY_ARDUINO_H__
+#define __DELAY_ARDUINO_H__
+
+
+#include <Arduino.h>
+#include "../Delay.h"
 
 namespace ATL {
 
-    /** Specialized implementation that updates the Milliseconds.
-     *  \return Returns the delta milliseconds that have elapsed since the last call.
+    /** Specialization of the Delay class for Milliseconds.
      */
     template<>
-    uint32_t Time<TimeResolution::Milliseconds>::Update()
+    class Delay<TimeResolution::Milliseconds>
     {
-        uint32_t previous = _ticks;
+    public:
+        /** Blocks execution for a period of timeout in the specified TimeRes.
+         *  \param timeout the amount of time to wait.
+         */
+        inline static void Wait(uint32_t timeout)
+        {
+            delay(timeout);
+        }
+    };
 
-        _ticks = millis();
-
-        return _ticks - previous;
-    }
-
-    /** Specialized implementation that updates the Microseconds.
-     *  \return Returns the delta micorseconds that have elapsed since the last call.
+    /** Specialization of the Delay class for Microseconds.
      */
     template<>
-    uint32_t Time<TimeResolution::Microseconds>::Update()
+    class Delay<TimeResolution::Microseconds>
     {
-        uint32_t previous = _ticks;
-
-        _ticks = micros();
-
-        return _ticks - previous;
-    }
+    public:
+        /** Blocks execution for a period of timeout in the specified TimeRes.
+         *  \param timeout the amount of time to wait.
+         */
+        inline static void Wait(uint32_t timeout)
+        {
+            delayMicroseconds(timeout);
+        }
+    };
 
 } // ATL
 
-#endif //__TIME_ARDUINO_H__
+#endif /* __DELAY_ARDUINO_H__ */

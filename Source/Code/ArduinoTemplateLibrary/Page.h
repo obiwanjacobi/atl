@@ -104,9 +104,9 @@ namespace ATL {
          *  \param output is used to output text and position the cursor.
          *  \param mode is not used and is ignored.
          */
-        virtual void Display(DisplayWriter* output, Control::ControlDisplayMode /*mode*/ = Control::modeNormal)
+        virtual void Display(DisplayWriter* output, ControlDisplayMode /*mode*/ = ControlDisplayMode::Normal)
         {
-            BaseT::Display(output, Control::modeNormal);
+            BaseT::Display(output, ControlDisplayMode::Normal);
             DisplayCursor(output);
         }
 
@@ -121,10 +121,10 @@ namespace ATL {
 
             switch (navCmd)
             {
-            case Up:
+            case NavigationCommands::Up:
                 handled = TrySelectPreviousLine();
                 break;
-            case Down:
+            case NavigationCommands::Down:
                 handled = TrySelectNextLine();
                 break;
             default:
@@ -143,7 +143,7 @@ namespace ATL {
          */
         virtual bool IsOfType(ControlTypes type) const
         {
-            return ((typePage & type) == typePage) || BaseT::IsOfType(type);
+            return ((ControlTypes::Page & type.value) == ControlTypes::Page) || BaseT::IsOfType(type);
         }
 
         /** Selects the next line -or the first if no current line is set- if no Control is currently selected.
@@ -183,7 +183,7 @@ namespace ATL {
          */
         inline Panel* getCurrentLine() const
         {
-            return (Panel*)Control::DynamicCast(BaseT::getCurrentControl(), typePanel);
+            return (Panel*)Control::DynamicCast(BaseT::getCurrentControl(), ControlTypes::Panel);
         }
 
         /** Retrieves the Control on the current line that is focused or selected.
@@ -215,7 +215,7 @@ namespace ATL {
                 Panel* line = getCurrentLine();
                 output->SetCursor(line->getPosition(), ctrl->getPosition(), ctrl->getIsSelected());
 
-                BaseT::Display(output, Control::modeCursor);
+                BaseT::Display(output, ControlDisplayMode::Cursor);
             }
             else
             {

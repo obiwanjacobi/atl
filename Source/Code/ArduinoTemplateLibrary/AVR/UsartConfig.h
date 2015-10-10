@@ -1,3 +1,23 @@
+/*
+Arduino Template Library http://atl.codeplex.com
+Written by Marc Jacobi
+Copyright 2012-2015 All Rights Reserved
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
 #ifndef __USARTCONFIG_H__
 #define __USARTCONFIG_H__
 
@@ -14,42 +34,72 @@
 namespace ATL {
 namespace MCU {
 
+/** Lists the mode the Usart can be used in.
+ *  (Currently only the Async modes are implemented)
+ */
 BeginEnum(UsartModes)
 {
+    /** Not a mode. */
     Invalid,
+    /** Normal Asynchronous mode. */
     Async,
+    /** Double Speed Asynchronous mode. */
     AsyncDoubleSpeed,
+    /** Master Synchronous (with clock output) mode. */
     SyncMaster,
+    /** Slave Synchronous (with clock input) mode. */
     SyncSlave
 }
 EndEnum(UsartModes)
 
+/** Indicates how many data bits are communicated.
+ *  5-9 bits are supported (not including start, parity and stop bits).
+ */
 BeginEnum(UsartDataBits)
 {
+    /** 5 bits. */
     Bits5,
+    /** 6 bits. */
     Bits6,
+    /** 7 bits. */
     Bits7,
+    /** 8 bits. */
     Bits8,
+    /** 9 bits. */
     Bits9,
 }
 EndEnum(UsartDataBits)
 
+/** Indicates if and how to use the parity bit.
+ *  Parity counts the number of one's in the data bit.
+ */
 BeginEnum(UsartParity)
 {
+    /** No parity bit is used. */
     Off,
+    /** Number of one's is even. */
     Even,
+    /** Number of one's is odd. */
     Odd
 }
 EndEnum(UsartParity)
 
+/** Indicates how many stop bits to use.
+ *  A stop bit indicates the end of one transmitted data 'byte'.
+ */
 BeginEnum(UsartStopBits)
 {
+    /** One stop bit is used. */
     OneStopBit,
+    /** Two stop bits are used. */
     TwoStopBits,
 }
 EndEnum(UsartStopBits)
 
 
+/** The UsartConfig class manages the configuration values for setting up an Usart.
+ *  The same UsartConfig instance can be used for multiple calls to Usart.OpenAsync/Sync.
+ */
 class UsartConfig
 {
     #define MAX_UBBR 4096
@@ -58,11 +108,20 @@ class UsartConfig
     #define DIV_ASYNC 16
     
 public:
+    /** Constructs a new instance.
+     *  Default: 8 data bits, no parity and one stop bit. 
+     */
     UsartConfig()
         : _clockDivider(0), _ubrr(0), 
         _dataBits(UsartDataBits::Bits8), _parity(UsartParity::Off), _stopBits(UsartStopBits::OneStopBit)
     { }
     
+    /** Initializes an Asynchronous mode using the baudRate.
+     *  The configured baud rate can deviate from the specified baudRate.
+     *  The method will choose between normal and double speed Async mode based on the smallest deviation of the baud rate.
+     *  \param baudRate is the target baud rate to configure. Final configured value may deviate.
+     *  \return Returns true when successful.
+     */
     bool InitAsync(uint16_t baudRate)
     {
         int16_t ubrr8 = CalcUBRR(8, baudRate);
@@ -105,19 +164,27 @@ public:
         return true;
     }
     
-    inline bool InitSyncSlave()
-    {
-        // TODO
-        ClearBaudRate();
-        return false;
-    }
+    //inline bool InitSyncSlave()
+    //{
+    //    // TODO
+    //    ClearBaudRate();
+    //    return false;
+    //}
     
+    /** Retrieves the configured baud rate.
+     *  This value may deviate from the baudRate specified in the InitAsync method.
+     *  \return Returns the baud rate.
+     */
     inline uint16_t getBaudRate() const
     {
         if (_ubrr == 0 || _clockDivider == 0) return 0;
         return CalcBaudRate(_clockDivider, _ubrr);
     }
     
+    /** Retrieves the configured mode.
+     *  (Currently only Async modes are implemented).
+     *  \return Returns Invalid if the InitAsync method was not called.
+     */
     inline UsartModes getMode() const
     {
         switch(_clockDivider)
@@ -137,42 +204,67 @@ public:
         return UsartModes::Invalid;
     }
     
+    /** Configures the number of data bits.
+     *  \param numberOfDataBits is the value to configure.
+     */
     inline void setDataBits(UsartDataBits numberOfDataBits)
     {
         _dataBits = numberOfDataBits;
     }
     
+    /** Retrieves the configured number of data bits.
+     *  \return Returns the configured value.
+     */
     inline UsartDataBits getDataBits() const
     {
         return _dataBits;
     }
     
+    /** Configures the parity.
+     *  \param parity is the value to configure.
+     */
     inline void setParity(UsartParity parity)
     {
         _parity = parity;
     }
     
+    /** Retrieves the configured parity.
+    *  \return Returns the configured value.
+    */
     inline UsartParity getParity() const
     {
         return _parity;
     }
     
+    /** Configures the number of stop bits.
+     *  \param stopBits is the value to configure.
+     */
     inline void setStopBits(UsartStopBits stopBits)
     {
         _stopBits = stopBits;
     }
     
+    /** Retrieves the configured number of stop bits.
+    *  \return Returns the configured value.
+    */
     inline UsartStopBits getStopBits() const
     {
         return _stopBits;
     }
     
 //protected: - cant be-friend a template class (Usart)
+
+    /** Retrieves the register value.
+     *  Used by the Usart class to Open the device.
+     */
     inline uint16_t getUBRR() const
     {
         return _ubrr;
     }
     
+    /** Retrieves the register value.
+     *  Used by the Usart class to Open the device.
+     */
     inline uint8_t getUCSRA() const
     {
         uint8_t ucsra = 0;
@@ -186,6 +278,9 @@ public:
         return ucsra;
     }
     
+    /** Retrieves the register value.
+     *  Used by the Usart class to Open the device.
+     */
     inline uint8_t getUCSRB() const
     {
         uint8_t ucsrb = 0;
@@ -198,6 +293,9 @@ public:
         return ucsrb;
     }
     
+    /** Retrieves the register value.
+     *  Used by the Usart class to Open the device.
+     */
     inline uint8_t getUCSRC() const
     {
         uint8_t ucsrc = 0;

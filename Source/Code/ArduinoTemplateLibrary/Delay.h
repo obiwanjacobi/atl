@@ -22,40 +22,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __DELAY_H__
 #define __DELAY_H__
 
-#include "../Time.h"
+#include "Time.h"
 
 namespace ATL {
-namespace MCU {
 
-template<const TimeResolution TimeRes>
-class Delay
-{
-public:
-    inline static void Delay(uint16_t timeout)
+    /** The Delay class abstracts how a synchronous delay is performed.
+     *  It is a static class and cannot be instantiated.
+     *  \tparam TimeRes is the TimeResolution in milli- or micro-seconds.
+     */
+    template<const TimeResolution::type TimeRes>
+    class Delay
     {
-
-    }
-};
-
-template<>
-class Delay<Milliseconds>
-{
-public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_ms(timeout);
-    }
-};
-
-template<>
-class Delay<Microseconds>
-{
     public:
-    inline static void Delay(uint16_t timeout)
-    {
-        _delay_us(timeout);
-    }
-};
+        /** Blocks execution for a period of timeout in the specified TimeRes.
+         *  \param timeout the amount of time to wait.
+         */
+        inline static void Wait(uint32_t timeout);
+    };
 
-}} // ATL::MCU
+        
+} // ATL
+
 #endif /* __DELAY_H__ */

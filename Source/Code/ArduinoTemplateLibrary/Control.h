@@ -24,25 +24,60 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <stddef.h>
 #include <stdint.h>
 #include "DisplayWriter.h"
+#include "EnumScope.h"
+
 
 namespace ATL {
 
     /** Enumerates the base types of controls.
      *  Used to implement a DynamicCast.
      */
-    enum ControlTypes
+    BeginEnum(ControlTypes)
     {
         /** Control type is not set or unknown. */
-        typeUnknown = 0,
+        Unknown = 0,
         /** Control type is the root class for controls. */
-        typeControl = 0x01,
+        Control = 0x01,
         /** Control type is an input control (navigation). */
-        typeInputControl = 0x02,
+        InputControl = 0x02,
         /** Control type is a control panel (collection). */
-        typePanel = 0x03,
+        Panel = 0x03,
         /** Control type is page (lines with controls). */
-        typePage = 0x04,
-    };
+        Page = 0x04,
+    }
+    EndEnum(ControlTypes)
+
+    /** Enumerates the state a Control can be in.
+     *  Only one state is active at a time.
+     */
+    BeginEnum(ControlState)
+    {
+        /** Control state is normal - no special considerations. */
+        Normal,     // no other states active
+        /** Control state is hidden, it will not be displayed and cannot receive input. */
+        Hidden,     // control is not displayed
+        /** Control state is disabled, it cannot receive input but it is still displayed. */
+        Disabled,   // control is displayed as read-only
+        /** Control state is focused, the cursor is displayed at its start.
+        *  Only one Control can have the focus at one time. */
+        Focused,    // control is high-lighted
+        /** Control state is selected, the edit-cursor is displayed at its start.
+        *  Only one Control can have be selected at one time. */
+        Selected,   // control is active/selected (entered)
+    }
+    EndEnum(ControlState)
+
+    /** Enumerates the mode in which the Display method can be called.
+     */
+    BeginEnum(ControlDisplayMode)
+    {
+        /** Display normal content based on the control state. */
+        Normal,
+        /** Display is called to position the cursor for selected/edit mode */
+        Cursor,
+    }
+    EndEnum(ControlDisplayMode)
+
 
     // abstract
     /** The Control class is the root base class for all controls in the UI framework.
@@ -52,35 +87,6 @@ namespace ATL {
     class Control
     {
     public:
-        /** Enumerates the state a Control can be in.
-         *  Only one state is active at a time.
-         */
-        enum ControlState
-        {
-            /** Control state is normal - no special considerations. */
-            stateNormal,     // no other states active
-            /** Control state is hidden, it will not be displayed and cannot receive input. */
-            stateHidden,     // control is not displayed
-            /** Control state is disabled, it cannot receive input but it is still displayed. */
-            stateDisabled,   // control is displayed as read-only
-            /** Control state is focused, the cursor is displayed at its start.
-             *  Only one Control can have the focus at one time. */
-            stateFocused,    // control is high-lighted
-            /** Control state is selected, the edit-cursor is displayed at its start.
-             *  Only one Control can have be selected at one time. */
-            stateSelected,   // control is active/selected (entered)
-        };
-
-        /** Enumerates the mode in which the Display method can be called.
-         */
-        enum ControlDisplayMode
-        {
-            /** Display normal content based on the control state. */
-            modeNormal,
-            /** Display is called to position the cursor for selected/edit mode */
-            modeCursor,
-        };
-
         /** Retrieves the position for the control.
          *  \return the position value.
          */
@@ -102,7 +108,7 @@ namespace ATL {
          */
         inline bool getIsHidden() const
         {
-            return _state == stateHidden;
+            return _state == ControlState::Hidden;
         }
 
         /** Indicates if the control is visible (not hidden).
@@ -118,7 +124,7 @@ namespace ATL {
          */
         inline bool getIsDisabled() const
         {
-            return _state == stateDisabled;
+            return _state == ControlState::Disabled;
         }
 
         /** Indicates if the control is not disabled and not hidden.
@@ -134,7 +140,7 @@ namespace ATL {
          */
         inline bool getIsFocussed() const
         {
-            return _state == stateFocused;
+            return _state == ControlState::Focused;
         }
 
         /** Indicates if the control has the selection.
@@ -142,7 +148,7 @@ namespace ATL {
          */
         inline bool getIsSelected() const
         {
-            return _state == stateSelected;
+            return _state == ControlState::Selected;
         }
 
         /** Indicates if the control is focused or selected.
@@ -190,7 +196,7 @@ namespace ATL {
          */
         virtual bool IsOfType(ControlTypes type) const
         {
-            return (type & typeControl) == typeControl;
+            return (type.value & ControlTypes::Control) == ControlTypes::Control;
         }
 
         /** Dynamically casts a Control pointer to the specified type.
@@ -210,7 +216,7 @@ namespace ATL {
         *  \param position indicates the position of this control relative to others.
         */
         Control(uint8_t position = 0)
-            : _state(stateNormal), _pos(position)
+            : _state(ControlState::Normal), _pos(position)
         { }
 
         /** Called by `setState()` to allow derived classes to prevent state changes.

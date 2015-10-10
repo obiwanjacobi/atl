@@ -11,7 +11,7 @@ using namespace ATL;
 namespace ArduinoTemplateLibraryTests
 {
 	template<typename T>
-	class PidBase : public Range<T>, public TimeEx<Milliseconds>
+    class PidBase : public Range<T>, public TimeEx<TimeResolution::Milliseconds>
 	{
 	public:
 		PidBase()

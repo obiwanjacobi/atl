@@ -46,7 +46,7 @@ namespace ArduinoTemplateLibraryTests
 			TestTextControl ctrl(&text, &iterator);
 
 			// select text control
-			bool success = ctrl.setState(Control::stateSelected);
+			bool success = ctrl.setState(ControlState::Selected);
 			Assert::IsTrue(success);
 
 			success = ctrl.TryMoveCursorLeft();
@@ -61,7 +61,7 @@ namespace ArduinoTemplateLibraryTests
 			TestTextControl ctrl(&text, &iterator);
 
 			// select text control
-			bool success = ctrl.setState(Control::stateSelected);
+			bool success = ctrl.setState(ControlState::Selected);
 			Assert::IsTrue(success);
 
 			success = ctrl.TryMoveCursorRight();
@@ -76,7 +76,7 @@ namespace ArduinoTemplateLibraryTests
 			TestTextControl ctrl(&text, &iterator);
 
 			// select text control
-			bool success = ctrl.setState(Control::stateSelected);
+			bool success = ctrl.setState(ControlState::Selected);
 			Assert::IsTrue(success);
 			char expected = iterator.getCurrent();
 

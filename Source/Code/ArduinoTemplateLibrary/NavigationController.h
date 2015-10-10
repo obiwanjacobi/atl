@@ -21,11 +21,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __NAVIGATIONCONTROLLER_H__
 #define __NAVIGATIONCONTROLLER_H__
 
+#include "EnumScope.h"
+
 namespace ATL {
 
     /** Enumerates the navigation commands for the UI framework.
      */
-    enum NavigationCommands //: uint8_t
+    BeginEnum(NavigationCommands) //: uint8_t
     {
         /** Not a navigation command. */
         None,
@@ -41,7 +43,8 @@ namespace ATL {
         Enter,
         /** Exit edit mode. */
         Exit
-    };
+    }
+    EndEnum(NavigationCommands)
 
     /** The NavigationController class is a template for Controls that receive input stimuli.
      *  See also InputControl.

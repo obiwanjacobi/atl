@@ -22,23 +22,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define __TIME_H__
 
 #include <stdint.h>
+#include "EnumScope.h"
 
 namespace ATL {
 
     /** Time resolution in either milli-seconds or micro-seconds.
      */
-    enum TimeResolution
+    BeginEnum(TimeResolution)
     {
         /** Time units are milliseconds. */
         Milliseconds,
         /** Time units are microseconds. */
         Microseconds
-    };
+    }
+    EndEnum(TimeResolution)
 
     /** The Time class keeps track of time ticks (either milli- or micro-seconds).
      *  \tparam TimeResolution indicates the time units.
      */
-    template<const TimeResolution resolution = Milliseconds>
+    template<const TimeResolution::type resolution = TimeResolution::Milliseconds>
     class Time
     {
     public:
@@ -103,7 +105,7 @@ namespace ATL {
     /** Specialization for Time in Milliseconds.
      */
     template<>
-    inline uint32_t Time<Milliseconds>::getMilliseconds(uint32_t ticks)
+    inline uint32_t Time<TimeResolution::Milliseconds>::getMilliseconds(uint32_t ticks)
     {
         return ticks;
     }
@@ -111,7 +113,7 @@ namespace ATL {
     /** Specialization for Time in Milliseconds.
      */
     template<>
-    inline uint32_t Time<Milliseconds>::getMicroseconds(uint32_t ticks)
+    inline uint32_t Time<TimeResolution::Milliseconds>::getMicroseconds(uint32_t ticks)
     {
         return ticks * 1000;
     }
@@ -119,7 +121,7 @@ namespace ATL {
     /** Specialization for Time in Microseconds.
      */
     template<>
-    inline uint32_t Time<Microseconds>::getMilliseconds(uint32_t ticks)
+    inline uint32_t Time<TimeResolution::Microseconds>::getMilliseconds(uint32_t ticks)
     {
         return ticks / 1000;
     }
@@ -127,7 +129,7 @@ namespace ATL {
     /** Specialization for Time in Microseconds.
      */
     template<>
-    inline uint32_t Time<Microseconds>::getMicroseconds(uint32_t ticks)
+    inline uint32_t Time<TimeResolution::Microseconds>::getMicroseconds(uint32_t ticks)
     {
         return ticks;
     }
@@ -135,7 +137,7 @@ namespace ATL {
     /** The TimeEx class adds start-time and delta-time members to Time.
      *  \tparam TimeResolution indicates the time units.
      */
-    template<TimeResolution resolution = Milliseconds>
+    template<TimeResolution::type resolution = TimeResolution::Milliseconds>
     class TimeEx : public Time<resolution>
     {
     public:

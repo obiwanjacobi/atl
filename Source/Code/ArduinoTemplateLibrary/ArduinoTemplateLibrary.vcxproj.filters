@@ -103,7 +103,6 @@
     </ClInclude>
     <ClInclude Include="Arduino\Time_Arduino.h" />
     <ClInclude Include="AVR\Button.h" />
-    <ClInclude Include="AVR\Delay.h" />
     <ClInclude Include="AVR\DigitalInputPin.h" />
     <ClInclude Include="AVR\DigitalOutputPin.h" />
     <ClInclude Include="AVR\Interrupt.h" />
@@ -152,6 +151,10 @@
     <ClInclude Include="Math.h" />
     <ClInclude Include="AVR\UsartInputStream.h" />
     <ClInclude Include="AVR\UsartOutputStream.h" />
+    <ClInclude Include="Debug.h" />
+    <ClInclude Include="Arduino\Delay_Arduino.h" />
+    <ClInclude Include="AVR\Delay_Avr.h" />
+    <ClInclude Include="Delay.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

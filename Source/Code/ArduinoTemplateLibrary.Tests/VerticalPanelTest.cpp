@@ -37,7 +37,7 @@ namespace ArduinoTemplateLibraryTests
             tested.Add(&tic1);
             tested.Add(&tic2);
 
-            bool handled = tested.OnNavigationCommand(Up);
+            bool handled = tested.OnNavigationCommand(NavigationCommands::Up);
 
             Assert::IsTrue(handled);
             Assert::IsTrue(tested.getCurrentControl() != NULL);
@@ -54,7 +54,7 @@ namespace ArduinoTemplateLibraryTests
             tested.Add(&tic1);
             tested.Add(&tic2);
 
-            bool handled = tested.OnNavigationCommand(Down);
+            bool handled = tested.OnNavigationCommand(NavigationCommands::Down);
 
             Assert::IsTrue(handled);
             Assert::IsTrue(tested.getCurrentControl() != NULL);
@@ -71,7 +71,7 @@ namespace ArduinoTemplateLibraryTests
             tested.Add(&tic1);
             tested.Add(&tic2);
 
-            bool handled = tested.OnNavigationCommand(Left);
+            bool handled = tested.OnNavigationCommand(NavigationCommands::Left);
 
             Assert::IsFalse(handled);
             Assert::IsFalse(tested.getCurrentControl() != NULL);
@@ -87,7 +87,7 @@ namespace ArduinoTemplateLibraryTests
             tested.Add(&tic1);
             tested.Add(&tic2);
 
-            bool handled = tested.OnNavigationCommand(Right);
+            bool handled = tested.OnNavigationCommand(NavigationCommands::Right);
 
             Assert::IsFalse(handled);
             Assert::IsFalse(tested.getCurrentControl() != NULL);

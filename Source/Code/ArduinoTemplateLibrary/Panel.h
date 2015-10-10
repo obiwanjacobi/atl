@@ -51,16 +51,16 @@ namespace ATL {
         {
             if (_currentControl != NULL)
             {
-                _currentControl->setState(Control::stateNormal);
-                setState(Control::stateNormal);
+                _currentControl->setState(ControlState::Normal);
+                setState(ControlState::Normal);
             }
 
             _currentControl = ctrl;
 
             if (_currentControl != NULL)
             {
-                _currentControl->setState(Control::stateFocused);
-                setState(Control::stateFocused);
+                _currentControl->setState(ControlState::Focused);
+                setState(ControlState::Focused);
             }
         }
 
@@ -68,7 +68,7 @@ namespace ATL {
          *  \param output is used to output text and set the cursor position.
          *  \param mode indicates what is to be displayed.
          */
-        virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
+        virtual void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal)
         {
             if (_currentControl != NULL)
             {
@@ -95,7 +95,7 @@ namespace ATL {
          */
         virtual bool IsOfType(ControlTypes type) const
         {
-            return ((typePanel & type) == typePanel) || InputControl::IsOfType(type);
+            return ((ControlTypes::Panel & type.value) == ControlTypes::Panel) || InputControl::IsOfType(type);
         }
 
     protected:
@@ -110,9 +110,9 @@ namespace ATL {
          *  \param newState is the proposed state.
          *  \return Returns true if the state change may occur.
          */
-        virtual bool BeforeChangeState(Control::ControlState newState)
+        virtual bool BeforeChangeState(ControlState newState)
         {
-            return newState != Control::stateSelected && 
+            return newState != ControlState::Selected && 
                    InputControl::BeforeChangeState(newState);
         }
 

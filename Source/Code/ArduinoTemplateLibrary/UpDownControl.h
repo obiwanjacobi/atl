@@ -50,9 +50,9 @@ namespace ATL {
          *  \param output is used to output text and position the cursor.
          *  \mode indicates what to display.
          */
-        virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
+        virtual void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal)
         {
-            if (mode == Control::modeNormal)
+            if (mode == ControlDisplayMode::Normal)
             {
                 output->Write(_value->ToString());
             }
@@ -68,10 +68,10 @@ namespace ATL {
 
             switch (navCmd)
             {
-            case Up:
+            case NavigationCommands::Up:
                 handled = TryValueUp();
                 break;
-            case Down:
+            case NavigationCommands::Down:
                 handled = TryValueDown();
                 break;
             default:

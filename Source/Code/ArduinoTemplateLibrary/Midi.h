@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define __MIDI_H__
 
 #include <stdint.h>
+#include "EnumScope.h"
 
 namespace ATL {
 
@@ -39,27 +40,28 @@ namespace ATL {
 
         /** The categories the Midi messages belong to.
          */
-        enum MessageCategory
+        BeginEnum(MessageCategory)
         {
             /** Category not set. */
-            catNotSet,
+            NotSet,
             /** Note information. */
-            catNote,
+            Note,
             /** After touch information. */
-            catAfterTouch,
+            AfterTouch,
             /** Control information. */
-            catControlChange,
+            ControlChange,
             /** Preset (program) information. */
-            catProgramChange,
+            ProgramChange,
             /** Pitch bend information. */
-            catPitchBend,
+            PitchBend,
             /** System specific information. */
-            catSystemExclusive,
+            SystemExclusive,
             /** System common information. */
-            catSystemCommon,
+            SystemCommon,
             /** Real-time information. */
-            catRealtime,
-        };
+            Realtime,
+        }
+        EndEnum(MessageCategory)
 
         /** All Midi message types. */
         enum MessageTypes

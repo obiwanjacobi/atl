@@ -9,22 +9,22 @@ using namespace ATL;
 
 namespace ArduinoTemplateLibraryTests
 {
-	[TestClass]
-	public ref class TimeTest
-	{
-	public: 
-		[TestMethod]
-		void MillisecondsTime()
-		{
-			Time<Milliseconds> time;
+    [TestClass]
+    public ref class TimeTest
+    {
+    public: 
+        [TestMethod]
+        void MillisecondsTime()
+        {
+            Time<TimeResolution::Milliseconds> time;
 
-			unsigned long ticks = time.getMilliseconds();
+            unsigned long ticks = time.getMilliseconds();
 
-			System::Threading::Thread::Sleep(1000);
+            System::Threading::Thread::Sleep(1000);
 
-			unsigned long delta = time.Update();
+            unsigned long delta = time.Update();
 
-			Assert::AreEqual(ticks + delta, time.getMilliseconds());
-		}
-	};
+            Assert::AreEqual(ticks + delta, time.getMilliseconds());
+        }
+    };
 }

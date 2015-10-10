@@ -47,9 +47,9 @@ namespace ATL {
         {
             switch (navCmd)
             {
-            case Enter:
+            case NavigationCommands::Enter:
                 return TrySelect();
-            case Exit:
+            case NavigationCommands::Exit:
                 return TryDeselect();
             default:
                 break;
@@ -65,7 +65,7 @@ namespace ATL {
         {
             if (getIsFocussed())
             {
-                setState(Control::stateSelected);
+                setState(ControlState::Selected);
                 return true;
             }
             return false;
@@ -78,7 +78,7 @@ namespace ATL {
         {
             if (getIsSelected())
             {
-                setState(Control::stateFocused);
+                setState(ControlState::Focused);
                 return true;
             }
             return false;
@@ -90,7 +90,7 @@ namespace ATL {
          */
         virtual bool IsOfType(ControlTypes type) const
         {
-            return ((typeInputControl & type) == typeInputControl) ||
+            return ((ControlTypes::InputControl & type.value) == ControlTypes::InputControl) ||
                 Control::IsOfType(type);
         }
 
@@ -110,7 +110,7 @@ namespace ATL {
             if (!Control::BeforeChangeState(newState)) return false;
 
             // don't allow focus when disabled (or hidden).
-            if (newState == Control::stateFocused &&
+            if (newState == ControlState::Focused &&
                 !getIsEnabled())
             {
                 return false;

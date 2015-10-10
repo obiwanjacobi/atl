@@ -17,7 +17,7 @@ namespace ArduinoTemplateLibraryTests
 		[TestCategory("Static")]
 		void Wait_ForDelay()
 		{
-			typedef Delays<Time<Milliseconds>, 4> MilliDelays;
+            typedef Delays<Time<TimeResolution::Milliseconds>, 4> MilliDelays;
 
 			uint32_t delta = MilliDelays::Update();
 

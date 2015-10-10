@@ -59,11 +59,11 @@ namespace ATL {
          *  \param output is used to output text and position the cursor.
          *  \mode indicates what to display.
          */
-        virtual void Display(DisplayWriter* output, Control::ControlDisplayMode mode = Control::modeNormal)
+        virtual void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal)
         {
             BaseT::Display(output, mode);
 
-            if (mode == Control::modeCursor && BaseT::getIsActive())
+            if (mode == ControlDisplayMode::Cursor && BaseT::getIsActive())
             {
                 output->SetCursor(DisplayWriter::DontCare, BaseT::getPosition() + _editIndex, BaseT::getIsSelected());
             }
@@ -79,10 +79,10 @@ namespace ATL {
 
             switch (navCmd)
             {
-            case Left:
+            case NavigationCommands::Left:
                 handled = TryMoveCursorLeft();
                 break;
-            case Right:
+            case NavigationCommands::Right:
                 handled = TryMoveCursorRight();
                 break;
             default:
@@ -167,16 +167,16 @@ namespace ATL {
          *  \param newState is the proposed state.
          *  \return Returns true when the state change is allowed.
          */
-        virtual bool BeforeChangeState(Control::ControlState newState)
+        virtual bool BeforeChangeState(ControlState newState)
         {
             if (!BaseT::BeforeChangeState(newState)) return false;
 
-            if (newState == Control::stateFocused)
+            if (newState == ControlState::Focused)
             {
                 _editIndex = 0;
             }
 
-            if (newState == Control::stateSelected)
+            if (newState == ControlState::Selected)
             {
                 _editIndex = 0;
                 RepositionIterator();

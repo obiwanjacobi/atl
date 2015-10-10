@@ -81,6 +81,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Arduino\AnalogOutputPin.h" />
+    <ClInclude Include="Delay.h" />
+    <ClInclude Include="Arduino\Delay_Arduino.h" />
     <ClInclude Include="Arduino\SerialI2COutput.h" />
     <ClInclude Include="Array.h" />
     <ClInclude Include="ArrayRef.h" />
@@ -98,6 +100,7 @@
     <ClInclude Include="Control.h" />
     <ClInclude Include="ControlContainer.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="Default.h" />
     <ClInclude Include="EnumScope.h" />
     <ClInclude Include="FixedArray.h" />
@@ -119,7 +122,7 @@
     <ClInclude Include="Bit.h" />
     <ClInclude Include="Arduino\Time_Arduino.h" />
     <ClInclude Include="AVR\Button.h" />
-    <ClInclude Include="AVR\Delay.h" />
+    <ClInclude Include="AVR\Delay_Avr.h" />
     <ClInclude Include="AVR\DigitalInputPin.h" />
     <ClInclude Include="AVR\DigitalOutputPin.h" />
     <ClInclude Include="AVR\Interrupt.h" />
