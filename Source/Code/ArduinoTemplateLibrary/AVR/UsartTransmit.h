@@ -159,7 +159,7 @@ public:
      */
     inline bool TryWrite(uint16_t data, UsartTransmitResult& outResult)
     {
-        if (!getAcceptDataData())
+        if (!getAcceptData())
         {
             outResult = UsartTransmitResult::NotReady;
             return false;
@@ -184,7 +184,7 @@ public:
     inline void Close()
     {
         setEnableIsCompleteInterrupt(false);
-        setEnableAccpetDataInterrupt(false);
+        setEnableAcceptDataInterrupt(false);
         setEnable(false);
     }
 

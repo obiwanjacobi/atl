@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
 
+#include <stddef.h>
 #include <stdint.h>
 #include "EnumScope.h"
 
@@ -98,7 +99,7 @@ namespace ATL {
         inline static bool CanLog()
         {
             if (AtlDebugLevel == NULL) return true;
-            return AtlDebugLevel(ComponentId, DebugLevel);
+            return AtlDebugLevel(ComponentId, debugLevel);
         }
 
     private:

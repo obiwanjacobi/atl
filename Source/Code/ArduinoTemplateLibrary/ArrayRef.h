@@ -81,7 +81,7 @@ namespace ATL {
          */
         inline bool IsValidIndex(int16_t index) const
         {
-            return index >= 0 && index < MaxItems;
+            return index >= 0 && index < (int16_t)MaxItems;
         }
 
         /** Finds the index of the first matching item in the array.
@@ -89,9 +89,9 @@ namespace ATL {
          *  \param item is the item to search for.
          *  \return Returns the index of the position of the item in the array, or -1 if not found.
          */
-        inline int8_t IndexOf(T item) const
+        inline int16_t IndexOf(T item) const
         {
-            for (uint8_t i = 0; i < MaxItems; i++)
+            for (int16_t i = 0; i < (int16_t)MaxItems; i++)
             {
                 if (_arr[i] == item)
                     return i;

@@ -23,14 +23,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-    /*
-    BaseT is used as a base class and implements:
-
-    */
+    /** Math provides math functions.
+     *  The Math class is a static class and cannot be instantiated.
+     */
     class Math
     {
     public:
-        
+        /** Returns the absolute value.
+         *  \tparam T is the data type of the value.
+         *  \param value is the value to return the non-negative representation for.
+         *  \return Returns the non-negative value.
+         */
         template<typename T>
         inline static T Abs(T value)
         {

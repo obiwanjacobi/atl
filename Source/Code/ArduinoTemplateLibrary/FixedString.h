@@ -30,7 +30,7 @@ namespace ATL {
      *  \tparam MaxChars indicates the maximum number of characters in the string. 
      *  The underlying array has one extra byte for the terminating zero.
      */
-    template<const uint8_t MaxChars>
+    template<const uint16_t MaxChars>
     class FixedString : public FixedArray<char, MaxChars + 1>
     {
         typedef FixedArray<char, MaxChars + 1> BaseT;

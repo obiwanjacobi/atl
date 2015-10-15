@@ -36,17 +36,27 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define BeginEnum(name) \
 struct name { \
 public: \
-	enum type \
-		
+    enum type \
+        
 /** MACRO: Ends an enum with a scope (See also BeginEnum).
- *	Values for the enum has to be scoped with the enum name. e.g. `Color::Red`.
  *	\param name is the name of the enum.
  */
-#define EndEnum(name) \
-	; \
-	name(type val) : value(val) {} \
-	operator type() const {return value;} \
-	type value; \
+#define EndEnum(name) ; \
+    name(type val) : value(val) {} \
+    operator type() const { return value; } \
+    type value; \
+private: template<typename T> operator T () const; \
+};\
+
+/** MACRO: Ends an enum with a scope (See also BeginEnum).
+*	Allows specifying a default value.
+*	\param name is the name of the enum.
+*	\param default is the default value for the enum.
+*/
+#define EndEnum2(name, default) ; \
+    name(type val = default) : value(val) {} \
+    operator type() const { return value; } \
+    type value; \
 private: template<typename T> operator T () const; \
 };\
 

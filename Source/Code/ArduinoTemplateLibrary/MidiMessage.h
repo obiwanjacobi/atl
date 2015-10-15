@@ -177,6 +177,8 @@ namespace ATL {
                 // lsb
                 value = (Beats & MASK_7BIT_LO);
                 break;
+            default:
+                break;
             }
 
             return (value & MASK_DATABYTE);
@@ -217,6 +219,8 @@ namespace ATL {
                 // lsb
                 Beats = dataByte;
                 break;
+            default:
+                break;
             }
         }
 
@@ -246,6 +250,8 @@ namespace ATL {
                 // msb
                 value = (Beats & MASK_7BIT_HI) >> 7;
                 break;
+            default:
+                break;
             }
 
             return (value & MASK_DATABYTE);
@@ -274,6 +280,8 @@ namespace ATL {
             case Midi::SongPosition:
                 // msb
                 Beats |= (dataByte << 7);
+                break;
+            default:
                 break;
             }
         }

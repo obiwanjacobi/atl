@@ -1,6 +1,6 @@
 #include <ATL_Process.h>
 /*
- * ATL comes with a cooperative multi tasking 'class'. This allows you to run multiple 'tasks' simultaniously
+ * ATL comes with a cooperative multi tasking 'class'. This allows you to run multiple 'tasks' simultaneously
  * without adding too much complexity. 
  * As we will see it is not really a class, but a bunch of macro's but they are meant to be used in a class. 
  * That class is what you write and represents your task.

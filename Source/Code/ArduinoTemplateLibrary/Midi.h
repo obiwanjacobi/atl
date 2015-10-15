@@ -141,7 +141,7 @@ namespace ATL {
          *  Returns -1 for SysEx messages, for there is no telling how big those messages are going to be.
          *  Returns 1, 2 or 3 for normal midi messages. This includes the status-byte itself.
          */
-        inline static uint8_t GetMessageLength(uint8_t statusByte)
+        inline static int8_t GetMessageLength(uint8_t statusByte)
         {
             switch (GetMessageType(statusByte))
             {
