@@ -1,10 +1,3 @@
-# THE PROJECT HAS MOVED TO GITHUB!
-[https://github.com/obiwanjacobi/atl](https://github.com/obiwanjacobi/atl)
-----
-
-
-
-
 **Project Description**
 This C++ template library allows you maximum flexibility with minimum cost. Programming the Arduino will never be the same.
 
