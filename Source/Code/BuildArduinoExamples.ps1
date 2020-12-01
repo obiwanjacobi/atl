@@ -7,7 +7,7 @@ $ArduinoPath = "C:\Program Files (x86)\Arduino\arduino.exe";
 
 function FindAllExampleFiles()
 {
-	return Get-ChildItem $sourceFilePath -Recurse -Include *.ino -Exclude _*.ino | Foreach-Object { $_.FullName }
+    return Get-ChildItem $sourceFilePath -Recurse -Include *.ino -Exclude _*.ino | Foreach-Object { $_.FullName }
 }
 
 function BuildArduinoExample([string]$fileName)

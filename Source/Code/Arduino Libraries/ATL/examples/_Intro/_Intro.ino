@@ -2,7 +2,7 @@
 
 /*
  * Welcome to the Arduino Template Library (ATL).
- * http://atl.codeplex.com
+ * https://github.com/obiwanjacobi/atl
  *
  * ATL uses some techniques you may not be familiar with.
  * This intro sketch (that does nothing) explains these techniques.

@@ -1,8 +1,9 @@
 #ifndef __REGISTERS_H__
 #define __REGISTERS_H__
 
-#include <stdint.h>
 #include <string.h>
+#include <stdint.h>
+
 
 // Fakes register memory of AVR MCUs
 class Registers

@@ -6,6 +6,9 @@
 
 #include "avr.h"
 
+// some avr/gcc specific nonsense
+#define __extension__
+
 #include <stdint.h>
 #include <avr/io.h>
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary", "ArduinoTemplateLibrary\ArduinoTemplateLibrary.vcxproj", "{F96787B6-E18C-4ECA-9A57-C62DF0F615ED}"
 EndProject
@@ -9,14 +9,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArduinoTemplateLibrary.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9ED6B5A1-62C7-4B2F-BDCA-AAF39BEA1489}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\.gitattributes = ..\..\.gitattributes
+		..\..\.gitignore = ..\..\.gitignore
 		_template.h = _template.h
-		ArduinoTemplateLibrary.vsmdi = ArduinoTemplateLibrary.vsmdi
 		BuildArduinoExamples.ps1 = BuildArduinoExamples.ps1
 		BuildArduinoLibraries.ps1 = BuildArduinoLibraries.ps1
 		BuildAvrLibrary.ps1 = BuildAvrLibrary.ps1
 		Contracts.txt = Contracts.txt
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ATL", "ATL", "{D05E1ACA-732A-4F6E-BB16-22E9FECCF428}"
@@ -123,21 +122,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AvrTemplateLibrary.Tests", "AvrTemplateLibrary.Tests\AvrTemplateLibrary.Tests.vcxproj", "{9757CB21-B840-49A6-B057-9F322E543DD6}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs01
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ArduinoTemplateLibrary\\ArduinoTemplateLibrary.vcxproj
-		SccProjectName1 = ArduinoTemplateLibrary
-		SccLocalPath1 = ArduinoTemplateLibrary
-		SccProjectUniqueName2 = ArduinoTemplateLibrary.Tests\\ArduinoTemplateLibrary.Tests.vcxproj
-		SccProjectName2 = ArduinoTemplateLibrary.Tests
-		SccLocalPath2 = ArduinoTemplateLibrary.Tests
-		SccProjectUniqueName3 = AvrTemplateLibrary.Tests\\AvrTemplateLibrary.Tests.vcxproj
-		SccProjectName3 = AvrTemplateLibrary.Tests
-		SccLocalPath3 = AvrTemplateLibrary.Tests
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
@@ -169,6 +153,9 @@ Global
 		{3FEAB1DD-405B-4524-A2FC-1F9D531D8987} = {92E5465D-B7AE-4D3A-856C-D480ABD89D17}
 		{42BD9785-228C-4C7C-961E-CA2CA768808F} = {FA8BA82F-FF4E-4FA3-BEB0-4014079F9BF3}
 		{BC6C3083-6DD4-40C9-BB5B-4E552DA1DF77} = {94B66028-C382-4349-A2FE-3A7E47FA66DB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D6E212C-B597-4697-9867-71890A92F890}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ArduinoTemplateLibrary.vsmdi
