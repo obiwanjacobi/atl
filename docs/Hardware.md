@@ -10,6 +10,6 @@ The benefit of this separation is that the Controller logic which is always the 
 The following hardware devices are currently supported:
 
 * 74HC595 shift registers. See [General Purpose IO](General-Purpose-IO) - Serial IO.
-* [HD44780](HD44780) LCD display.
-* [TB6612FNG](TB6612FNG) Motor Controller.
-* [URM37 V3.2](URM37-V3.2) Sonic Sensor.
+* [HD44780](HD44780.md) LCD display.
+* TB6612FNG Motor Controller.
+* URM37 V3.2 Sonic Sensor.
